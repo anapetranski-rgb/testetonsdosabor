@@ -8,6 +8,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Cormorant Garamond", "Playfair Display", serif;
+  letter-spacing: 0.4px;
 }
 
 :root {
@@ -26,6 +27,8 @@
 
 body {
   font-family: "Cormorant Garamond", "Playfair Display", serif;
+  font-weight: 400;
+  letter-spacing: 0.4px;
   line-height: 1.6;
   background-image: 
         linear-gradient(rgba(255, 250, 245, 0.85), rgba(255, 250, 245, 0.85)),
@@ -1104,8 +1107,9 @@ header {
 
 .customization-box label {
   display: block;
-  font-family: "Playfair Display", serif !important;
-  font-weight: 700;
+  font-family: "Cormorant Garamond", "Playfair Display", serif !important;
+  font-weight: 600;
+  letter-spacing: 0.4px;
   color: #1A3038;
   font-size: 1rem;
   margin-bottom: 0.4rem;
@@ -1120,7 +1124,9 @@ header {
   padding: 0.8rem;
   border: 1px solid var(--border-color);
   border-radius: 0 !important; /* Canto reto */
-  font-family: "Playfair Display", serif !important;
+  font-family: "Cormorant Garamond", "Playfair Display", serif !important;
+  font-weight: 400;
+  letter-spacing: 0.4px;
   font-size: 0.95rem;
   color: #1A3038;
   background: rgba(255, 255, 255, 0.9);
@@ -1443,7 +1449,9 @@ footer {
   padding: 0.8rem;
   border: 1px solid var(--border-color);
   border-radius: 0 !important; /* Canto reto */
-  font-family: "Playfair Display", serif;
+  font-family: "Cormorant Garamond", "Playfair Display", serif;
+  font-weight: 400;
+  letter-spacing: 0.4px;
   font-size: 0.95rem;
   color: #1A3038;
   background: rgba(255, 255, 255, 0.9);
@@ -1520,7 +1528,7 @@ footer {
   background-color: var(--primary-strong, #177F8C) !important;
   border-color: var(--primary-strong, #177F8C) !important;
   color: #ffffff !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
 }
 
 /* Padronização dos Botões de Ação do Carrinho */

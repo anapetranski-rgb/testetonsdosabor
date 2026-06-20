@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // --- SELETORES GLOBAIS ---
+    
     const cartIcon = document.querySelector(".cart-icon"),
         cartSidebar = document.querySelector(".cart-sidebar"),
         cartOverlay = document.querySelector(".cart-overlay"),
@@ -18,23 +18,23 @@ document.addEventListener("DOMContentLoaded", () => {
         discountLineElem = document.querySelector(".discount-line"),
         totalElem = document.getElementById("cart-total");
     const finishOrderBtn = document.getElementById("finish-order-btn");
-    // Seletores da barra inferior
+    
     const viewCartBanner = document.querySelector(".view-cart-banner");
     const bannerTotalElem = document.getElementById("banner-total");
     const viewCartBannerBtn = document.querySelector(".view-cart-banner-btn");
 
-    // Seletores para o sistema de filtro
+    
     const categoryBtns = document.querySelectorAll(".category-btn");
     const searchInput = document.querySelector(".search-input");
 
-    // Seletores dos Modais de Personalização
+    
     const customizationModal = document.getElementById('customizationModal');
     const dynamicCustomizationForm = document.getElementById('dynamic-customization');
     const customizationTitle = document.getElementById('customizationTitle');
     const customizationFields = document.getElementById('customizationFields');
     const modalMask = document.getElementById('modalMask');
 
-    // Seletores da Calculadora de Festa e Subcategorias
+    
     const megaDropdown = document.getElementById('mega-dropdown');
     const calculatorModal = document.getElementById('calculatorModal');
     const btnOpenCalculator = document.getElementById('btn-open-calculator');
@@ -46,9 +46,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartUrgencyFeeElem = document.getElementById('cart-urgency-fee');
 
 
-    // --- ESTADO DA APLICAÇÃO ---
+    
     const produtos = [
-        // === DOCES TRADICIONAIS UNIFICADOS ===
+        
         {
             id: 1,
             nome: "Brigadeiro Preto Tradicional",
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
             requerPersonalizacao: false
         },
 
-        // Itens do Cardápio por Unidade / Finos
+        
         {
             id: 7,
             nome: "Brigadeiro Granullé",
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Tradicional PP",
             categoria: "bolos",
             subcategoria: "tradicionais",
-            preco: 99.00, // Preço do Word
+            preco: 99.00, 
             imagem: "./assets/defaultDoces.png",
             descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg). Lindo acabamento em chantilly.",
             requerPersonalizacao: true,
@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Tradicional P",
             categoria: "bolos",
             subcategoria: "tradicionais",
-            preco: 109.90, // Preço do Word
+            preco: 109.90, 
             imagem: "./assets/Bolos/TradicionalP.png",
             descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg). Lindo acabamento em chantilly.",
             requerPersonalizacao: true,
@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Tradicional M",
             categoria: "bolos",
             subcategoria: "tradicionais",
-            preco: 135.00, // Preço do PDF
+            preco: 135.00, 
             imagem: "./assets/Bolos/TradicionalM.png",
             descricao: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg). Lindo acabamento em chantilly.",
             requerPersonalizacao: true,
@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Tradicional G",
             categoria: "bolos",
             subcategoria: "tradicionais",
-            preco: 180.00, // Preço do PDF
+            preco: 180.00, 
             imagem: "./assets/defaultDoces.png",
             descricao: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg). Lindo acabamento em chantilly.",
             requerPersonalizacao: true,
@@ -273,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Tradicional GG",
             categoria: "bolos",
             subcategoria: "tradicionais",
-            preco: 299.00, // Preço do Word
+            preco: 299.00, 
             imagem: "./assets/defaultDoces.png",
             descricao: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg). Lindo acabamento em chantilly.",
             requerPersonalizacao: true,
@@ -289,13 +289,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 { sabor: "Paçoca", detalhe: "Massa branca macia com um surpreendente brigadeiro artesanal de paçoca." }
             ]
         },
-        // --- SUBCATEGORIA: ESPECIAIS (FRUTAS) ---
+        
         {
             id: 20,
             nome: "Bolo Especial PP",
             categoria: "bolos",
             subcategoria: "especiais",
-            preco: 105.00, // Preço atualizado do Word
+            preco: 105.00, 
             imagem: "./assets/Bolos/EspecialPP.png",
             descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg). Deliciosas combinações com frutas frescas.",
             requerPersonalizacao: true,
@@ -315,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Especial P",
             categoria: "bolos",
             subcategoria: "especiais",
-            preco: 125.00, // Preço atualizado do Word
+            preco: 125.00, 
             imagem: "./assets/Bolos/EspecialP.png",
             descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg). Perfeito equilíbrio de doçura e frescor.",
             requerPersonalizacao: true,
@@ -335,7 +335,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Especial M",
             categoria: "bolos",
             subcategoria: "especiais",
-            preco: 169.00, // Preço do PDF
+            preco: 169.00, 
             imagem: "./assets/Bolos/EspecialM.png",
             descricao: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg). Recheios artesanais com frutas selecionadas.",
             requerPersonalizacao: true,
@@ -355,7 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Especial G",
             categoria: "bolos",
             subcategoria: "especiais",
-            preco: 250.00, // Preço do PDF
+            preco: 250.00, 
             imagem: "./assets/Bolos/EspecialG.png",
             descricao: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg). Estrutura elegante ideal para comemorações.",
             requerPersonalizacao: true,
@@ -375,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Especial GG",
             categoria: "bolos",
             subcategoria: "especiais",
-            preco: 369.00, // Preço atualizado do Word
+            preco: 369.00, 
             imagem: "./assets/defaultDoces.png",
             descricao: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg). Perfeito para casamentos e grandes eventos.",
             requerPersonalizacao: true,
@@ -390,28 +390,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 { sabor: "Nata com Morangos e Suspiros", detalhe: "Massa branca, creme de natas, morango e suspiros." }
             ]
         },
-        // --- SUBCATEGORIA: GOURMET ---
+        
         {
             id: 25,
             nome: "Bolo Gourmet PP",
             categoria: "bolos",
             subcategoria: "gourmet",
-            preco: 115.00, // Preço atualizado do Word 
+            preco: 115.00, 
             imagem: "./assets/defaultDoces.png",
-            descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg)[cite: 195]. Combinações exclusivas de alta confeitaria.",
+            descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg). Combinações exclusivas de alta confeitaria.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             permiteUploadInspiracao: true,
             opcoesCoberturaExtra: [],
             opcoes: [
-                { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella[cite: 151, 152]." },
-                { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas[cite: 153, 154]." },
-                { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas[cite: 155, 156]." },
-                { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça[cite: 157, 158]." },
-                { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano[cite: 159, 160]." },
-                { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache[cite: 161, 162, 163]." },
-                { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes[cite: 164, 165]." },
-                { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas[cite: 167]." }
+                { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella." },
+                { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas." },
+                { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas." },
+                { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça." },
+                { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano." },
+                { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
+                { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
+                { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
             ]
         },
         {
@@ -419,22 +419,22 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Gourmet P",
             categoria: "bolos",
             subcategoria: "gourmet",
-            preco: 155.00, // Preço atualizado do Word 
+            preco: 155.00, 
             imagem: "./assets/defaultDoces.png",
-            descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg)[cite: 199]. Sabores finos e sofisticados.",
+            descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg). Sabores finos e sofisticados.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             permiteUploadInspiracao: true,
             opcoesCoberturaExtra: [],
             opcoes: [
-                { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella[cite: 151, 152]." },
-                { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas[cite: 153, 154]." },
-                { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas[cite: 155, 156]." },
-                { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça[cite: 157, 158]." },
-                { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano[cite: 159, 160]." },
-                { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache[cite: 161, 162, 163]." },
-                { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes[cite: 164, 165]." },
-                { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas[cite: 167]." }
+                { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella." },
+                { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas." },
+                { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas." },
+                { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça." },
+                { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano." },
+                { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
+                { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
+                { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
             ]
         },
         {
@@ -442,22 +442,22 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Gourmet M",
             categoria: "bolos",
             subcategoria: "gourmet",
-            preco: 225.00, // Preço do PDF [cite: 147]
+            preco: 225.00, 
             imagem: "./assets/Bolos/GourmetM.png",
-            descricao: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg)[cite: 203]. Criações requintadas.",
+            descricao: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg). Criações requintadas.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             permiteUploadInspiracao: true,
             opcoesCoberturaExtra: [],
             opcoes: [
-                { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella[cite: 151, 152]." },
-                { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas[cite: 153, 154]." },
-                { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas[cite: 155, 156]." },
-                { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça[cite: 157, 158]." },
-                { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano[cite: 159, 160]." },
-                { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache[cite: 161, 162, 163]." },
-                { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes[cite: 164, 165]." },
-                { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas[cite: 167]." }
+                { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella." },
+                { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas." },
+                { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas." },
+                { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça." },
+                { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano." },
+                { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
+                { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
+                { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
             ]
         },
         {
@@ -465,22 +465,22 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Gourmet G",
             categoria: "bolos",
             subcategoria: "gourmet",
-            preco: 305.00, // Preço do PDF [cite: 147]
+            preco: 305.00, 
             imagem: "./assets/Bolos/GourmetG.png",
-            descricao: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg)[cite: 204]. Experiência gastronômica marcante.",
+            descricao: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg). Experiência gastronômica marcante.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             permiteUploadInspiracao: true,
             opcoesCoberturaExtra: [],
             opcoes: [
-                { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella[cite: 151, 152]." },
-                { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas[cite: 153, 154]." },
-                { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas[cite: 155, 156]." },
-                { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça[cite: 157, 158]." },
-                { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano[cite: 159, 160]." },
-                { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache[cite: 161, 162, 163]." },
-                { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes[cite: 164, 165]." },
-                { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas[cite: 167]." }
+                { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella." },
+                { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas." },
+                { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas." },
+                { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça." },
+                { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano." },
+                { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
+                { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
+                { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
             ]
         },
         {
@@ -488,29 +488,29 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Bolo Gourmet GG",
             categoria: "bolos",
             subcategoria: "gourmet",
-            preco: 429.00, // Preço atualizado do Word 
+            preco: 429.00, 
             imagem: "./assets/Bolos/GourmetGG.png",
-            descricao: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg)[cite: 205]. O ápice do luxo para o seu grande dia.",
+            descricao: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg). O ápice do luxo para o seu grande dia.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             permiteUploadInspiracao: true,
             opcoesCoberturaExtra: [],
             opcoes: [
-                { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella[cite: 151, 152]." },
-                { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas[cite: 153, 154]." },
-                { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas[cite: 155, 156]." },
-                { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça[cite: 157, 158]." },
-                { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano[cite: 159, 160]." },
-                { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache[cite: 161, 162, 163]." },
-                { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes[cite: 164, 165]." },
-                { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas[cite: 167]." }
+                { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella." },
+                { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas." },
+                { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas." },
+                { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça." },
+                { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano." },
+                { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
+                { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
+                { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
             ]
         },
         {
             id: 40,
             nome: "Cupcake P",
             categoria: "cupcakes",
-            preco: 4.50, // Base padrão para mini cupcakes decorados
+            preco: 4.50, 
             imagem: "./assets/defaultDoces.png",
             descricao: "Delicado mini bolo recheado e decorado com cobertura artesanal. Escolha o seu sabor favorito.",
             requerPersonalizacao: true,
@@ -526,7 +526,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 41,
             nome: "Cupcake G",
             categoria: "cupcakes",
-            preco: 8.50, // Tamanho tradicional individual
+            preco: 8.50, 
             imagem: "./assets/DocesFinos/cupcakeG.png",
             descricao: "Tamanho perfeito para lanches individuais ou lembrancinhas. Recheado e lindamente decorado.",
             requerPersonalizacao: true,
@@ -542,7 +542,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 42,
             nome: "Bombons Tradicionais (Sicao)",
             categoria: "doces-finos",
-            subcategoria: "bombons", // Mesma subcategoria para linkar no único botão!
+            subcategoria: "bombons", 
             preco: 2.90,
             imagem: "./assets/DocesFinos/bombomTradicional.png",
             descricao: "Deliciosos bombons tradicionais com cobertura fracionada Sicao.",
@@ -561,7 +561,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 43,
             nome: "Bombons Finos (Chocolate Nobre)",
             categoria: "doces-finos",
-            subcategoria: "bombons", // Mesma subcategoria para nascer junto no clique!
+            subcategoria: "bombons", 
             preco: 4.90,
             imagem: "./assets/DocesFinos/bombomFino.png",
             descricao: "Bombons requintados de alta confeitaria produzidos com puro chocolate nobre temperado.",
@@ -580,7 +580,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Macarons Artesanais",
             categoria: "doces-finos",
             subcategoria: "macarons",
-            preco: 7.90, // Atualizado conforme o cardápio!
+            preco: 7.90, 
             imagem: "./assets/DocesFinos/macaronsUnidade.png",
             descricao: "Clássico doce francês crocante por fora e incrivelmente macio por dentro.",
             requerPersonalizacao: true,
@@ -598,27 +598,27 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Torre de Macarons",
             categoria: "doces-finos",
             subcategoria: "macarons",
-            precoBase: 425.00, // Preço da menor torre (Aprox. 50 un.) [cite: 226]
+            precoBase: 425.00, 
             imagem: "./assets/DocesFinos/torreMacarons.png",
             descricao: "Uma belíssima torre de macarons para sua mesa de doces. Selecione o tamanho desejado e digite as cores de preferência na caixinha de texto. (De acordo com o limite)",
             requerPersonalizacao: true,
-            tipoPersonalizacao: "quantidade-cores", // Identificador único para o seu JS saber o que renderizar
-            permiteObservacaoExtra: true, // Abre o campo de texto livre no modal para as cores!
+            tipoPersonalizacao: "quantidade-cores", 
+            permiteObservacaoExtra: true, 
             opcoes: [
                 {
                     sabor: "Torre P (Aproximadamente 50 unidades)",
-                    detalhe: "Ideal para mini weddings ou comemorações intimistas. Permite até 2 cores. (R$ 425,00)", // [cite: 223, 226]
+                    detalhe: "Ideal para mini weddings ou comemorações intimistas. Permite até 2 cores. (R$ 425,00)", 
                     adicional: 0.00
                 },
                 {
                     sabor: "Torre M (Aproximadamente 100 unidades)",
-                    detalhe: "Excelente destaque e volume para mesas médias. Permite até 3 cores. (R$ 820,00)", // [cite: 223, 227]
-                    adicional: 395.00 // R$ 425,00 + R$ 395,00 = R$ 820,00 [cite: 226, 227]
+                    detalhe: "Excelente destaque e volume para mesas médias. Permite até 3 cores. (R$ 820,00)", 
+                    adicional: 395.00 
                 },
                 {
                     sabor: "Torre G (Aproximadamente 150 unidades)",
-                    detalhe: "Uma verdadeira escultura de alta confeitaria. Permite até 4 cores. (R$ 1.299,00)", // [cite: 223, 228]
-                    adicional: 874.00 // R$ 425,00 + R$ 874,00 = R$ 1.299,00 [cite: 226, 228]
+                    detalhe: "Uma verdadeira escultura de alta confeitaria. Permite até 4 cores. (R$ 1.299,00)", 
+                    adicional: 874.00 
                 }
             ]
         },
@@ -626,7 +626,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 46,
             nome: "Brigadeiros Callebaut",
             categoria: "doces-finos",
-            subcategoria: "brigadeiros-finos", // Brota junto com o Granullé e Dois Amores
+            subcategoria: "brigadeiros-finos", 
             preco: 6.50,
             imagem: "./assets/DocesFinos/brigadeiroCallebaut.png",
             descricao: "Linha premium produzida com o autêntico chocolate belga Callebaut. Escolha a sua opção favorita.",
@@ -688,7 +688,7 @@ document.addEventListener("DOMContentLoaded", () => {
             requerPersonalizacao: false
         },
 
-        // --- SUBCATEGORIA: DOCES ESPECIAIS (OURIÇOS, TROUXINHAS E AFINS) ---
+        
         {
             id: 52,
             nome: "Ouriço de Coco",
@@ -794,7 +794,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Copinhos de Chocolate Premium",
             categoria: "doces-finos",
             subcategoria: "tarteletes-e-caixinhas",
-            precoBase: 4.50, // Preço base do copinho tradicional
+            precoBase: 4.50, 
             imagem: "./assets/DocesFinos/copinhoPersonalizado.png",
             descricao: "Delicados copinhos de puro chocolate nobre recheados. Selecione o sabor de sua preferência.",
             requerPersonalizacao: true,
@@ -803,17 +803,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 {
                     sabor: "Abacaxi e Manjericão",
                     detalhe: "Combinação surpreendente, leve e refrescante. (R$ 4,50/un)",
-                    adicional: 0.00 // R$ 4,50 base + R$ 0,00 = R$ 4,50
+                    adicional: 0.00 
                 },
                 {
                     sabor: "Avelã Crocante",
                     detalhe: "Recheio cremoso de avelã com toque crocante premium. (R$ 4,90/un)",
-                    adicional: 0.40 // R$ 4,50 base + R$ 0,40 = R$ 4,90
+                    adicional: 0.40 
                 },
                 {
                     sabor: "Avelã e Brigadeiro",
                     detalhe: "O encontro do nosso brigadeiro artesanal com creme de avelã. (R$ 3,90/un)",
-                    adicional: -0.60 // R$ 4,50 base - R$ 0,60 = R$ 3,90 (O JS aceita menos também!)
+                    adicional: -0.60 
                 }
             ]
         },
@@ -822,7 +822,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Caixinhas de Chocolate Personalizadas",
             categoria: "doces-finos",
             subcategoria: "tarteletes-e-caixinhas",
-            precoBase: 4.90, // Preço base da maioria das caixinhas
+            precoBase: 4.90, 
             imagem: "./assets/DocesFinos/caixinhaChocolate.png",
             descricao: "Elegantes caixinhas moldadas em chocolate com recheios finos e decorações sofisticadas. Selecione o seu sabor favorito.",
             requerPersonalizacao: true,
@@ -831,32 +831,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 {
                     sabor: "Doce de Leite com Frutas Vermelhas",
                     detalhe: "Doce de leite cremoso coroado com frutas frescas. (R$ 4,90/un)",
-                    adicional: 0.00 // R$ 4,90 base + R$ 0,00 = R$ 4,90
+                    adicional: 0.00 
                 },
                 {
                     sabor: "Chocolate com Creme e Frutas Vermelhas",
                     detalhe: "Ganache meio amarga com creme e frutas selecionadas. (R$ 4,90/un)",
-                    adicional: 0.00 // R$ 4,90 base + R$ 0,00 = R$ 4,90
+                    adicional: 0.00 
                 },
                 {
                     sabor: "Caixinha Brûllé",
                     detalhe: "Creme brûlée suave com açúcar maçaricado no topo. (R$ 5,90/un)",
-                    adicional: 1.00 // R$ 4,90 base + R$ 1,00 = R$ 5,90
+                    adicional: 1.00 
                 },
                 {
                     sabor: "Physalis",
                     detalhe: "Creme trufado decorado com uma fruta Physalis inteira. (R$ 4,50/un)",
-                    adicional: -0.40 // R$ 4,90 base - R$ 0,40 = R$ 4,50
+                    adicional: -0.40 
                 },
                 {
                     sabor: "Cereja",
                     detalhe: "Recheio trufado com uma linda cereja com cabinho no topo. (R$ 4,50/un)",
-                    adicional: -0.40 // R$ 4,90 base - R$ 0,40 = R$ 4,50
+                    adicional: -0.40 
                 },
                 {
                     sabor: "Damasco",
                     detalhe: "Combinação nobre com recheio artesanal de damasco. (R$ 4,50/un)",
-                    adicional: -0.40 // R$ 4,90 base - R$ 0,40 = R$ 4,50
+                    adicional: -0.40 
                 }
             ]
         },
@@ -865,7 +865,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Mini Tarteletes Tradicionais",
             categoria: "doces-finos",
             subcategoria: "tarteletes-e-caixinhas",
-            preco: 5.90, // Preço inicial dessa linha
+            preco: 5.90, 
             imagem: "./assets/DocesFinos/tarteleteTradicional.png",
             descricao: "Mini tortinhas crocantes de massa sablée com recheios tradicionais e opções cítricas irresistíveis.",
             requerPersonalizacao: true,
@@ -882,7 +882,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Mini Tarteletes Luxo",
             categoria: "doces-finos",
             subcategoria: "tarteletes-e-caixinhas",
-            preco: 8.90, // Preço fixo dessa linha sofisticada
+            preco: 8.90, 
             imagem: "./assets/defaultDoces.png",
             descricao: "O ápice da alta confeitaria: mini tortinhas finas decoradas e coroadas com um mini macaron artesanal.",
             requerPersonalizacao: true,
@@ -926,7 +926,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Mini Pudim",
             categoria: "doces-finos",
             subcategoria: "mini-sobremesas",
-            preco: 3.30, // Atualizado conforme o Word!
+            preco: 3.30, 
             imagem: "./assets/DocesFinos/pudim.png",
             descricao: "O clássico pudim de leite condensado, super cremoso, em uma delicada versão mini para eventos.",
             requerPersonalizacao: false
@@ -936,7 +936,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Mini Quindim",
             categoria: "doces-finos",
             subcategoria: "mini-sobremesas",
-            preco: 3.90, // Atualizado conforme o Word!
+            preco: 3.90, 
             imagem: "./assets/DocesFinos/quindim.png",
             descricao: "Doce tradicional à base de gemas e coco, com brilho impecável e textura perfeita.",
             requerPersonalizacao: false
@@ -1000,7 +1000,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Camafeu de Nozes Tradicional",
             categoria: "doces-finos",
             subcategoria: "doces-especiais",
-            preco: 3.50, // Atualizado conforme o Word!
+            preco: 3.50, 
             imagem: "./assets/DocesFinos/camafeu.png",
             descricao: "O mais tradicional doce fino de casamento feito com nozes selecionadas. Escolha o banho de sua preferência.",
             requerPersonalizacao: true,
@@ -1013,7 +1013,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 77,
             nome: "Petit Verrines Premium",
-            categoria: "petit-verrines", // Corrigido para a categoria exclusiva!
+            categoria: "petit-verrines", 
             preco: 12.90,
             imagem: "./assets/defaultDoces.png",
             descricao: "Sobremesas finas e sofisticadas servidas em elegantes copinhos individuais. Selecione o seu sabor favorito.",
@@ -1109,7 +1109,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Salgados Fritos Clássicos",
             categoria: "salgados",
             subcategoria: "fritos",
-            preco: 1.90, // Corrigido para o valor do cento!
+            preco: 1.90, 
             imagem: "./assets/Salgados/fritos.jpg",
             descricao: "Salgadinhos fritos artesanais. * Selecione o seu sabor favorito.",
             requerPersonalizacao: true,
@@ -1128,7 +1128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Mini Esfihas Assadas",
             categoria: "salgados",
             subcategoria: "assados",
-            preco: 2.15, // Preço por unidade
+            preco: 2.15, 
             imagem: "./assets/defaultSalgado.jpg",
             descricao: "Mini esfihas com massa super macia. Selecione o sabor.",
             requerPersonalizacao: true,
@@ -1223,7 +1223,7 @@ document.addEventListener("DOMContentLoaded", () => {
             subcategoria: "sanduiches",
             preco: 4.90,
             imagem: "./assets/Salgados/hamburguer.jpg",
-            descricao: "Mini hambúrguer artesanal completo e suculento, perfeito para festas.", // Atualizado!
+            descricao: "Mini hambúrguer artesanal completo e suculento, perfeito para festas.", 
             requerPersonalizacao: false
         },
         {
@@ -1233,7 +1233,7 @@ document.addEventListener("DOMContentLoaded", () => {
             subcategoria: "sanduiches",
             preco: 3.80,
             imagem: "./assets/Salgados/frango.jpg",
-            descricao: "Mini sanduíche com recheio cremoso e super temperado de frango desfiado.", // Atualizado!
+            descricao: "Mini sanduíche com recheio cremoso e super temperado de frango desfiado.", 
             requerPersonalizacao: false
         },
         {
@@ -1243,7 +1243,7 @@ document.addEventListener("DOMContentLoaded", () => {
             subcategoria: "sanduiches",
             preco: 4.90,
             imagem: "./assets/defaultSalgado.jpg",
-            descricao: "Sofisticado mini sanduíche recheado com carne cozida lentamente na cerveja, super suculenta.", // Atualizado!
+            descricao: "Sofisticado mini sanduíche recheado com carne cozida lentamente na cerveja, super suculenta.", 
             requerPersonalizacao: false
         },
         {
@@ -1253,12 +1253,12 @@ document.addEventListener("DOMContentLoaded", () => {
             subcategoria: "sanduiches",
             preco: 4.20,
             imagem: "./assets/defaultSalgado.jpg",
-            descricao: "Clássica e saborosa combinação de mini sanduíche com fatias de salame selecionado.", // Atualizado!
+            descricao: "Clássica e saborosa combinação de mini sanduíche com fatias de salame selecionado.", 
             requerPersonalizacao: false
         },
     ];
 
-    // Garantir que todos os produtos tenham uma imagem configurada e válida
+    
     produtos.forEach(p => {
         if (!p.imagem || p.imagem.trim() === "") {
             p.imagem = p.categoria === "salgados" ? "./assets/defaultSalgado.jpg" : "./assets/defaultDoces.png";
@@ -1270,15 +1270,15 @@ document.addEventListener("DOMContentLoaded", () => {
         tipoEntrega = "delivery",
         appliedCoupon = null;
 
-    // Guarda qual produto o cliente clicou para personalizar
+    
     let produtoSendoPersonalizado = null;
 
-    // Variáveis de estado para filtros
+    
     let categoriaAtiva = "home";
     let subcategoriaAtiva = "all";
     let termoBusca = "";
 
-    // Novas variáveis de estado para taxas e calculadora
+    
     let taxaUrgenciaAtiva = false;
     let taxaUrgenciaValor = 0;
     let sugestoesCalculadas = null;
@@ -1328,7 +1328,7 @@ document.addEventListener("DOMContentLoaded", () => {
         flyingImg.addEventListener("transitionend", () => flyingImg.remove());
     };
 
-    // Mapeamento de categorias e subcategorias para o Mega Dropdown
+    
     const categoriaNomes = {
         "bolos": "Bolos Festivos",
         "doces-tradicionais": "Doces Tradicionais",
@@ -1430,13 +1430,13 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `;
 
-        // Event listeners para os itens do mega menu
+        
         megaDropdown.querySelectorAll(".mega-item").forEach(btn => {
             btn.addEventListener("click", () => {
                 subcategoriaAtiva = btn.dataset.subcategory;
                 categoriaAtiva = cat;
                 
-                // Marca o botão da categoria correspondente como ativo no menu principal
+                
                 categoryBtns.forEach(b => {
                     if (b.dataset.category === cat) {
                         b.classList.add("active");
@@ -1472,7 +1472,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 250);
     };
 
-    // Função para filtrar e mostrar produtos
+    
     const filtrarEMostrarProdutos = () => {
         const secaoQuemSomos = document.getElementById("about");
 
@@ -1491,7 +1491,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 (produto) => produto.categoria === categoriaAtiva,
             );
 
-            // Filtro por subcategoria ativa
+            
             if (subcategoriaAtiva !== "all") {
                 produtosFiltrados = produtosFiltrados.filter(
                     (produto) => produto.subcategoria === subcategoriaAtiva,
@@ -1577,7 +1577,7 @@ document.addEventListener("DOMContentLoaded", () => {
         atualizarCarrinho();
     };
 
-    // Lógica para consultar horário de Brasília
+    
     const obterHorarioBrasilia = async () => {
         try {
             const response = await fetch("https://worldtimeapi.org/api/timezone/America/Sao_Paulo");
@@ -1591,7 +1591,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return new Date();
     };
 
-    // Verifica se a taxa de urgência de 20% deve ser aplicada (< 30 horas)
+    
     const verificarTaxaUrgencia = async () => {
         const prefix = tipoEntrega === "delivery" ? "delivery" : "pickup";
         const dateVal = document.getElementById(`${prefix}-date`).value;
@@ -1666,7 +1666,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (appliedCoupon && appliedCoupon.type === "percentage")
             discountAmount = subtotal * (appliedCoupon.value / 100);
 
-        // Aplica a taxa de urgência
+        
         if (taxaUrgenciaAtiva && subtotal > 0) {
             taxaUrgenciaValor = subtotal * 0.20;
             urgencyFeeLine.style.display = "flex";
@@ -1690,7 +1690,7 @@ document.addEventListener("DOMContentLoaded", () => {
             0,
         );
 
-        // Verifica a restrição de mínimo de 20 unidades
+        
         let hasMinViolation = false;
         carrinho.forEach(item => {
             const prod = produtos.find(p => p.id === parseInt(item.id));
@@ -1873,7 +1873,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.open(url, "_blank");
     };
 
-    // ========== MODAL DE CUSTOMIZAÇÃO DINÂMICO ==========
+    
     function abrirModalCustomizacao(productId) {
         const product = produtos.find(p => p.id === productId);
         if (!product) return;
@@ -2143,7 +2143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         produtoSendoPersonalizado = null;
     }
 
-    // ========== CALCULADORA DE FESTA ==========
+    
     function abrirCalculatorModal() {
         calculatorResults.style.display = 'none';
         btnApplySuggestion.style.display = 'none';
@@ -2179,9 +2179,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const porcoesTotal = adultos + (criancas * 0.5);
 
-        let boloQtd = 0; // em gramas
-        let docesQtd = 0; // em unidades
-        let salgadosQtd = 0; // em unidades
+        let boloQtd = 0; 
+        let docesQtd = 0; 
+        let salgadosQtd = 0; 
         
         let htmlResultados = `<strong>Resultados Recomendados:</strong><ul>`;
 
@@ -2342,7 +2342,7 @@ document.addEventListener("DOMContentLoaded", () => {
         abrirCarrinho();
     }
 
-    // --- EVENT LISTENERS GLOBAIS ---
+    
     cartIcon.addEventListener("click", abrirCarrinho);
     closeCartBtn.addEventListener("click", fecharCarrinho);
     cartOverlay.addEventListener("click", fecharCarrinho);
@@ -2350,26 +2350,26 @@ document.addEventListener("DOMContentLoaded", () => {
     finishOrderBtn.addEventListener("click", finalizarPedido);
     viewCartBannerBtn.addEventListener("click", abrirCarrinho);
 
-    // Event listeners dos modais
+    
     modalMask.addEventListener("click", () => {
         fecharModalCustomizacao();
         fecharCalculatorModal();
     });
     document.querySelector(".customization-box .close").addEventListener("click", fecharModalCustomizacao);
 
-    // Calculadora de Festa listeners
+    
     btnOpenCalculator.addEventListener("click", abrirCalculatorModal);
     document.querySelector("#calculatorModal .close-calc").addEventListener("click", fecharCalculatorModal);
     btnCalculate.addEventListener("click", calcularSugestoesFesta);
     btnApplySuggestion.addEventListener("click", aplicarSugestaoAoCarrinho);
 
-    // Monitora alterações na data/hora para calcular taxa de urgência
+    
     document.getElementById("delivery-date").addEventListener("change", verificarTaxaUrgencia);
     document.getElementById("delivery-time").addEventListener("change", verificarTaxaUrgencia);
     document.getElementById("pickup-date").addEventListener("change", verificarTaxaUrgencia);
     document.getElementById("pickup-time").addEventListener("change", verificarTaxaUrgencia);
 
-    // Envio do Formulário de Customização Dinâmica
+    
     dynamicCustomizationForm.addEventListener("submit", (e) => {
         e.preventDefault();
         if (!produtoSendoPersonalizado) return;
@@ -2447,7 +2447,7 @@ document.addEventListener("DOMContentLoaded", () => {
         atualizarCarrinho();
     });
 
-    // Event listeners para botões de categoria (Mega Menu Hover & Click)
+    
     categoryBtns.forEach((btn) => {
         const cat = btn.dataset.category;
         
@@ -2467,7 +2467,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const subcats = getSubcategories(cat);
             
             if (window.innerWidth <= 768) {
-                // Mobile: toggle menu if has subcategories
+                
                 if (subcats.length > 0) {
                     e.preventDefault();
                     if (megaDropdown.classList.contains("show") && hoveredCategory === cat) {
@@ -2486,7 +2486,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     filtrarEMostrarProdutos();
                 }
             } else {
-                // Desktop: click directly filters and hides the menu
+                
                 categoriaAtiva = cat;
                 subcategoriaAtiva = "all";
                 categoryBtns.forEach((b) => b.classList.remove("active"));
@@ -2510,13 +2510,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Event listener para campo de busca
+    
     searchInput.addEventListener("input", (e) => {
         termoBusca = e.target.value;
         filtrarEMostrarProdutos();
     });
 
-    // --- MOMENTO 1: INTERCEPTAR O CLIQUE ---
+    
     document
         .querySelector(".products-container")
         .addEventListener("click", (e) => {
@@ -2559,7 +2559,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 pickupForm.style.display = "block";
             }
             
-            // Monitora taxa de urgência na troca de entrega/retirada
+            
             verificarTaxaUrgencia();
         }),
     );
@@ -2575,7 +2575,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Remove o erro ao digitar
+    
     document
         .querySelectorAll(
             "#delivery-form-container input[required], #pickup-form-container input[required], #pickup-form-container select[required]",
@@ -2586,7 +2586,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-    // --- INICIALIZAÇÃO ---
+    
     filtrarEMostrarProdutos();
     atualizarCarrinho();
 });

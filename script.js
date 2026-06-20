@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Brigadeiro de Paçoca",
             categoria: "doces-tradicionais",
             preco: 1.49,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Sabor marcante de paçoca em formato de brigadeiro de festa.",
             requerPersonalizacao: false
         },
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Brigadeiro Moranguinho",
             categoria: "doces-tradicionais",
             preco: 1.49,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "O clássico bicho de pé, brigadeiro saborizado de morango.",
             requerPersonalizacao: false
         },
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Brigadeiro de Churros",
             categoria: "doces-finos",
             preco: 2.10,
-            imagem: "/assets/defaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Brigadeiro artesanal de canela finalizado com um gracioso bico de doce de leite.",
             requerPersonalizacao: false
         },
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Flor de Morango",
             categoria: "doces-finos",
             preco: 2.10,
-            imagem: "/assets/defaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Brigadeiro saborizado de morango (Nesquik) moldado delicadamente em formato de florzinha.",
             requerPersonalizacao: false
         },
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "bolos",
             subcategoria: "tradicionais",
             preco: 99.00, // Preço do Word
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg). Lindo acabamento em chantilly.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -253,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "bolos",
             subcategoria: "tradicionais",
             preco: 180.00, // Preço do PDF
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg). Lindo acabamento em chantilly.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "bolos",
             subcategoria: "tradicionais",
             preco: 299.00, // Preço do Word
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg). Lindo acabamento em chantilly.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -376,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "bolos",
             subcategoria: "especiais",
             preco: 369.00, // Preço atualizado do Word
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg). Perfeito para casamentos e grandes eventos.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -397,7 +397,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "bolos",
             subcategoria: "gourmet",
             preco: 115.00, // Preço atualizado do Word 
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg)[cite: 195]. Combinações exclusivas de alta confeitaria.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -420,7 +420,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "bolos",
             subcategoria: "gourmet",
             preco: 155.00, // Preço atualizado do Word 
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg)[cite: 199]. Sabores finos e sofisticados.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -511,7 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Cupcake P",
             categoria: "cupcakes",
             preco: 4.50, // Base padrão para mini cupcakes decorados
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Delicado mini bolo recheado e decorado com cobertura artesanal. Escolha o seu sabor favorito.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -643,7 +643,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "brigadeiros-finos",
             preco: 2.50,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Delicioso brigadeiro gourmet saborizado de limão siciliano com acabamento em granullé branco.",
             requerPersonalizacao: false
         },
@@ -653,7 +653,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "brigadeiros-finos",
             preco: 2.50,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Brigadeiro cremoso de caramelo salgado com acabamento em granullé sabor caramelo.",
             requerPersonalizacao: false
         },
@@ -695,7 +695,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "doces-especiais",
             preco: 2.30,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Doce artesanal de coco super cremoso por dentro com aquela crosta crocante por fora.",
             requerPersonalizacao: false
         },
@@ -725,7 +725,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "doces-especiais",
             preco: 2.50,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "O casamento perfeito do queijo com a goiabada em uma roupagem fina para casamentos e eventos.",
             requerPersonalizacao: false
         },
@@ -735,7 +735,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "doces-especiais",
             preco: 2.30,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Clássico doce de festa repaginado. Escolha a sua base de preferência.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -750,7 +750,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "doces-especiais",
             preco: 3.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Morango inteiro fresco envolto em uma delicada camada de brigadeiro e caramelizado com calda de açúcar cristal.",
             requerPersonalizacao: false
         },
@@ -760,7 +760,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "doces-especiais",
             preco: 7.50,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Doce fino ultra premium moldado em formato de trouxinha com autêntica pasta de marzipan de amêndoas.",
             requerPersonalizacao: false
         },
@@ -770,7 +770,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "doces-especiais",
             preco: 6.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Trouxinha fina recheada com um nobre estrogonofe de nozes e a tradicional baba de moça.",
             requerPersonalizacao: false
         },
@@ -780,7 +780,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "doces-especiais",
             preco: 5.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Massa folhada incrivelmente crocante intercalada com recheio artesanal. Escolha o sabor.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -883,7 +883,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "tarteletes-e-caixinhas",
             preco: 8.90, // Preço fixo dessa linha sofisticada
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "O ápice da alta confeitaria: mini tortinhas finas decoradas e coroadas com um mini macaron artesanal.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -898,7 +898,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "tarteletes-e-caixinhas",
             preco: 5.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Clássica sobremesa de banana com doce de leite e chantilly leve, montada em uma delicada porção individual.",
             requerPersonalizacao: false
         },
@@ -957,7 +957,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "mini-sobremesas",
             preco: 4.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Brownie artesanal denso e chocolatudo com coberturas nobres. Selecione o seu sabor favorito.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -972,7 +972,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "doces-finos",
             subcategoria: "mini-sobremesas",
             preco: 6.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Base de biscoito crocante com creme de cream cheese suave e finalizado com calda artesanal de frutas vermelhas.",
             requerPersonalizacao: false
         },
@@ -1015,7 +1015,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Petit Verrines Premium",
             categoria: "petit-verrines", // Corrigido para a categoria exclusiva!
             preco: 12.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Sobremesas finas e sofisticadas servidas em elegantes copinhos individuais. Selecione o seu sabor favorito.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -1036,7 +1036,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Macarons em Pacote (Tecido e Laço)",
             categoria: "lembrancinhas",
             preco: 9.50,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Delicados macarons embalados em pacote de tecido com um lindo acabamento em laço.",
             requerPersonalizacao: false
         },
@@ -1045,7 +1045,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Macarons em Caixinha (Acrílico)",
             categoria: "lembrancinhas",
             preco: 16.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Apresentação luxuosa de macarons protegidos em uma caixinha transparente de acrílico.",
             requerPersonalizacao: false
         },
@@ -1073,7 +1073,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Alfajor Artesanal",
             categoria: "lembrancinhas",
             preco: 7.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Massa delicada recheada com muito doce de leite e coberta com uma generosa camada de chocolate.",
             requerPersonalizacao: false
         },
@@ -1082,7 +1082,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Pão de Mel Gourmet",
             categoria: "lembrancinhas",
             preco: 7.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Pão de mel super fofinho com especiarias, recheado e banhado no chocolate nobre.",
             requerPersonalizacao: false
         },
@@ -1091,7 +1091,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Caixinha de Medians",
             categoria: "lembrancinhas",
             preco: 15.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Caixinha fina contendo os tradicionais disquinhos de chocolate com frutas secas e nuts por cima.",
             requerPersonalizacao: false
         },
@@ -1100,7 +1100,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Caixinha de Mini Fudge",
             categoria: "lembrancinhas",
             preco: 15.90,
-            imagem: "/assets/dafaultDoces.png",
+            imagem: "./assets/defaultDoces.png",
             descricao: "Caixinha elegante com quadradinhos de fudge de chocolate ultra macios e intensos.",
             requerPersonalizacao: false
         },
@@ -1110,7 +1110,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "salgados",
             subcategoria: "fritos",
             preco: 1.90, // Corrigido para o valor do cento!
-            imagem: "/assets/Salgados/fritos.jpg",
+            imagem: "./assets/Salgados/fritos.jpg",
             descricao: "Salgadinhos fritos artesanais. * Selecione o seu sabor favorito.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -1129,7 +1129,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "salgados",
             subcategoria: "assados",
             preco: 2.15, // Preço por unidade
-            imagem: "/assets/defaultSalgado.jpg",
+            imagem: "./assets/defaultSalgado.jpg",
             descricao: "Mini esfihas com massa super macia. Selecione o sabor.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -1145,7 +1145,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "salgados",
             subcategoria: "assados",
             preco: 2.15,
-            imagem: "/assets/defaultSalgado.jpg",
+            imagem: "./assets/defaultSalgado.jpg",
             descricao: "Empadinhas com aquela massa podre deliciosa que derrete na boca.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -1161,7 +1161,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "salgados",
             subcategoria: "assados",
             preco: 1.99,
-            imagem: "/assets/Salgados/quiche.jpg",
+            imagem: "./assets/Salgados/quiche.jpg",
             descricao: "Delicadas tortinhas abertas com recheio cremoso e sofisticado.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -1178,7 +1178,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "salgados",
             subcategoria: "assados",
             preco: 2.15,
-            imagem: "/assets/Salgados/croissant.jpg",
+            imagem: "./assets/Salgados/croissant.jpg",
             descricao: "Massa folhada leve e amanteigada.Selecione a sua opção.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -1194,7 +1194,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "salgados",
             subcategoria: "assados",
             preco: 2.15,
-            imagem: "/assets/defaultSalgado.jpg",
+            imagem: "./assets/defaultSalgado.jpg",
             descricao: "Salgadinhos folhados super crocantes. Selecione o sabor.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -1212,7 +1212,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "salgados",
             subcategoria: "assados",
             preco: 1.75,
-            imagem: "/assets/defaultSalgado.jpg",
+            imagem: "./assets/defaultSalgado.jpg",
             descricao: "Mini salsicha envolta em uma massa de pãozinha assada super macia.",
             requerPersonalizacao: false
         },
@@ -1222,7 +1222,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "salgados",
             subcategoria: "sanduiches",
             preco: 4.90,
-            imagem: "/assets/Salgados/hamburguer.jpg",
+            imagem: "./assets/Salgados/hamburguer.jpg",
             descricao: "Mini hambúrguer artesanal completo e suculento, perfeito para festas.", // Atualizado!
             requerPersonalizacao: false
         },
@@ -1232,7 +1232,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "salgados",
             subcategoria: "sanduiches",
             preco: 3.80,
-            imagem: "/assets/Salgados/frango.jpg",
+            imagem: "./assets/Salgados/frango.jpg",
             descricao: "Mini sanduíche com recheio cremoso e super temperado de frango desfiado.", // Atualizado!
             requerPersonalizacao: false
         },
@@ -1242,7 +1242,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "salgados",
             subcategoria: "sanduiches",
             preco: 4.90,
-            imagem: "/assets/defaultSalgado.jpg",
+            imagem: "./assets/defaultSalgado.jpg",
             descricao: "Sofisticado mini sanduíche recheado com carne cozida lentamente na cerveja, super suculenta.", // Atualizado!
             requerPersonalizacao: false
         },
@@ -1252,7 +1252,7 @@ document.addEventListener("DOMContentLoaded", () => {
             categoria: "salgados",
             subcategoria: "sanduiches",
             preco: 4.20,
-            imagem: "/assets/defaultSalgado.jpg",
+            imagem: "./assets/defaultSalgado.jpg",
             descricao: "Clássica e saborosa combinação de mini sanduíche com fatias de salame selecionado.", // Atualizado!
             requerPersonalizacao: false
         },
@@ -1261,7 +1261,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Garantir que todos os produtos tenham uma imagem configurada e válida
     produtos.forEach(p => {
         if (!p.imagem || p.imagem.trim() === "") {
-            p.imagem = p.categoria === "salgados" ? "/assets/defaultSalgado.jpg" : "/assets/defaultDoces.png";
+            p.imagem = p.categoria === "salgados" ? "./assets/defaultSalgado.jpg" : "./assets/defaultDoces.png";
         }
     });
 

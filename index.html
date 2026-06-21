@@ -24,7 +24,7 @@
         </div>
 
         <div class="search-container" role="search">
-            <input placeholder="Buscar Produto..." class="search-input" aria-label="Buscar Produto" />
+            <input type="search" placeholder="Buscar Produto..." class="search-input" aria-label="Buscar Produto" />
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
         </div>
 
@@ -41,6 +41,7 @@
     <div class="categories-wrapper">
         <div class="categories-container">
             <nav class="categories-bar" aria-label="Categorias de produtos">
+                <h2 class="sr-only">Categorias de produtos</h2>
                 <button class="category-btn active" data-category="home">
                     <i class="fa-solid fa-house" aria-hidden="true"></i> Home
                 </button>
@@ -98,10 +99,13 @@
             </div>
         </div>
         <div class="urgency-notice" role="note"><i class="fa-solid fa-circle-info"></i> Nota: Pedidos com menos de 30 horas terão o acréscimo da taxa de urgência de 20% do valor do pedido (mediante disponibilidade).</div>
+        <div class="about-map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115291.68819586144!2d-49.349925232982874!3d-25.438466699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce411933e1bd7%3A0x6739958189c490ff!2sCuritiba%20-%20PR!5e0!3m2!1spt-BR!2sbr!4v1718990000000!5m2!1spt-BR!2sbr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização do Atelier Tons do Sabor em Curitiba"></iframe>
+        </div>
     </section>
 
     <main class="products">
-        <div class="products-container"><!-- cards gerados pelo script --></div>
+        <ul class="products-container"><!-- cards gerados pelo script --></ul>
     </main>
 
     <div class="cart-overlay"></div>
@@ -133,7 +137,7 @@
 
                 <div class="form-group">
                     <label for="delivery-cep">CEP</label>
-                    <input type="text" id="delivery-cep" placeholder="00000-000" maxlength="9" required>
+                    <input type="text" id="delivery-cep" placeholder="00000-000" maxlength="9" aria-describedby="delivery-fee-hint" required>
                 </div>
 
                 <div class="form-group">
@@ -141,17 +145,16 @@
                     <textarea id="delivery-address" placeholder="Lote, Quadra, Número" required></textarea>
                 </div>
 
-                <div class="delivery-fee-notice">
+                <div id="delivery-fee-hint" class="delivery-fee-notice">
                     A taxa de entrega será calculada de acordo com a sua região.
                 </div>
 
-                <div class="form-group">
-                    <label>Agende a Data e Hora da Entrega</label>
+                <fieldset class="form-group" style="border: none; padding: 0; margin: 0;">
+                    <legend style="font-weight: 700; margin-bottom: 0.5rem; display: block; font-family: inherit; font-size: inherit; color: inherit;">Agende a Data e Hora da Entrega</legend>
                     <div class="date-time-row">
-                        <input type="date" id="delivery-date" required>
-                        <select id="delivery-time" required>
+                        <input type="date" id="delivery-date" aria-label="Data da entrega" required>
+                        <select id="delivery-time" aria-label="Hora da entrega" required>
                             <option value="" disabled selected>Selecione</option>
-                            <option value="08:00">08:00</option>
                             <option value="09:00">09:00</option>
                             <option value="10:00">10:00</option>
                             <option value="11:00">11:00</option>
@@ -162,9 +165,10 @@
                             <option value="16:00">16:00</option>
                             <option value="17:00">17:00</option>
                             <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
                         </select>
                     </div>
-                </div>
+                </fieldset>
             </div>
             <div id="pickup-form-container" style="display: none;">
                 <div class="form-group">
@@ -172,13 +176,12 @@
                     <input type="text" id="pickup-name" placeholder="Quem vai retirar o pedido?" required>
                 </div>
 
-                <div class="form-group">
-                    <label>Agende a Data e Hora da Retirada</label>
+                <fieldset class="form-group" style="border: none; padding: 0; margin: 0;">
+                    <legend style="font-weight: 700; margin-bottom: 0.5rem; display: block; font-family: inherit; font-size: inherit; color: inherit;">Agende a Data e Hora da Retirada</legend>
                     <div class="date-time-row">
-                        <input type="date" id="pickup-date" required>
-                        <select id="pickup-time" required>
+                        <input type="date" id="pickup-date" aria-label="Data da retirada" required>
+                        <select id="pickup-time" aria-label="Hora da retirada" required>
                             <option value="" disabled selected>Selecione</option>
-                            <option value="08:00">08:00</option>
                             <option value="09:00">09:00</option>
                             <option value="10:00">10:00</option>
                             <option value="11:00">11:00</option>
@@ -189,12 +192,14 @@
                             <option value="16:00">16:00</option>
                             <option value="17:00">17:00</option>
                             <option value="18:00">18:00</option>
+                            <option value="19:00">19:00</option>
                         </select>
                     </div>
-                </div>
+                </fieldset>
             </div>
-            <div class="payment-options-container">
-                <h4>Forma de Pagamento</h4>
+            <fieldset class="payment-options-container" style="border: none; padding: 0; padding-top: 1.2rem; margin: 0;">
+                <legend class="sr-only">Forma de Pagamento</legend>
+                <h4 aria-hidden="true">Forma de Pagamento</h4>
 
                 <label class="payment-option selected">
                     <input type="radio" name="payment" value="PIX" checked> PIX
@@ -218,9 +223,10 @@
                         <input type="number" id="troco-para" placeholder="Ex: 50">
                     </div>
                 </div>
-            </div>
+            </fieldset>
 
             <div class="coupon-container">
+                <label for="coupon-input" class="sr-only">Cupom de desconto</label>
                 <input type="text" id="coupon-input" placeholder="Cupom de desconto">
                 <button id="apply-coupon-btn">Aplicar</button>
             </div>
@@ -256,9 +262,9 @@
         <button class="view-cart-banner-btn">Ver Carrinho</button>
     </div>
 
-    <div id="customizationModal" class="modal">
+    <dialog id="customizationModal" class="modal">
         <form class="customization-box" id="dynamic-customization" enctype="multipart/form-data">
-            <span class="close" aria-label="Fechar janela">&times;</span>
+            <button type="button" class="close" aria-label="Fechar janela">&times;</button>
             <h2 id="customizationTitle">Personalizar Pedido</h2>
             
             <div id="customizationFields">
@@ -269,11 +275,11 @@
                 <button type="submit" class="btn-confirm">Adicionar ao Carrinho</button>
             </div>
         </form>
-    </div>
+    </dialog>
 
-    <div id="calculatorModal" class="modal">
+    <dialog id="calculatorModal" class="modal">
         <div class="calculator-box">
-            <span class="close-calc" aria-label="Fechar janela">&times;</span>
+            <button type="button" class="close-calc" aria-label="Fechar janela">&times;</button>
             <h2>Calculadora de Festa</h2>
             <form id="calculator-form" style="font-family: 'Playfair Display', serif; color: #1A3038;">
                 <div class="form-group">
@@ -285,8 +291,8 @@
                     <input type="number" id="calc-children" min="0" value="5" required>
                 </div>
                 
-                <div class="form-group" style="margin-top: 1rem;">
-                    <label style="font-weight: 700; margin-bottom: 0.5rem; display: block;">O que deseja servir?</label>
+                <fieldset class="form-group" style="margin-top: 1rem; border: none; padding: 0; margin: 0;">
+                    <legend style="font-weight: 700; margin-bottom: 0.5rem; display: block; font-family: inherit; font-size: inherit; color: inherit;">O que deseja servir?</legend>
                     <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.4rem;">
                         <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: normal;">
                             <input type="checkbox" id="calc-serve-bolos" checked style="width: auto; margin-top: 0;"> Bolos Festivos
@@ -298,7 +304,7 @@
                             <input type="checkbox" id="calc-serve-salgados" checked style="width: auto; margin-top: 0;"> Salgados
                         </label>
                     </div>
-                </div>
+                </fieldset>
                 
                 <div id="calculator-results" style="margin-top: 1.2rem; padding: 1.2rem; background: rgba(255, 255, 255, 0.5); border-left: 4px solid #177F8C; font-size: 0.95rem; display: none; text-align: left; line-height: 1.6;">
                     <!-- Resultados do cálculo serão injetados aqui -->
@@ -310,13 +316,35 @@
                 </div>
             </form>
         </div>
-    </div>
+    </dialog>
     
     <div id="modalMask" class="modal-mask"></div>
    
 
     <footer>
-        <p>&copy; 2026 - Tons do Sabor. Todos os direitos reservados.</p>
+        <div class="footer-container">
+            <div class="footer-info-row">
+                <div class="footer-section">
+                    <h4>Atelier Tons do Sabor</h4>
+                    <p>Tons que encantam, sabores que seduzem.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Horário de Funcionamento</h4>
+                    <p>Terça a Sábado: 09:00 às 19:00</p>
+                    <p>Domingo: 09:00 às 12:00 (Apenas Agendamento)</p>
+                    <p><i class="fa-solid fa-circle-xmark" style="color: #f43f5e; margin-right: 0.25rem;" aria-hidden="true"></i> Segunda-feira: Fechado</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="footer-links">
+                        <a href="https://www.instagram.com/tonsdosabor_/" target="_blank" rel="noopener noreferrer" class="instagram-btn" aria-label="Acessar nosso Instagram">
+                            <i class="fa-brands fa-instagram" aria-hidden="true"></i> @tonsdosabor_atelier
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 - Tons do Sabor. Todos os direitos reservados.</p>
     </footer>
 
     <script src="./script.js"></script>

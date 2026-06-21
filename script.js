@@ -1415,6 +1415,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         megaDropdown.innerHTML = `
             <div class="mega-dropdown-content">
+                <span class="close-mega" aria-label="Fechar filtros">&times;</span>
                 <span class="mega-dropdown-title">Filtros de ${categoriaNomes[cat] || cat}</span>
                 <div class="mega-dropdown-grid">
                     ${items.map(sub => {
@@ -1430,6 +1431,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
         `;
+
+        const closeMegaBtn = megaDropdown.querySelector(".close-mega");
+        if (closeMegaBtn) {
+            closeMegaBtn.addEventListener("click", () => {
+                megaDropdown.classList.remove("show");
+                hoveredCategory = null;
+            });
+        }
 
         
         megaDropdown.querySelectorAll(".mega-item").forEach(btn => {
@@ -1523,20 +1532,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     (p) => {
                         const precoExibir = p.preco !== undefined ? p.preco : p.precoBase;
 
-                        return `
-                    <article class="product-card" data-id="${p.id}">
-                        <img class="product-img" src="${p.imagem}" alt="${p.nome}">
-                        
-                        <div class="product-info">
-                            <h3 class="product-name">${p.nome}</h3>
-                            <p class="product-description">${p.descricao}</p>
-                            <p class="product-price">${formatarMoeda(precoExibir)}</p>
-                            <button class="product-button">Comprar</button>
+                         return `
+                    <li>
+                        <article class="product-card" data-id="${p.id}">
+                            <img class="product-img" src="${p.imagem}" alt="${p.nome}">
                             
-                            <span class="canto-card-inf-esq"></span>
-                            <span class="canto-card-inf-dir"></span>
-                        </div>
-                    </article>
+                            <div class="product-info">
+                                <h3 class="product-name">${p.nome}</h3>
+                                <p class="product-description">${p.descricao}</p>
+                                <p class="product-price">${formatarMoeda(precoExibir)}</p>
+                                <button class="product-button">Comprar</button>
+                                
+                                <span class="canto-card-inf-esq"></span>
+                                <span class="canto-card-inf-dir"></span>
+                            </div>
+                        </article>
+                    </li>
                 `;
                     }
                 )
@@ -1593,10 +1604,95 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     
+    const atualizarOpcoesHorario = (prefix) => {
+        const dateEl = document.getElementById(`${prefix}-date`);
+        const timeSelect = document.getElementById(`${prefix}-time`);
+        if (!dateEl || !timeSelect) return;
+
+        const dateVal = dateEl.value;
+        if (!dateVal) {
+            Array.from(timeSelect.options).forEach(opt => {
+                opt.disabled = false;
+                opt.style.display = "";
+            });
+            return;
+        }
+
+        const dateParts = dateVal.split("-");
+        const dateObj = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
+        const dayOfWeek = dateObj.getDay();
+
+        Array.from(timeSelect.options).forEach(opt => {
+            if (opt.value === "") return; // Pula a opção padrão
+
+            const [hours, minutes] = opt.value.split(":").map(Number);
+            const timeInMinutes = hours * 60 + minutes;
+
+            if (dayOfWeek === 0) { // Domingo
+                // Apenas das 09:00 às 12:00 são válidos
+                if (timeInMinutes < 9 * 60 || timeInMinutes > 12 * 60) {
+                    opt.disabled = true;
+                    opt.style.display = "none";
+                } else {
+                    opt.disabled = false;
+                    opt.style.display = "";
+                }
+            } else if (dayOfWeek === 1) { // Segunda
+                opt.disabled = true;
+                opt.style.display = "none";
+            } else { // Terça a Sábado
+                // Das 09:00 às 19:00
+                if (timeInMinutes < 9 * 60 || timeInMinutes > 19 * 60) {
+                    opt.disabled = true;
+                    opt.style.display = "none";
+                } else {
+                    opt.disabled = false;
+                    opt.style.display = "";
+                }
+            }
+        });
+
+        // Se o valor selecionado agora for inválido, limpa-o
+        if (timeSelect.value !== "") {
+            const selectedOption = timeSelect.options[timeSelect.selectedIndex];
+            if (selectedOption && selectedOption.disabled) {
+                timeSelect.value = "";
+                timeSelect.classList.add("error");
+            }
+        }
+    };
+
     const verificarTaxaUrgencia = async () => {
         const prefix = tipoEntrega === "delivery" ? "delivery" : "pickup";
-        const dateVal = document.getElementById(`${prefix}-date`).value;
-        const timeVal = document.getElementById(`${prefix}-time`).value;
+        
+        // Atualiza as opções do relógio dinamicamente
+        atualizarOpcoesHorario(prefix);
+
+        const dateEl = document.getElementById(`${prefix}-date`);
+        const timeEl = document.getElementById(`${prefix}-time`);
+        
+        const dateVal = dateEl.value;
+        const timeVal = timeEl.value;
+
+        // Se data for selecionada, validar Bloqueio de Segunda-feira
+        if (dateVal) {
+            const dateParts = dateVal.split("-"); // YYYY-MM-DD
+            const dateObj = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
+            const dayOfWeek = dateObj.getDay(); // 0 = Domingo, 1 = Segunda, 2-6 = Terça a Sábado
+
+            if (dayOfWeek === 1) { // Segunda-feira
+                alert("O Atelier não funciona às segundas-feiras. Por favor, selecione outra data.");
+                dateEl.value = "";
+                timeEl.value = "";
+                dateEl.classList.add("error");
+                taxaUrgenciaAtiva = false;
+                taxaUrgenciaValor = 0;
+                atualizarCarrinho();
+                return;
+            } else {
+                dateEl.classList.remove("error");
+            }
+        }
 
         if (!dateVal || !timeVal) {
             taxaUrgenciaAtiva = false;
@@ -1605,13 +1701,52 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        // Validação de horário de funcionamento do Atelier
+        const dateParts = dateVal.split("-"); // YYYY-MM-DD
+        const dateObj = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
+        const dayOfWeek = dateObj.getDay(); // 0 = Domingo, 1 = Segunda, 2-6 = Terça a Sábado
+
+        const [hours, minutes] = timeVal.split(":").map(Number);
+        const timeInMinutes = hours * 60 + minutes;
+
+        let isTimeValid = true;
+        let scheduleRulesText = "";
+
+        if (dayOfWeek === 0) { // Domingo
+            // Domingo das 09:00 às 12:00
+            if (timeInMinutes < 9 * 60 || timeInMinutes > 12 * 60) {
+                isTimeValid = false;
+                scheduleRulesText = "aos domingos o horário de atendimento é das 09:00 às 12:00 (apenas com agendamento prévio).";
+            }
+        } else { // Terça a Sábado (Segunda já foi bloqueada acima)
+            // Terça a Sábado das 09:00 às 19:00
+            if (timeInMinutes < 9 * 60 || timeInMinutes > 19 * 60) {
+                isTimeValid = false;
+                scheduleRulesText = "de terça a sábado o horário de atendimento é das 09:00 às 19:00.";
+            }
+        }
+
+        if (!isTimeValid) {
+            alert(`Ops! Horário indisponível: ${scheduleRulesText}\nPor favor, selecione outro horário dentro do limite de funcionamento.`);
+            timeEl.value = "";
+            timeEl.classList.add("error");
+            taxaUrgenciaAtiva = false;
+            taxaUrgenciaValor = 0;
+            atualizarCarrinho();
+            return;
+        } else {
+            timeEl.classList.remove("error");
+        }
+
         const chosenDate = new Date(`${dateVal}T${timeVal}:00`);
         const currentDate = await obterHorarioBrasilia();
 
         if (chosenDate < currentDate) {
             alert("Ops! Você selecionou uma data ou hora que já passou. Por favor, escolha um momento no futuro.");
-            document.getElementById(`${prefix}-date`).value = "";
-            document.getElementById(`${prefix}-time`).value = "";
+            dateEl.value = "";
+            timeEl.value = "";
+            dateEl.classList.add("error");
+            timeEl.classList.add("error");
             taxaUrgenciaAtiva = false;
             taxaUrgenciaValor = 0;
             atualizarCarrinho();
@@ -1784,6 +1919,49 @@ document.addEventListener("DOMContentLoaded", () => {
         const timeSelect = document.getElementById(`${prefix}-time`);
 
         if (dateInput.value && timeSelect.value) {
+            // Validar regras de funcionamento (Bloqueio de Segunda-feira e limites)
+            const dateParts = dateInput.value.split("-");
+            const dateObj = new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
+            const dayOfWeek = dateObj.getDay();
+
+            if (dayOfWeek === 1) { // Segunda-feira
+                alert("O Atelier não funciona às segundas-feiras. Por favor, selecione outra data.");
+                dateInput.value = "";
+                timeSelect.value = "";
+                dateInput.classList.add("error");
+                timeSelect.classList.add("error");
+                return;
+            } else {
+                dateInput.classList.remove("error");
+            }
+
+            const [hours, minutes] = timeSelect.value.split(":").map(Number);
+            const timeInMinutes = hours * 60 + minutes;
+
+            let isTimeValid = true;
+            let scheduleRulesText = "";
+
+            if (dayOfWeek === 0) { // Domingo
+                if (timeInMinutes < 9 * 60 || timeInMinutes > 12 * 60) {
+                    isTimeValid = false;
+                    scheduleRulesText = "aos domingos o horário de atendimento é das 09:00 às 12:00 (apenas agendamento).";
+                }
+            } else { // Terça a Sábado
+                if (timeInMinutes < 9 * 60 || timeInMinutes > 19 * 60) {
+                    isTimeValid = false;
+                    scheduleRulesText = "de terça a sábado o horário de atendimento é das 09:00 às 19:00.";
+                }
+            }
+
+            if (!isTimeValid) {
+                alert(`Ops! Horário indisponível: ${scheduleRulesText}\nPor favor, escolha outro horário.`);
+                timeSelect.value = "";
+                timeSelect.classList.add("error");
+                return;
+            } else {
+                timeSelect.classList.remove("error");
+            }
+
             const chosenDate = new Date(`${dateInput.value}T${timeSelect.value}:00`);
             const currentDate = await obterHorarioBrasilia();
 

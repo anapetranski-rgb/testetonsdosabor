@@ -44,6 +44,10 @@ body {
     color: #2c3e50;
 }
 
+body.no-scroll {
+  overflow: hidden !important;
+}
+
 
 
 h1,
@@ -114,6 +118,91 @@ header {
   color: var(--text-color);
 }
 
+/* CONTAINER DO MODAL */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.25); /* Fundo escurecido mais suave */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+/* CARTÃO DO MODAL (Glassmorphism / Alto e Estreito) */
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 40px 24px 24px 24px; /* Mais espaço no topo para o botão de fechar */
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    width: 90%;
+    max-width: 400px; 
+    height: 80vh; 
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Mantém tudo contido no cartão */
+}
+
+/* CONTAINER DO CONTEÚDO INTERNO (Garante a rolagem perfeita) */
+.modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* BOTÃO DE ADICIONAR COM A COR PRIMARY STRONG */
+.modal-content button, 
+#modal-order-btn,
+.customization-modal-submit-btn {
+    background-color: var(--primary-strong) !important;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.modal-content button:hover {
+    filter: brightness(0.9); /* Feedback visual sutil ao passar o mouse */
+}
+
+/* GARANTIR QUE A IMAGEM NÃO ESCAPE */
+#modal-img, .modal-content img {
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 15px;
+}
+
+/* BOTÃO FECHAR */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: 300;
+    color: #666;
+    cursor: pointer;
+}
+
 .search-container i {
   color: var(--primary-color);
   cursor: pointer
@@ -123,7 +212,10 @@ header {
   position: relative;
   cursor: pointer;
   padding: .5rem;
-  order: 2
+  order: 2;
+  background: none;
+  border: none;
+  outline: none;
 }
 
 .cart-icon i {
@@ -195,7 +287,7 @@ header {
 .category-btn.active {
   /* Substitui o gradiente rosa por um dourado medieval imponente ou turquesa forte */
   background: var(--primary-strong); 
-  border-color: var(--accent-color); /* Uma bordinha dourada para destacar */
+  border-color: var(--primary-strong); 
   color: #fff;
   box-shadow: 0 4px 12px rgba(23, 127, 140, 0.3); /* Sombra sutil no tom da marca */
 }
@@ -508,16 +600,16 @@ header {
 
 .product-price {
   font-size: 1.35rem;
-  color: var(--primary-color);
+  color: var(--primary-strong);
   margin-bottom: 1rem;
   font-weight: 800
 }
 
 .product-button {
   width: 100%;
-  background: var(--secondary-color);
+  background: var(--primary-strong);
   color: #fff;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--primary-strong);
   padding: .75rem 1rem;
   font-size: 0.95rem;
   font-weight: 700;
@@ -686,7 +778,7 @@ header {
 
 .cart-item-price {
   font-size: .95rem;
-  color: var(--primary-color);
+  color: var(--primary-strong);
   font-weight: 800
 }
 
@@ -700,12 +792,15 @@ header {
 .quantity-btn {
   background: #fff;
   border: 1px solid var(--border-color);
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   cursor: pointer;
   font-weight: 700;
-  transition: background .2s
+  transition: background .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .quantity-btn:hover {
@@ -778,7 +873,7 @@ header {
   width: 100%;
   padding: .75rem;
   border: 1px solid var(--border-color);
-  border-radius: .6rem;
+  border-radius: 0;
   font-size: 1rem;
   font-family: inherit;
   transition: border-color .2s, box-shadow .2s;
@@ -806,41 +901,63 @@ header {
   opacity: .9
 }
 
+/* Garantir que opções de pagamento recebem TAB */
 .payment-options-container {
-  border-top: 1px solid var(--border-color);
-  margin-top: 1.2rem;
-  padding-top: 1.2rem
-}
-
-.payment-options-container h4 {
-  font-size: 1rem;
-  margin: 0 0 1rem
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.75rem !important;
 }
 
 .payment-option {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  padding: .75rem;
-  border: 1px solid var(--border-color);
-  border-radius: .6rem;
-  margin-bottom: .5rem;
-  cursor: pointer;
-  transition: border-color .2s, background .2s;
-  background: #fff;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  padding: 0.75rem !important;
+  border: 1px solid #CBE6E4 !important;
+  border-radius: 6px !important;
+  background: #fff !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  position: relative !important;
 }
 
 .payment-option:hover {
-  background: #f8fafc
+  border-color: #177F8C !important;
+  background: #F4FAF9 !important;
 }
 
+/* CRÍTICO: Inputs de radio devem ser focáveis */
 .payment-option input[type="radio"] {
-  width: auto
+  width: 18px !important;
+  height: 18px !important;
+  cursor: pointer !important;
+  accent-color: #177F8C !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+  tabindex: 0 !important;
 }
 
+/* Focus visível no input */
+.payment-option input[type="radio"]:focus {
+  outline: 2px solid #177F8C !important;
+  outline-offset: 2px !important;
+  border-radius: 2px !important;
+}
+
+/* Focus visível na label */
+.payment-option:has(input[type="radio"]:focus) {
+  border-color: #177F8C !important;
+  box-shadow: 0 0 0 3px rgba(23, 127, 140, 0.1) !important;
+}
+
+/* Quando selecionado */
 .payment-option.selected {
-  border-color: var(--primary-color);
-  background: #ecfeff
+  border-color: #177F8C !important;
+  background: #E2F3F2 !important;
+}
+
+.payment-option.selected input[type="radio"] {
+  accent-color: #177F8C !important;
 }
 
 #troco-container {
@@ -883,7 +1000,7 @@ header {
 .summary-line.total {
   font-size: 1.2rem;
   font-weight: 800;
-  color: var(--primary-color);
+  color: var(--primary-strong);
   margin-top: 1rem
 }
 
@@ -1004,7 +1121,7 @@ header {
 }
 
 .view-cart-banner-btn {
-  background: var(--primary-color);
+  background: var(--primary-strong);
   color: #fff;
   border: none;
   padding: .75rem 1.4rem;
@@ -1023,86 +1140,191 @@ header {
 /* ========== MODAL DE PERSONALIZAÇÃO ========== */
 
 /* ========== MODAL DE PERSONALIZAÇÃO (DINÂMICO) ========== */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1001;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 95%;
-  max-width: 550px;
+/* ===== RESET DO DIALOG ===== */
+dialog.modal {
+  border: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  max-width: 450px !important;
+  width: 95vw !important;
+  max-height: 80vh !important;
+  height: 80vh !important; /* ← MUDANÇA: Força o modal a ter altura de 80vh (mais alto que largo) */
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 1001 !important;
+  display: none !important;
+  flex-direction: column !important;
+  overflow: visible !important;
 }
 
-.modal.show {
-  display: block;
-  animation: slideIn 0.3s ease-out;
+dialog.modal[open],
+dialog.modal.show {
+  display: flex !important;
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -55%);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
+dialog.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
 }
 
 .customization-box,
 .calculator-box {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  position: relative;
-  border: 28px solid transparent;
-  border-image: url('assets/moldura-ouro.png') 20% stretch;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  width: 95%;
-  max-width: 500px;
-  box-sizing: border-box;
-  padding: 1.5rem;
-  max-height: 90vh;
-  overflow-y: auto;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: 100% !important; /* ← MUDANÇA: preenche toda a altura de 80vh do pai */
+  max-height: 80vh !important;
+  background: rgba(255, 255, 255, 0.7) !important; /* ← MUDANÇA: Fundo branco translúcido em 0.7 */
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 28px solid transparent !important;
+  border-image: url('assets/moldura-ouro.png') 20% stretch !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  position: relative !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 0 !important;
 }
 
 .customization-box h2,
 .calculator-box h2 {
-  font-family: "Cinzel Decorative", serif;
-  color: #177F8C;
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  letter-spacing: 1px;
+  font-family: 'Cinzel Decorative', serif !important;
+  color: #177F8C !important;
+  font-size: 1.5rem !important; /* ← MUDANÇA: Tamanho um pouco menor para melhor ajuste */
+  font-weight: 700 !important;
+  text-align: center !important;
+  margin: 0 0 1.5rem 0 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  padding: 2rem 3.5rem 0 3.5rem !important; /* ← MUDANÇA: Padding horizontal maior para evitar sobrepor o fechar (X) */
+  padding-bottom: 0 !important;
+}
+
+#customizationFields,
+#calculator-form {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 2rem !important;
+  padding-right: 1.5rem !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Scrollbar customizada */
+#customizationFields::-webkit-scrollbar,
+#calculator-form::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+#customizationFields::-webkit-scrollbar-track,
+#calculator-form::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+#customizationFields::-webkit-scrollbar-thumb,
+#calculator-form::-webkit-scrollbar-thumb {
+  background: #177F8C !important;
+  border-radius: 4px !important;
 }
 
 .customization-box .close,
 .calculator-box .close-calc {
-  position: absolute;
-  right: 0.5rem;
-  top: 0.5rem;
-  font-size: 36px;
-  font-weight: bold;
-  color: #1A3038;
-  cursor: pointer;
-  transition: color 0.2s;
-  z-index: 10;
-  padding: 10px;
+  position: absolute !important;
+  top: 1.5rem !important;
+  right: 1.5rem !important;
+  font-size: 2.5rem !important;
+  background: none !important;
+  border: none !important;
+  color: #1A3038 !important;
+  cursor: pointer !important;
+  padding: 0.5rem !important;
+  z-index: 100 !important;
+  line-height: 1 !important;
+  transition: color 0.2s ease !important;
+  width: 44px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .customization-box .close:hover,
 .calculator-box .close-calc:hover {
-  color: #177F8C;
+  color: #177F8C !important;
 }
 
-/* Campos de Customização */
-#customizationFields {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  margin-bottom: 1.5rem;
+.customization-box .close:focus,
+.calculator-box .close-calc:focus {
+  outline: 2px solid #177F8C !important;
+  outline-offset: 2px !important;
+}
+
+/* Rodapé do modal (sticky footer) */
+.modal-footer {
+  flex-shrink: 0 !important;
+  position: sticky !important;
+  bottom: 0 !important;
+  padding: 1.5rem 2rem !important;
+  background: transparent !important;
+  background-color: transparent !important; /* ← MUDANÇA: Garante fundo transparente */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-top: none !important;
+  border: none !important; /* ← MUDANÇA: Garante sem borda */
+  box-shadow: none !important; /* ← MUDANÇA: Garante sem sombra que possa parecer uma caixa */
+  display: flex !important;
+  gap: 1rem !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Override para a Calculadora: rodapé flui naturalmente no fim do formulário */
+.calculator-box .modal-footer {
+  position: static !important;
+  margin-top: 1.5rem !important;
+  padding: 0 !important;
+}
+
+/* Garante feedback visual evidente de foco nos checkboxes/radios via teclado */
+#calculatorModal input[type="checkbox"]:focus,
+.customization-box input[type="checkbox"]:focus,
+input[type="checkbox"]:focus {
+  outline: 2px solid #177F8C !important;
+  outline-offset: 2px !important;
+}
+
+
+.btn-confirm {
+  flex: 1 !important;
+  padding: 1rem !important;
+  background-color: #177F8C !important; /* ← Adicionar ao carrinho como primary strong */
+  color: #fff !important;
+  border: none !important;
+  border-radius: 0 !important; /* ← Botão Quadrado */
+  cursor: pointer !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  transition: all 0.3s ease !important;
+  font-family: 'Playfair Display', serif !important;
+}
+
+.btn-confirm:hover {
+  background-color: #0d5a66 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(23, 127, 140, 0.3) !important;
+}
+
+.btn-confirm:focus {
+  outline: 2px solid #D4AF37 !important;
+  outline-offset: 2px !important;
 }
 
 .customization-box label {
@@ -1177,34 +1399,7 @@ input[type="radio"] {
   color: white;
 }
 
-/* Rodapé do Modal e Botão de Confirmação */
-.modal-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-}
 
-.btn-confirm {
-  width: 100%;
-  padding: 0.9rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
-  background-color: #31B4C4;
-  border: none;
-  border-radius: 0; /* Quadrado */
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(49, 180, 196, 0.25);
-}
-
-.btn-confirm:hover {
-  background-color: #177F8C;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(23, 127, 140, 0.3);
-}
 
 /* Máscara de fundo */
 .modal-mask {
@@ -1402,7 +1597,7 @@ footer {
 
 .mega-item.active {
   background: var(--primary-strong);
-  border-color: var(--accent-color);
+  border-color: var(--primary-strong);
   box-shadow: 0 4px 12px rgba(23, 127, 140, 0.2);
 }
 
@@ -1515,12 +1710,21 @@ footer {
   margin-bottom: 1rem;
 }
 
-/* Esconde o rádio nativo */
-.radio-pill-input {
-  display: none;
+.radio-pill-wrapper {
+  position: relative;
 }
 
-/* Visual do botão estilo iFood */
+.radio-pill-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+
 .radio-pill-label {
   display: block;
   padding: 0.6rem 1rem;
@@ -1530,20 +1734,36 @@ footer {
   cursor: pointer;
   font-size: 0.9rem;
   transition: all 0.2s ease;
+  position: relative;
+  z-index: 0;
   word-break: break-word;
 }
 
-/* Efeito de passar o mouse por cima das opções (Estilo iFood) */
+.radio-pill-input:hover + .radio-pill-label,
 .radio-pill-label:hover {
   background-color: var(--light-2, #E2F3F2);
   border-color: var(--primary-color, #20A4B4);
   color: var(--primary-strong, #177F8C);
 }
 
-/* Garante o comportamento correto de foco e clique com as cores da identidade */
+.radio-pill-input:focus + .radio-pill-label {
+  outline: 2px solid var(--primary-strong);
+  outline-offset: 2px;
+  border-color: var(--primary-strong);
+}
+
+.radio-pill-label:focus,
+.option-item:focus,
+.customization-option:focus,
+[data-option]:focus {
+  outline: 2px solid #177F8C !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+}
+
 .radio-pill-input:checked + .radio-pill-label {
-  background-color: var(--primary-strong, #177F8C);
-  border-color: var(--primary-strong, #177F8C);
+  background-color: var(--primary-strong);
+  border-color: var(--primary-strong);
   color: #ffffff;
   font-weight: 600;
 }
@@ -1586,28 +1806,8 @@ fieldset.payment-options-container {
   border-width: 0;
 }
 
-/* Reset de estilos nativos do elemento <dialog> para manter o layout da classe .modal */
-dialog.modal {
-  border: none;
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  color: inherit;
-  overflow: visible;
-  box-shadow: none;
-  max-width: 550px;
-  width: 95%;
-  height: auto;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
+/* Reset e centralização de <dialog> */
 
-dialog.modal::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
-}
 
 /* Ajustes nos botões de fechar que mudaram de <span> para <button> */
 .customization-box .close,
@@ -1734,4 +1934,52 @@ footer .copyright {
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
   text-align: center;
+}
+
+/* Container do seletor de quantidade no modal de customização */
+.custom-quantity-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.custom-quantity-container .qty-btn {
+  background: #fff;
+  border: 1px solid var(--border-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+  color: var(--text-color);
+}
+
+.custom-quantity-container .qty-btn:hover {
+  background: var(--light-2);
+  border-color: var(--primary-strong);
+}
+
+.custom-quantity-container .qty-input {
+  width: 70px;
+  height: 40px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-color);
+  outline: none;
+  border-radius: 0;
+  background: #fff;
+}
+
+.product-button:focus {
+  outline: 2px solid var(--primary-strong);
+  outline-offset: 2px;
 }

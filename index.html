@@ -5,9 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap">
     <!-- Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Estilos -->
@@ -24,7 +23,8 @@
         </div>
 
         <div class="search-container" role="search">
-            <input type="search" placeholder="Buscar Produto..." class="search-input" aria-label="Buscar Produto" required />
+            <label for="search-input" class="sr-only">Buscar Produto</label>
+            <input type="search" id="search-input" placeholder="Buscar Produto..." class="search-input" aria-label="Buscar Produto" required />
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
         </div>
 
@@ -32,10 +32,10 @@
             <i class="fa-solid fa-calculator" aria-hidden="true"></i> Calculadora
         </button>
 
-        <div class="cart-icon" aria-label="Abrir carrinho" role="button" tabindex="0">
+        <button class="cart-icon" aria-label="Abrir carrinho">
             <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
             <span class="cart-badge">0</span>
-        </div>
+        </button>
     </header>
 
     <div class="categories-wrapper">
@@ -206,20 +206,20 @@
                 <legend class="sr-only">Forma de Pagamento</legend>
                 <h4 aria-hidden="true">Forma de Pagamento</h4>
 
-                <label class="payment-option selected">
-                    <input type="radio" name="payment" value="PIX" checked> PIX
+                <label class="payment-option selected" for="payment-pix">
+                    <input type="radio" id="payment-pix" name="payment" value="PIX" checked> PIX
                 </label>
 
-                <label class="payment-option">
-                    <input type="radio" name="payment" value="Cartão de Crédito"> Cartão de Crédito
+                <label class="payment-option" for="payment-credito">
+                    <input type="radio" id="payment-credito" name="payment" value="Cartão de Crédito"> Cartão de Crédito
                 </label>
 
-                <label class="payment-option">
-                    <input type="radio" name="payment" value="Cartão de Débito"> Cartão de Débito
+                <label class="payment-option" for="payment-debito">
+                    <input type="radio" id="payment-debito" name="payment" value="Cartão de Débito"> Cartão de Débito
                 </label>
 
-                <label class="payment-option">
-                    <input type="radio" name="payment" value="Dinheiro"> Dinheiro
+                <label class="payment-option" for="payment-dinheiro">
+                    <input type="radio" id="payment-dinheiro" name="payment" value="Dinheiro"> Dinheiro
                 </label>
 
                 <div id="troco-container" style="display: none;">
@@ -299,13 +299,13 @@
                 <fieldset class="form-group" style="margin-top: 1rem; border: none; padding: 0; margin: 0;">
                     <legend style="font-weight: 700; margin-bottom: 0.5rem; display: block; font-family: inherit; font-size: inherit; color: inherit;">O que deseja servir?</legend>
                     <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.4rem;">
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: normal;">
+                        <label for="calc-serve-bolos" style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: normal;">
                             <input type="checkbox" id="calc-serve-bolos" checked style="width: auto; margin-top: 0;"> Bolos Festivos
                         </label>
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: normal;">
+                        <label for="calc-serve-doces" style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: normal;">
                             <input type="checkbox" id="calc-serve-doces" checked style="width: auto; margin-top: 0;"> Doces (Tradicionais/Finos)
                         </label>
-                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: normal;">
+                        <label for="calc-serve-salgados" style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: normal;">
                             <input type="checkbox" id="calc-serve-salgados" checked style="width: auto; margin-top: 0;"> Salgados
                         </label>
                     </div>

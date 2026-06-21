@@ -46,6 +46,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartUrgencyFeeElem = document.getElementById('cart-urgency-fee');
 
 
+    function fecharTodosModais() {
+        if (customizationModal) {
+            customizationModal.classList.remove('show');
+            if (customizationModal.open) customizationModal.close();
+        }
+        if (calculatorModal) {
+            calculatorModal.classList.remove('show');
+            if (calculatorModal.open) calculatorModal.close();
+        }
+        if (modalMask) modalMask.classList.remove('show');
+        unlockScroll();
+    }
+
+
+
     
     const produtos = [
         
@@ -1283,6 +1298,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let taxaUrgenciaValor = 0;
     let sugestoesCalculadas = null;
 
+    const escapeHTML = (str) => {
+        if (!str) return "";
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    };
+
     const formatarMoeda = (v) =>
         v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     const getScrollbarWidth = () =>
@@ -1295,17 +1320,54 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.paddingRight = "";
         document.body.classList.remove("no-scroll");
     };
+
+    fecharTodosModais(); // Garante estado limpo após funções utilitárias serem definidas
+
+    let lastActiveElement = null;
     const abrirCarrinho = () => {
+        lastActiveElement = document.activeElement;
         cartSidebar.classList.add("show");
         cartOverlay.classList.add("show");
         lockScroll();
         history.pushState({ modalAberto: true }, "");
+        setTimeout(() => {
+            const closeBtn = cartSidebar.querySelector(".close-cart-btn");
+            if (closeBtn) closeBtn.focus();
+        }, 100);
     };
     const fecharCarrinho = () => {
         cartSidebar.classList.remove("show");
         cartOverlay.classList.remove("show");
         unlockScroll();
+        if (lastActiveElement) {
+            lastActiveElement.focus();
+        }
     };
+
+    const trapCartFocus = (e) => {
+        if (e.key !== 'Tab' || !cartSidebar.classList.contains('show')) return;
+        const focusableSelectors = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+        const focusableElements = Array.from(cartSidebar.querySelectorAll(focusableSelectors))
+            .filter(el => !el.disabled && el.offsetWidth > 0 && el.offsetHeight > 0);
+        if (focusableElements.length === 0) {
+            e.preventDefault();
+            return;
+        }
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+                lastElement.focus();
+                e.preventDefault();
+            }
+        } else {
+            if (document.activeElement === lastElement) {
+                firstElement.focus();
+                e.preventDefault();
+            }
+        }
+    };
+    cartSidebar.addEventListener('keydown', trapCartFocus);
 
     const animacaoVoarParaCarrinho = (productCard) => {
         const productImg = productCard.querySelector(".product-img"),
@@ -1535,7 +1597,7 @@ document.addEventListener("DOMContentLoaded", () => {
                          return `
                     <li>
                         <article class="product-card" data-id="${p.id}">
-                            <img class="product-img" src="${p.imagem}" alt="${p.nome}">
+                            <img class="product-img" src="${p.imagem}" alt="${p.nome}" loading="lazy" width="250" height="240">
                             
                             <div class="product-info">
                                 <h3 class="product-name">${p.nome}</h3>
@@ -1566,11 +1628,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (itemNoCarrinho) {
             itemNoCarrinho.quantidade++;
         } else {
+            const requiresMinimum = produto.categoria !== "bolos" && produto.id !== 45;
+            const qtdInicial = requiresMinimum ? 20 : 1;
             carrinho.push({
                 id: String(produto.id),
                 nome: produto.nome,
                 preco: basePreco,
-                quantidade: 1,
+                quantidade: qtdInicial,
                 imagem: produto.imagem
             });
         }
@@ -1590,15 +1654,39 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     
+    // Cache local para o horário de Brasília (5 minutos)
+    let cachedTimeOffset = null; // offset em ms entre a API de Brasília e a hora local
+    let lastTimeCacheTimestamp = 0; // timestamp em ms de quando o cache foi atualizado
+
     const obterHorarioBrasilia = async () => {
+        const now = Date.now();
+        if (cachedTimeOffset !== null && (now - lastTimeCacheTimestamp) < 300000) {
+            return new Date(now + cachedTimeOffset);
+        }
+
         try {
-            const response = await fetch("https://worldtimeapi.org/api/timezone/America/Sao_Paulo");
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 3000);
+            
+            const response = await fetch("https://worldtimeapi.org/api/timezone/America/Sao_Paulo", {
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+
             if (response.ok) {
                 const data = await response.json();
-                return new Date(data.datetime);
+                const apiTime = new Date(data.datetime).getTime();
+                const localTime = Date.now();
+                cachedTimeOffset = apiTime - localTime;
+                lastTimeCacheTimestamp = localTime;
+                return new Date(apiTime);
             }
         } catch (e) {
             console.warn("Falha ao obter horário da API de Brasília, usando relógio local:", e);
+        }
+
+        if (cachedTimeOffset !== null) {
+            return new Date(now + cachedTimeOffset);
         }
         return new Date();
     };
@@ -2070,6 +2158,9 @@ document.addEventListener("DOMContentLoaded", () => {
             grid.id = 'custom-select-sabor-grid';
 
             product.opcoes.forEach((opcao, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'radio-pill-wrapper';
+
                 const radio = document.createElement('input');
                 radio.type = 'radio';
                 radio.name = 'sabor';
@@ -2100,8 +2191,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 labelOpt.className = 'radio-pill-label';
                 labelOpt.textContent = text;
 
-                grid.appendChild(radio);
-                grid.appendChild(labelOpt);
+                wrapper.appendChild(radio);
+                wrapper.appendChild(labelOpt);
+                grid.appendChild(wrapper);
             });
 
             customizationFields.appendChild(label);
@@ -2116,6 +2208,9 @@ document.addEventListener("DOMContentLoaded", () => {
             gridSize.id = 'custom-select-tamanho-grid';
 
             product.opcoes.forEach((opcao, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'radio-pill-wrapper';
+
                 const radio = document.createElement('input');
                 radio.type = 'radio';
                 radio.name = 'tamanho';
@@ -2138,8 +2233,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 labelOpt.className = 'radio-pill-label';
                 labelOpt.textContent = text;
 
-                gridSize.appendChild(radio);
-                gridSize.appendChild(labelOpt);
+                wrapper.appendChild(radio);
+                wrapper.appendChild(labelOpt);
+                gridSize.appendChild(wrapper);
             });
 
             const labelColors = document.createElement('label');
@@ -2168,6 +2264,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const formatos = product.formatos || ["Redondo", "Quadrado", "Flor"];
             formatos.forEach((f, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'radio-pill-wrapper';
+
                 const radio = document.createElement('input');
                 radio.type = 'radio';
                 radio.name = 'formato';
@@ -2182,8 +2281,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 labelOpt.className = 'radio-pill-label';
                 labelOpt.textContent = f;
 
-                gridFormat.appendChild(radio);
-                gridFormat.appendChild(labelOpt);
+                wrapper.appendChild(radio);
+                wrapper.appendChild(labelOpt);
+                gridFormat.appendChild(wrapper);
             });
 
             const labelFlavor = document.createElement('label');
@@ -2194,6 +2294,9 @@ document.addEventListener("DOMContentLoaded", () => {
             gridFlavor.id = 'custom-select-sabor-grid';
 
             product.opcoes.forEach((opcao, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'radio-pill-wrapper';
+
                 const radio = document.createElement('input');
                 radio.type = 'radio';
                 radio.name = 'sabor';
@@ -2213,8 +2316,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 labelOpt.className = 'radio-pill-label';
                 labelOpt.textContent = text;
 
-                gridFlavor.appendChild(radio);
-                gridFlavor.appendChild(labelOpt);
+                wrapper.appendChild(radio);
+                wrapper.appendChild(labelOpt);
+                gridFlavor.appendChild(wrapper);
             });
 
             const labelPaint = document.createElement('label');
@@ -2309,23 +2413,114 @@ document.addEventListener("DOMContentLoaded", () => {
             customizationFields.appendChild(inputColors);
         }
 
+        // Injetar seletor de quantidade no modal
+        const requiresMinimum = product.categoria !== "bolos" && product.id !== 45;
+        const minVal = requiresMinimum ? 20 : 1;
+
+        const labelQty = document.createElement('label');
+        labelQty.setAttribute('for', 'custom-product-qty');
+        labelQty.textContent = `Quantidade (Mínimo: ${minVal} un.):`;
+
+        const qtyContainer = document.createElement('div');
+        qtyContainer.className = 'custom-quantity-container';
+
+        const btnDec = document.createElement('button');
+        btnDec.type = 'button';
+        btnDec.className = 'qty-btn';
+        btnDec.textContent = '-';
+
+        const qtyInput = document.createElement('input');
+        qtyInput.type = 'number';
+        qtyInput.id = 'custom-product-qty';
+        qtyInput.name = 'quantidade';
+        qtyInput.className = 'qty-input';
+        qtyInput.value = minVal;
+        qtyInput.min = minVal;
+
+        const btnInc = document.createElement('button');
+        btnInc.type = 'button';
+        btnInc.className = 'qty-btn';
+        btnInc.textContent = '+';
+
+        btnDec.addEventListener('click', () => {
+            let current = parseInt(qtyInput.value) || minVal;
+            if (current > minVal) {
+                qtyInput.value = current - 1;
+            }
+        });
+
+        btnInc.addEventListener('click', () => {
+            let current = parseInt(qtyInput.value) || minVal;
+            qtyInput.value = current + 1;
+        });
+
+        qtyInput.addEventListener('change', () => {
+            let val = parseInt(qtyInput.value) || minVal;
+            if (val < minVal) {
+                qtyInput.value = minVal;
+            }
+        });
+
+        qtyContainer.appendChild(btnDec);
+        qtyContainer.appendChild(qtyInput);
+        qtyContainer.appendChild(btnInc);
+
+        customizationFields.appendChild(labelQty);
+        customizationFields.appendChild(qtyContainer);
+
         customizationModal.showModal();
+        customizationModal.dispatchEvent(new Event('show'));
         customizationModal.classList.add('show');
         if (modalMask) modalMask.classList.add('show');
         lockScroll();
         history.pushState({ modalAberto: true }, "");
+
+        setTimeout(() => {
+            // Tornar inputs focáveis
+            const allFocusable = customizationFields.querySelectorAll(
+                'input, select, textarea, button, label'
+            );
+            
+            allFocusable.forEach((el, idx) => {
+                if (!el.hasAttribute('tabindex') || el.getAttribute('tabindex') === '-1') {
+                    el.setAttribute('tabindex', '0');
+                }
+                
+                // Suporte a teclado para labels e itens customizados focáveis (ENTER/SPACE)
+                if (el.tagName === 'LABEL' || el.classList.contains('option-item') || el.classList.contains('customization-option') || el.hasAttribute('data-option')) {
+                    if (!el.dataset.keyboardBound) {
+                        el.dataset.keyboardBound = "true";
+                        el.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                el.click();
+                            }
+                        });
+                    }
+                }
+            });
+            
+            // Primeiro elemento recebe foco
+            if (allFocusable.length > 0) {
+                allFocusable[0].focus();
+            }
+        }, 50);
     }
 
-    function fecharModalCustomizacao() {
+    const fecharModalCustomizacao = () => {
+        if (customizationModal.open) {
+            customizationModal.close();
+        }
+    };
+
+    customizationModal.addEventListener("close", () => {
         customizationModal.classList.remove('show');
-        customizationModal.close();
         if (modalMask) modalMask.classList.remove('show');
         unlockScroll();
         dynamicCustomizationForm.reset();
         produtoSendoPersonalizado = null;
-    }
+    });
 
-    
     function abrirCalculatorModal() {
         calculatorResults.style.display = 'none';
         btnApplySuggestion.style.display = 'none';
@@ -2335,15 +2530,27 @@ document.addEventListener("DOMContentLoaded", () => {
         if (modalMask) modalMask.classList.add('show');
         lockScroll();
         history.pushState({ modalAberto: true }, "");
+
+        setTimeout(() => {
+            const firstFocusable = calculatorModal.querySelector(
+                'input, select, textarea, button, [href], [tabindex]:not([tabindex="-1"])'
+            );
+            if (firstFocusable) firstFocusable.focus();
+        }, 100);
     }
 
-    function fecharCalculatorModal() {
+    const fecharCalculatorModal = () => {
+        if (calculatorModal.open) {
+            calculatorModal.close();
+        }
+    };
+
+    calculatorModal.addEventListener("close", () => {
         calculatorModal.classList.remove('show');
-        calculatorModal.close();
         if (modalMask) modalMask.classList.remove('show');
         unlockScroll();
         sugestoesCalculadas = null;
-    }
+    });
 
     function calcularSugestoesFesta() {
         const adultos = parseInt(document.getElementById('calc-adults').value) || 0;
@@ -2373,43 +2580,28 @@ document.addEventListener("DOMContentLoaded", () => {
         sugestoesCalculadas = {};
 
         if (querBolo) {
-            boloQtd = porcoesTotal * 100;
-            const weightKg = boloQtd / 1000;
-
             const cakeSizes = [
-                { id: 15, weight: 1.0, name: "Bolo Tradicional PP", label: "PP" },
-                { id: 16, weight: 1.5, name: "Bolo Tradicional P", label: "P" },
-                { id: 17, weight: 2.0, name: "Bolo Tradicional M", label: "M" },
-                { id: 18, weight: 3.0, name: "Bolo Tradicional G", label: "G" },
-                { id: 19, weight: 4.5, name: "Bolo Tradicional GG", label: "GG" }
+                { id: 15, weight: 1.0, slices: 6, name: "Bolo Tradicional PP", label: "PP" },
+                { id: 16, weight: 1.5, slices: 11, name: "Bolo Tradicional P", label: "P" },
+                { id: 17, weight: 2.0, slices: 18, name: "Bolo Tradicional M", label: "M" },
+                { id: 18, weight: 3.0, slices: 30, name: "Bolo Tradicional G", label: "G" },
+                { id: 19, weight: 4.5, slices: 48, name: "Bolo Tradicional GG", label: "GG" }
             ];
 
-            const findClosestCake = (w, excludeGG = false) => {
-                let candidates = excludeGG ? cakeSizes.slice(0, 4) : cakeSizes;
-                let closest = candidates[0];
-                let minDiff = Math.abs(w - closest.weight);
-                for (let i = 1; i < candidates.length; i++) {
-                    let diff = Math.abs(w - candidates[i].weight);
-                    if (diff < minDiff) {
-                        minDiff = diff;
-                        closest = candidates[i];
-                    }
-                }
-                return closest;
-            };
-
             let bolosSugeridos = [];
-            if (weightKg <= 4.5) {
-                const closest = findClosestCake(weightKg, false);
+            if (porcoesTotal <= 48) {
+                let closest = cakeSizes.find(c => c.slices >= porcoesTotal);
+                if (!closest) closest = cakeSizes[cakeSizes.length - 1];
                 bolosSugeridos.push({ ...closest, quantidade: 1 });
             } else {
-                const numGG = Math.floor(weightKg / 4.5);
-                const sobra = weightKg - numGG * 4.5;
+                const numGG = Math.floor(porcoesTotal / 48);
+                const sobra = porcoesTotal % 48;
                 
                 bolosSugeridos.push({ ...cakeSizes[4], quantidade: numGG });
                 
                 if (sobra > 0.01) {
-                    const closestSobra = findClosestCake(sobra, true);
+                    let closestSobra = cakeSizes.find(c => c.slices >= sobra);
+                    if (!closestSobra) closestSobra = cakeSizes[cakeSizes.length - 1];
                     bolosSugeridos.push({ ...closestSobra, quantidade: 1 });
                 }
             }
@@ -2428,7 +2620,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 boloText = textParts.slice(0, -1).join(", ") + " e " + textParts[textParts.length - 1];
             }
 
-            htmlResultados += `<li><strong>Bolo:</strong> Aprox. ${weightKg.toFixed(2)}kg recomendados. Sugerimos ${boloText}.</li>`;
+            const totalWeight = bolosSugeridos.reduce((acc, b) => acc + (b.weight * b.quantidade), 0);
+            htmlResultados += `<li><strong>Bolo:</strong> Recomendamos o equivalente a ${totalWeight.toFixed(1)}kg de bolo. Sugerimos ${boloText}.</li>`;
         }
 
         if (querDoces) {
@@ -2538,8 +2731,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (modalMask) {
         modalMask.addEventListener("click", () => {
-            fecharModalCustomizacao();
-            fecharCalculatorModal();
+            fecharTodosModais();
         });
     }
     customizationModal.addEventListener("click", (e) => {
@@ -2575,11 +2767,12 @@ document.addEventListener("DOMContentLoaded", () => {
         let nomeCustomizado = produtoSendoPersonalizado.nome;
         let personalizacaoObj = {};
         let adicionalPreco = 0;
+        const quantidade = parseInt(formData.get("quantidade")) || 1;
 
         const basePreco = produtoSendoPersonalizado.precoBase !== undefined ? produtoSendoPersonalizado.precoBase : produtoSendoPersonalizado.preco;
 
         if (produtoSendoPersonalizado.tipoPersonalizacao === "sabor") {
-            const sabor = formData.get("sabor");
+            const sabor = escapeHTML(formData.get("sabor"));
             personalizacaoObj = { sabor };
 
             const selectedOpt = dynamicCustomizationForm.querySelector("input[name='sabor']:checked");
@@ -2590,8 +2783,8 @@ document.addEventListener("DOMContentLoaded", () => {
             nomeCustomizado = `${produtoSendoPersonalizado.nome} (${sabor})`;
         }
         else if (produtoSendoPersonalizado.tipoPersonalizacao === "quantidade-cores") {
-            const tamanho = formData.get("tamanho");
-            const cores = formData.get("cores");
+            const tamanho = escapeHTML(formData.get("tamanho"));
+            const cores = escapeHTML(formData.get("cores"));
             personalizacaoObj = { tamanho, cores };
 
             const selectedOpt = dynamicCustomizationForm.querySelector("input[name='tamanho']:checked");
@@ -2602,9 +2795,9 @@ document.addEventListener("DOMContentLoaded", () => {
             nomeCustomizado = `${produtoSendoPersonalizado.nome} (${tamanho} - Cores: ${cores})`;
         }
         else if (produtoSendoPersonalizado.tipoPersonalizacao === "artisticos") {
-            const formato = formData.get("formato");
-            const sabor = formData.get("sabor");
-            const pintura = formData.get("pintura");
+            const formato = escapeHTML(formData.get("formato"));
+            const sabor = escapeHTML(formData.get("sabor"));
+            const pintura = escapeHTML(formData.get("pintura"));
             personalizacaoObj = { formato, sabor, pintura };
 
             nomeCustomizado = `${produtoSendoPersonalizado.nome} (${formato} - ${sabor} - Pintura: ${pintura})`;
@@ -2612,7 +2805,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (produtoSendoPersonalizado.categoria === "bolos") {
             const cakeRefInput = document.getElementById("cake-reference");
-            const cakeColors = formData.get("cakeDecorColors") || "";
+            const cakeColors = escapeHTML(formData.get("cakeDecorColors") || "");
             const publicUrl = cakeRefInput ? cakeRefInput.dataset.publicUrl : "";
 
             if (publicUrl) {
@@ -2629,13 +2822,13 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: nomeCustomizado,
             preco: basePreco + adicionalPreco,
             personalizacao: personalizacaoObj,
-            quantidade: 1,
+            quantidade: quantidade,
             imagem: produtoSendoPersonalizado.imagem
         };
 
         const itemExistente = carrinho.find(item => item.id === itemPersonalizado.id);
         if (itemExistente) {
-            itemExistente.quantidade++;
+            itemExistente.quantidade += quantidade;
         } else {
             carrinho.push(itemPersonalizado);
         }
@@ -2808,6 +3001,63 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         
         filtrarEMostrarProdutos();
+    });
+
+    function createFocusTrap(element) {
+        if (element.dataset.focusTrapBound) return;
+        element.dataset.focusTrapBound = "true";
+
+        element.addEventListener('keydown', (e) => {
+            if (e.key !== 'Tab') return;
+            
+            const focusable = element.querySelectorAll(
+                'input, select, textarea, button, [tabindex]:not([tabindex="-1"])'
+            );
+            
+            if (focusable.length === 0) return;
+            
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                }
+            } else {
+                if (document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        });
+    }
+
+    customizationModal.addEventListener('show', () => {
+        setTimeout(() => createFocusTrap(customizationModal), 100);
+    });
+
+    createFocusTrap(customizationModal);
+    createFocusTrap(calculatorModal);
+
+    // Garantir que ENTER/SPACE nos checkboxes da calculadora mude o estado e não envie o formulário
+    const calcCheckboxes = calculatorModal.querySelectorAll('input[type="checkbox"]');
+    calcCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                checkbox.click();
+            }
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (cartSidebar.classList.contains('show')) {
+                fecharCarrinho();
+            }
+            fecharTodosModais();
+        }
     });
 
     filtrarEMostrarProdutos();

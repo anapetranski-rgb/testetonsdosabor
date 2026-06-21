@@ -2309,15 +2309,17 @@ document.addEventListener("DOMContentLoaded", () => {
             customizationFields.appendChild(inputColors);
         }
 
+        customizationModal.showModal();
         customizationModal.classList.add('show');
-        modalMask.classList.add('show');
+        if (modalMask) modalMask.classList.add('show');
         lockScroll();
         history.pushState({ modalAberto: true }, "");
     }
 
     function fecharModalCustomizacao() {
         customizationModal.classList.remove('show');
-        modalMask.classList.remove('show');
+        customizationModal.close();
+        if (modalMask) modalMask.classList.remove('show');
         unlockScroll();
         dynamicCustomizationForm.reset();
         produtoSendoPersonalizado = null;
@@ -2328,15 +2330,17 @@ document.addEventListener("DOMContentLoaded", () => {
         calculatorResults.style.display = 'none';
         btnApplySuggestion.style.display = 'none';
         calculatorForm.reset();
+        calculatorModal.showModal();
         calculatorModal.classList.add('show');
-        modalMask.classList.add('show');
+        if (modalMask) modalMask.classList.add('show');
         lockScroll();
         history.pushState({ modalAberto: true }, "");
     }
 
     function fecharCalculatorModal() {
         calculatorModal.classList.remove('show');
-        modalMask.classList.remove('show');
+        calculatorModal.close();
+        if (modalMask) modalMask.classList.remove('show');
         unlockScroll();
         sugestoesCalculadas = null;
     }
@@ -2532,9 +2536,21 @@ document.addEventListener("DOMContentLoaded", () => {
     viewCartBannerBtn.addEventListener("click", abrirCarrinho);
 
     
-    modalMask.addEventListener("click", () => {
-        fecharModalCustomizacao();
-        fecharCalculatorModal();
+    if (modalMask) {
+        modalMask.addEventListener("click", () => {
+            fecharModalCustomizacao();
+            fecharCalculatorModal();
+        });
+    }
+    customizationModal.addEventListener("click", (e) => {
+        if (e.target === customizationModal) {
+            fecharModalCustomizacao();
+        }
+    });
+    calculatorModal.addEventListener("click", (e) => {
+        if (e.target === calculatorModal) {
+            fecharCalculatorModal();
+        }
     });
     document.querySelector(".customization-box .close").addEventListener("click", fecharModalCustomizacao);
 

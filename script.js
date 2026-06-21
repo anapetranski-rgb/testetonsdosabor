@@ -1524,7 +1524,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         const precoExibir = p.preco !== undefined ? p.preco : p.precoBase;
 
                         return `
-                    <div class="product-card" data-id="${p.id}">
+                    <article class="product-card" data-id="${p.id}">
                         <img class="product-img" src="${p.imagem}" alt="${p.nome}">
                         
                         <div class="product-info">
@@ -1536,7 +1536,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <span class="canto-card-inf-esq"></span>
                             <span class="canto-card-inf-dir"></span>
                         </div>
-                    </div>
+                    </article>
                 `;
                     }
                 )

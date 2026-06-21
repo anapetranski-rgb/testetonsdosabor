@@ -1299,6 +1299,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cartSidebar.classList.add("show");
         cartOverlay.classList.add("show");
         lockScroll();
+        history.pushState({ modalAberto: true }, "");
     };
     const fecharCarrinho = () => {
         cartSidebar.classList.remove("show");
@@ -2133,6 +2134,7 @@ document.addEventListener("DOMContentLoaded", () => {
         customizationModal.classList.add('show');
         modalMask.classList.add('show');
         lockScroll();
+        history.pushState({ modalAberto: true }, "");
     }
 
     function fecharModalCustomizacao() {
@@ -2151,6 +2153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         calculatorModal.classList.add('show');
         modalMask.classList.add('show');
         lockScroll();
+        history.pushState({ modalAberto: true }, "");
     }
 
     function fecharCalculatorModal() {
@@ -2484,6 +2487,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     megaDropdown.classList.remove("show");
                     hoveredCategory = null;
                     filtrarEMostrarProdutos();
+                    history.pushState({ categoria: cat }, "");
                 }
             } else {
                 
@@ -2494,6 +2498,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 megaDropdown.classList.remove("show");
                 hoveredCategory = null;
                 filtrarEMostrarProdutos();
+                history.pushState({ categoria: cat }, "");
             }
         });
     });
@@ -2587,6 +2592,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     
+    window.addEventListener("popstate", (e) => {
+        // 1. Se houver modal ou carrinho aberto, apenas feche-os
+        fecharModalCustomizacao();
+        fecharCalculatorModal();
+        fecharCarrinho();
+        
+        // 2. Se houver um estado de categoria no histórico, volte para ela. Se não houver (e.state for nulo ou home), resete o filtro para a Home:
+        if (e.state && e.state.categoria) {
+            categoriaAtiva = e.state.categoria;
+            subcategoriaAtiva = "all";
+        } else {
+            categoriaAtiva = "home";
+            subcategoriaAtiva = "all";
+        }
+        
+        // Atualiza a barra de botões ativos para corresponder à categoria
+        categoryBtns.forEach(b => {
+            if (b.dataset.category === categoriaAtiva) b.classList.add("active");
+            else b.classList.remove("active");
+        });
+        
+        filtrarEMostrarProdutos();
+    });
+
     filtrarEMostrarProdutos();
     atualizarCarrinho();
 });

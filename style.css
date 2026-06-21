@@ -357,7 +357,7 @@ header {
   letter-spacing: 0.3px;
   color: var(--text-color);
   margin-bottom: 1.2rem;
-  text-align: justify;
+  text-align: left;
 }
 
 .about-text p strong {

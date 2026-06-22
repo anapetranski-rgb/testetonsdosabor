@@ -17,10 +17,16 @@
 
 <body>
     <header>
-        <div class="logo">
-            <img src="./assets/LOGO_TURQUESA_1.webp" alt="Logo Tons do Sabor" class="logo-img">
-            <h1>Tons do Sabor</h1>
-        </div>
+        <a href="#" id="link-home" class="logo-link">
+            <div class="logo">
+                <img src="./assets/LOGO_TURQUESA_1.webp" alt="Logo Tons do Sabor" class="logo-img">
+                <h1>Tons do Sabor</h1>
+            </div>
+        </a>
+
+        <a href="#" id="link-galeria" class="galeria-nav-btn">
+            <i class="fa-solid fa-images" aria-hidden="true"></i> Momentos Reais
+        </a>
 
         <div class="search-container" role="search">
             <label for="search-input" class="sr-only">Buscar Produto</label>
@@ -38,7 +44,8 @@
         </button>
     </header>
 
-    <div class="categories-wrapper">
+    <div id="tela-produtos">
+        <div class="categories-wrapper">
         <div class="categories-container">
             <nav class="categories-bar" aria-label="Categorias de produtos">
                 <h2 class="sr-only">Categorias de produtos</h2>
@@ -46,25 +53,22 @@
                     <i class="fa-solid fa-house" aria-hidden="true"></i> Home
                 </button>
                 <button class="category-btn" data-category="bolos">
-                    <i class="fa-solid fa-birthday-cake" aria-hidden="true"></i> Bolos Festivos
+                    <i class="fa-solid fa-cake-candles" aria-hidden="true"></i> Bolos
                 </button>
                 <button class="category-btn" data-category="doces-tradicionais">
-                    <i class="fa-solid fa-cookie" aria-hidden="true"></i> Doces Tradicionais
+                    <i class="fa-solid fa-cookie-bite" aria-hidden="true"></i> Doces Tradicionais
                 </button>
                 <button class="category-btn" data-category="doces-finos">
-                    <i class="fa-solid fa-gem" aria-hidden="true"></i> Doces Finos
+                    <i class="fa-solid fa-gem" aria-hidden="true"></i> Doces Finos &amp; Especiais
                 </button>
-                <button class="category-btn" data-category="petit-verrines">
-                    <i class="fa-solid fa-glass-water" aria-hidden="true"></i> Petit Verrines
+                <button class="category-btn" data-category="sobremesas-individuais">
+                    <i class="fa-solid fa-ice-cream" aria-hidden="true"></i> Sobremesas Individuais
                 </button>
                 <button class="category-btn" data-category="salgados">
                     <i class="fa-solid fa-pizza-slice" aria-hidden="true"></i> Salgados
                 </button>
-                <button class="category-btn" data-category="cupcakes">
-                    <i class="fa-solid fa-cake-candles" aria-hidden="true"></i> Cupcakes
-                </button>
                 <button class="category-btn" data-category="lembrancinhas">
-                    <i class="fa-solid fa-gift" aria-hidden="true"></i> Lembrancinhas
+                    <i class="fa-solid fa-gift" aria-hidden="true"></i> Lembrancinhas &amp; Presentes
                 </button>
             </nav>
         </div>
@@ -108,6 +112,14 @@
         <h2 class="sr-only">Nossos Produtos</h2>
         <ul class="products-container"><!-- cards gerados pelo script --></ul>
     </main>
+    </div>
+
+    <div id="tela-galeria" class="hidden">
+        <section class="galeria-section">
+            <h2>Momentos Reais</h2>
+            <ul class="galeria-grid" id="galeria-container"></ul>
+        </section>
+    </div>
 
     <div class="cart-overlay"></div>
 
@@ -350,6 +362,13 @@
         </div>
         <p class="copyright">&copy; 2026 - Tons do Sabor. Todos os direitos reservados.</p>
     </footer>
+
+    <div id="galeria-modal" class="galeria-modal" aria-hidden="true">
+        <span class="modal-fechar">&times;</span>
+        <button class="modal-nav modal-prev">&lsaquo;</button>
+        <img id="modal-img" src="" alt="Foto do evento expandida">
+        <button class="modal-nav modal-next">&rsaquo;</button>
+    </div>
 
     <script src="./script.js"></script>
 </body>

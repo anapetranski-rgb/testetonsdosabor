@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+const initApp = () => {
     
     const cartIcon = document.querySelector(".cart-icon"),
         cartSidebar = document.querySelector(".cart-sidebar"),
@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (calculatorModal.open) calculatorModal.close();
         }
         if (modalMask) modalMask.classList.remove('show');
+        if (typeof fecharGaleriaModal === "function") fecharGaleriaModal();
         unlockScroll();
     }
 
@@ -105,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Brigadeiro de Paçoca",
             categoria: "doces-tradicionais",
             preco: 1.49,
-            imagem: "./assets/defaultDoces.webp",
+            imagem: "./assets/DocesTradicionais/paçoca.webp",
             descricao: "Sabor marcante de paçoca em formato de brigadeiro de festa.",
             requerPersonalizacao: false
         },
@@ -114,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
             nome: "Brigadeiro Moranguinho",
             categoria: "doces-tradicionais",
             preco: 1.49,
-            imagem: "./assets/defaultDoces.webp",
+            imagem: "./assets/DocesTradicionais/moranguinho.webp",
             descricao: "O clássico bicho de pé, brigadeiro saborizado de morango.",
             requerPersonalizacao: false
         },
@@ -124,6 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 7,
             nome: "Brigadeiro Granullé",
             categoria: "doces-finos",
+            subcategoria: "brigadeiros-finos",
             preco: 2.50,
             imagem: "./assets/DocesFinos/brigadeiroGranule.webp",
             descricao: "Brigadeiro nobre coberto com splits de chocolate. Escolha a sua variação favorita.",
@@ -139,64 +141,38 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 8,
             nome: "Brigadeiro Dois Amores",
             categoria: "doces-finos",
+            subcategoria: "brigadeiros-finos",
             preco: 2.80,
             imagem: "./assets/DocesFinos/doisAmores.webp",
-            descricao: "A união perfeita do brigadeiro preto e branco. ",
-            requerPersonalizacao: false,
-
+            descricao: "A união perfeita do brigadeiro preto e branco.",
+            requerPersonalizacao: false
         },
         {
             id: 9,
-            nome: "Brigadeiro de Churros",
+            nome: "Seleção de Brigadeiros Especiais",
             categoria: "doces-finos",
+            subcategoria: "brigadeiros-finos",
             preco: 2.10,
             imagem: "./assets/defaultDoces.webp",
-            descricao: "Brigadeiro artesanal de canela finalizado com um gracioso bico de doce de leite.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 10,
-            nome: "Brigadeiro de Ninho com Nutella",
-            categoria: "doces-finos",
-            preco: 2.10,
-            imagem: "./assets/DocesFinos/ninhoNutella.webp",
-            descricao: "Brigadeiro de leite Ninho original recheado com Nutella pura.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 11,
-            nome: "Brigadeiro de Uva Verde",
-            categoria: "doces-finos",
-            preco: 2.10,
-            imagem: "./assets/DocesFinos/brigadeiroUva.webp",
-            descricao: "Uma uva verde fresca e inteira envolvida por uma camada de brigadeiro branco.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 12,
-            nome: "Brigadeiro Brûlée",
-            categoria: "doces-finos",
-            preco: 2.10,
-            imagem: "./assets/DocesFinos/brigadeiroBrulle.webp",
-            descricao: "Brigadeiro de baunilha com aquela crosta crocante de açúcar maçaricado.",
-            requerPersonalizacao: false
+            descricao: "Brigadeiros gourmet em sabores especiais e receitas autorais.",
+            requerPersonalizacao: true,
+            tipoPersonalizacao: "sabor",
+            opcoes: [
+                { sabor: "Churros", detalhe: "Brigadeiro artesanal de canela finalizado com doce de leite." },
+                { sabor: "Ninho com Nutella", detalhe: "Brigadeiro de leite Ninho original recheado com Nutella pura." },
+                { sabor: "Uva Verde", detalhe: "Uva verde fresca envolvida por brigadeiro branco." },
+                { sabor: "Brûlée", detalhe: "Brigadeiro de baunilha com crosta de açúcar maçaricado." },
+                { sabor: "Flor de Morango", detalhe: "Brigadeiro de morango (Nesquik) moldado em formato de florzinha." }
+            ]
         },
         {
             id: 13,
             nome: "Palha Italiana",
             categoria: "doces-finos",
+            subcategoria: "brigadeiros-finos",
             preco: 1.90,
             imagem: "./assets/DocesFinos/palhaItaliana.webp",
             descricao: "Tradicional pedaço de palha italiana feito com brigadeiro cremoso e biscoito.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 14,
-            nome: "Flor de Morango",
-            categoria: "doces-finos",
-            preco: 2.10,
-            imagem: "./assets/defaultDoces.webp",
-            descricao: "Brigadeiro saborizado de morango (Nesquik) moldado delicadamente em formato de florzinha.",
             requerPersonalizacao: false
         },
         {
@@ -524,7 +500,8 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 40,
             nome: "Cupcake P",
-            categoria: "cupcakes",
+            categoria: "sobremesas-individuais",
+            subcategoria: "cupcakes",
             preco: 4.50, 
             imagem: "./assets/defaultDoces.webp",
             descricao: "Delicado mini bolo recheado e decorado com cobertura artesanal. Escolha o seu sabor favorito.",
@@ -540,7 +517,8 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 41,
             nome: "Cupcake G",
-            categoria: "cupcakes",
+            categoria: "sobremesas-individuais",
+            subcategoria: "cupcakes",
             preco: 8.50, 
             imagem: "./assets/DocesFinos/cupcakeG.webp",
             descricao: "Tamanho perfeito para lanches individuais ou lembrancinhas. Recheado e lindamente decorado.",
@@ -557,44 +535,44 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 42,
             nome: "Bombons Tradicionais (Sicao)",
             categoria: "doces-finos",
-            subcategoria: "bombons", 
-            preco: 2.90,
+            subcategoria: "bombons-e-macarons", 
+            precoBase: 2.90,
             imagem: "./assets/DocesFinos/bombomTradicional.webp",
             descricao: "Deliciosos bombons tradicionais com cobertura fracionada Sicao.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Uva", detalhe: "Uva fresca com brigadeiro branco e casquinha Sicao. (R$ 2,90/un)" },
-                { sabor: "Coco", detalhe: "Recheio cremoso de coco com casquinha Sicao. (R$ 2,90/un)" },
-                { sabor: "Morango", detalhe: "Morango inteiro com brigadeiro e casquinha Sicao. (R$ 3,10/un)" },
-                { sabor: "Abacaxi", detalhe: "Pedacinhos de abacaxi artesanal e casquinha Sicao. (R$ 3,10/un)" },
-                { sabor: "Cereja", detalhe: "Cereja em calda envolta em creme e casquinha Sicao. (R$ 3,10/un)" },
-                { sabor: "Limão", detalhe: "Creme trufado de limão refrescante e casquinha Sicao. (R$ 3,10/un)" }
+                { sabor: "Uva", detalhe: "Uva fresca com brigadeiro branco e casquinha Sicao.", adicional: 0.00 },
+                { sabor: "Coco", detalhe: "Recheio cremoso de coco com casquinha Sicao.", adicional: 0.00 },
+                { sabor: "Morango", detalhe: "Morango inteiro com brigadeiro e casquinha Sicao.", adicional: 0.20 },
+                { sabor: "Abacaxi", detalhe: "Pedacinhos de abacaxi artesanal e casquinha Sicao.", adicional: 0.20 },
+                { sabor: "Cereja", detalhe: "Cereja em calda envolta em creme e casquinha Sicao.", adicional: 0.20 },
+                { sabor: "Limão", detalhe: "Creme trufado de limão refrescante e casquinha Sicao.", adicional: 0.20 }
             ]
         },
         {
             id: 43,
             nome: "Bombons Finos (Chocolate Nobre)",
             categoria: "doces-finos",
-            subcategoria: "bombons", 
-            preco: 4.90,
+            subcategoria: "bombons-e-macarons", 
+            precoBase: 4.90,
             imagem: "./assets/DocesFinos/bombomFino.webp",
             descricao: "Bombons requintados de alta confeitaria produzidos com puro chocolate nobre temperado.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Uva Fino", detalhe: "Uva premium envolta em creme e banhada em chocolate nobre. (R$ 4,90/un)" },
-                { sabor: "Cereja Fino", detalhe: "Cereja inteira com licor e banho de chocolate nobre. (R$ 4,90/un)" },
-                { sabor: "Pirâmide de Café e Caramelo", detalhe: "Sofisticado formato de pirâmide com recheio trufado de café e caramelo nobre. (R$ 4,90/un)" },
-                { sabor: "Morango Tradicional", detalhe: "Morango inteiro selecionado coberto com puro chocolate nobre. (R$ 5,50/un)" },
-                { sabor: "Morango Luxo", detalhe: "A versão mais imponente, decorada e requintada com chocolate nobre. (R$ 6,50/un)" }
+                { sabor: "Uva Fino", detalhe: "Uva premium envolta em creme e banhada em chocolate nobre.", adicional: 0.00 },
+                { sabor: "Cereja Fino", detalhe: "Cereja inteira com licor e banho de chocolate nobre.", adicional: 0.00 },
+                { sabor: "Pirâmide de Café e Caramelo", detalhe: "Sofisticado formato de pirâmide com recheio trufado de café e caramelo nobre.", adicional: 0.00 },
+                { sabor: "Morango Tradicional", detalhe: "Morango inteiro selecionado coberto com puro chocolate nobre.", adicional: 0.60 },
+                { sabor: "Morango Luxo", detalhe: "A versão mais imponente, decorada e requintada com chocolate nobre.", adicional: 1.60 }
             ]
         },
         {
             id: 44,
             nome: "Macarons Artesanais",
             categoria: "doces-finos",
-            subcategoria: "macarons",
+            subcategoria: "bombons-e-macarons",
             preco: 7.90, 
             imagem: "./assets/DocesFinos/macaronsUnidade.webp",
             descricao: "Clássico doce francês crocante por fora e incrivelmente macio por dentro.",
@@ -612,7 +590,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 45,
             nome: "Torre de Macarons",
             categoria: "doces-finos",
-            subcategoria: "macarons",
+            subcategoria: "bombons-e-macarons",
             precoBase: 425.00, 
             imagem: "./assets/DocesFinos/torreMacarons.webp",
             descricao: "Uma belíssima torre de macarons para sua mesa de doces. Selecione o tamanho desejado e digite as cores de preferência na caixinha de texto. (De acordo com o limite)",
@@ -622,17 +600,17 @@ document.addEventListener("DOMContentLoaded", () => {
             opcoes: [
                 {
                     sabor: "Torre P (Aproximadamente 50 unidades)",
-                    detalhe: "Ideal para mini weddings ou comemorações intimistas. Permite até 2 cores. (R$ 425,00)", 
+                    detalhe: "Ideal para mini weddings ou comemorações intimistas. Permite até 2 cores.", 
                     adicional: 0.00
                 },
                 {
                     sabor: "Torre M (Aproximadamente 100 unidades)",
-                    detalhe: "Excelente destaque e volume para mesas médias. Permite até 3 cores. (R$ 820,00)", 
+                    detalhe: "Excelente destaque e volume para mesas médias. Permite até 3 cores.", 
                     adicional: 395.00 
                 },
                 {
                     sabor: "Torre G (Aproximadamente 150 unidades)",
-                    detalhe: "Uma verdadeira escultura de alta confeitaria. Permite até 4 cores. (R$ 1.299,00)", 
+                    detalhe: "Uma verdadeira escultura de alta confeitaria. Permite até 4 cores.", 
                     adicional: 874.00 
                 }
             ]
@@ -654,33 +632,19 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             id: 47,
-            nome: "Brigadeiro de Limão Siciliano",
-            categoria: "doces-finos",
-            subcategoria: "brigadeiros-finos",
-            preco: 2.50,
-            imagem: "./assets/defaultDoces.webp",
-            descricao: "Delicioso brigadeiro gourmet saborizado de limão siciliano com acabamento em granullé branco.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 48,
-            nome: "Brigadeiro de Caramelo Salgado",
-            categoria: "doces-finos",
-            subcategoria: "brigadeiros-finos",
-            preco: 2.50,
-            imagem: "./assets/defaultDoces.webp",
-            descricao: "Brigadeiro cremoso de caramelo salgado com acabamento em granullé sabor caramelo.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 49,
-            nome: "Brigadeiro Ferrero",
+            nome: "Sabores Tradicionais Finos",
             categoria: "doces-finos",
             subcategoria: "brigadeiros-finos",
             preco: 2.50,
             imagem: "./assets/DocesFinos/brigadeiroFerrero.webp",
-            descricao: "Inspirado no famoso bombom, com chocolate nobre e pedacinhos de avelã.",
-            requerPersonalizacao: false
+            descricao: "Sabores clássicos refinados para festas e eventos.",
+            requerPersonalizacao: true,
+            tipoPersonalizacao: "sabor",
+            opcoes: [
+                { sabor: "Limão Siciliano", detalhe: "Delicioso brigadeiro gourmet saborizado de limão siciliano com granullé branco." },
+                { sabor: "Caramelo Salgado", detalhe: "Brigadeiro cremoso de caramelo salgado com granullé sabor caramelo." },
+                { sabor: "Ferrero", detalhe: "Feito com chocolate nobre e pedacinhos de avelã." }
+            ]
         },
         {
             id: 50,
@@ -702,92 +666,40 @@ document.addEventListener("DOMContentLoaded", () => {
             descricao: "Combinação leve e crocante de mini suspiros com o sabor irresistível de morango.",
             requerPersonalizacao: false
         },
-
-        
         {
             id: 52,
-            nome: "Ouriço de Coco",
+            nome: "Ouriços Artesanais",
             categoria: "doces-finos",
             subcategoria: "doces-especiais",
-            preco: 2.30,
-            imagem: "./assets/defaultDoces.webp",
-            descricao: "Doce artesanal de coco super cremoso por dentro com aquela crosta crocante por fora.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 53,
-            nome: "Ouriço de Amêndoa",
-            categoria: "doces-finos",
-            subcategoria: "doces-especiais",
-            preco: 4.50,
+            precoBase: 2.30,
             imagem: "./assets/DocesFinos/ouricoAmendoa.webp",
-            descricao: "Sofisticado doce fino com recheio cremoso e envolvido em lâminas crocantes de amêndoa.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 54,
-            nome: "Ouriço de Pistache",
-            categoria: "doces-finos",
-            subcategoria: "doces-especiais",
-            preco: 4.90,
-            imagem: "./assets/DocesFinos/brigadeiroPistache.webp",
-            descricao: "O ápice da sofisticação: recheio premium coberto com pistache triturado.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 55,
-            nome: "Romeu e Julieta Fino",
-            categoria: "doces-finos",
-            subcategoria: "doces-especiais",
-            preco: 2.50,
-            imagem: "./assets/defaultDoces.webp",
-            descricao: "O casamento perfeito do queijo com a goiabada em uma roupagem fina para casamentos e eventos.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 56,
-            nome: "Olho de Sogra Fino",
-            categoria: "doces-finos",
-            subcategoria: "doces-especiais",
-            preco: 2.30,
-            imagem: "./assets/defaultDoces.webp",
-            descricao: "Clássico doce de festa repaginado. Escolha a sua base de preferência.",
+            descricao: "Doces finos modelados com texturas marcantes e crocantes.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Ameixa", detalhe: "Beijinho cremoso combinado com ameixa selecionada." },
-                { sabor: "Damasco", detalhe: "Beijinho cremoso combinado com um toque nobre de damasco." }
+                { sabor: "Coco", detalhe: "Doce artesanal de coco super cremoso por dentro com casca crocante.", adicional: 0.00 },
+                { sabor: "Amêndoa", detalhe: "Envolvido em lâminas crocantes de amêndoa.", adicional: 2.20 },
+                { sabor: "Pistache", detalhe: "Recheio premium coberto com pistache triturado.", adicional: 2.60 }
             ]
         },
         {
-            id: 57,
-            nome: "Morango Cristal",
+            id: 55,
+            nome: "Seleção de Doces de Frutas & Castanhas",
             categoria: "doces-finos",
             subcategoria: "doces-especiais",
-            preco: 3.90,
+            precoBase: 2.30,
             imagem: "./assets/defaultDoces.webp",
-            descricao: "Morango inteiro fresco envolto em uma delicada camada de brigadeiro e caramelizado com calda de açúcar cristal.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 58,
-            nome: "Trouxinha Marzipan",
-            categoria: "doces-finos",
-            subcategoria: "doces-especiais",
-            preco: 7.50,
-            imagem: "./assets/defaultDoces.webp",
-            descricao: "Doce fino ultra premium moldado em formato de trouxinha com autêntica pasta de marzipan de amêndoas.",
-            requerPersonalizacao: false
-        },
-        {
-            id: 59,
-            nome: "Trouxinha de Nozes e Baba de Moça",
-            categoria: "doces-finos",
-            subcategoria: "doces-especiais",
-            preco: 6.90,
-            imagem: "./assets/defaultDoces.webp",
-            descricao: "Trouxinha fina recheada com um nobre estrogonofe de nozes e a tradicional baba de moça.",
-            requerPersonalizacao: false
+            descricao: "Doces finos clássicos baseados em frutas nobres, castanhas e fondant.",
+            requerPersonalizacao: true,
+            tipoPersonalizacao: "sabor",
+            opcoes: [
+                { sabor: "Olho de Sogra Fino - Ameixa", detalhe: "Beijinho cremoso combinado com ameixa selecionada.", adicional: 0.00 },
+                { sabor: "Olho de Sogra Fino - Damasco", detalhe: "Beijinho cremoso combinado com um toque nobre de damasco.", adicional: 0.00 },
+                { sabor: "Romeu e Julieta Fino", detalhe: "O casamento perfeito do queijo com a goiabada em roupagem fina.", adicional: 0.20 },
+                { sabor: "Morango Cristal", detalhe: "Morango inteiro envolto em brigadeiro e caramelizado com calda de açúcar.", adicional: 1.60 },
+                { sabor: "Trouxinha de Nozes e Baba de Moça", detalhe: "Trouxinha fina recheada com estrogonofe de nozes e baba de moça.", adicional: 4.60 },
+                { sabor: "Trouxinha Marzipan", detalhe: "Trouxinha ultra premium com autêntica pasta de marzipan de amêndoas.", adicional: 5.20 }
+            ]
         },
         {
             id: 60,
@@ -806,37 +718,31 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             id: 61,
-            nome: "Copinhos de Chocolate Premium",
+            nome: "Copinhos de Chocolate Artesanais",
             categoria: "doces-finos",
-            subcategoria: "tarteletes-e-caixinhas",
-            precoBase: 4.50, 
-            imagem: "./assets/DocesFinos/copinhoPersonalizado.webp",
-            descricao: "Delicados copinhos de puro chocolate nobre recheados. Selecione o sabor de sua preferência.",
+            subcategoria: "copinhos-e-tarteletes",
+            precoBase: 2.90,
+            imagem: "./assets/DocesFinos/copinhoClassico.webp",
+            descricao: "Copinhos de chocolate nobre com recheios cremosos e combinações exclusivas.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                {
-                    sabor: "Abacaxi e Manjericão",
-                    detalhe: "Combinação surpreendente, leve e refrescante. (R$ 4,50/un)",
-                    adicional: 0.00 
-                },
-                {
-                    sabor: "Avelã Crocante",
-                    detalhe: "Recheio cremoso de avelã com toque crocante premium. (R$ 4,90/un)",
-                    adicional: 0.40 
-                },
-                {
-                    sabor: "Avelã e Brigadeiro",
-                    detalhe: "O encontro do nosso brigadeiro artesanal com creme de avelã. (R$ 3,90/un)",
-                    adicional: -0.60 
-                }
+                { sabor: "Mousse de Maracujá", detalhe: "Mousse aerada de maracujá no copinho.", adicional: 0.00 },
+                { sabor: "Mousse de Limão", detalhe: "Mousse leve e refrescante de limão.", adicional: 0.00 },
+                { sabor: "Brigadeiro Tradicional", detalhe: "O nosso clássico brigadeiro cremoso.", adicional: 0.00 },
+                { sabor: "Beijinho de Coco", detalhe: "Delicioso creme artesanal de coco.", adicional: 0.00 },
+                { sabor: "Olho de Sogra", detalhe: "Beijinho de coco com toque de ameixa.", adicional: 0.00 },
+                { sabor: "Doce de Leite com Nozes", detalhe: "Doce de leite cozido com pedacinhos de nozes.", adicional: 0.00 },
+                { sabor: "Avelã e Brigadeiro", detalhe: "Encontro de brigadeiro artesanal com creme de avelã.", adicional: 1.00 },
+                { sabor: "Abacaxi e Manjericão Premium", detalhe: "Combinação refrescante premium.", adicional: 1.60 },
+                { sabor: "Avelã Crocante Premium", detalhe: "Recheio cremoso de avelã com toque crocante.", adicional: 2.00 }
             ]
         },
         {
             id: 62,
             nome: "Caixinhas de Chocolate Personalizadas",
             categoria: "doces-finos",
-            subcategoria: "tarteletes-e-caixinhas",
+            subcategoria: "copinhos-e-tarteletes",
             precoBase: 4.90, 
             imagem: "./assets/DocesFinos/caixinhaChocolate.webp",
             descricao: "Elegantes caixinhas moldadas em chocolate com recheios finos e decorações sofisticadas. Selecione o seu sabor favorito.",
@@ -845,101 +751,69 @@ document.addEventListener("DOMContentLoaded", () => {
             opcoes: [
                 {
                     sabor: "Doce de Leite com Frutas Vermelhas",
-                    detalhe: "Doce de leite cremoso coroado com frutas frescas. (R$ 4,90/un)",
+                    detalhe: "Doce de leite cremoso coroado com frutas frescas.",
                     adicional: 0.00 
                 },
                 {
                     sabor: "Chocolate com Creme e Frutas Vermelhas",
-                    detalhe: "Ganache meio amarga com creme e frutas selecionadas. (R$ 4,90/un)",
+                    detalhe: "Ganache meio amarga com creme e frutas selecionadas.",
                     adicional: 0.00 
                 },
                 {
                     sabor: "Caixinha Brûllé",
-                    detalhe: "Creme brûlée suave com açúcar maçaricado no topo. (R$ 5,90/un)",
+                    detalhe: "Creme brûlée suave com açúcar maçaricado no topo.",
                     adicional: 1.00 
                 },
                 {
                     sabor: "Physalis",
-                    detalhe: "Creme trufado decorado com uma fruta Physalis inteira. (R$ 4,50/un)",
+                    detalhe: "Creme trufado decorado com uma fruta Physalis inteira.",
                     adicional: -0.40 
                 },
                 {
                     sabor: "Cereja",
-                    detalhe: "Recheio trufado com uma linda cereja com cabinho no topo. (R$ 4,50/un)",
+                    detalhe: "Recheio trufado com uma linda cereja com cabinho no topo.",
                     adicional: -0.40 
                 },
                 {
                     sabor: "Damasco",
-                    detalhe: "Combinação nobre com recheio artesanal de damasco. (R$ 4,50/un)",
+                    detalhe: "Combinação nobre com recheio artesanal de damasco.",
                     adicional: -0.40 
                 }
             ]
         },
         {
             id: 63,
-            nome: "Mini Tarteletes Tradicionais",
+            nome: "Mini Tarteletes Gourmet",
             categoria: "doces-finos",
-            subcategoria: "tarteletes-e-caixinhas",
-            preco: 5.90, 
+            subcategoria: "copinhos-e-tarteletes",
+            precoBase: 5.90,
             imagem: "./assets/DocesFinos/tarteleteTradicional.webp",
-            descricao: "Mini tortinhas crocantes de massa sablée com recheios tradicionais e opções cítricas irresistíveis.",
+            descricao: "Mini tortas artesanais com massas crocantes, recheios finos e decorações sofisticadas.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Limão Siciliano", detalhe: "Creme de limão siciliano e merengue maçaricado." },
-                { sabor: "Chocolate e Caramelo", detalhe: "Blend intenso de chocolate meio amargo e caramelo." },
-                { sabor: "Frutas Tradicional", detalhe: "Creme de confeiteiro leve com frutas frescas da estação." },
-                { sabor: "Maracujá", detalhe: "Mousse cremosa de maracujá com sementinhas decorativas." }
-            ]
-        },
-        {
-            id: 64,
-            nome: "Mini Tarteletes Luxo",
-            categoria: "doces-finos",
-            subcategoria: "tarteletes-e-caixinhas",
-            preco: 8.90, 
-            imagem: "./assets/defaultDoces.webp",
-            descricao: "O ápice da alta confeitaria: mini tortinhas finas decoradas e coroadas com um mini macaron artesanal.",
-            requerPersonalizacao: true,
-            tipoPersonalizacao: "sabor",
-            opcoes: [
-                { sabor: "Frutas Vermelhas com Mini Macaron", detalhe: "Base de frutas vermelhas com mini macaron no topo. (R$ 8,90/un)" },
-                { sabor: "Pistache com Mini Macaron", detalhe: "Creme de pistache nobre com mini macaron combinando. (R$ 8,90/un)" }
+                { sabor: "Limão Siciliano", detalhe: "Creme de limão siciliano e merengue maçaricado.", adicional: 0.00 },
+                { sabor: "Chocolate e Caramelo", detalhe: "Blend de chocolate meio amargo e caramelo.", adicional: 0.00 },
+                { sabor: "Frutas Tradicional", detalhe: "Creme de confeiteiro leve com frutas frescas.", adicional: 0.00 },
+                { sabor: "Maracujá", detalhe: "Mousse de maracujá com sementinhas decorativas.", adicional: 0.00 },
+                { sabor: "Frutas Vermelhas com Mini Macaron Luxo", detalhe: "Base de frutas vermelhas com mini macaron no topo.", adicional: 3.00 },
+                { sabor: "Pistache com Mini Macaron Luxo", detalhe: "Creme de pistache nobre com mini macaron no topo.", adicional: 3.00 }
             ]
         },
         {
             id: 65,
             nome: "Mini Banoffee",
-            categoria: "doces-finos",
-            subcategoria: "tarteletes-e-caixinhas",
+            categoria: "sobremesas-individuais",
+            subcategoria: "mini-sobremesas",
             preco: 5.90,
             imagem: "./assets/defaultDoces.webp",
             descricao: "Clássica sobremesa de banana com doce de leite e chantilly leve, montada em uma delicada porção individual.",
             requerPersonalizacao: false
         },
         {
-            id: 66,
-            nome: "Copinhos de Chocolate Clássicos",
-            categoria: "doces-finos",
-            subcategoria: "tarteletes-e-caixinhas",
-            preco: 2.90,
-            imagem: "./assets/DocesFinos/copinhoClassico.webp",
-            descricao: "Copinhos de chocolate nobre com recheios tradicionais e cremosos. Selecione o sabor de sua preferência.",
-            requerPersonalizacao: true,
-            tipoPersonalizacao: "sabor",
-            opcoes: [
-                { sabor: "Mousse de Maracujá", detalhe: "Mousse aerada de maracujá azedinho no copinho de chocolate. (R$ 2,90/un)" },
-                { sabor: "Mousse de Limão", detalhe: "Mousse leve e refrescante de limão. (R$ 2,90/un)" },
-                { sabor: "Brigadeiro Tradicional", detalhe: "O nosso clássico brigadeiro cremoso em formato de copinho. (R$ 2,90/un)" },
-                { sabor: "Beijinho (Coco)", detalhe: "Delicioso creme artesanal de coco. (R$ 2,90/un)" },
-                { sabor: "Olho de Sogra", detalhe: "Combinação clássica de beijinho de coco com toque de ameixa. (R$ 2,90/un)" },
-                { sabor: "Doce de Leite com Nozes", detalhe: "Doce de leite cozido perfeitamente equilibrado com pedacinhos de nozes. (R$ 2,90/un)" }
-            ]
-        },
-        {
             id: 67,
             nome: "Mini Pudim",
-            categoria: "doces-finos",
+            categoria: "sobremesas-individuais",
             subcategoria: "mini-sobremesas",
             preco: 3.30, 
             imagem: "./assets/DocesFinos/pudim.webp",
@@ -949,7 +823,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 68,
             nome: "Mini Quindim",
-            categoria: "doces-finos",
+            categoria: "sobremesas-individuais",
             subcategoria: "mini-sobremesas",
             preco: 3.90, 
             imagem: "./assets/DocesFinos/quindim.webp",
@@ -959,7 +833,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 69,
             nome: "Mini Pavlova",
-            categoria: "doces-finos",
+            categoria: "sobremesas-individuais",
             subcategoria: "mini-sobremesas",
             preco: 4.90,
             imagem: "./assets/DocesFinos/miniPavlova.webp",
@@ -969,7 +843,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 70,
             nome: "Mini Brownies Especiais",
-            categoria: "doces-finos",
+            categoria: "sobremesas-individuais",
             subcategoria: "mini-sobremesas",
             preco: 4.90,
             imagem: "./assets/defaultDoces.webp",
@@ -984,7 +858,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 71,
             nome: "Mini Cheesecake",
-            categoria: "doces-finos",
+            categoria: "sobremesas-individuais",
             subcategoria: "mini-sobremesas",
             preco: 6.90,
             imagem: "./assets/defaultDoces.webp",
@@ -995,7 +869,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: 72,
             nome: "Bombons Artísticos",
             categoria: "doces-finos",
-            subcategoria: "bombons",
+            subcategoria: "bombons-e-macarons",
             preco: 5.90,
             imagem: "./assets/DocesFinos/bombomArtistico.webp",
             descricao: "Bombons finos pintados artesanalmente. Selecione o sabor de sua preferência.",
@@ -1028,7 +902,8 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             id: 77,
             nome: "Petit Verrines Premium",
-            categoria: "petit-verrines", 
+            categoria: "sobremesas-individuais",
+            subcategoria: "petit-verrines",
             preco: 12.90,
             imagem: "./assets/defaultDoces.webp",
             descricao: "Sobremesas finas e sofisticadas servidas em elegantes copinhos individuais. Selecione o seu sabor favorito.",
@@ -1321,8 +1196,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove("no-scroll");
     };
 
-    fecharTodosModais(); // Garante estado limpo após funções utilitárias serem definidas
-
     let lastActiveElement = null;
     const abrirCarrinho = () => {
         lastActiveElement = document.activeElement;
@@ -1393,13 +1266,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     const categoriaNomes = {
-        "bolos": "Bolos Festivos",
+        "bolos": "Bolos",
         "doces-tradicionais": "Doces Tradicionais",
-        "doces-finos": "Doces Finos",
-        "petit-verrines": "Petit Verrines",
+        "doces-finos": "Doces Finos &amp; Especiais",
+        "sobremesas-individuais": "Sobremesas Individuais",
         "salgados": "Salgados",
-        "cupcakes": "Cupcakes",
-        "lembrancinhas": "Lembrancinhas"
+        "lembrancinhas": "Lembrancinhas &amp; Presentes"
     };
 
     const subcategoryMeta = {
@@ -1419,29 +1291,33 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Bolos Gourmet",
             desc: "Criações requintadas e sabores sofisticados de alta confeitaria"
         },
-        "bombons": {
-            title: "Bombons Finos",
-            desc: "Bombons artísticos e trufados com chocolate nobre"
-        },
-        "macarons": {
-            title: "Macarons",
-            desc: "Clássicos macarons franceses crocantes e torres festivas"
-        },
         "brigadeiros-finos": {
             title: "Brigadeiros Finos",
-            desc: "Brigadeiros gourmet e linha belga Callebaut"
+            desc: "Brigadeiros gourmet, linha belga Callebaut e sabores especiais"
+        },
+        "bombons-e-macarons": {
+            title: "Bombons &amp; Macarons",
+            desc: "Bombons finos, artísticos, trufados e macarons artesanais"
         },
         "doces-especiais": {
             title: "Doces Especiais",
-            desc: "Ouriços, camafeus e trouxinhas delicadas para eventos"
+            desc: "Ouriços, camafeus, mil folhas e trouxinhas nobres para eventos"
         },
-        "tarteletes-e-caixinhas": {
-            title: "Tarteletes e Caixinhas",
-            desc: "Mini tortinhas crocantes e caixinhas recheadas de chocolate"
+        "copinhos-e-tarteletes": {
+            title: "Copinhos &amp; Tarteletes",
+            desc: "Copinhos de chocolate nobre e mini tarteletes gourmet"
         },
         "mini-sobremesas": {
             title: "Mini Sobremesas",
-            desc: "Pudins, quindins, cheesecakes e pavlovas em porções individuais"
+            desc: "Mini pudins, quindins, pavlovas, mini brownies e cheesecake"
+        },
+        "petit-verrines": {
+            title: "Petit Verrines",
+            desc: "Elegantes copinhos individuais com cremes e compotas"
+        },
+        "cupcakes": {
+            title: "Cupcakes",
+            desc: "Deliciosos mini bolos recheados e decorados de vários tamanhos"
         },
         "fritos": {
             title: "Salgados Fritos",
@@ -1772,7 +1648,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const dayOfWeek = dateObj.getDay(); // 0 = Domingo, 1 = Segunda, 2-6 = Terça a Sábado
 
             if (dayOfWeek === 1) { // Segunda-feira
-                alert("O Atelier não funciona às segundas-feiras. Por favor, selecione outra data.");
+                alert("não abrimos na segunda feira, por favor selecione outra data.");
                 dateEl.value = "";
                 timeEl.value = "";
                 dateEl.classList.add("error");
@@ -2016,7 +1892,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const dayOfWeek = dateObj.getDay();
 
             if (dayOfWeek === 1) { // Segunda-feira
-                alert("O Atelier não funciona às segundas-feiras. Por favor, selecione outra data.");
+                alert("não abrimos na segunda feira, por favor selecione outra data.");
                 dateInput.value = "";
                 timeSelect.value = "";
                 dateInput.classList.add("error");
@@ -2181,9 +2057,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (opcao.detalhe) {
                         text += ` - ${opcao.detalhe}`;
                     }
-                    if (opcao.adicional && opcao.adicional !== 0) {
+                    if (opcao.adicional !== undefined && opcao.adicional !== 0) {
                         radio.dataset.adicional = opcao.adicional;
-                        text += ` (+ ${formatarMoeda(opcao.adicional)})`;
+                        if (opcao.adicional < 0) {
+                            text += ` (- ${formatarMoeda(Math.abs(opcao.adicional))})`;
+                        } else {
+                            text += ` (+ ${formatarMoeda(opcao.adicional)})`;
+                        }
                     }
                 }
                 radio.value = val;
@@ -2724,121 +2604,137 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     
-    cartIcon.addEventListener("click", abrirCarrinho);
-    closeCartBtn.addEventListener("click", fecharCarrinho);
-    cartOverlay.addEventListener("click", fecharCarrinho);
-    applyCouponBtn.addEventListener("click", applyCoupon);
-    finishOrderBtn.addEventListener("click", finalizarPedido);
-    viewCartBannerBtn.addEventListener("click", abrirCarrinho);
+    if (cartIcon) cartIcon.addEventListener("click", abrirCarrinho);
+    if (closeCartBtn) closeCartBtn.addEventListener("click", fecharCarrinho);
+    if (cartOverlay) cartOverlay.addEventListener("click", fecharCarrinho);
+    if (applyCouponBtn) applyCouponBtn.addEventListener("click", applyCoupon);
+    if (finishOrderBtn) finishOrderBtn.addEventListener("click", finalizarPedido);
+    if (viewCartBannerBtn) viewCartBannerBtn.addEventListener("click", abrirCarrinho);
 
-    
     if (modalMask) {
         modalMask.addEventListener("click", () => {
             fecharTodosModais();
         });
     }
-    customizationModal.addEventListener("click", (e) => {
-        if (e.target === customizationModal) {
+    if (customizationModal) {
+        customizationModal.addEventListener("click", (e) => {
+            if (e.target === customizationModal) {
+                fecharModalCustomizacao();
+            }
+        });
+    }
+    if (calculatorModal) {
+        calculatorModal.addEventListener("click", (e) => {
+            if (e.target === calculatorModal) {
+                fecharCalculatorModal();
+            }
+        });
+    }
+    
+    const customizationClose = document.querySelector(".customization-box .close");
+    if (customizationClose) {
+        customizationClose.addEventListener("click", fecharModalCustomizacao);
+    }
+
+    if (btnOpenCalculator) btnOpenCalculator.addEventListener("click", abrirCalculatorModal);
+    
+    const calculatorClose = document.querySelector("#calculatorModal .close-calc");
+    if (calculatorClose) {
+        calculatorClose.addEventListener("click", fecharCalculatorModal);
+    }
+    
+    if (btnCalculate) btnCalculate.addEventListener("click", calcularSugestoesFesta);
+    if (btnApplySuggestion) btnApplySuggestion.addEventListener("click", aplicarSugestaoAoCarrinho);
+
+    const deliveryDateInput = document.getElementById("delivery-date");
+    if (deliveryDateInput) deliveryDateInput.addEventListener("change", verificarTaxaUrgencia);
+    const deliveryTimeInput = document.getElementById("delivery-time");
+    if (deliveryTimeInput) deliveryTimeInput.addEventListener("change", verificarTaxaUrgencia);
+    const pickupDateInput = document.getElementById("pickup-date");
+    if (pickupDateInput) pickupDateInput.addEventListener("change", verificarTaxaUrgencia);
+    const pickupTimeInput = document.getElementById("pickup-time");
+    if (pickupTimeInput) pickupTimeInput.addEventListener("change", verificarTaxaUrgencia);
+
+    
+    if (dynamicCustomizationForm) {
+        dynamicCustomizationForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            if (!produtoSendoPersonalizado) return;
+
+            const formData = new FormData(dynamicCustomizationForm);
+            let nomeCustomizado = produtoSendoPersonalizado.nome;
+            let personalizacaoObj = {};
+            let adicionalPreco = 0;
+            const quantidade = parseInt(formData.get("quantidade")) || 1;
+
+            const basePreco = produtoSendoPersonalizado.precoBase !== undefined ? produtoSendoPersonalizado.precoBase : produtoSendoPersonalizado.preco;
+
+            if (produtoSendoPersonalizado.tipoPersonalizacao === "sabor") {
+                const sabor = escapeHTML(formData.get("sabor"));
+                personalizacaoObj = { sabor };
+
+                const selectedOpt = dynamicCustomizationForm.querySelector("input[name='sabor']:checked");
+                if (selectedOpt && selectedOpt.dataset.adicional) {
+                    adicionalPreco = parseFloat(selectedOpt.dataset.adicional);
+                }
+
+                nomeCustomizado = `${produtoSendoPersonalizado.nome} (${sabor})`;
+            }
+            else if (produtoSendoPersonalizado.tipoPersonalizacao === "quantidade-cores") {
+                const tamanho = escapeHTML(formData.get("tamanho"));
+                const cores = escapeHTML(formData.get("cores"));
+                personalizacaoObj = { tamanho, cores };
+
+                const selectedOpt = dynamicCustomizationForm.querySelector("input[name='tamanho']:checked");
+                if (selectedOpt && selectedOpt.dataset.adicional) {
+                    adicionalPreco = parseFloat(selectedOpt.dataset.adicional);
+                }
+
+                nomeCustomizado = `${produtoSendoPersonalizado.nome} (${tamanho} - Cores: ${cores})`;
+            }
+            else if (produtoSendoPersonalizado.tipoPersonalizacao === "artisticos") {
+                const formato = escapeHTML(formData.get("formato"));
+                const sabor = escapeHTML(formData.get("sabor"));
+                const pintura = escapeHTML(formData.get("pintura"));
+                personalizacaoObj = { formato, sabor, pintura };
+
+                nomeCustomizado = `${produtoSendoPersonalizado.nome} (${formato} - ${sabor} - Pintura: ${pintura})`;
+            }
+
+            if (produtoSendoPersonalizado.categoria === "bolos") {
+                const cakeRefInput = document.getElementById("cake-reference");
+                const cakeColors = escapeHTML(formData.get("cakeDecorColors") || "");
+                const publicUrl = cakeRefInput ? cakeRefInput.dataset.publicUrl : "";
+
+                if (publicUrl) {
+                    personalizacaoObj["foto de Referência"] = publicUrl;
+                }
+                if (cakeColors) {
+                    personalizacaoObj["cores de Preferência"] = cakeColors;
+                }
+            }
+
+            const itemId = `${produtoSendoPersonalizado.id}-${nomeCustomizado}`;
+            const itemPersonalizado = {
+                id: itemId,
+                nome: nomeCustomizado,
+                preco: basePreco + adicionalPreco,
+                personalizacao: personalizacaoObj,
+                quantidade: quantidade,
+                imagem: produtoSendoPersonalizado.imagem
+            };
+
+            const itemExistente = carrinho.find(item => item.id === itemPersonalizado.id);
+            if (itemExistente) {
+                itemExistente.quantidade += quantidade;
+            } else {
+                carrinho.push(itemPersonalizado);
+            }
+
             fecharModalCustomizacao();
-        }
-    });
-    calculatorModal.addEventListener("click", (e) => {
-        if (e.target === calculatorModal) {
-            fecharCalculatorModal();
-        }
-    });
-    document.querySelector(".customization-box .close").addEventListener("click", fecharModalCustomizacao);
-
-    
-    btnOpenCalculator.addEventListener("click", abrirCalculatorModal);
-    document.querySelector("#calculatorModal .close-calc").addEventListener("click", fecharCalculatorModal);
-    btnCalculate.addEventListener("click", calcularSugestoesFesta);
-    btnApplySuggestion.addEventListener("click", aplicarSugestaoAoCarrinho);
-
-    
-    document.getElementById("delivery-date").addEventListener("change", verificarTaxaUrgencia);
-    document.getElementById("delivery-time").addEventListener("change", verificarTaxaUrgencia);
-    document.getElementById("pickup-date").addEventListener("change", verificarTaxaUrgencia);
-    document.getElementById("pickup-time").addEventListener("change", verificarTaxaUrgencia);
-
-    
-    dynamicCustomizationForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (!produtoSendoPersonalizado) return;
-
-        const formData = new FormData(dynamicCustomizationForm);
-        let nomeCustomizado = produtoSendoPersonalizado.nome;
-        let personalizacaoObj = {};
-        let adicionalPreco = 0;
-        const quantidade = parseInt(formData.get("quantidade")) || 1;
-
-        const basePreco = produtoSendoPersonalizado.precoBase !== undefined ? produtoSendoPersonalizado.precoBase : produtoSendoPersonalizado.preco;
-
-        if (produtoSendoPersonalizado.tipoPersonalizacao === "sabor") {
-            const sabor = escapeHTML(formData.get("sabor"));
-            personalizacaoObj = { sabor };
-
-            const selectedOpt = dynamicCustomizationForm.querySelector("input[name='sabor']:checked");
-            if (selectedOpt && selectedOpt.dataset.adicional) {
-                adicionalPreco = parseFloat(selectedOpt.dataset.adicional);
-            }
-
-            nomeCustomizado = `${produtoSendoPersonalizado.nome} (${sabor})`;
-        }
-        else if (produtoSendoPersonalizado.tipoPersonalizacao === "quantidade-cores") {
-            const tamanho = escapeHTML(formData.get("tamanho"));
-            const cores = escapeHTML(formData.get("cores"));
-            personalizacaoObj = { tamanho, cores };
-
-            const selectedOpt = dynamicCustomizationForm.querySelector("input[name='tamanho']:checked");
-            if (selectedOpt && selectedOpt.dataset.adicional) {
-                adicionalPreco = parseFloat(selectedOpt.dataset.adicional);
-            }
-
-            nomeCustomizado = `${produtoSendoPersonalizado.nome} (${tamanho} - Cores: ${cores})`;
-        }
-        else if (produtoSendoPersonalizado.tipoPersonalizacao === "artisticos") {
-            const formato = escapeHTML(formData.get("formato"));
-            const sabor = escapeHTML(formData.get("sabor"));
-            const pintura = escapeHTML(formData.get("pintura"));
-            personalizacaoObj = { formato, sabor, pintura };
-
-            nomeCustomizado = `${produtoSendoPersonalizado.nome} (${formato} - ${sabor} - Pintura: ${pintura})`;
-        }
-
-        if (produtoSendoPersonalizado.categoria === "bolos") {
-            const cakeRefInput = document.getElementById("cake-reference");
-            const cakeColors = escapeHTML(formData.get("cakeDecorColors") || "");
-            const publicUrl = cakeRefInput ? cakeRefInput.dataset.publicUrl : "";
-
-            if (publicUrl) {
-                personalizacaoObj["foto de Referência"] = publicUrl;
-            }
-            if (cakeColors) {
-                personalizacaoObj["cores de Preferência"] = cakeColors;
-            }
-        }
-
-        const itemId = `${produtoSendoPersonalizado.id}-${nomeCustomizado}`;
-        const itemPersonalizado = {
-            id: itemId,
-            nome: nomeCustomizado,
-            preco: basePreco + adicionalPreco,
-            personalizacao: personalizacaoObj,
-            quantidade: quantidade,
-            imagem: produtoSendoPersonalizado.imagem
-        };
-
-        const itemExistente = carrinho.find(item => item.id === itemPersonalizado.id);
-        if (itemExistente) {
-            itemExistente.quantidade += quantidade;
-        } else {
-            carrinho.push(itemPersonalizado);
-        }
-
-        fecharModalCustomizacao();
-        atualizarCarrinho();
-    });
+            atualizarCarrinho();
+        });
+    }
 
     
     categoryBtns.forEach((btn) => {
@@ -2893,28 +2789,33 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    megaDropdown.addEventListener("mouseenter", () => {
-        if (window.innerWidth > 768) {
-            clearTimeout(megaMenuTimeout);
-        }
-    });
+    if (megaDropdown) {
+        megaDropdown.addEventListener("mouseenter", () => {
+            if (window.innerWidth > 768) {
+                clearTimeout(megaMenuTimeout);
+            }
+        });
 
-    megaDropdown.addEventListener("mouseleave", () => {
-        if (window.innerWidth > 768) {
-            hideMegaMenu();
-        }
-    });
+        megaDropdown.addEventListener("mouseleave", () => {
+            if (window.innerWidth > 768) {
+                hideMegaMenu();
+            }
+        });
+    }
 
-    
-    searchInput.addEventListener("input", (e) => {
-        termoBusca = e.target.value;
-        filtrarEMostrarProdutos();
-    });
+    if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+            termoBusca = e.target.value;
+            if (typeof telaProdutos !== "undefined" && telaProdutos && telaProdutos.classList.contains("hidden")) {
+                mostrarProdutosTela(true);
+            }
+            filtrarEMostrarProdutos();
+        });
+    }
 
-    
-    document
-        .querySelector(".products-container")
-        .addEventListener("click", (e) => {
+    const productsContainer = document.querySelector(".products-container");
+    if (productsContainer) {
+        productsContainer.addEventListener("click", (e) => {
             if (e.target.matches(".product-button")) {
                 const productCard = e.target.closest(".product-card");
                 const id = Number.parseInt(productCard.dataset.id);
@@ -2927,19 +2828,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         });
+    }
 
-    cartBody.addEventListener("click", (e) => {
-        const cartItem = e.target.closest(".cart-item");
-        if (cartItem) {
-            const id = cartItem.dataset.id;
-            if (e.target.matches(".quantity-btn"))
-                alterarQuantidade(id, e.target.dataset.action);
-            if (e.target.matches(".remove-item-btn")) {
-                carrinho = carrinho.filter((i) => i.id !== id);
-                atualizarCarrinho();
+    if (cartBody) {
+        cartBody.addEventListener("click", (e) => {
+            const cartItem = e.target.closest(".cart-item");
+            if (cartItem) {
+                const id = cartItem.dataset.id;
+                if (e.target.matches(".quantity-btn"))
+                    alterarQuantidade(id, e.target.dataset.action);
+                if (e.target.matches(".remove-item-btn")) {
+                    carrinho = carrinho.filter((i) => i.id !== id);
+                    atualizarCarrinho();
+                }
             }
-        }
-    });
+        });
+    }
 
     deliveryToggleBtns.forEach((btn) =>
         btn.addEventListener("click", () => {
@@ -2947,11 +2851,11 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.classList.add("active");
             tipoEntrega = btn.dataset.option;
             if (tipoEntrega === "delivery") {
-                deliveryForm.style.display = "block";
-                pickupForm.style.display = "none";
+                if (deliveryForm) deliveryForm.style.display = "block";
+                if (pickupForm) pickupForm.style.display = "none";
             } else {
-                deliveryForm.style.display = "none";
-                pickupForm.style.display = "block";
+                if (deliveryForm) deliveryForm.style.display = "none";
+                if (pickupForm) pickupForm.style.display = "block";
             }
             
             
@@ -2987,26 +2891,35 @@ document.addEventListener("DOMContentLoaded", () => {
         fecharModalCustomizacao();
         fecharCalculatorModal();
         fecharCarrinho();
+        if (typeof fecharGaleriaModal === "function") fecharGaleriaModal();
         
-        // 2. Se houver um estado de categoria no histórico, volte para ela. Se não houver (e.state for nulo ou home), resete o filtro para a Home:
-        if (e.state && e.state.categoria) {
-            categoriaAtiva = e.state.categoria;
-            subcategoriaAtiva = "all";
+        // 2. Se houver um estado de tela no histórico, verifique se é a galeria ou os produtos:
+        if (e.state && e.state.tela === "galeria") {
+            mostrarGaleriaTela(false);
         } else {
-            categoriaAtiva = "home";
-            subcategoriaAtiva = "all";
+            mostrarProdutosTela(false);
+            
+            // Se houver um estado de categoria no histórico, volte para ela. Se não houver, resete para a Home:
+            if (e.state && e.state.categoria) {
+                categoriaAtiva = e.state.categoria;
+                subcategoriaAtiva = "all";
+            } else {
+                categoriaAtiva = "home";
+                subcategoriaAtiva = "all";
+            }
+            
+            // Atualiza a barra de botões ativos para corresponder à categoria
+            categoryBtns.forEach(b => {
+                if (b.dataset.category === categoriaAtiva) b.classList.add("active");
+                else b.classList.remove("active");
+            });
+            
+            filtrarEMostrarProdutos();
         }
-        
-        // Atualiza a barra de botões ativos para corresponder à categoria
-        categoryBtns.forEach(b => {
-            if (b.dataset.category === categoriaAtiva) b.classList.add("active");
-            else b.classList.remove("active");
-        });
-        
-        filtrarEMostrarProdutos();
     });
 
     function createFocusTrap(element) {
+        if (!element) return;
         if (element.dataset.focusTrapBound) return;
         element.dataset.focusTrapBound = "true";
 
@@ -3036,33 +2949,235 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    customizationModal.addEventListener('show', () => {
-        setTimeout(() => createFocusTrap(customizationModal), 100);
-    });
+    if (customizationModal) {
+        customizationModal.addEventListener('show', () => {
+            setTimeout(() => createFocusTrap(customizationModal), 100);
+        });
+    }
 
-    createFocusTrap(customizationModal);
-    createFocusTrap(calculatorModal);
+    if (customizationModal) createFocusTrap(customizationModal);
+    if (calculatorModal) createFocusTrap(calculatorModal);
 
     // Garantir que ENTER/SPACE nos checkboxes da calculadora mude o estado e não envie o formulário
-    const calcCheckboxes = calculatorModal.querySelectorAll('input[type="checkbox"]');
-    calcCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                checkbox.click();
-            }
+    if (calculatorModal) {
+        const calcCheckboxes = calculatorModal.querySelectorAll('input[type="checkbox"]');
+        calcCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    checkbox.click();
+                }
+            });
         });
-    });
+    }
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            if (cartSidebar.classList.contains('show')) {
+            if (cartSidebar && cartSidebar.classList.contains('show')) {
                 fecharCarrinho();
             }
             fecharTodosModais();
         }
     });
 
-    filtrarEMostrarProdutos();
+    // --- LOGICA DA GALERIA SPA ---
+    const imagensGaleria = [
+        "./assets/galeria/evento1.webp",
+        "./assets/galeria/evento2.webp",
+        "./assets/galeria/evento3.webp",
+        "./assets/galeria/evento4.webp",
+        "./assets/galeria/evento5.webp",
+        "./assets/galeria/evento6.webp",
+        "./assets/galeria/evento7.webp",
+        "./assets/galeria/evento8.webp",
+        "./assets/galeria/evento9.webp"
+    ];
+
+    const linkHome = document.getElementById("link-home");
+    const linkGaleria = document.getElementById("link-galeria");
+    const telaProdutos = document.getElementById("tela-produtos");
+    const telaGaleria = document.getElementById("tela-galeria");
+    const galeriaContainer = document.getElementById("galeria-container");
+    const galeriaModal = document.getElementById("galeria-modal");
+    const modalImg = document.getElementById("modal-img");
+    const btnCloseModal = document.querySelector(".modal-fechar");
+    const btnPrevModal = document.querySelector(".modal-prev");
+    const btnNextModal = document.querySelector(".modal-next");
+
+    let currentPhotoIndex = 0;
+    let galeriaRenderizada = false;
+
+    function renderizarGaleria() {
+        if (galeriaRenderizada) return;
+        
+        galeriaContainer.innerHTML = imagensGaleria.map((imgSrc, index) => {
+            return `
+                <li class="galeria-item" data-index="${index}">
+                    <img class="galeria-img" src="${imgSrc}" alt="Momento Real ${index + 1}" loading="lazy">
+                    <div class="galeria-overlay">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </li>
+            `;
+        }).join('');
+        
+        // Evento de clique para abrir o Lightbox
+        const items = galeriaContainer.querySelectorAll(".galeria-item");
+        items.forEach(item => {
+            item.addEventListener("click", () => {
+                const index = parseInt(item.dataset.index, 10);
+                abrirGaleriaModal(index);
+            });
+        });
+        
+        galeriaRenderizada = true;
+    }
+
+    function mostrarGaleriaTela(push = true) {
+        if (telaProdutos) telaProdutos.classList.add("hidden");
+        if (telaGaleria) telaGaleria.classList.remove("hidden");
+        
+        // Remove active class from categories and add to gallery link
+        categoryBtns.forEach(b => b.classList.remove("active"));
+        if (linkGaleria) linkGaleria.classList.add("active");
+        
+        if (push) {
+            history.pushState({ tela: "galeria" }, "");
+        }
+        
+        renderizarGaleria();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    window.mostrarGaleriaTela = mostrarGaleriaTela; // Export to window if needed
+
+    function mostrarProdutosTela(push = true) {
+        if (telaGaleria) telaGaleria.classList.add("hidden");
+        if (telaProdutos) telaProdutos.classList.remove("hidden");
+        
+        if (linkGaleria) linkGaleria.classList.remove("active");
+        
+        // Restore active class on the currently active category button
+        categoryBtns.forEach(b => {
+            if (b.dataset.category === categoriaAtiva) b.classList.add("active");
+            else b.classList.remove("active");
+        });
+        
+        if (push) {
+            history.pushState({ categoria: categoriaAtiva }, "");
+        }
+        
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    window.mostrarProdutosTela = mostrarProdutosTela; // Export to window if needed
+
+    function abrirGaleriaModal(index) {
+        currentPhotoIndex = index;
+        if (modalImg) {
+            modalImg.src = imagensGaleria[currentPhotoIndex];
+        }
+        if (galeriaModal) {
+            galeriaModal.classList.add("show");
+            galeriaModal.setAttribute("aria-hidden", "false");
+        }
+        lockScroll();
+        document.addEventListener("keydown", handleModalKeydown);
+    }
+
+    function fecharGaleriaModal() {
+        if (galeriaModal) {
+            galeriaModal.classList.remove("show");
+            galeriaModal.setAttribute("aria-hidden", "true");
+        }
+        unlockScroll();
+        document.removeEventListener("keydown", handleModalKeydown);
+    }
+
+    window.fecharGaleriaModal = fecharGaleriaModal; // Export to window so hoisting references work cleanly
+
+    function modalAvancar() {
+        currentPhotoIndex = (currentPhotoIndex + 1) % imagensGaleria.length;
+        if (modalImg) {
+            modalImg.src = imagensGaleria[currentPhotoIndex];
+        }
+    }
+
+    function modalVoltar() {
+        currentPhotoIndex = (currentPhotoIndex - 1 + imagensGaleria.length) % imagensGaleria.length;
+        if (modalImg) {
+            modalImg.src = imagensGaleria[currentPhotoIndex];
+        }
+    }
+
+    function handleModalKeydown(e) {
+        if (e.key === "Escape") {
+            fecharGaleriaModal();
+        } else if (e.key === "ArrowRight") {
+            modalAvancar();
+        } else if (e.key === "ArrowLeft") {
+            modalVoltar();
+        }
+    }
+
+    // Event Listeners da Galeria e Lightbox
+    if (linkGaleria) {
+        linkGaleria.addEventListener("click", (e) => {
+            e.preventDefault();
+            mostrarGaleriaTela(true);
+            renderizarGaleria(); // Força a renderização imediata do grid de fotos
+        });
+    }
+
+    if (linkHome) {
+        linkHome.addEventListener("click", (e) => {
+            e.preventDefault();
+            // Reseta a categoria ativa para "home" ao clicar na logo para voltar pro início limpo
+            categoriaAtiva = "home";
+            subcategoriaAtiva = "all";
+            mostrarProdutosTela(true);
+            filtrarEMostrarProdutos();
+        });
+    }
+
+    if (btnCloseModal) {
+        btnCloseModal.addEventListener("click", fecharGaleriaModal);
+    }
+
+    if (btnPrevModal) {
+        btnPrevModal.addEventListener("click", (e) => {
+            e.stopPropagation();
+            modalVoltar();
+        });
+    }
+
+    if (btnNextModal) {
+        btnNextModal.addEventListener("click", (e) => {
+            e.stopPropagation();
+            modalAvancar();
+        });
+    }
+
+    if (galeriaModal) {
+        galeriaModal.addEventListener("click", (e) => {
+            if (e.target === galeriaModal) {
+                fecharGaleriaModal();
+            }
+        });
+    }
+
+    // Inicialização da tela (SPA) baseada no estado do histórico ou padrão
+    if (history.state && history.state.tela === "galeria") {
+        mostrarGaleriaTela(false);
+    } else {
+        mostrarProdutosTela(false);
+        filtrarEMostrarProdutos();
+    }
     atualizarCarrinho();
-});
+};
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initApp);
+} else {
+    initApp();
+}

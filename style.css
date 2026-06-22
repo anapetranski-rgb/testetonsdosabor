@@ -1984,11 +1984,13 @@ footer .copyright {
   outline-offset: 2px;
 }
 
+
 /* Logo Flutuante nos Cards de Produtos */
 .card-image-container {
     position: relative;
     overflow: hidden;
 }
+
 .card-logo-overlay {
     position: absolute;
     bottom: 10px;
@@ -1998,4 +2000,327 @@ footer .copyright {
     opacity: 0.85;
     pointer-events: none; /* Garante que não atrapalhe cliques no card */
     z-index: 5;
+}
+
+/* --- SPA & Galeria Styles --- */
+.hidden {
+  display: none !important;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+.galeria-nav-btn {
+  background: transparent;
+  border: 1px solid var(--primary-strong);
+  color: var(--primary-strong);
+  padding: 0.5rem 1rem;
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  border-radius: 0; /* Canto reto */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  order: 2; /* Posiciona junto à calculadora no header */
+}
+
+.galeria-nav-btn:hover,
+.galeria-nav-btn.active {
+  background: var(--primary-strong);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(23, 127, 140, 0.2);
+}
+
+/* Galeria Section & Grid */
+.galeria-section {
+  padding: 3rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.galeria-section h2 {
+  font-size: 2.4rem;
+  color: var(--primary-strong);
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.galeria-section h2::after {
+  content: '';
+  display: block;
+  width: 70px;
+  height: 3px;
+  background: var(--accent-color);
+  margin: 0.6rem auto 0;
+  border-radius: 2px;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 576px) {
+  .galeria-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .galeria-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.galeria-item {
+  position: relative;
+  border-radius: 0 !important;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.galeria-item:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.galeria-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+  border-radius: 0 !important;
+}
+
+.galeria-item:hover .galeria-img {
+  transform: scale(1.05);
+}
+
+.galeria-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(23, 127, 140, 0.75); /* turquesa principal com opacidade */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.galeria-item:hover .galeria-overlay {
+  opacity: 1;
+}
+
+.galeria-overlay i {
+  color: #fff;
+  font-size: 2.2rem;
+  transform: scale(0.7);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.galeria-item:hover .galeria-overlay i {
+  transform: scale(1);
+}
+
+/* Lightbox Modal */
+.galeria-modal {
+  display: none !important;
+  pointer-events: none;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: modalFadeIn 0.3s ease;
+}
+
+.galeria-modal.show {
+  display: flex !important;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.galeria-modal img {
+  width: auto !important;
+  max-width: 90vw !important;
+  height: auto !important;
+  max-height: 85vh !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+  border: 4px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  user-select: none;
+  animation: modalZoomIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes modalZoomIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-fechar {
+  position: absolute;
+  top: 1.5rem;
+  right: 2.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 3.5rem;
+  font-weight: 200;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+  line-height: 1;
+  z-index: 1010;
+}
+
+.modal-fechar:hover {
+  color: var(--accent-color);
+  transform: scale(1.1);
+}
+
+.modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 3rem;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
+  z-index: 1010;
+  user-select: none;
+}
+
+.modal-nav:hover {
+  background: var(--primary-strong);
+  color: #fff;
+  border-color: var(--primary-strong);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.modal-prev {
+  left: 2.5rem;
+}
+
+.modal-next {
+  right: 2.5rem;
+}
+
+/* Lightbox responsiveness */
+@media (max-width: 768px) {
+  .modal-nav {
+    font-size: 2rem;
+    width: 46px;
+    height: 46px;
+    background: rgba(15, 23, 42, 0.7);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .modal-prev {
+    left: 1rem;
+  }
+  .modal-next {
+    right: 1rem;
+  }
+  .modal-fechar {
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2.8rem;
+  }
+  .galeria-modal img {
+    width: auto !important;
+    max-width: 95vw !important;
+    height: auto !important;
+    max-height: 75vh !important;
+    object-fit: contain !important;
+    border-radius: 0 !important;
+  }
+  .galeria-section {
+    padding: 2rem 1rem;
+  }
+  .galeria-section h2 {
+    font-size: 2rem;
+  }
+
+  /* Grid de 2 Colunas Permanente no Mobile */
+  .products {
+    padding: 1.5rem 0.5rem;
+  }
+  .products-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  /* Ocultar Descrição Curta na Vitrine Mobile */
+  .product-card .product-description {
+    display: none !important;
+  }
+
+  /* Compactar Imagens, Textos e Bordas */
+  .product-img {
+    height: 140px;
+  }
+  .product-info {
+    border-width: 12px;
+    padding: 0.6rem 0.5rem 0.4rem 0.5rem;
+  }
+  .product-name {
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+  }
+  .product-price {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .product-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+  .card-logo-overlay {
+    width: 35px;
+    bottom: 5px;
+    right: 5px;
+  }
 }

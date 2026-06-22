@@ -1422,6 +1422,7 @@ const initApp = () => {
 
     
     const filtrarEMostrarProdutos = () => {
+        mostrarProdutosTela(false);
         const secaoQuemSomos = document.getElementById("about");
 
         if (categoriaAtiva === "home" && termoBusca.trim() === "") {
@@ -3135,6 +3136,14 @@ const initApp = () => {
             // Reseta a categoria ativa para "home" ao clicar na logo para voltar pro início limpo
             categoriaAtiva = "home";
             subcategoriaAtiva = "all";
+            mostrarProdutosTela(true);
+            filtrarEMostrarProdutos();
+        });
+    }
+
+    const btnVoltarCardapio = document.getElementById("btn-voltar-cardapio");
+    if (btnVoltarCardapio) {
+        btnVoltarCardapio.addEventListener("click", () => {
             mostrarProdutosTela(true);
             filtrarEMostrarProdutos();
         });

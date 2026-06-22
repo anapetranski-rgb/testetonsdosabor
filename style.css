@@ -2247,6 +2247,36 @@ footer .copyright {
   right: 2.5rem;
 }
 
+/* --- Estilos do Botão Voltar para o Cardápio (Galeria) --- */
+.galeria-nav-wrapper {
+  max-width: 1200px;
+  margin: 2rem auto 0 auto;
+  padding: 0 1.5rem;
+  text-align: left;
+}
+
+.btn-voltar-cardapio {
+  background: transparent;
+  color: var(--primary-strong);
+  border: 2px solid var(--primary-strong);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-voltar-cardapio:hover {
+  background: var(--primary-strong);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(23, 127, 140, 0.25);
+}
+
 /* Lightbox responsiveness */
 @media (max-width: 768px) {
   .modal-nav {
@@ -2322,5 +2352,20 @@ footer .copyright {
     width: 35px;
     bottom: 5px;
     right: 5px;
+  }
+
+  /* Grid de 2 Colunas para Galeria no Mobile */
+  .galeria-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .galeria-nav-wrapper {
+    margin: 1rem auto 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+  }
+  .btn-voltar-cardapio {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
 }

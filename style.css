@@ -1244,10 +1244,10 @@ dialog.modal::backdrop {
 .customization-box .close,
 .calculator-box .close-calc {
   position: absolute !important;
-  top: 1.5rem !important;
-  right: 1.5rem !important;
+  top: 20px !important;
+  right: 20px !important;
   font-size: 2.5rem !important;
-  background: none !important;
+  background: transparent !important;
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
@@ -1271,11 +1271,14 @@ dialog.modal::backdrop {
 
 .customization-box .close:focus,
 .calculator-box .close-calc:focus,
+.customization-box .close:active,
+.calculator-box .close-calc:active,
 .customization-box .close:focus-visible,
 .calculator-box .close-calc:focus-visible {
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
+  background: transparent !important;
 }
 
 /* Rodapé do modal (sticky footer) */
@@ -2492,4 +2495,35 @@ footer .copyright {
   .search-input {
     font-size: 0.85rem !important;
   }
+
+  /* Ajuste para evitar esmagamento do título e quebra de layout em modais nas telas pequenas */
+  .customization-box h2,
+  .calculator-box h2 {
+    font-size: 1.15rem !important;
+    padding: 1.5rem 3rem 0 3rem !important;
+  }
+}
+
+/* 1. Forçar a remoção de qualquer borda, contorno ou sombra no estado normal e de foco */
+.close-calc,
+.calculator-box .close-calc, 
+.calculator-box .close-calc:focus, 
+.calculator-box .close-calc:active {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* 2. Fixar o 'X' de forma absoluta para o título não empurrá-lo em telas de 320px/360px */
+.calculator-box {
+    position: relative !important; /* garante o alinhamento do botão */
+}
+
+.close-calc,
+.calculator-box .close-calc {
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
+    z-index: 10 !important;
 }

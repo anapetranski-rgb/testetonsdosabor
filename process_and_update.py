@@ -5,8 +5,8 @@ from PIL import Image
 
 # Define paths
 bolos_dir = os.path.join("assets", "Bolos")
-src_logo = os.path.join("assets", "logoProdutos.png")
-dest_logo = os.path.join(bolos_dir, "logoProdutos.png")
+src_logo = os.path.join("assets", "logoProdutos.webp")
+dest_logo = os.path.join(bolos_dir, "logoProdutos.webp")
 script_js = "script.js"
 style_css = "style.css"
 
@@ -95,7 +95,7 @@ def update_js():
     new_card_replacement = (
         '\\1<div class="card-image-container">\n'
         '                                <img class="product-img" src="${p.imagem}" alt="${p.nome}" loading="lazy" width="250" height="240">\n'
-        '                                <img class="card-logo-overlay" src="./assets/Bolos/logoProdutos.png" alt="Logo">\n'
+        '                                <img class="card-logo-overlay" src="./assets/Bolos/logoProdutos.webp" alt="Logo">\n'
         '                            </div>'
     )
     

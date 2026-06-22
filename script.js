@@ -1599,7 +1599,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <article class="product-card" data-id="${p.id}">
                             <div class="card-image-container">
                                 <img class="product-img" src="${p.imagem}" alt="${p.nome}" loading="lazy" width="250" height="240">
-                                <img class="card-logo-overlay" src="./assets/Bolos/logoProdutos.png" alt="Logo">
+                                <img class="card-logo-overlay" src="./assets/Bolos/logoProdutos.webp" alt="Logo">
                             </div>
                             
                             <div class="product-info">

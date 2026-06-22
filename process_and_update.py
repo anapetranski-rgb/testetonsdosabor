@@ -80,9 +80,7 @@ def update_js():
     def replace_image_path(match):
         prefix = match.group(1)
         name = match.group(2)
-        if name.lower() == 'gourmetgg':
-            return f'{prefix}gourmetGG.webp"'
-        return f'{prefix}{name.lower()}.webp"'
+        return f'{prefix}{name}.webp"'
         
     updated_content = re.sub(
         r'(imagem:\s*"\./assets/Bolos/)([^"/]+)\.webp"',

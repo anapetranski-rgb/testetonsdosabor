@@ -691,9 +691,18 @@ header {
 .close-cart-btn {
   background: none;
   border: none;
+  outline: none;
+  box-shadow: none;
   font-size: 2rem;
   cursor: pointer;
-  color: var(--text-color)
+  color: var(--text-color);
+}
+
+.close-cart-btn:focus,
+.close-cart-btn:focus-visible {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .cart-body {
@@ -1200,7 +1209,7 @@ dialog.modal::backdrop {
   margin: 0 0 1.5rem 0 !important;
   letter-spacing: 1px !important;
   text-transform: uppercase !important;
-  padding: 2rem 3.5rem 0 3.5rem !important; /* ← MUDANÇA: Padding horizontal maior para evitar sobrepor o fechar (X) */
+  padding: 2rem 4.5rem 0 4.5rem !important; /* ← MUDANÇA: Padding horizontal maior para evitar sobrepor o fechar (X) */
   padding-bottom: 0 !important;
 }
 
@@ -1240,6 +1249,8 @@ dialog.modal::backdrop {
   font-size: 2.5rem !important;
   background: none !important;
   border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
   color: #1A3038 !important;
   cursor: pointer !important;
   padding: 0.5rem !important;
@@ -1259,9 +1270,12 @@ dialog.modal::backdrop {
 }
 
 .customization-box .close:focus,
-.calculator-box .close-calc:focus {
-  outline: 2px solid #177F8C !important;
-  outline-offset: 2px !important;
+.calculator-box .close-calc:focus,
+.customization-box .close:focus-visible,
+.calculator-box .close-calc:focus-visible {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* Rodapé do modal (sticky footer) */
@@ -1538,6 +1552,7 @@ footer {
   letter-spacing: 1px;
   border-bottom: 1px solid rgba(23, 127, 140, 0.15);
   padding-bottom: 0.5rem;
+  padding-right: 4.5rem; /* Evita que o título encoste ou atropele o botão de fechar X */
   margin-bottom: 0.5rem;
   display: block;
 }
@@ -1554,10 +1569,20 @@ footer {
   padding: 8px;        /* Cria uma caixa invisível perfeita de clique para o dedão */
   z-index: 10;         /* Garante que ele fique por cima de tudo para ser clicável */
   transition: color 0.2s;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .close-mega:hover {
   color: var(--gold-primary, #D4AF37);
+}
+
+.close-mega:focus,
+.close-mega:focus-visible {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .mega-dropdown-grid {

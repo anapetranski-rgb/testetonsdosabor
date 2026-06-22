@@ -2369,3 +2369,46 @@ footer .copyright {
     font-size: 0.9rem;
   }
 }
+
+/* Otimizações do cabeçalho para telas ultra-pequenas (iPhone 5/SE etc.) */
+@media (max-width: 360px) {
+  header {
+    padding: 0.5rem 0.75rem !important;
+    gap: 0.4rem !important;
+  }
+  .logo {
+    gap: 6px !important;
+  }
+  .logo-img {
+    height: 32px !important;
+  }
+  .logo h1 {
+    font-size: 1.05rem !important;
+    letter-spacing: 0.5px !important;
+    white-space: nowrap;
+  }
+  .logo-link {
+    flex: 1;
+    min-width: 0;
+  }
+  .cart-icon {
+    flex-shrink: 0;
+    padding: 0.4rem !important;
+  }
+  .galeria-nav-btn, .calc-btn {
+    flex: 1 1 45% !important;
+    justify-content: center;
+    padding: 0.4rem 0.2rem !important;
+    font-size: 0.7rem !important;
+    gap: 0.25rem !important;
+    min-width: 0 !important;
+    text-align: center;
+  }
+  .search-container {
+    padding: 0.4rem 0.75rem !important;
+    margin-top: 2px !important;
+  }
+  .search-input {
+    font-size: 0.85rem !important;
+  }
+}

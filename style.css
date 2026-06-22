@@ -2312,13 +2312,13 @@ footer .copyright {
     font-size: 2rem;
   }
 
-  /* Grid de 3 Colunas Permanente no Mobile (Teste) */
+  /* Grid de 2 Colunas Permanente no Mobile */
   .products {
-    padding: 1rem 0.25rem;
+    padding: 1.5rem 0.5rem;
   }
   .products-container {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
   }
 
   /* Ocultar Descrição Curta na Vitrine Mobile */
@@ -2326,33 +2326,32 @@ footer .copyright {
     display: none !important;
   }
 
-  /* Compactar Imagens, Textos e Bordas para 3 Colunas */
+  /* Compactar Imagens, Textos e Bordas */
   .product-img {
-    height: 100px;
+    height: 140px;
   }
   .product-info {
-    border-width: 8px;
-    padding: 0.4rem 0.3rem 0.3rem 0.3rem;
+    border-width: 12px;
+    padding: 0.6rem 0.5rem 0.4rem 0.5rem;
   }
   .product-name {
-    font-size: 0.72rem;
-    line-height: 1.1;
-    letter-spacing: 0px;
-    margin-bottom: 0.2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
   }
   .product-price {
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
   }
   .product-button {
-    padding: 0.35rem 0.5rem;
-    font-size: 0.7rem;
-    letter-spacing: 0px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
   }
   .card-logo-overlay {
-    width: 25px;
-    bottom: 3px;
-    right: 3px;
+    width: 35px;
+    bottom: 5px;
+    right: 5px;
   }
 
   /* Grid de 2 Colunas para Galeria no Mobile */

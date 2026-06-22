@@ -1983,3 +1983,19 @@ footer .copyright {
   outline: 2px solid var(--primary-strong);
   outline-offset: 2px;
 }
+
+/* Logo Flutuante nos Cards de Produtos */
+.card-image-container {
+    position: relative;
+    overflow: hidden;
+}
+.card-logo-overlay {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 50px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    opacity: 0.85;
+    pointer-events: none; /* Garante que não atrapalhe cliques no card */
+    z-index: 5;
+}

@@ -30,8 +30,8 @@ body {
   letter-spacing: 0.4px;
   line-height: 1.6;
   background-image: 
-        linear-gradient(rgba(255, 250, 245, 0.85), rgba(255, 250, 245, 0.85)),
-        url('assets/Background1.png'); 
+        linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+        url('assets/background_otimizado.webp'); 
 
     background-size: cover;
     background-position: center;
@@ -328,7 +328,7 @@ header {
   padding: 3.8rem 3rem 5.8rem 3rem;
 
   /* Moldura PNG */
-  background-image: url("assets/moldura-ouro.png");
+  background-image: url("assets/moldura-ouro.webp");
   background-repeat: no-repeat;
   background-position: center;
 
@@ -570,7 +570,7 @@ header {
   border: 26px solid transparent;
   
   /* 2. Aplica a sua imagem quadrada do Canva */
-  border-image: url('assets/moldura-ouro.png') 20% stretch;
+  border-image: url('assets/moldura-ouro.webp') 20% stretch;
 
   /* 3. Ajuste de respiro para os textos não baterem na linha dourada */
   padding: 1rem 0.8rem 0.5rem 0.8rem; 
@@ -1182,7 +1182,7 @@ dialog.modal::backdrop {
   backdrop-filter: blur(10px) !important;
   -webkit-backdrop-filter: blur(10px) !important;
   border: 28px solid transparent !important;
-  border-image: url('assets/moldura-ouro.png') 20% stretch !important;
+  border-image: url('assets/moldura-ouro.webp') 20% stretch !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
   position: relative !important;

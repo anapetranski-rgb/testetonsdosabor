@@ -1,0 +1,25 @@
+{
+  "name": "tonsdosabor-02",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anapetranski-rgb/testetonsdosabor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/anapetranski-rgb/testetonsdosabor/issues"
+  },
+  "homepage": "https://github.com/anapetranski-rgb/testetonsdosabor#readme",
+  "dependencies": {
+    "sharp": "^0.35.2",
+    "webp-converter": "^2.3.3"
+  }
+}

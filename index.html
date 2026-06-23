@@ -128,6 +128,9 @@
           background-repeat: no-repeat;
           background-position: center;
           background-size: 100% 100%;
+          /* Trava o container durante a troca de fonte (anti-CLS) */
+          min-height: 380px;
+          overflow: hidden;
         }
         .hero-section p {
           font-family: "Playfair Display", serif;
@@ -146,6 +149,36 @@
           max-width: 380px;
           max-height: 260px; 
           object-fit: contain;
+        }
+
+        /* FONT-DISPLAY SWAP para Google Fonts (previne CLS por FOUT) */
+        @font-face {
+          font-family: 'Cinzel Decorative';
+          font-style: normal;
+          font-weight: 400 700;
+          font-display: swap;
+          src: local('Cinzel Decorative');
+        }
+        @font-face {
+          font-family: 'Cormorant Garamond';
+          font-style: normal;
+          font-weight: 400 700;
+          font-display: swap;
+          src: local('Cormorant Garamond');
+        }
+        @font-face {
+          font-family: 'Playfair Display';
+          font-style: normal;
+          font-weight: 400 900;
+          font-display: swap;
+          src: local('Playfair Display');
+        }
+        @font-face {
+          font-family: 'Lato';
+          font-style: normal;
+          font-weight: 100 900;
+          font-display: swap;
+          src: local('Lato');
         }
 
         /* FONTAWESOME FONT-DISPLAY SWAP OVERRIDES */

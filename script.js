@@ -632,7 +632,7 @@ const initApp = () => {
         },
         {
             id: 47,
-            nome: "Sabores Tradicionais Finos",
+            nome: "Brigadeiros Finos",
             categoria: "doces-finos",
             subcategoria: "brigadeiros-finos",
             preco: 2.50,

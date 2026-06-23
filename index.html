@@ -109,6 +109,7 @@
           position: relative;
           overflow: hidden;
           background: transparent;
+          min-height: 590px;
         }
         .hero-content {
           width: 100%;
@@ -128,6 +129,7 @@
           background-repeat: no-repeat;
           background-position: center;
           background-size: 100% 100%;
+          min-height: 470px;
         }
         .hero-section p {
           font-family: "Playfair Display", serif;
@@ -165,6 +167,15 @@
         }
 
         /* RESPONSIVE HERO & HEADER TWEAKS */
+        @media (max-width: 768px) {
+          .hero-section {
+            padding: 3.5rem 2rem;
+            min-height: 520px;
+          }
+          .hero-content {
+            min-height: 410px;
+          }
+        }
         @media (max-width: 360px) {
           header {
             padding: 0.5rem 0.75rem !important;
@@ -191,7 +202,7 @@
     <header>
         <a href="#" id="link-home" class="logo-link">
             <div class="logo">
-                <img src="./assets/LOGO_TURQUESA_1.webp" alt="Logo Tons do Sabor" class="logo-img" fetchpriority="high" width="45" height="45">
+                <img src="./assets/LOGO_TURQUESA_1.webp" alt="Logo Tons do Sabor" class="logo-img" fetchpriority="high" width="79" height="79">
                 <h1>Tons do Sabor</h1>
             </div>
         </a>
@@ -250,7 +261,7 @@
 
     <div class="hero-section">
         <div class="hero-content">
-            <img src="./assets/Prancheta-1.webp" alt="Tons do Sabor - Atelier de Doces" class="hero-logo" fetchpriority="high" width="380" height="380">
+            <img src="./assets/Prancheta-1.webp" alt="Tons do Sabor - Atelier de Doces" class="hero-logo" fetchpriority="high" width="441" height="441">
             <p>Tons que encantam, sabores que seduzem</p>
 
             <span class="canto-inferior-esquerdo"></span>

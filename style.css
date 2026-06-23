@@ -273,7 +273,7 @@ header {
   font-size: .95rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: all .2s ease;
+  transition: transform .2s ease, opacity .2s ease;
 }
 
 .category-btn i {
@@ -857,7 +857,7 @@ header {
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-color);
-  transition: background .2s, color .2s
+  transition: transform .2s, opacity .2s;
 }
 
 .delivery-btn.active {
@@ -885,7 +885,7 @@ header {
   border-radius: 0;
   font-size: 1rem;
   font-family: inherit;
-  transition: border-color .2s, box-shadow .2s;
+  transition: transform .2s, opacity .2s;
   background: #fff;
 }
 
@@ -926,7 +926,7 @@ header {
   border-radius: 6px !important;
   background: #fff !important;
   cursor: pointer !important;
-  transition: all 0.2s ease !important;
+  transition: transform 0.2s ease, opacity 0.2s ease !important;
   position: relative !important;
 }
 

@@ -1159,7 +1159,7 @@ const initApp = () => {
             };
             if (reservaImagens[p.id]) {
                 p.imagem = reservaImagens[p.id];
-            } else if (p.id !== 5) {
+            } else {
                 p.imagem = "./assets/defaultDoces.webp";
             }
         } else if (!p.imagem || p.imagem.trim() === "") {

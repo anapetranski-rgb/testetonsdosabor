@@ -1432,6 +1432,38 @@ const initApp = () => {
         }, 250);
     };
 
+    const initProductLazyLoading = () => {
+        const lazyImages = document.querySelectorAll(".product-img[data-src]");
+        if (lazyImages.length === 0) return;
+        
+        if ("IntersectionObserver" in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        const src = img.getAttribute("data-src");
+                        if (src) {
+                            img.src = src;
+                            img.removeAttribute("data-src");
+                        }
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: "300px 0px"
+            });
+            
+            lazyImages.forEach(img => imageObserver.observe(img));
+        } else {
+            lazyImages.forEach(img => {
+                const src = img.getAttribute("data-src");
+                if (src) {
+                    img.src = src;
+                    img.removeAttribute("data-src");
+                }
+            });
+        }
+    };
     
     const filtrarEMostrarProdutos = () => {
         mostrarProdutosTela(false);
@@ -1480,15 +1512,18 @@ const initApp = () => {
         } else {
             container.innerHTML = produtosFiltrados
                 .map(
-                    (p) => {
+                    (p, index) => {
                         const precoExibir = p.preco !== undefined ? p.preco : p.precoBase;
+                        const isFirstFew = index < 4;
+                        const imgSrc = isFirstFew ? p.imagem : "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+                        const dataSrc = isFirstFew ? "" : `data-src="${p.imagem}"`;
 
                          return `
                     <li>
                         <article class="product-card" data-id="${p.id}">
                             <div class="card-image-container">
-                                <img class="product-img" src="${p.imagem}" alt="${p.nome}" loading="lazy" width="250" height="240">
-                                <img class="card-logo-overlay" src="./assets/Bolos/logoProdutos.webp" alt="Logo">
+                                <img class="product-img" src="${imgSrc}" ${dataSrc} alt="${p.nome}" loading="lazy" width="250" height="240">
+                                <img class="card-logo-overlay" src="./assets/Bolos/logoProdutos.webp" alt="Logo" loading="lazy">
                             </div>
                             
                             <div class="product-info">
@@ -1506,6 +1541,9 @@ const initApp = () => {
                     }
                 )
                 .join("");
+            
+            // Inicializa o carregamento sob demanda para as imagens fora da viewport inicial
+            initProductLazyLoading();
         }
     };
 

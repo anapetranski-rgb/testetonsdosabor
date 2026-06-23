@@ -3097,7 +3097,9 @@ const initApp = () => {
         }
         
         renderizarGaleria();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (push) {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
     }
 
     window.mostrarGaleriaTela = mostrarGaleriaTela; // Export to window if needed
@@ -3116,9 +3118,8 @@ const initApp = () => {
         
         if (push) {
             history.pushState({ categoria: categoriaAtiva }, "");
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
-        
-        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     window.mostrarProdutosTela = mostrarProdutosTela; // Export to window if needed

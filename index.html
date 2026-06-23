@@ -11,13 +11,178 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
-    <!-- Fontes -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <!-- Ícones -->
+    <!-- Fontes Asíncronas -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"></noscript>
+    <!-- Ícones Asíncronos -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <!-- Estilos -->
-    <link rel="stylesheet" href="style.css?v=1.0.2" />
+    <!-- Estilos Asíncronos -->
+    <link rel="preload" href="style.css?v=1.0.2" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css?v=1.0.2"></noscript>
+
+    <style>
+        /* RESET & VARIABLES */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          font-family: "Cormorant Garamond", "Playfair Display", serif;
+          letter-spacing: 0.4px;
+        }
+        :root {
+          --primary-color: #20A4B4;
+          --primary-strong: #177F8C;
+          --secondary-color: #31B4C4;
+          --accent-color: #D4AF37;
+          --gold-primary: #D4AF37;
+          --text-color: #1A3038;
+          --light: #F4FAF9;
+          --light-2: #E2F3F2;
+          --border-color: #CBE6E4;
+          --success-color: #16a34a;
+          --error-color: #e11d48;
+        }
+        body {
+          font-family: "Cormorant Garamond", "Playfair Display", serif;
+          font-size: 1.15rem;
+          font-weight: 400;
+          letter-spacing: 0.4px;
+          line-height: 1.6;
+          background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+                url('assets/background_otimizado.webp'); 
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          min-height: 100vh;
+          color: #2c3e50;
+        }
+        h1, h2, h3 {
+          font-family: "Cinzel Decorative", serif;
+        }
+
+        /* HEADER STYLE */
+        header {
+          background: #fff;
+          position: sticky;
+          top: 0;
+          z-index: 990;
+          padding: 1rem 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 1rem;
+          flex-wrap: wrap;
+          box-shadow: 0 6px 20px rgba(15, 23, 42, .06);
+          border-bottom: 1px solid #eef2f7;
+        }
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .logo-img {
+          height: 45px;
+          width: auto;
+          object-fit: contain;
+        }
+        .logo h1 {
+          font-family: "Cinzel Decorative", serif;
+          font-size: 1.6rem;
+          font-weight: 700;
+          color: var(--primary-strong);
+          letter-spacing: 1px;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          text-align: center;
+          padding: 4rem 2rem; 
+          position: relative;
+          overflow: hidden;
+          background: transparent;
+        }
+        .hero-content {
+          width: 100%;
+          max-width: 850px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1.2rem;
+          position: relative;
+          background-color: rgba(255, 255, 255, 0.3);
+          backdrop-filter: blur(8px);
+          border: none;
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+          padding: 3.8rem 3rem 5.8rem 3rem;
+          background-image: url("assets/moldura-ouro.webp");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 100% 100%;
+        }
+        .hero-section p {
+          font-family: "Playfair Display", serif;
+          font-style: italic;
+          font-size: 1.4rem; 
+          color: var(--text-color);
+          letter-spacing: 0.5px;
+          max-width: 650px;
+          line-height: 1.3;
+          opacity: 0.9;
+          margin-top: -1rem;
+        }
+        .hero-logo {
+          width: 100%;
+          height: auto;
+          max-width: 380px;
+          max-height: 260px; 
+          object-fit: contain;
+        }
+
+        /* FONTAWESOME FONT-DISPLAY SWAP OVERRIDES */
+        @font-face {
+          font-family: 'Font Awesome 6 Free';
+          font-style: normal;
+          font-weight: 900;
+          font-display: swap;
+          src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2') format('woff2');
+        }
+        @font-face {
+          font-family: 'Font Awesome 6 Brands';
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
+          src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2') format('woff2');
+        }
+
+        /* RESPONSIVE HERO & HEADER TWEAKS */
+        @media (max-width: 360px) {
+          header {
+            padding: 0.5rem 0.75rem !important;
+            gap: 0.4rem !important;
+          }
+          .logo {
+            gap: 6px !important;
+          }
+          .logo-img {
+            height: 32px !important;
+          }
+          .logo h1 {
+            font-size: 1.05rem !important;
+            letter-spacing: 0.5px !important;
+            white-space: nowrap;
+          }
+        }
+    </style>
     <title>Tons do Sabor</title>
     <link rel="icon" type="image/png" href="./assets/LOGO_TURQUESA_1.webp">
 </head>

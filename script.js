@@ -1861,7 +1861,7 @@ const initApp = () => {
             finishOrderBtn.innerHTML = `<i class="fa-brands fa-whatsapp"></i> Finalizar Pedido`;
         }
 
-        if (carrinho.length > 0 && window.innerWidth <= 768) {
+        if (carrinho.length > 0) {
             bannerTotalElem.textContent = formatarMoeda(total);
             viewCartBanner.classList.add("show");
         } else {

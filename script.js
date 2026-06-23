@@ -1167,6 +1167,35 @@ const initApp = () => {
 
     const formatarMoeda = (v) =>
         v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+    // Função utilitária para limpar e converter preços de strings de forma segura usando Regex.
+    // Remove parênteses, espaços, asteriscos, símbolos (como R$) e converte vírgula para ponto antes de parseFloat.
+    const limparEParsarPreco = (valor) => {
+        if (typeof valor === 'number') return valor;
+        if (valor === null || valor === undefined) return 0;
+        
+        let str = String(valor).trim();
+        if (str === "") return 0;
+        
+        // Verifica se há sinal de menos (para adicionais negativos)
+        const isNegative = str.includes('-') || (str.includes('(') && str.includes('-'));
+        
+        // Remove tudo exceto dígitos, pontos e vírgulas
+        str = str.replace(/[^\d.,]/g, '');
+        
+        // Trata separadores decimais
+        if (str.includes(',') && str.includes('.')) {
+            // Caso tenha ambos, ex: "1.234,56" -> remove pontos e troca vírgula por ponto
+            str = str.replace(/\./g, '').replace(',', '.');
+        } else if (str.includes(',')) {
+            // Caso tenha apenas vírgula, ex: "1,80" -> troca por ponto
+            str = str.replace(',', '.');
+        }
+        
+        const num = parseFloat(str);
+        if (isNaN(num)) return 0;
+        return isNegative ? -num : num;
+    };
     const getScrollbarWidth = () =>
         window.innerWidth - document.documentElement.clientWidth;
     const lockScroll = () => {
@@ -1522,7 +1551,7 @@ const initApp = () => {
         const produto = produtos.find((p) => p.id === produtoId);
         if (!produto) return;
 
-        const basePreco = produto.preco !== undefined ? produto.preco : produto.precoBase;
+        const basePreco = limparEParsarPreco(produto.preco !== undefined ? produto.preco : produto.precoBase);
 
         const itemNoCarrinho = carrinho.find((item) => item.id === String(produto.id));
         if (itemNoCarrinho) {
@@ -2346,16 +2375,43 @@ const initApp = () => {
         btnInc.className = 'qty-btn';
         btnInc.textContent = '+';
 
+        const atualizarPreviewModal = () => {
+            const preview = document.getElementById('modal-price-preview');
+            if (!preview || !produtoSendoPersonalizado) return;
+            const base = limparEParsarPreco(produtoSendoPersonalizado.precoBase !== undefined
+                ? produtoSendoPersonalizado.precoBase
+                : produtoSendoPersonalizado.preco);
+            const selectedRadio = dynamicCustomizationForm.querySelector("input[name='sabor']:checked") ||
+                                  dynamicCustomizationForm.querySelector("input[name='tamanho']:checked");
+            const adicional = selectedRadio && selectedRadio.dataset.adicional
+                ? limparEParsarPreco(selectedRadio.dataset.adicional)
+                : 0;
+            const qty = parseInt(qtyInput.value) || minVal;
+            const unitPrice = base + adicional;
+            const total = unitPrice * qty;
+            preview.textContent = `${qty} un. × ${formatarMoeda(unitPrice)} = ${formatarMoeda(total)}`;
+        };
+
         btnDec.addEventListener('click', () => {
             let current = parseInt(qtyInput.value) || minVal;
             if (current > minVal) {
                 qtyInput.value = current - 1;
             }
+            atualizarPreviewModal();
         });
 
         btnInc.addEventListener('click', () => {
             let current = parseInt(qtyInput.value) || minVal;
             qtyInput.value = current + 1;
+            atualizarPreviewModal();
+        });
+
+        qtyInput.addEventListener('input', () => {
+            let val = parseInt(qtyInput.value) || minVal;
+            if (val < minVal) {
+                qtyInput.value = minVal;
+            }
+            atualizarPreviewModal();
         });
 
         qtyInput.addEventListener('change', () => {
@@ -2363,6 +2419,7 @@ const initApp = () => {
             if (val < minVal) {
                 qtyInput.value = minVal;
             }
+            atualizarPreviewModal();
         });
 
         qtyContainer.appendChild(btnDec);
@@ -2374,6 +2431,27 @@ const initApp = () => {
 
         customizationModal.showModal();
         customizationModal.dispatchEvent(new Event('show'));
+
+        // Wire radio changes to price preview after modal is rendered
+        setTimeout(() => {
+            const allRadios = customizationFields.querySelectorAll('input[type="radio"]');
+            allRadios.forEach(r => r.addEventListener('change', () => {
+                const preview = document.getElementById('modal-price-preview');
+                if (!preview || !produtoSendoPersonalizado) return;
+                const base = limparEParsarPreco(produtoSendoPersonalizado.precoBase !== undefined
+                    ? produtoSendoPersonalizado.precoBase
+                    : produtoSendoPersonalizado.preco);
+                const adicional = r.dataset.adicional ? limparEParsarPreco(r.dataset.adicional) : 0;
+                const qtyEl = document.getElementById('custom-product-qty');
+                const qty = qtyEl ? (parseInt(qtyEl.value) || 1) : 1;
+                const unitPrice = base + adicional;
+                preview.textContent = `${qty} un. × ${formatarMoeda(unitPrice)} = ${formatarMoeda(unitPrice * qty)}`;
+            }));
+
+            // Trigger preview for initially checked option
+            const firstChecked = customizationFields.querySelector('input[type="radio"]:checked');
+            if (firstChecked) firstChecked.dispatchEvent(new Event('change', { bubbles: true }));
+        }, 60);
         customizationModal.classList.add('show');
         if (modalMask) modalMask.classList.add('show');
         lockScroll();
@@ -2543,9 +2621,9 @@ const initApp = () => {
             if (salgadosQtd < 20) {
                 salgadosQtd = 20;
             }
-            sugestoesCalculadas.salgados = { id: 91, quantidade: salgadosQtd };
-            const pSalgado = produtos.find(p => p.id === 91);
-            htmlResultados += `<li><strong>Salgados:</strong> ${salgadosQtd} unidades recomendadas. Sugerimos o <em>${pSalgado.nome}</em>.</li>`;
+            sugestoesCalculadas.salgados = { id: 69, quantidade: salgadosQtd };
+            const pSalgado = produtos.find(p => p.id === 69);
+            htmlResultados += `<li><strong>Salgados:</strong> ${salgadosQtd} unidades recomendadas. Sugerimos o <em>${pSalgado ? pSalgado.nome : 'Salgados Fritos Clássicos'}</em>.</li>`;
         }
 
         htmlResultados += `</ul><p style="margin-top: 0.8rem; font-size: 0.85rem; color: #666;">*Estimativa de porção para crianças calculada como meia porção de adulto.</p>`;
@@ -2571,7 +2649,7 @@ const initApp = () => {
                         carrinho.push({
                             id: itemId,
                             nome: nomeCustom,
-                            preco: product.preco !== undefined ? product.preco : product.precoBase,
+                            preco: limparEParsarPreco(product.preco !== undefined ? product.preco : product.precoBase),
                             personalizacao: { sabor: "2 Amores" },
                             quantidade: sugestao.quantidade,
                             imagem: product.imagem
@@ -2592,7 +2670,7 @@ const initApp = () => {
                     carrinho.push({
                         id: itemId,
                         nome: product.nome,
-                        preco: product.preco,
+                        preco: limparEParsarPreco(product.preco !== undefined ? product.preco : product.precoBase),
                         quantidade: sugestoesCalculadas.doces.quantidade,
                         imagem: product.imagem
                     });
@@ -2611,7 +2689,7 @@ const initApp = () => {
                     carrinho.push({
                         id: itemId,
                         nome: product.nome,
-                        preco: product.preco,
+                        preco: limparEParsarPreco(product.preco !== undefined ? product.preco : product.precoBase),
                         quantidade: sugestoesCalculadas.salgados.quantidade,
                         imagem: product.imagem
                     });
@@ -2688,7 +2766,7 @@ const initApp = () => {
             let adicionalPreco = 0;
             const quantidade = parseInt(formData.get("quantidade")) || 1;
 
-            const basePreco = produtoSendoPersonalizado.precoBase !== undefined ? produtoSendoPersonalizado.precoBase : produtoSendoPersonalizado.preco;
+            const basePreco = limparEParsarPreco(produtoSendoPersonalizado.precoBase !== undefined ? produtoSendoPersonalizado.precoBase : produtoSendoPersonalizado.preco);
 
             if (produtoSendoPersonalizado.tipoPersonalizacao === "sabor") {
                 const sabor = escapeHTML(formData.get("sabor"));
@@ -2696,7 +2774,7 @@ const initApp = () => {
 
                 const selectedOpt = dynamicCustomizationForm.querySelector("input[name='sabor']:checked");
                 if (selectedOpt && selectedOpt.dataset.adicional) {
-                    adicionalPreco = parseFloat(selectedOpt.dataset.adicional);
+                    adicionalPreco = limparEParsarPreco(selectedOpt.dataset.adicional);
                 }
 
                 nomeCustomizado = `${produtoSendoPersonalizado.nome} (${sabor})`;
@@ -2708,7 +2786,7 @@ const initApp = () => {
 
                 const selectedOpt = dynamicCustomizationForm.querySelector("input[name='tamanho']:checked");
                 if (selectedOpt && selectedOpt.dataset.adicional) {
-                    adicionalPreco = parseFloat(selectedOpt.dataset.adicional);
+                    adicionalPreco = limparEParsarPreco(selectedOpt.dataset.adicional);
                 }
 
                 nomeCustomizado = `${produtoSendoPersonalizado.nome} (${tamanho} - Cores: ${cores})`;

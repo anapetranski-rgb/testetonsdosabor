@@ -1467,8 +1467,76 @@ const initApp = () => {
     const filtrarEMostrarProdutos = () => {
         mostrarProdutosTela(false);
         const secaoQuemSomos = document.getElementById("about");
+        const heroSection = document.querySelector(".hero-section");
+        const searchTitle = document.getElementById("search-title");
 
-        if (categoriaAtiva === "home" && termoBusca.trim() === "") {
+        // GLOBAL SEARCH MODE
+        if (termoBusca.trim() !== "") {
+            if (secaoQuemSomos) secaoQuemSomos.style.display = "none";
+            if (heroSection) heroSection.style.display = "none";
+            if (searchTitle) {
+                searchTitle.style.display = "block";
+                searchTitle.textContent = "Resultados da Busca";
+            }
+
+            const termo = termoBusca.toLowerCase();
+            const produtosFiltrados = produtos.filter(
+                (produto) =>
+                    produto.nome.toLowerCase().includes(termo) ||
+                    produto.descricao.toLowerCase().includes(termo)
+            );
+
+            const container = document.querySelector(".products-container");
+            if (produtosFiltrados.length === 0) {
+                container.innerHTML = `
+                            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #999;">
+                                <i class="fa-solid fa-box-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                <p style="font-size: 1.2rem; font-weight: 600;">Nenhum produto encontrado</p>
+                            </div>
+                        `;
+            } else {
+                container.innerHTML = produtosFiltrados
+                    .map(
+                        (p, index) => {
+                            const precoExibir = p.preco !== undefined ? p.preco : p.precoBase;
+                            const isFirstFew = index < 4;
+                            const imgSrc = isFirstFew ? p.imagem : "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+                            const dataSrc = isFirstFew ? "" : `data-src="${p.imagem}"`;
+
+                            return `
+                        <li>
+                            <article class="product-card" data-id="${p.id}">
+                                <div class="card-image-container">
+                                    <img class="product-img" src="${imgSrc}" ${dataSrc} alt="${p.nome}" loading="lazy" width="250" height="240">
+                                    <img class="card-logo-overlay" src="./assets/Bolos/logoProdutos.webp" alt="Logo" loading="lazy">
+                                </div>
+                                
+                                <div class="product-info">
+                                    <h3 class="product-name">${p.nome}</h3>
+                                    <p class="product-description">${p.descricao}</p>
+                                    <p class="product-price">${formatarMoeda(precoExibir)}</p>
+                                    <button class="product-button">Comprar</button>
+                                    
+                                    <span class="canto-card-inf-esq"></span>
+                                    <span class="canto-card-inf-dir"></span>
+                                </div>
+                            </article>
+                        </li>
+                    `;
+                        }
+                    )
+                    .join("");
+                
+                initProductLazyLoading();
+            }
+            return;
+        }
+
+        // NORMAL MODE (EMPTY SEARCH)
+        if (searchTitle) searchTitle.style.display = "none";
+        if (heroSection) heroSection.style.display = "block";
+
+        if (categoriaAtiva === "home") {
             document.querySelector(".products-container").innerHTML = "";
             if (secaoQuemSomos) secaoQuemSomos.style.display = "block";
             return;
@@ -1478,26 +1546,16 @@ const initApp = () => {
 
         let produtosFiltrados = produtos;
 
-        if (categoriaAtiva !== "all" && categoriaAtiva !== "home") {
+        if (categoriaAtiva !== "all") {
             produtosFiltrados = produtosFiltrados.filter(
                 (produto) => produto.categoria === categoriaAtiva,
             );
 
-            
             if (subcategoriaAtiva !== "all") {
                 produtosFiltrados = produtosFiltrados.filter(
                     (produto) => produto.subcategoria === subcategoriaAtiva,
                 );
             }
-        }
-
-        if (termoBusca.trim() !== "") {
-            const termo = termoBusca.toLowerCase();
-            produtosFiltrados = produtosFiltrados.filter(
-                (produto) =>
-                    produto.nome.toLowerCase().includes(termo) ||
-                    produto.descricao.toLowerCase().includes(termo),
-            );
         }
 
         const container = document.querySelector(".products-container");
@@ -1517,7 +1575,7 @@ const initApp = () => {
                         const imgSrc = isFirstFew ? p.imagem : "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
                         const dataSrc = isFirstFew ? "" : `data-src="${p.imagem}"`;
 
-                         return `
+                        return `
                     <li>
                         <article class="product-card" data-id="${p.id}">
                             <div class="card-image-container">
@@ -1541,7 +1599,6 @@ const initApp = () => {
                 )
                 .join("");
             
-            // Inicializa o carregamento sob demanda para as imagens fora da viewport inicial
             initProductLazyLoading();
         }
     };
@@ -2905,6 +2962,7 @@ const initApp = () => {
     if (searchInput) {
         searchInput.addEventListener("input", (e) => {
             termoBusca = e.target.value;
+            if (megaDropdown) megaDropdown.classList.remove("show");
             if (typeof telaProdutos !== "undefined" && telaProdutos && telaProdutos.classList.contains("hidden")) {
                 mostrarProdutosTela(true);
             }
@@ -3156,9 +3214,9 @@ const initApp = () => {
         
         if (linkGaleria) linkGaleria.classList.remove("active");
         
-        // Restore active class on the currently active category button
+        // Restore active class on the currently active category button (if not searching)
         categoryBtns.forEach(b => {
-            if (b.dataset.category === categoriaAtiva) b.classList.add("active");
+            if (termoBusca.trim() === "" && b.dataset.category === categoriaAtiva) b.classList.add("active");
             else b.classList.remove("active");
         });
         

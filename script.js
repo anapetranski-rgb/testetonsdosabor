@@ -688,7 +688,7 @@ const initApp = () => {
             id: 50,
             nome: "Copinhos de Chocolate Artesanais",
             categoria: "doces-finos",
-            subcategoria: "copinhos-e-tarteletes",
+            subcategoria: "copinhos-e-caixinhas",
             precoBase: 2.90,
             imagem: "./assets/DocesFinos/copinhoClassico.webp",
             descricao: "Copinhos de chocolate nobre com recheios cremosos e combina\u00e7\u00f5es exclusivas.",
@@ -710,7 +710,7 @@ const initApp = () => {
             id: 51,
             nome: "Caixinhas de Chocolate Personalizadas",
             categoria: "doces-finos",
-            subcategoria: "copinhos-e-tarteletes",
+            subcategoria: "copinhos-e-caixinhas",
             precoBase: 4.90,
             imagem: "./assets/DocesFinos/caixinhaChocolate.webp",
             descricao: "Elegantes caixinhas moldadas em chocolate com recheios finos e decora\u00e7\u00f5es sofisticadas. Selecione o seu sabor favorito.",
@@ -1285,9 +1285,9 @@ const initApp = () => {
             title: "Doces Especiais",
             desc: "Ouriços, camafeus, mil folhas e trouxinhas nobres para eventos"
         },
-        "copinhos-e-tarteletes": {
-            title: "Copinhos &amp; Tarteletes",
-            desc: "Copinhos de chocolate nobre e mini tarteletes gourmet"
+        "copinhos-e-caixinhas": {
+            title: "Copinhos &amp; Caixinhas",
+            desc: "Copinhos de chocolate nobre e caixinhas personalizadas de chocolate"
         },
         "mini-sobremesas": {
             title: "Mini Sobremesas",

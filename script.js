@@ -3182,6 +3182,36 @@ const initApp = () => {
         mostrarProdutosTela(false);
         filtrarEMostrarProdutos();
     }
+    // Adiar o carregamento do iframe do Google Maps (IntersectionObserver) para otimizar performance inicial
+    const mapIframe = document.querySelector(".about-map-container iframe");
+    if (mapIframe) {
+        if ("IntersectionObserver" in window) {
+            const mapObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const iframe = entry.target;
+                        const src = iframe.getAttribute("data-src");
+                        if (src) {
+                            iframe.setAttribute("src", src);
+                            iframe.removeAttribute("data-src");
+                        }
+                        observer.unobserve(iframe);
+                    }
+                });
+            }, {
+                rootMargin: "300px 0px" // Carrega o mapa quando estiver a 300px de entrar na viewport
+            });
+            mapObserver.observe(mapIframe);
+        } else {
+            // Fallback para navegadores sem suporte a IntersectionObserver
+            const src = mapIframe.getAttribute("data-src");
+            if (src) {
+                mapIframe.setAttribute("src", src);
+                mapIframe.removeAttribute("data-src");
+            }
+        }
+    }
+
     atualizarCarrinho();
 };
 

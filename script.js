@@ -704,8 +704,8 @@ const initApp = () => {
         {
             id: 60,
             nome: "Mini Mil Folhas",
-            categoria: "doces-finos",
-            subcategoria: "doces-especiais",
+            categoria: "sobremesas-individuais",
+            subcategoria: "mini-sobremesas",
             preco: 5.90,
             imagem: "./assets/DocesFinos/milFolhas.webp",
             descricao: "Massa folhada incrivelmente crocante intercalada com recheio artesanal. Escolha o sabor.",
@@ -784,8 +784,8 @@ const initApp = () => {
         {
             id: 63,
             nome: "Mini Tarteletes Gourmet",
-            categoria: "doces-finos",
-            subcategoria: "copinhos-e-tarteletes",
+            categoria: "sobremesas-individuais",
+            subcategoria: "mini-sobremesas",
             precoBase: 5.90,
             imagem: "./assets/DocesFinos/tarteleteTradicional.webp",
             descricao: "Mini tortas artesanais com massas crocantes, recheios finos e decorações sofisticadas.",

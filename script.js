@@ -1150,7 +1150,19 @@ const initApp = () => {
 
     
     produtos.forEach(p => {
-        if (!p.imagem || p.imagem.trim() === "") {
+        if (p.categoria === "doces-tradicionais") {
+            const reservaImagens = {
+                1: "./assets/reserva/brigadeiroTradicional.webp",
+                2: "./assets/reserva/brigadeiroBranco.webp",
+                3: "./assets/reserva/beijinho.webp",
+                4: "./assets/reserva/cajuzinho.webp"
+            };
+            if (reservaImagens[p.id]) {
+                p.imagem = reservaImagens[p.id];
+            } else if (p.id !== 5) {
+                p.imagem = "./assets/defaultDoces.webp";
+            }
+        } else if (!p.imagem || p.imagem.trim() === "") {
             p.imagem = p.categoria === "salgados" ? "./assets/defaultSalgado.webp" : "./assets/defaultDoces.webp";
         }
     });

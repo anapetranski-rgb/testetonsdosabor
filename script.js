@@ -1019,7 +1019,7 @@ const initApp = () => {
             categoria: "salgados",
             subcategoria: "assados",
             preco: 2.15, 
-            imagem: "./assets/defaultSalgado.webp",
+            imagem: "./assets/Salgados/esfihas.webp",
             descricao: "Mini esfihas com massa super macia. Selecione o sabor.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -1132,7 +1132,7 @@ const initApp = () => {
             categoria: "salgados",
             subcategoria: "sanduiches",
             preco: 4.90,
-            imagem: "./assets/defaultSalgado.webp",
+            imagem: "./assets/Salgados/carne.webp",
             descricao: "Sofisticado mini sanduíche recheado com carne cozida lentamente na cerveja, super suculenta.", 
             requerPersonalizacao: false
         },
@@ -1142,7 +1142,7 @@ const initApp = () => {
             categoria: "salgados",
             subcategoria: "sanduiches",
             preco: 4.20,
-            imagem: "./assets/defaultSalgado.webp",
+            imagem: "./assets/Salgados/salame.webp",
             descricao: "Clássica e saborosa combinação de mini sanduíche com fatias de salame selecionado.", 
             requerPersonalizacao: false
         },

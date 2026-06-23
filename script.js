@@ -503,7 +503,7 @@ const initApp = () => {
             categoria: "sobremesas-individuais",
             subcategoria: "cupcakes",
             preco: 4.50, 
-            imagem: "./assets/defaultDoces.webp",
+            imagem: "./assets/DocesFinos/cupcakeP.webp",
             descricao: "Delicado mini bolo recheado e decorado com cobertura artesanal. Escolha o seu sabor favorito.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -806,7 +806,7 @@ const initApp = () => {
             categoria: "sobremesas-individuais",
             subcategoria: "mini-sobremesas",
             preco: 5.90,
-            imagem: "./assets/defaultDoces.webp",
+            imagem: "./assets/DocesFinos/banoffee.webp",
             descricao: "Clássica sobremesa de banana com doce de leite e chantilly leve, montada em uma delicada porção individual.",
             requerPersonalizacao: false
         },

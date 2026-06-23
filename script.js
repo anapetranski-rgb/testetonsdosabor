@@ -926,7 +926,7 @@ const initApp = () => {
             nome: "Macarons em Pacote (Tecido e Laço)",
             categoria: "lembrancinhas",
             preco: 9.50,
-            imagem: "./assets/defaultDoces.webp",
+            imagem: "./assets/Lembrancinhas/macaronsPacote.webp",
             descricao: "Delicados macarons embalados em pacote de tecido com um lindo acabamento em laço.",
             requerPersonalizacao: false
         },
@@ -935,7 +935,7 @@ const initApp = () => {
             nome: "Macarons em Caixinha (Acrílico)",
             categoria: "lembrancinhas",
             preco: 16.90,
-            imagem: "./assets/defaultDoces.webp",
+            imagem: "./assets/Lembrancinhas/lembrancinhas-macaronsCaixinha.webp",
             descricao: "Apresentação luxuosa de macarons protegidos em uma caixinha transparente de acrílico.",
             requerPersonalizacao: false
         },
@@ -963,7 +963,7 @@ const initApp = () => {
             nome: "Alfajor Artesanal",
             categoria: "lembrancinhas",
             preco: 7.90,
-            imagem: "./assets/defaultDoces.webp",
+            imagem: "./assets/defaultLembrancinhas.webp",
             descricao: "Massa delicada recheada com muito doce de leite e coberta com uma generosa camada de chocolate.",
             requerPersonalizacao: false
         },
@@ -972,7 +972,7 @@ const initApp = () => {
             nome: "Pão de Mel Gourmet",
             categoria: "lembrancinhas",
             preco: 7.90,
-            imagem: "./assets/defaultDoces.webp",
+            imagem: "./assets/defaultLembrancinhas.webp",
             descricao: "Pão de mel super fofinho com especiarias, recheado e banhado no chocolate nobre.",
             requerPersonalizacao: false
         },
@@ -981,7 +981,7 @@ const initApp = () => {
             nome: "Caixinha de Medians",
             categoria: "lembrancinhas",
             preco: 15.90,
-            imagem: "./assets/defaultDoces.webp",
+            imagem: "./assets/defaultLembrancinhas.webp",
             descricao: "Caixinha fina contendo os tradicionais disquinhos de chocolate com frutas secas e nuts por cima.",
             requerPersonalizacao: false
         },
@@ -990,7 +990,7 @@ const initApp = () => {
             nome: "Caixinha de Mini Fudge",
             categoria: "lembrancinhas",
             preco: 15.90,
-            imagem: "./assets/defaultDoces.webp",
+            imagem: "./assets/defaultLembrancinhas.webp",
             descricao: "Caixinha elegante com quadradinhos de fudge de chocolate ultra macios e intensos.",
             requerPersonalizacao: false
         },
@@ -1163,7 +1163,7 @@ const initApp = () => {
                 p.imagem = "./assets/defaultDoces.webp";
             }
         } else if (!p.imagem || p.imagem.trim() === "") {
-            p.imagem = p.categoria === "salgados" ? "./assets/defaultSalgado.webp" : "./assets/defaultDoces.webp";
+            p.imagem = p.categoria === "salgados" ? "./assets/defaultSalgado.webp" : (p.categoria === "lembrancinhas" ? "./assets/defaultLembrancinhas.webp" : "./assets/defaultDoces.webp");
         }
     });
 

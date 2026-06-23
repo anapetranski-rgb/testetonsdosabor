@@ -262,8 +262,8 @@ header {
   display: flex;
   gap: .5rem;
   align-items: center;
-  border: 1px solid rgba(26, 48, 56, 0.25);
-  color: var(--text-color);
+  border: 1px solid rgba(253, 247, 247, 0.25);
+  color: #fff;
   /* Mudança aqui: Botões de categoria levemente retos */
   border-radius: 2px; 
   padding: .55rem 1rem;
@@ -273,7 +273,7 @@ header {
   font-size: .95rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  transition: transform .2s ease, opacity .2s ease;
+  transition: all .2s ease;
 }
 
 .category-btn i {
@@ -281,7 +281,7 @@ header {
 }
 
 .category-btn:hover {
-  background: rgba(26, 48, 56, .08);
+  background: rgba(255, 255, 255, .12)
 }
 
 .category-btn.active {
@@ -303,8 +303,6 @@ header {
   position: relative;
   overflow: hidden;
   background: transparent;
-  min-height: 590px;
-  contain: layout size;
 }
 
 
@@ -336,7 +334,6 @@ header {
 
   /* importante para a moldura acompanhar o container e não sobrepor texto */
   background-size: 100% 100%;
-  min-height: 470px;
 }
 
 
@@ -353,7 +350,7 @@ header {
 }
 
 .hero-section p {
-  font-family: "Playfair Display", Georgia, serif;
+ font-family: "Playfair Display", serif;
   font-style: italic;
   /* Aumentado o tamanho para a letra não parecer pequena ou perdida */
   font-size: 1.4rem; 
@@ -363,8 +360,6 @@ header {
   line-height: 1.3;
   opacity: 0.9;
   margin-top: -1rem;
-  height: 1.8rem;
-  overflow: hidden;
 }
 
 /* Hero Section - Visual Limpo e Focado na Logo */
@@ -651,7 +646,7 @@ header {
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity .3s, visibility .3s
 }
 
 .cart-overlay.show {
@@ -862,7 +857,7 @@ header {
   font-size: 1rem;
   font-weight: 700;
   color: var(--text-color);
-  transition: transform .2s, opacity .2s;
+  transition: background .2s, color .2s
 }
 
 .delivery-btn.active {
@@ -890,7 +885,7 @@ header {
   border-radius: 0;
   font-size: 1rem;
   font-family: inherit;
-  transition: transform .2s, opacity .2s;
+  transition: border-color .2s, box-shadow .2s;
   background: #fff;
 }
 
@@ -931,7 +926,7 @@ header {
   border-radius: 6px !important;
   background: #fff !important;
   cursor: pointer !important;
-  transition: transform 0.2s ease, opacity 0.2s ease !important;
+  transition: all 0.2s ease !important;
   position: relative !important;
 }
 
@@ -1078,7 +1073,7 @@ header {
   border: 2px solid var(--accent-color);
   border-radius: 2px;
   cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: all .2s ease;
   box-shadow: 0 4px 12px rgba(23, 127, 140, 0.3);
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -1532,7 +1527,7 @@ footer {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
   padding: 1.5rem 2rem;
 }
 
@@ -1671,7 +1666,7 @@ footer {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
   border-radius: 0; /* Canto reto */
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1927,7 +1922,7 @@ input[type="search"]::-webkit-search-results-decoration {
   font-size: 0.95rem;
   font-weight: 600;
   border-radius: 4px;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
   width: fit-content;
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
 }
@@ -2058,7 +2053,7 @@ footer .copyright {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
   border-radius: 0; /* Canto reto */
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -2312,18 +2307,6 @@ footer .copyright {
 
 /* Lightbox responsiveness */
 @media (max-width: 768px) {
-  .hero-section {
-    min-height: 520px;
-  }
-  .hero-content {
-    min-height: 410px;
-  }
-  .hero-section p {
-    height: 3.2rem;
-    font-size: 1.2rem;
-    line-height: 1.3;
-  }
-
   /* Alinhamento empilhado em blocos lógicos para o cabeçalho no mobile */
   header {
     padding: 0.75rem 1rem !important;

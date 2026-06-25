@@ -485,28 +485,107 @@ header {
   }
 }
 
-/* Alinhamento definitivo do aviso de urgência */
-.urgency-notice {
-  display: block;
-  text-align: center;
-  margin: 2.5rem auto 0 auto;
+/* Card de Informações Importantes */
+.important-info-container {
   width: 100%;
-  max-width: 950px;
+  max-width: 1050px;
+  margin: 3.5rem auto 0 auto;
   padding: 0 1.5rem;
-  
+  display: flex;
+  justify-content: center;
+}
+
+.important-info-card {
+  width: 100%;
+  max-width: 780px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 0;
+  padding: 2.5rem 3rem;
+  box-shadow: 0 12px 32px rgba(26, 48, 56, 0.04);
+}
+
+.important-info-card h3 {
   font-family: "Playfair Display", serif;
-  font-size: 1.05rem;
-  font-weight: 500;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--primary-strong);
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.important-info-card h3::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 1px;
+  background-color: var(--accent-color);
+  margin: 0.8rem auto 0;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+
+.info-list li i {
+  color: var(--primary-strong);
+  font-size: 1.15rem;
+  margin-top: 0.35rem;
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+}
+
+.info-list li span {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
   line-height: 1.6;
+  font-weight: 400;
   color: var(--text-color);
 }
 
-/* Força o ícone a se comportar como uma palavra do próprio texto, centralizando junto */
-.urgency-notice i {
+.info-list li strong {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 700;
   color: var(--primary-strong);
-  display: inline-block; /* Alinha como um bloco na linha do texto */
-  margin-right: 0.5rem;   /* Espaço perfeito entre o ícone e a palavra Nota */
-  vertical-align: middle; /* Garante que fique alinhado na altura da letra */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .important-info-container {
+    margin-top: 2.5rem;
+  }
+  
+  .important-info-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .important-info-card h3 {
+    font-size: 1.4rem;
+  }
+  
+  .info-list li span {
+    font-size: 1.15rem;
+  }
+  
+  .info-list {
+    gap: 1.2rem;
+  }
 }
 
 /* Remove margem do último parágrafo */

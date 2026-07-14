@@ -1427,8 +1427,8 @@ const initApp = () => {
                 `).join('')}
             </div>
             <div class="slider-controls" style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
-                <button class="slider-control-btn prev-btn" aria-label="Avaliação anterior" style="background: transparent; border: 1px solid var(--brand-dark); color: var(--brand-dark); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"><i class="fa-solid fa-chevron-left"></i></button>
-                <button class="slider-control-btn next-btn" aria-label="Próxima avaliação" style="background: transparent; border: 1px solid var(--brand-dark); color: var(--brand-dark); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"><i class="fa-solid fa-chevron-right"></i></button>
+                <button type="button" class="slider-control-btn prev-btn" aria-label="Avaliação anterior" style="background: transparent; border: 1px solid var(--brand-dark); color: var(--brand-dark); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"><i class="fa-solid fa-chevron-left"></i></button>
+                <button type="button" class="slider-control-btn next-btn" aria-label="Próxima avaliação" style="background: transparent; border: 1px solid var(--brand-dark); color: var(--brand-dark); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
         `;
 
@@ -1446,97 +1446,101 @@ const initApp = () => {
         }
     };
 
-    const getSubcategories = (cat) => {
-        return subcategoriasPorCategoria[cat] || [];
-    };
+    function limparBloqueiosDeNavegacao() {
+        document.body.classList.remove("no-scroll");
+        const modalMask = document.getElementById("modalMask");
+        if (modalMask) modalMask.classList.remove("show");
+        const cartOverlay = document.querySelector(".cart-overlay");
+        if (cartOverlay) cartOverlay.classList.remove("show");
 
-    const selecionarCategoria = (cat, subcat = "all") => {
-        categoriaAtiva = cat;
-        subcategoriaAtiva = subcat || "all";
+        document.documentElement.style.removeProperty("overflow");
+        document.body.style.removeProperty("overflow");
+    }
 
-        // Reset search term if navigating categories
-        if (searchInput) searchInput.value = "";
-        termoBusca = "";
-        
-        // Atualiza a classe ativa na barra de categorias principal
-        categoryBtns.forEach(b => {
-            if (b.dataset.category === cat) {
-                b.classList.add("active");
-            } else {
-                b.classList.remove("active");
-            }
-        });
+    function mostrarHome(atualizarHistorico = true) {
+        limparBloqueiosDeNavegacao();
+
+        categoriaAtiva = "home";
+        subcategoriaAtiva = "all";
 
         const homeContent = document.getElementById("home-content");
         const catalogContent = document.getElementById("catalog-content");
-        const searchTitle = document.getElementById("search-title");
+        const productsContainer = document.querySelector(".products-container");
         const catalogHeader = document.getElementById("catalog-header");
 
-        // Se for home, exibe home e oculta catálogo e dropdown
-        if (cat === "home") {
-            if (megaDropdown) {
-                megaDropdown.classList.remove("show");
-                megaDropdown.classList.add("is-hidden");
-            }
-            if (catalogHeader) catalogHeader.classList.add("is-hidden");
-            if (catalogContent) catalogContent.classList.add("is-hidden");
-            if (searchTitle) searchTitle.classList.add("is-hidden");
-            
-            if (homeContent) {
-                homeContent.classList.remove("is-hidden");
-            }
-            document.querySelector(".products-container").innerHTML = "";
-            
-            // Inicia os elementos dinâmicos da home
-            iniciarSlideshow();
-            iniciarBrandAnimations();
-            renderizarGaleria();
-            renderTestimonials();
-            registrarScrollRevealHome();
-            
-            // Configura os observers de mapas lazy-loading se houver iframe
-            const mapIframe = homeContent.querySelector("iframe[data-src]");
-            if (mapIframe && "IntersectionObserver" in window) {
-                const mapObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const iframe = entry.target;
-                            iframe.src = iframe.getAttribute("data-src");
-                            iframe.removeAttribute("data-src");
-                            observer.unobserve(iframe);
-                        }
-                    });
-                });
-                mapObserver.observe(mapIframe);
-            }
-            return;
+        if (catalogContent) catalogContent.classList.add("is-hidden");
+        if (homeContent) homeContent.classList.remove("is-hidden");
+
+        if (productsContainer) productsContainer.innerHTML = "";
+        if (catalogHeader) catalogHeader.classList.add("is-hidden");
+        if (megaDropdown) {
+            megaDropdown.classList.remove("show");
+            megaDropdown.classList.add("is-hidden");
         }
 
-        // Se for uma categoria, exibe o catálogo e oculta a home
+        atualizarCategoriasAtivas();
+
+        if (atualizarHistorico) {
+            history.pushState(
+                { view: "home" },
+                ""
+            );
+        }
+
+        // Inicia os elementos dinâmicos da home
+        iniciarSlideshow();
+        iniciarBrandAnimations();
+        renderizarGaleria();
+        renderTestimonials();
+        registrarScrollRevealHome();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function selecionarCategoria(categoria, subcategoria = "all", atualizarHistorico = true) {
+        limparBloqueiosDeNavegacao();
+        
+        categoriaAtiva = categoria;
+        subcategoriaAtiva = subcategoria || "all";
+
+        // Reset search input on category change
+        if (searchInput) searchInput.value = "";
+        termoBusca = "";
+
+        const homeContent = document.getElementById("home-content");
+        const catalogContent = document.getElementById("catalog-content");
+
         if (homeContent) homeContent.classList.add("is-hidden");
         if (catalogContent) catalogContent.classList.remove("is-hidden");
-        if (searchTitle) searchTitle.classList.add("is-hidden");
 
-        const subcats = getSubcategories(cat);
+        renderizarFiltrosSubcategoria(categoriaAtiva);
+        filtrarEMostrarProdutos();
+        atualizarCategoriasAtivas();
 
-        if (subcats.length > 0) {
-            renderizarMegaDropdown(cat);
-            if (megaDropdown) {
-                megaDropdown.classList.remove("is-hidden");
-                megaDropdown.classList.add("show");
-            }
-        } else {
-            if (megaDropdown) {
-                megaDropdown.classList.remove("show");
-                megaDropdown.classList.add("is-hidden");
-            }
+        if (atualizarHistorico) {
+            history.pushState(
+                {
+                    view: "catalog",
+                    categoria: categoriaAtiva,
+                    subcategoria: subcategoriaAtiva
+                },
+                ""
+            );
         }
 
-        filtrarEMostrarProdutos();
-        rolarParaCatalogo();
-    };
+        const catalogHeader = document.getElementById("catalog-header");
+        if (catalogHeader) {
+            catalogHeader.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    }
 
-    const renderizarMegaDropdown = (cat) => {
+    const renderizarFiltrosSubcategoria = (cat) => {
         const subcats = getSubcategories(cat);
         if (subcats.length === 0) {
             if (megaDropdown) {
@@ -1548,12 +1552,12 @@ const initApp = () => {
 
         megaDropdown.innerHTML = `
             <div class="filter-chips-container">
-                <button class="chip ${subcategoriaAtiva === 'all' ? 'active' : ''}" data-subcategory="all">Todos</button>
+                <button type="button" class="chip ${subcategoriaAtiva === 'all' ? 'active' : ''}" data-subcategory="all">Todos</button>
                 ${subcats.map(sub => {
                     const subcatMeta = subcategoryMeta[cat] && subcategoryMeta[cat][sub];
                     const title = subcatMeta ? subcatMeta.title : sub;
                     const isActive = subcategoriaAtiva === sub;
-                    return `<button class="chip ${isActive ? 'active' : ''}" data-subcategory="${sub}">${title}</button>`;
+                    return `<button type="button" class="chip ${isActive ? 'active' : ''}" data-subcategory="${sub}">${title}</button>`;
                 }).join('')}
             </div>
         `;
@@ -1572,19 +1576,26 @@ const initApp = () => {
                 });
 
                 filtrarEMostrarProdutos();
-                history.pushState({ categoria: cat, subcategoria: sub }, "");
-                rolarParaCatalogo();
+                history.pushState({ view: "catalog", categoria: cat, subcategoria: sub }, "");
+                
+                const catalogHeader = document.getElementById("catalog-header");
+                if (catalogHeader) {
+                    catalogHeader.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
             });
         });
         megaDropdown.classList.remove("is-hidden");
         megaDropdown.classList.add("show");
     };
 
-    const rolarParaCatalogo = () => {
-        const catalogHeader = document.getElementById("catalog-header");
-        if (catalogHeader) {
-            catalogHeader.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+    const atualizarCategoriasAtivas = () => {
+        categoryBtns.forEach(b => {
+            if (b.dataset.category === categoriaAtiva) {
+                b.classList.add("active");
+            } else {
+                b.classList.remove("active");
+            }
+        });
     };
 
     const renderizarCabecalhoEditorial = (cat, count) => {
@@ -1652,6 +1663,10 @@ const initApp = () => {
         });
     };
 
+    const getSubcategories = (cat) => {
+        return subcategoriasPorCategoria[cat] || [];
+    };
+
     const initProductLazyLoading = () => {
         const lazyImages = document.querySelectorAll(".product-img[data-src]");
         if (lazyImages.length === 0) return;
@@ -1687,18 +1702,20 @@ const initApp = () => {
     
     const filtrarEMostrarProdutos = () => {
         mostrarProdutosTela(false);
-        const secaoQuemSomos = document.getElementById("about");
-        const heroSection = document.querySelector(".hero-section");
+        const homeContent = document.getElementById("home-content");
+        const catalogContent = document.getElementById("catalog-content");
         const searchTitle = document.getElementById("search-title");
+        const catalogHeader = document.getElementById("catalog-header");
 
         // GLOBAL SEARCH MODE
         if (termoBusca.trim() !== "") {
-            if (secaoQuemSomos) secaoQuemSomos.style.display = "none";
-            if (heroSection) heroSection.style.display = "none";
-            if (searchTitle) {
-                searchTitle.style.display = "block";
-                searchTitle.textContent = "Resultados da Busca";
+            if (homeContent) homeContent.classList.add("is-hidden");
+            if (catalogContent) catalogContent.classList.remove("is-hidden");
+            if (megaDropdown) {
+                megaDropdown.classList.remove("show");
+                megaDropdown.classList.add("is-hidden");
             }
+            if (catalogHeader) catalogHeader.classList.add("is-hidden");
 
             const termo = termoBusca.toLowerCase();
             const produtosFiltrados = produtos.filter(
@@ -1709,13 +1726,21 @@ const initApp = () => {
 
             const container = document.querySelector(".products-container");
             if (produtosFiltrados.length === 0) {
+                if (searchTitle) {
+                    searchTitle.classList.remove("is-hidden");
+                    searchTitle.textContent = `Resultados para "${termoBusca}" (0 produtos)`;
+                }
                 container.innerHTML = `
-                            <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #999;">
-                                <i class="fa-solid fa-box-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                                <p style="font-size: 1.2rem; font-weight: 600;">Nenhum produto encontrado</p>
-                            </div>
-                        `;
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #999;">
+                        <i class="fa-solid fa-box-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                        <p style="font-size: 1.2rem; font-weight: 600;">Nenhum produto encontrado</p>
+                    </div>
+                `;
             } else {
+                if (searchTitle) {
+                    searchTitle.classList.remove("is-hidden");
+                    searchTitle.textContent = `Resultados para "${termoBusca}" (${produtosFiltrados.length} ${produtosFiltrados.length === 1 ? 'produto' : 'produtos'})`;
+                }
                 container.innerHTML = produtosFiltrados
                     .map(
                         (p, index) => {
@@ -1725,69 +1750,69 @@ const initApp = () => {
                             const dataSrc = isFirstFew ? "" : `data-src="${p.imagem}"`;
 
                             return `
-                        <li>
-                            <article class="product-card" data-id="${p.id}">
-                                <div class="card-image-container">
-                                    <img class="product-img" src="${imgSrc}" ${dataSrc} alt="${p.nome}" loading="lazy" width="250" height="240">
-                                    <img class="card-logo-overlay" src="./assets/Bolos/logoProdutos.webp" alt="Logo" loading="lazy">
-                                </div>
-                                
-                                <div class="product-info">
-                                    <h3 class="product-name">${p.nome}</h3>
-                                    <p class="product-description">${p.descricao}</p>
-                                    <p class="product-price">${formatarMoeda(precoExibir)}</p>
-                                    <button class="product-button">Comprar</button>
-                                    
-                                    <span class="canto-card-inf-esq"></span>
-                                    <span class="canto-card-inf-dir"></span>
-                                </div>
-                            </article>
-                        </li>
-                    `;
+                                <li class="product-list-item">
+                                    <article class="product-card" data-id="${p.id}">
+                                        <div class="card-image-container">
+                                            <img class="product-img" src="${imgSrc}" ${dataSrc} alt="${p.nome}" loading="lazy" width="250" height="240">
+                                        </div>
+                                        
+                                        <div class="product-info">
+                                            <h3 class="product-name">${p.nome}</h3>
+                                            <p class="product-price">${formatarMoeda(precoExibir)}</p>
+                                            <button type="button" class="product-button">${p.requerPersonalizacao ? 'Ver opções' : 'Adicionar'}</button>
+                                        </div>
+                                    </article>
+                                </li>
+                            `;
                         }
                     )
                     .join("");
                 
                 initProductLazyLoading();
+                registrarScrollReveal();
             }
             return;
         }
 
         // NORMAL MODE (EMPTY SEARCH)
-        if (searchTitle) searchTitle.style.display = "none";
-        if (heroSection) heroSection.style.display = "block";
+        if (searchTitle) searchTitle.classList.add("is-hidden");
 
         if (categoriaAtiva === "home") {
             document.querySelector(".products-container").innerHTML = "";
-            if (secaoQuemSomos) secaoQuemSomos.style.display = "block";
+            if (homeContent) homeContent.classList.remove("is-hidden");
+            if (catalogContent) catalogContent.classList.add("is-hidden");
+            if (catalogHeader) catalogHeader.classList.add("is-hidden");
+            if (megaDropdown) {
+                megaDropdown.classList.remove("show");
+                megaDropdown.classList.add("is-hidden");
+            }
             return;
         }
 
-        if (secaoQuemSomos) secaoQuemSomos.style.display = "none";
+        if (homeContent) homeContent.classList.add("is-hidden");
+        if (catalogContent) catalogContent.classList.remove("is-hidden");
 
         let produtosFiltrados = produtos;
 
         if (categoriaAtiva !== "all") {
-            produtosFiltrados = produtosFiltrados.filter(
-                (produto) => produto.categoria === categoriaAtiva,
-            );
-
-            if (subcategoriaAtiva !== "all") {
-                produtosFiltrados = produtosFiltrados.filter(
-                    (produto) => produto.subcategoria === subcategoriaAtiva,
-                );
-            }
+            produtosFiltrados = produtos.filter((produto) => {
+                const correspondeCategoria = produto.categoria === categoriaAtiva;
+                const correspondeSubcategoria = subcategoriaAtiva === "all" || produto.subcategoria === subcategoriaAtiva;
+                return correspondeCategoria && correspondeSubcategoria;
+            });
         }
 
         const container = document.querySelector(".products-container");
         if (produtosFiltrados.length === 0) {
+            renderizarCabecalhoEditorial(categoriaAtiva, 0);
             container.innerHTML = `
-                        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #999;">
-                            <i class="fa-solid fa-box-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                            <p style="font-size: 1.2rem; font-weight: 600;">Nenhum produto encontrado</p>
-                        </div>
-                    `;
+                <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: #999;">
+                    <i class="fa-solid fa-box-open" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                    <p style="font-size: 1.2rem; font-weight: 600;">Nenhum produto encontrado</p>
+                </div>
+            `;
         } else {
+            renderizarCabecalhoEditorial(categoriaAtiva, produtosFiltrados.length);
             container.innerHTML = produtosFiltrados
                 .map(
                     (p, index) => {
@@ -1797,30 +1822,30 @@ const initApp = () => {
                         const dataSrc = isFirstFew ? "" : `data-src="${p.imagem}"`;
 
                         return `
-                    <li>
-                        <article class="product-card" data-id="${p.id}">
-                            <div class="card-image-container">
-                                <img class="product-img" src="${imgSrc}" ${dataSrc} alt="${p.nome}" loading="lazy" width="250" height="240">
-                                <img class="card-logo-overlay" src="./assets/Bolos/logoProdutos.webp" alt="Logo" loading="lazy">
-                            </div>
-                            
-                            <div class="product-info">
-                                <h3 class="product-name">${p.nome}</h3>
-                                <p class="product-description">${p.descricao}</p>
-                                <p class="product-price">${formatarMoeda(precoExibir)}</p>
-                                <button class="product-button">Comprar</button>
-                                
-                                <span class="canto-card-inf-esq"></span>
-                                <span class="canto-card-inf-dir"></span>
-                            </div>
-                        </article>
-                    </li>
-                `;
+                            <li class="product-list-item">
+                                <article class="product-card" data-id="${p.id}">
+                                    <div class="card-image-container">
+                                        <img class="product-img" src="${imgSrc}" ${dataSrc} alt="${p.nome}" loading="lazy" width="250" height="240">
+                                    </div>
+                                    
+                                    <div class="product-info">
+                                        <h3 class="product-name">${p.nome}</h3>
+                                        <p class="product-price">${formatarMoeda(precoExibir)}</p>
+                                        <button type="button" class="product-button">${p.requerPersonalizacao ? 'Ver opções' : 'Adicionar'}</button>
+                                    </div>
+                                </article>
+                            </li>
+                        `;
                     }
                 )
                 .join("");
             
+            if (megaDropdown && getSubcategories(categoriaAtiva).length > 0) {
+                megaDropdown.classList.remove("is-hidden");
+                megaDropdown.classList.add("show");
+            }
             initProductLazyLoading();
+            registrarScrollReveal();
         }
     };
 
@@ -3412,10 +3437,6 @@ const initApp = () => {
     }
 
     function mostrarGaleriaTela(push = true) {
-        selecionarCategoria("home");
-        if (push) {
-            history.pushState({ categoria: "home", subcategoria: "all" }, "");
-        }
         irParaGaleria();
     }
 
@@ -3476,59 +3497,71 @@ const initApp = () => {
     }
 
     // Event Listeners da Galeria e Lightbox
-    const irParaGaleria = () => {
-        if (categoriaAtiva !== "home") {
-            selecionarCategoria("home");
-            history.pushState({ categoria: "home", subcategoria: "all" }, "");
-        }
-        renderizarGaleria();
-        setTimeout(() => {
-            const homeGaleria = document.getElementById("home-galeria");
-            if (homeGaleria) {
-                homeGaleria.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-        }, 150);
-    };
+    function irParaGaleria() {
+        mostrarHome(false);
 
-    if (linkGaleria) {
-        linkGaleria.addEventListener("click", (e) => {
-            e.preventDefault();
-            irParaGaleria();
+        requestAnimationFrame(() => {
+            document
+                .getElementById("home-galeria")
+                ?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
         });
     }
 
     if (linkHome) {
         linkHome.addEventListener("click", (e) => {
             e.preventDefault();
-            selecionarCategoria("home");
-            history.pushState({ categoria: "home", subcategoria: "all" }, "");
+            mostrarHome(true);
         });
     }
 
-    const btnVerDoces = document.querySelector('[data-action="ver-doces"]');
-    const btnVerBolos = document.querySelector('[data-action="ver-bolos"]');
-    const btnPlanejarFesta = document.querySelector('[data-action="planejar-festa"]');
-
-    if (btnVerDoces) {
-        btnVerDoces.addEventListener("click", () => {
-            selecionarCategoria("doces");
-            history.pushState({ categoria: "doces", subcategoria: "all" }, "");
+    const logoLink = document.querySelector(".logo-link");
+    if (logoLink) {
+        logoLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            mostrarHome(true);
         });
     }
 
-    if (btnVerBolos) {
-        btnVerBolos.addEventListener("click", () => {
-            selecionarCategoria("bolos");
-            history.pushState({ categoria: "bolos", subcategoria: "all" }, "");
-        });
-    }
+    categoryBtns.forEach((button) => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
 
-    if (btnPlanejarFesta) {
-        btnPlanejarFesta.addEventListener("click", () => {
-            const btnCalculator = document.getElementById("btn-open-calculator");
-            if (btnCalculator) btnCalculator.click();
+            const targetButton = event.currentTarget.closest(".category-btn");
+            const category = targetButton?.dataset.category;
+
+            if (!category) return;
+
+            if (category === "home") {
+                mostrarHome(true);
+                return;
+            }
+
+            selecionarCategoria(category, "all", true);
         });
-    }
+    });
+
+    document.querySelectorAll(".celebrate-action").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const category = event.currentTarget.dataset.category;
+            if (!category) return;
+
+            selecionarCategoria(category, "all", true);
+        });
+    });
+
+    document.getElementById("celebrate-calculator")?.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        abrirCalculatorModal();
+    });
 
     if (btnCloseModal) {
         btnCloseModal.addEventListener("click", fecharGaleriaModal);
@@ -3556,45 +3589,40 @@ const initApp = () => {
         });
     }
 
+    document.querySelectorAll(".instagram-grid img").forEach((image) => {
+        image.addEventListener(
+            "error",
+            () => {
+                image.src = "./assets/LOGO_TURQUESA_1.webp";
+                image.classList.add("image-fallback");
+            },
+            { once: true }
+        );
+    });
+
+    window.addEventListener("popstate", (event) => {
+        const state = event.state;
+
+        if (!state || state.view === "home") {
+            mostrarHome(false);
+            return;
+        }
+
+        if (state.view === "catalog") {
+            selecionarCategoria(
+                state.categoria,
+                state.subcategoria || "all",
+                false
+            );
+        }
+    });
+
     // Inicialização da tela (SPA) baseada no estado do histórico ou padrão
-    if (history.state && history.state.tela === "galeria") {
-        selecionarCategoria("home");
-        irParaGaleria();
+    const state = history.state;
+    if (state && state.view === "catalog") {
+        selecionarCategoria(state.categoria, state.subcategoria || "all", false);
     } else {
-        mostrarProdutosTela(false);
-        if (history.state && history.state.categoria) {
-            selecionarCategoria(history.state.categoria, history.state.subcategoria || "all");
-        } else {
-            selecionarCategoria(categoriaAtiva, subcategoriaAtiva);
-        }
-    }// Adiar o carregamento do iframe do Google Maps (IntersectionObserver) para otimizar performance inicial
-    const mapIframe = document.querySelector(".about-map-container iframe");
-    if (mapIframe) {
-        if ("IntersectionObserver" in window) {
-            const mapObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const iframe = entry.target;
-                        const src = iframe.getAttribute("data-src");
-                        if (src) {
-                            iframe.setAttribute("src", src);
-                            iframe.removeAttribute("data-src");
-                        }
-                        observer.unobserve(iframe);
-                    }
-                });
-            }, {
-                rootMargin: "300px 0px" // Carrega o mapa quando estiver a 300px de entrar na viewport
-            });
-            mapObserver.observe(mapIframe);
-        } else {
-            // Fallback para navegadores sem suporte a IntersectionObserver
-            const src = mapIframe.getAttribute("data-src");
-            if (src) {
-                mapIframe.setAttribute("src", src);
-                mapIframe.removeAttribute("data-src");
-            }
-        }
+        mostrarHome(false);
     }
 
     atualizarCarrinho();

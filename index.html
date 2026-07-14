@@ -18,8 +18,8 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <!-- Estilos Asíncronos -->
-    <link rel="preload" href="style.css?v=1.1.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=1.1.0"></noscript>
+    <link rel="preload" href="style.css?v=1.2.0.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css?v=1.2.0.0"></noscript>
     <title>Tons do Sabor</title>
     <link rel="icon" type="image/png" href="./assets/LOGO_TURQUESA_1.webp">
 </head>
@@ -32,12 +32,7 @@
                 <h1>Tons do Sabor Confeitaria</h1>
             </div>
         </a>
-
-        <a href="#" id="link-galeria" class="galeria-nav-btn">
-            <i class="fa-solid fa-images" aria-hidden="true"></i> Momentos Reais
-        </a>
-
-        <div class="search-container" role="search">
+<div class="search-container" role="search">
             <label for="search-input" class="sr-only">Buscar Produto</label>
             <input type="search" id="search-input" placeholder="Buscar Produto..." class="search-input" aria-label="Buscar Produto" required />
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
@@ -57,22 +52,22 @@
         <div class="categories-container">
             <nav class="categories-bar" aria-label="Categorias de produtos">
                 <h2 class="sr-only">Categorias de produtos</h2>
-                <button class="category-btn active" data-category="home">
+                <button type="button" class="category-btn active" data-category="home">
                     <i class="fa-solid fa-house" aria-hidden="true"></i> Home
                 </button>
-                <button class="category-btn" data-category="doces">
+                <button type="button" class="category-btn" data-category="doces">
                     <i class="fa-solid fa-cookie-bite" aria-hidden="true"></i> Doces
                 </button>
-                <button class="category-btn" data-category="lembrancinhas">
+                <button type="button" class="category-btn" data-category="lembrancinhas">
                     <i class="fa-solid fa-gift" aria-hidden="true"></i> Lembrancinhas
                 </button>
-                <button class="category-btn" data-category="bolos">
+                <button type="button" class="category-btn" data-category="bolos">
                     <i class="fa-solid fa-cake-candles" aria-hidden="true"></i> Bolos de Festa
                 </button>
-                <button class="category-btn" data-category="salgados">
+                <button type="button" class="category-btn" data-category="salgados">
                     <i class="fa-solid fa-pizza-slice" aria-hidden="true"></i> Salgados
                 </button>
-                <button class="category-btn" data-category="sobremesas-tortas">
+                <button type="button" class="category-btn" data-category="sobremesas-tortas">
                     <i class="fa-solid fa-ice-cream" aria-hidden="true"></i> Sobremesas e Tortas
                 </button>
             </nav>
@@ -88,7 +83,7 @@
                 <div class="hero-slideshow" aria-hidden="true">
                     <div class="hero-slide active" style="background-image: linear-gradient(rgba(26, 48, 56, 0.65), rgba(26, 48, 56, 0.65)), url('./assets/galeria/evento1.webp');"></div>
                     <div class="hero-slide" style="background-image: linear-gradient(rgba(26, 48, 56, 0.65), rgba(26, 48, 56, 0.65)), url('./assets/Background2.webp');"></div>
-                    <div class="hero-slide" style="background-image: linear-gradient(rgba(26, 48, 56, 0.65), rgba(26, 48, 56, 0.65)), url('./assets/Bolos/BoloFesta1.webp');"></div>
+                    <div class="hero-slide" style="background-image: linear-gradient(rgba(26, 48, 56, 0.65), rgba(26, 48, 56, 0.65)), url('./assets/galeria/evento2.webp');"></div>
                     <div class="hero-slide" style="background-image: linear-gradient(rgba(26, 48, 56, 0.65), rgba(26, 48, 56, 0.65)), url('./assets/Lembrancinhas/bemCasado.webp');"></div>
                 </div>
 
@@ -120,15 +115,15 @@
                 </div>
             </section>
 
-            <!-- Chamada para o catálogo -->
+            <!-- Chamada para o catálogo (com botões de verdade e sem links vazios) -->
             <section class="catalog-cta home-section is-hidden-reveal">
                 <div class="cta-content">
                     <h2>Feitos para celebrar</h2>
                     <p>Conheça nossos doces, bolos e criações artesanais preparados para tornar cada momento inesquecível.</p>
                     <div class="cta-buttons">
-                        <button class="cta-btn" data-action="ver-doces">Ver Doces</button>
-                        <button class="cta-btn" data-action="ver-bolos">Ver Bolos</button>
-                        <button class="cta-btn" data-action="planejar-festa">Planejar minha festa</button>
+                        <button type="button" class="cta-btn celebrate-action" data-category="doces">Ver Doces</button>
+                        <button type="button" class="cta-btn celebrate-action" data-category="bolos">Ver Bolos</button>
+                        <button type="button" class="cta-btn" id="celebrate-calculator">Planejar minha festa</button>
                     </div>
                 </div>
             </section>
@@ -156,9 +151,9 @@
                     <h2>Venha nos visitar</h2>
                     <p>Atendemos com hora marcada em nosso atelier. Entre em contato para planejar suas comemorações e degustações especiais.</p>
                     <div class="about-map-container">
-                        <iframe data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115291.68819586144!2d-49.349925232982874!3d-25.438466699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce411933e1bd7%3A0x6739958189c490ff!2sCuritiba%20-%20PR!5e0!3m2!1spt-BR!2sbr!4v1718990000000!5m2!1spt-BR!2sbr" width="100" height="250" style="border:0; width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização do Atelier Tons do Sabor em Curitiba"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115291.68819586144!2d-49.349925232982874!3d-25.438466699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce411933e1bd7%3A0x6739958189c490ff!2sCuritiba%20-%20PR!5e0!3m2!1spt-BR!2sbr!4v1718990000000!5m2!1spt-BR!2sbr" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização do Atelier Tons do Sabor em Curitiba"></iframe>
                     </div>
-                    <a href="https://maps.app.goo.gl/r5w6W58189c490ff" target="_blank" rel="noopener noreferrer" class="location-cta">Abrir no Google Maps</a>
+                    <a href="https://www.google.com/maps/place/Curitiba+-+PR" target="_blank" rel="noopener noreferrer" class="location-cta maps-button">Abrir no Google Maps</a>
                 </div>
 
                 <div class="info-block instagram-block">
@@ -167,7 +162,7 @@
                     <div class="instagram-grid">
                         <img src="./assets/reserva/brigadeiroTradicional.webp" alt="Instagram 1" loading="lazy">
                         <img src="./assets/Background2.webp" alt="Instagram 2" loading="lazy">
-                        <img src="./assets/Bolos/BoloFesta1.webp" alt="Instagram 3" loading="lazy">
+                        <img src="./assets/galeria/evento3.webp" alt="Produção artesanal da Tons do Sabor" loading="lazy" width="600" height="600">
                         <img src="./assets/Lembrancinhas/bemCasado.webp" alt="Instagram 4" loading="lazy">
                     </div>
                     <a href="https://www.instagram.com/tonsdosabor_/" target="_blank" rel="noopener noreferrer" class="instagram-cta">Siga-nos no Instagram</a>
@@ -441,7 +436,7 @@
                     <h3>Redes Sociais</h3>
                     <div class="footer-links">
                         <a href="https://www.instagram.com/tonsdosabor_/" target="_blank" rel="noopener noreferrer" class="instagram-btn" aria-label="Acessar nosso Instagram">
-                            <i class="fa-brands fa-instagram" aria-hidden="true"></i> @tonsdosabor_atelier
+                            <i class="fa-brands fa-instagram" aria-hidden="true"></i> @tonsdosabor_
                         </a>
                     </div>
                 </div>
@@ -457,7 +452,7 @@
         <button class="modal-nav modal-next">&rsaquo;</button>
     </div>
 
-    <script src="./script.js?v=1.1.0"></script>
+    <script src="./script.js?v=1.2.0.0"></script>
 </body>
 
 </html>

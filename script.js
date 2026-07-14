@@ -1277,158 +1277,379 @@ const initApp = () => {
 
     
     const categoriaNomes = {
-        "bolos": "Bolos",
-        "doces-tradicionais": "Doces Tradicionais",
-        "doces-finos": "Doces Finos &amp; Especiais",
-        "sobremesas-individuais": "Sobremesas Individuais",
+        "doces": "Doces",
+        "lembrancinhas": "Lembrancinhas",
+        "bolos": "Bolos de Festa",
         "salgados": "Salgados",
-        "lembrancinhas": "Lembrancinhas &amp; Presentes"
+        "sobremesas-tortas": "Sobremesas e Tortas"
+    };
+
+    const subcategoriasPorCategoria = {
+        "doces": ["tradicionais", "especiais", "finos"],
+        "bolos": ["tradicionais", "frutados", "especiais"],
+        "salgados": ["fritos", "assados", "sanduiches"],
+        "sobremesas-tortas": ["sobremesas-kg", "tortas-salgadas-kg"],
+        "lembrancinhas": []
     };
 
     const subcategoryMeta = {
-        "all": {
-            title: "Ver Tudo",
-            desc: "Explore a seleção completa de delícias"
+        "doces": {
+            "tradicionais": { title: "Tradicionais", desc: "" },
+            "especiais": { title: "Especiais", desc: "" },
+            "finos": { title: "Finos", desc: "" }
         },
-        "tradicionais": {
-            title: "Bolos Tradicionais",
-            desc: "Massas fofinhas e recheios clássicos cobertos com chantilly"
+        "bolos": {
+            "tradicionais": { title: "Tradicionais", desc: "" },
+            "frutados": { title: "Frutados", desc: "" },
+            "especiais": { title: "Especiais", desc: "" }
         },
-        "especiais": {
-            title: "Bolos Especiais",
-            desc: "Combinações refrescantes com frutas frescas selecionadas"
+        "salgados": {
+            "fritos": { title: "Fritos", desc: "" },
+            "assados": { title: "Assados", desc: "" },
+            "sanduiches": { title: "Mini Sanduíches", desc: "" }
         },
-        "gourmet": {
-            title: "Bolos Gourmet",
-            desc: "Criações requintadas e sabores sofisticados de alta confeitaria"
-        },
-        "brigadeiros-finos": {
-            title: "Brigadeiros Finos",
-            desc: "Brigadeiros gourmet, linha belga Callebaut e sabores especiais"
-        },
-        "bombons-e-macarons": {
-            title: "Bombons &amp; Macarons",
-            desc: "Bombons finos, artísticos, trufados e macarons artesanais"
-        },
-        "doces-especiais": {
-            title: "Doces Especiais",
-            desc: "Ouriços, camafeus, mil folhas e trouxinhas nobres para eventos"
-        },
-        "copinhos-e-caixinhas": {
-            title: "Copinhos &amp; Caixinhas",
-            desc: "Copinhos de chocolate nobre e caixinhas personalizadas de chocolate"
-        },
-        "mini-sobremesas": {
-            title: "Mini Sobremesas",
-            desc: "Mini pudins, quindins, pavlovas, mini brownies e cheesecake"
-        },
-        "petit-verrines": {
-            title: "Petit Verrines",
-            desc: "Elegantes copinhos individuais com cremes e compotas"
-        },
-        "cupcakes": {
-            title: "Cupcakes",
-            desc: "Deliciosos mini bolos recheados e decorados de vários tamanhos"
-        },
-        "fritos": {
-            title: "Salgados Fritos",
-            desc: "Coxinhas, risoles e bolinhas fritas na hora"
-        },
-        "assados": {
-            title: "Salgados Assados",
-            desc: "Esfihas, empadas, quiches e folhados artesanais macios"
-        },
-        "sanduiches": {
-            title: "Mini Sanduíches",
-            desc: "Hambúrgueres, sanduíches de frango e carne na cerveja"
+        "sobremesas-tortas": {
+            "sobremesas-kg": { title: "Sobremesas por kg", desc: "" },
+            "tortas-salgadas-kg": { title: "Tortas Salgadas por kg", desc: "" }
         }
     };
 
-    let megaMenuTimeout = null;
-    let hoveredCategory = null;
+    const editorialMeta = {
+        "doces": {
+            title: "Doces artesanais",
+            desc: "Brigadeiros, doces tradicionais e criações finas para todos os tipos de celebração."
+        },
+        "bolos": {
+            title: "Bolos para celebrar",
+            desc: "Bolos artesanais em diferentes tamanhos, sabores e acabamentos para momentos inesquecíveis."
+        },
+        "salgados": {
+            title: "Salgados artesanais",
+            desc: "Opções preparadas para complementar festas, encontros e celebrações especiais."
+        },
+        "lembrancinhas": {
+            title: "Lembranças especiais",
+            desc: "Criações personalizadas para transformar cada celebração em uma memória afetiva."
+        },
+        "sobremesas-tortas": {
+            title: "Sobremesas e tortas",
+            desc: "Receitas artesanais criadas para compartilhar e surpreender."
+        }
+    };
+
+    // --- LANDING PAGE HOME & CAROUSEL SETUP ---
+    // Insira avaliações reais e aprovadas pelo cliente neste array.
+    // Exemplo: { nome: "Fernanda Lima", texto: "Os doces finos foram um sucesso no casamento!", estrelas: 5, evento: "Casamento" }
+    const avaliacoes = [];
+
+    let slideshowInterval = null;
+    const iniciarSlideshow = () => {
+        const slides = document.querySelectorAll(".hero-slide");
+        if (slides.length === 0) return;
+
+        let currentIndex = 0;
+        slides.forEach((slide, idx) => {
+            slide.classList.remove("active");
+            if (idx === 0) {
+                slide.classList.add("active");
+            }
+        });
+
+        if (slideshowInterval) clearInterval(slideshowInterval);
+
+        slideshowInterval = setInterval(() => {
+            const nextIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.remove("active");
+            slides[nextIndex].classList.add("active");
+            currentIndex = nextIndex;
+        }, 5500);
+    };
+
+    const iniciarBrandAnimations = () => {
+        const homeHero = document.querySelector(".home-hero");
+        if (homeHero) {
+            homeHero.classList.remove("reveal-active");
+            void homeHero.offsetWidth; // force reflow
+            homeHero.classList.add("reveal-active");
+        }
+    };
+
+    const registrarScrollRevealHome = () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.is-hidden-reveal').forEach(sec => {
+                sec.classList.add('reveal-active');
+            });
+            return;
+        }
+
+        const sections = document.querySelectorAll('.is-hidden-reveal:not(.reveal-observed)');
+        if (sections.length === 0) return;
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sec = entry.target;
+                    sec.classList.add('reveal-active');
+                    sec.classList.add('reveal-observed');
+                    obs.unobserve(sec);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(sec => {
+            observer.observe(sec);
+        });
+    };
+
+    const renderTestimonials = () => {
+        const testimonialsSection = document.getElementById("home-avaliacoes");
+        const slider = document.querySelector(".testimonials-slider");
+        if (!testimonialsSection || !slider) return;
+
+        if (avaliacoes.length === 0) {
+            testimonialsSection.classList.add("is-hidden");
+            return;
+        }
+
+        testimonialsSection.classList.remove("is-hidden");
+
+        slider.innerHTML = `
+            <div class="testimonials-container" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; gap: 2rem; padding: 1rem 0;">
+                ${avaliacoes.map((av) => `
+                    <div class="testimonial-card" style="flex: 0 0 100%; scroll-snap-align: start; padding: 2.5rem 2rem; background: #ffffff; border: 1px solid #eef2f7; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.025);">
+                        <div class="stars" style="color: var(--brand-gold); font-size: 1.3rem; margin-bottom: 1.2rem;">
+                            ${"★".repeat(av.estrelas)}${"☆".repeat(5 - av.estrelas)}
+                        </div>
+                        <p style="font-family: 'Lato', sans-serif; font-size: 1.1rem; font-style: italic; line-height: 1.6; color: var(--brand-text); max-width: 600px; margin-bottom: 1.5rem; text-align: center;">"${av.texto}"</p>
+                        <h4 style="font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 0.25rem;">${av.nome}</h4>
+                        ${av.evento ? `<span style="font-family: 'Lato', sans-serif; font-size: 0.85rem; color: #8fa4ab;">${av.evento}</span>` : ""}
+                    </div>
+                `).join('')}
+            </div>
+            <div class="slider-controls" style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+                <button class="slider-control-btn prev-btn" aria-label="Avaliação anterior" style="background: transparent; border: 1px solid var(--brand-dark); color: var(--brand-dark); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="slider-control-btn next-btn" aria-label="Próxima avaliação" style="background: transparent; border: 1px solid var(--brand-dark); color: var(--brand-dark); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        `;
+
+        const prevBtn = slider.querySelector(".prev-btn");
+        const nextBtn = slider.querySelector(".next-btn");
+        const container = slider.querySelector(".testimonials-container");
+
+        if (prevBtn && nextBtn && container) {
+            prevBtn.addEventListener("click", () => {
+                container.scrollBy({ left: -container.offsetWidth, behavior: 'smooth' });
+            });
+            nextBtn.addEventListener("click", () => {
+                container.scrollBy({ left: container.offsetWidth, behavior: 'smooth' });
+            });
+        }
+    };
 
     const getSubcategories = (cat) => {
-        if (cat === "home" || cat === "all") return [];
-        const produtosDaCat = produtos.filter(p => p.categoria === cat);
-        return [...new Set(produtosDaCat.map(p => p.subcategoria).filter(Boolean))];
+        return subcategoriasPorCategoria[cat] || [];
+    };
+
+    const selecionarCategoria = (cat, subcat = "all") => {
+        categoriaAtiva = cat;
+        subcategoriaAtiva = subcat || "all";
+
+        // Reset search term if navigating categories
+        if (searchInput) searchInput.value = "";
+        termoBusca = "";
+        
+        // Atualiza a classe ativa na barra de categorias principal
+        categoryBtns.forEach(b => {
+            if (b.dataset.category === cat) {
+                b.classList.add("active");
+            } else {
+                b.classList.remove("active");
+            }
+        });
+
+        const homeContent = document.getElementById("home-content");
+        const catalogContent = document.getElementById("catalog-content");
+        const searchTitle = document.getElementById("search-title");
+        const catalogHeader = document.getElementById("catalog-header");
+
+        // Se for home, exibe home e oculta catálogo e dropdown
+        if (cat === "home") {
+            if (megaDropdown) {
+                megaDropdown.classList.remove("show");
+                megaDropdown.classList.add("is-hidden");
+            }
+            if (catalogHeader) catalogHeader.classList.add("is-hidden");
+            if (catalogContent) catalogContent.classList.add("is-hidden");
+            if (searchTitle) searchTitle.classList.add("is-hidden");
+            
+            if (homeContent) {
+                homeContent.classList.remove("is-hidden");
+            }
+            document.querySelector(".products-container").innerHTML = "";
+            
+            // Inicia os elementos dinâmicos da home
+            iniciarSlideshow();
+            iniciarBrandAnimations();
+            renderizarGaleria();
+            renderTestimonials();
+            registrarScrollRevealHome();
+            
+            // Configura os observers de mapas lazy-loading se houver iframe
+            const mapIframe = homeContent.querySelector("iframe[data-src]");
+            if (mapIframe && "IntersectionObserver" in window) {
+                const mapObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const iframe = entry.target;
+                            iframe.src = iframe.getAttribute("data-src");
+                            iframe.removeAttribute("data-src");
+                            observer.unobserve(iframe);
+                        }
+                    });
+                });
+                mapObserver.observe(mapIframe);
+            }
+            return;
+        }
+
+        // Se for uma categoria, exibe o catálogo e oculta a home
+        if (homeContent) homeContent.classList.add("is-hidden");
+        if (catalogContent) catalogContent.classList.remove("is-hidden");
+        if (searchTitle) searchTitle.classList.add("is-hidden");
+
+        const subcats = getSubcategories(cat);
+
+        if (subcats.length > 0) {
+            renderizarMegaDropdown(cat);
+            if (megaDropdown) {
+                megaDropdown.classList.remove("is-hidden");
+                megaDropdown.classList.add("show");
+            }
+        } else {
+            if (megaDropdown) {
+                megaDropdown.classList.remove("show");
+                megaDropdown.classList.add("is-hidden");
+            }
+        }
+
+        filtrarEMostrarProdutos();
+        rolarParaCatalogo();
     };
 
     const renderizarMegaDropdown = (cat) => {
         const subcats = getSubcategories(cat);
         if (subcats.length === 0) {
-            megaDropdown.classList.remove("show");
+            if (megaDropdown) {
+                megaDropdown.classList.remove("show");
+                megaDropdown.classList.add("is-hidden");
+            }
             return;
         }
 
-        const items = ["all", ...subcats];
-        
         megaDropdown.innerHTML = `
-            <div class="mega-dropdown-content">
-                <span class="close-mega" aria-label="Fechar filtros">&times;</span>
-                <span class="mega-dropdown-title">Filtros de ${categoriaNomes[cat] || cat}</span>
-                <div class="mega-dropdown-grid">
-                    ${items.map(sub => {
-                        const meta = subcategoryMeta[sub] || { title: sub, desc: "" };
-                        const isActive = subcategoriaAtiva === sub && categoriaAtiva === cat;
-                        return `
-                            <button class="mega-item ${isActive ? 'active' : ''}" data-subcategory="${sub}">
-                                <span class="mega-item-title">${meta.title}</span>
-                                ${meta.desc ? `<span class="mega-item-desc">${meta.desc}</span>` : ''}
-                            </button>
-                        `;
-                    }).join('')}
-                </div>
+            <div class="filter-chips-container">
+                <button class="chip ${subcategoriaAtiva === 'all' ? 'active' : ''}" data-subcategory="all">Todos</button>
+                ${subcats.map(sub => {
+                    const subcatMeta = subcategoryMeta[cat] && subcategoryMeta[cat][sub];
+                    const title = subcatMeta ? subcatMeta.title : sub;
+                    const isActive = subcategoriaAtiva === sub;
+                    return `<button class="chip ${isActive ? 'active' : ''}" data-subcategory="${sub}">${title}</button>`;
+                }).join('')}
             </div>
         `;
 
-        const closeMegaBtn = megaDropdown.querySelector(".close-mega");
-        if (closeMegaBtn) {
-            closeMegaBtn.addEventListener("click", () => {
-                megaDropdown.classList.remove("show");
-                hoveredCategory = null;
-            });
-        }
-
-        
-        megaDropdown.querySelectorAll(".mega-item").forEach(btn => {
+        megaDropdown.querySelectorAll(".chip").forEach(btn => {
             btn.addEventListener("click", () => {
-                subcategoriaAtiva = btn.dataset.subcategory;
-                categoriaAtiva = cat;
-                
-                
-                categoryBtns.forEach(b => {
-                    if (b.dataset.category === cat) {
-                        b.classList.add("active");
+                const sub = btn.dataset.subcategory;
+                subcategoriaAtiva = sub;
+
+                megaDropdown.querySelectorAll(".chip").forEach(item => {
+                    if (item.dataset.subcategory === sub) {
+                        item.classList.add("active");
                     } else {
-                        b.classList.remove("active");
+                        item.classList.remove("active");
                     }
                 });
 
                 filtrarEMostrarProdutos();
-                megaDropdown.classList.remove("show");
-                hoveredCategory = null;
+                history.pushState({ categoria: cat, subcategoria: sub }, "");
+                rolarParaCatalogo();
             });
         });
+        megaDropdown.classList.remove("is-hidden");
+        megaDropdown.classList.add("show");
     };
 
-    const showMegaMenu = (cat) => {
-        clearTimeout(megaMenuTimeout);
-        hoveredCategory = cat;
-        renderizarMegaDropdown(cat);
-        const subcats = getSubcategories(cat);
-        if (subcats.length > 0) {
-            megaDropdown.classList.add("show");
-        } else {
-            megaDropdown.classList.remove("show");
+    const rolarParaCatalogo = () => {
+        const catalogHeader = document.getElementById("catalog-header");
+        if (catalogHeader) {
+            catalogHeader.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     };
 
-    const hideMegaMenu = () => {
-        clearTimeout(megaMenuTimeout);
-        megaMenuTimeout = setTimeout(() => {
-            megaDropdown.classList.remove("show");
-            hoveredCategory = null;
-        }, 250);
+    const renderizarCabecalhoEditorial = (cat, count) => {
+        const catalogHeader = document.getElementById("catalog-header");
+        if (!catalogHeader) return;
+
+        if (cat === "home") {
+            catalogHeader.classList.add("is-hidden");
+            return;
+        }
+
+        const meta = editorialMeta[cat];
+        if (!meta) {
+            catalogHeader.classList.add("is-hidden");
+            return;
+        }
+
+        let tituloExibir = meta.title;
+        if (subcategoriaAtiva && subcategoriaAtiva !== "all") {
+            const subcatMeta = subcategoryMeta[cat] && subcategoryMeta[cat][subcategoriaAtiva];
+            if (subcatMeta) {
+                tituloExibir = `${meta.title} - ${subcatMeta.title}`;
+            }
+        }
+
+        catalogHeader.innerHTML = `
+            <div class="catalog-editorial">
+                <span class="editorial-subtitle">CATÁLOGO TONS DO SABOR</span>
+                <h2 class="editorial-title">${tituloExibir}</h2>
+                <p class="editorial-desc">${meta.desc}</p>
+                <div class="editorial-divider">◇</div>
+                <span class="editorial-count">${count} ${count === 1 ? 'PRODUTO' : 'PRODUTOS'}</span>
+            </div>
+        `;
+        catalogHeader.classList.remove("is-hidden");
+    };
+
+    const registrarScrollReveal = () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.add('reveal');
+            });
+            return;
+        }
+
+        const cards = document.querySelectorAll('.product-card:not(.reveal-observed)');
+        if (cards.length === 0) return;
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            let delay = 0;
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    card.style.transitionDelay = `${delay}ms`;
+                    card.classList.add('reveal');
+                    card.classList.add('reveal-observed');
+                    obs.unobserve(card);
+                    delay += 80;
+                }
+            });
+        }, { threshold: 0.05 });
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
     };
 
     const initProductLazyLoading = () => {
@@ -3191,43 +3412,20 @@ const initApp = () => {
     }
 
     function mostrarGaleriaTela(push = true) {
-        if (telaProdutos) telaProdutos.classList.add("hidden");
-        if (telaGaleria) telaGaleria.classList.remove("hidden");
-        
-        // Remove active class from categories and add to gallery link
-        categoryBtns.forEach(b => b.classList.remove("active"));
-        if (linkGaleria) linkGaleria.classList.add("active");
-        
+        selecionarCategoria("home");
         if (push) {
-            history.pushState({ tela: "galeria" }, "");
+            history.pushState({ categoria: "home", subcategoria: "all" }, "");
         }
-        
-        renderizarGaleria();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        irParaGaleria();
     }
 
-    window.mostrarGaleriaTela = mostrarGaleriaTela; // Export to window if needed
+    window.mostrarGaleriaTela = mostrarGaleriaTela;
 
     function mostrarProdutosTela(push = true) {
-        if (telaGaleria) telaGaleria.classList.add("hidden");
-        if (telaProdutos) telaProdutos.classList.remove("hidden");
-        
         if (linkGaleria) linkGaleria.classList.remove("active");
-        
-        // Restore active class on the currently active category button (if not searching)
-        categoryBtns.forEach(b => {
-            if (termoBusca.trim() === "" && b.dataset.category === categoriaAtiva) b.classList.add("active");
-            else b.classList.remove("active");
-        });
-        
-        if (push) {
-            history.pushState({ categoria: categoriaAtiva }, "");
-        }
-        
-        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    window.mostrarProdutosTela = mostrarProdutosTela; // Export to window if needed
+    window.mostrarProdutosTela = mostrarProdutosTela;
 
     function abrirGaleriaModal(index) {
         currentPhotoIndex = index;
@@ -3278,30 +3476,57 @@ const initApp = () => {
     }
 
     // Event Listeners da Galeria e Lightbox
+    const irParaGaleria = () => {
+        if (categoriaAtiva !== "home") {
+            selecionarCategoria("home");
+            history.pushState({ categoria: "home", subcategoria: "all" }, "");
+        }
+        renderizarGaleria();
+        setTimeout(() => {
+            const homeGaleria = document.getElementById("home-galeria");
+            if (homeGaleria) {
+                homeGaleria.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }, 150);
+    };
+
     if (linkGaleria) {
         linkGaleria.addEventListener("click", (e) => {
             e.preventDefault();
-            mostrarGaleriaTela(true);
-            renderizarGaleria(); // Força a renderização imediata do grid de fotos
+            irParaGaleria();
         });
     }
 
     if (linkHome) {
         linkHome.addEventListener("click", (e) => {
             e.preventDefault();
-            // Reseta a categoria ativa para "home" ao clicar na logo para voltar pro início limpo
-            categoriaAtiva = "home";
-            subcategoriaAtiva = "all";
-            mostrarProdutosTela(true);
-            filtrarEMostrarProdutos();
+            selecionarCategoria("home");
+            history.pushState({ categoria: "home", subcategoria: "all" }, "");
         });
     }
 
-    const btnVoltarCardapio = document.getElementById("btn-voltar-cardapio");
-    if (btnVoltarCardapio) {
-        btnVoltarCardapio.addEventListener("click", () => {
-            mostrarProdutosTela(true);
-            filtrarEMostrarProdutos();
+    const btnVerDoces = document.querySelector('[data-action="ver-doces"]');
+    const btnVerBolos = document.querySelector('[data-action="ver-bolos"]');
+    const btnPlanejarFesta = document.querySelector('[data-action="planejar-festa"]');
+
+    if (btnVerDoces) {
+        btnVerDoces.addEventListener("click", () => {
+            selecionarCategoria("doces");
+            history.pushState({ categoria: "doces", subcategoria: "all" }, "");
+        });
+    }
+
+    if (btnVerBolos) {
+        btnVerBolos.addEventListener("click", () => {
+            selecionarCategoria("bolos");
+            history.pushState({ categoria: "bolos", subcategoria: "all" }, "");
+        });
+    }
+
+    if (btnPlanejarFesta) {
+        btnPlanejarFesta.addEventListener("click", () => {
+            const btnCalculator = document.getElementById("btn-open-calculator");
+            if (btnCalculator) btnCalculator.click();
         });
     }
 
@@ -3333,12 +3558,16 @@ const initApp = () => {
 
     // Inicialização da tela (SPA) baseada no estado do histórico ou padrão
     if (history.state && history.state.tela === "galeria") {
-        mostrarGaleriaTela(false);
+        selecionarCategoria("home");
+        irParaGaleria();
     } else {
         mostrarProdutosTela(false);
-        filtrarEMostrarProdutos();
-    }
-    // Adiar o carregamento do iframe do Google Maps (IntersectionObserver) para otimizar performance inicial
+        if (history.state && history.state.categoria) {
+            selecionarCategoria(history.state.categoria, history.state.subcategoria || "all");
+        } else {
+            selecionarCategoria(categoriaAtiva, subcategoriaAtiva);
+        }
+    }// Adiar o carregamento do iframe do Google Maps (IntersectionObserver) para otimizar performance inicial
     const mapIframe = document.querySelector(".about-map-container iframe");
     if (mapIframe) {
         if ("IntersectionObserver" in window) {

@@ -18,171 +18,8 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <!-- Estilos Asíncronos -->
-    <link rel="preload" href="style.css?v=1.0.2" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=1.0.2"></noscript>
-
-    <style>
-        /* RESET & VARIABLES */
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          font-family: "Cormorant Garamond", "Playfair Display", serif;
-          letter-spacing: 0.4px;
-        }
-        :root {
-          --primary-color: #20A4B4;
-          --primary-strong: #177F8C;
-          --secondary-color: #31B4C4;
-          --accent-color: #D4AF37;
-          --gold-primary: #D4AF37;
-          --text-color: #1A3038;
-          --light: #F4FAF9;
-          --light-2: #E2F3F2;
-          --border-color: #CBE6E4;
-          --success-color: #16a34a;
-          --error-color: #e11d48;
-        }
-        body {
-          font-family: "Cormorant Garamond", "Playfair Display", serif;
-          font-size: 1.15rem;
-          font-weight: 400;
-          letter-spacing: 0.4px;
-          line-height: 1.6;
-          background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
-                url('assets/background_otimizado.webp'); 
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-          background-attachment: fixed;
-          min-height: 100vh;
-          color: #2c3e50;
-        }
-        h1, h2, h3 {
-          font-family: "Cinzel Decorative", serif;
-        }
-
-        /* HEADER STYLE */
-        header {
-          background: #fff;
-          position: sticky;
-          top: 0;
-          z-index: 990;
-          padding: 1rem 2rem;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-          flex-wrap: wrap;
-          box-shadow: 0 6px 20px rgba(15, 23, 42, .06);
-          border-bottom: 1px solid #eef2f7;
-        }
-        .logo {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-        .logo-img {
-          height: 45px;
-          width: auto;
-          object-fit: contain;
-        }
-        .logo h1 {
-          font-family: "Cinzel Decorative", serif;
-          font-size: 1.6rem;
-          font-weight: 700;
-          color: var(--primary-strong);
-          letter-spacing: 1px;
-        }
-
-        /* HERO SECTION */
-        .hero-section {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-          text-align: center;
-          padding: 4rem 2rem; 
-          position: relative;
-          overflow: hidden;
-          background: transparent;
-        }
-        .hero-content {
-          width: 100%;
-          max-width: 850px;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 1.2rem;
-          position: relative;
-          background-color: rgba(255, 255, 255, 0.3);
-          backdrop-filter: blur(8px);
-          border: none;
-          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
-          padding: 3.8rem 3rem 5.8rem 3rem;
-          background-image: url("assets/moldura-ouro.webp");
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 100% 100%;
-        }
-        .hero-section p {
-          font-family: "Playfair Display", serif;
-          font-style: italic;
-          font-size: 1.4rem; 
-          color: var(--text-color);
-          letter-spacing: 0.5px;
-          max-width: 650px;
-          line-height: 1.3;
-          opacity: 0.9;
-          margin-top: -1rem;
-        }
-        .hero-logo {
-          width: 100%;
-          height: auto;
-          max-width: 380px;
-          max-height: 260px; 
-          object-fit: contain;
-        }
-
-        /* FONTAWESOME FONT-DISPLAY SWAP OVERRIDES */
-        @font-face {
-          font-family: 'Font Awesome 6 Free';
-          font-style: normal;
-          font-weight: 900;
-          font-display: swap;
-          src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2') format('woff2');
-        }
-        @font-face {
-          font-family: 'Font Awesome 6 Brands';
-          font-style: normal;
-          font-weight: 400;
-          font-display: swap;
-          src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2') format('woff2');
-        }
-
-        /* RESPONSIVE HERO & HEADER TWEAKS */
-        @media (max-width: 360px) {
-          header {
-            padding: 0.5rem 0.75rem !important;
-            gap: 0.4rem !important;
-          }
-          .logo {
-            gap: 6px !important;
-          }
-          .logo-img {
-            height: 32px !important;
-          }
-          .logo h1 {
-            font-size: 1.05rem !important;
-            letter-spacing: 0.5px !important;
-            white-space: nowrap;
-          }
-        }
-    </style>
+    <link rel="preload" href="style.css?v=1.1.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css?v=1.1.0"></noscript>
     <title>Tons do Sabor</title>
     <link rel="icon" type="image/png" href="./assets/LOGO_TURQUESA_1.webp">
 </head>
@@ -192,7 +29,7 @@
         <a href="#" id="link-home" class="logo-link">
             <div class="logo">
                 <img src="./assets/LOGO_TURQUESA_1.webp" alt="Logo Tons do Sabor" class="logo-img" fetchpriority="high" width="45" height="45">
-                <h1>Tons do Sabor</h1>
+                <h1>Tons do Sabor Confeitaria</h1>
             </div>
         </a>
 
@@ -223,23 +60,20 @@
                 <button class="category-btn active" data-category="home">
                     <i class="fa-solid fa-house" aria-hidden="true"></i> Home
                 </button>
+                <button class="category-btn" data-category="doces">
+                    <i class="fa-solid fa-cookie-bite" aria-hidden="true"></i> Doces
+                </button>
+                <button class="category-btn" data-category="lembrancinhas">
+                    <i class="fa-solid fa-gift" aria-hidden="true"></i> Lembrancinhas
+                </button>
                 <button class="category-btn" data-category="bolos">
-                    <i class="fa-solid fa-cake-candles" aria-hidden="true"></i> Bolos
-                </button>
-                <button class="category-btn" data-category="doces-tradicionais">
-                    <i class="fa-solid fa-cookie-bite" aria-hidden="true"></i> Doces Tradicionais
-                </button>
-                <button class="category-btn" data-category="doces-finos">
-                    <i class="fa-solid fa-gem" aria-hidden="true"></i> Doces Finos &amp; Especiais
-                </button>
-                <button class="category-btn" data-category="sobremesas-individuais">
-                    <i class="fa-solid fa-ice-cream" aria-hidden="true"></i> Sobremesas Individuais
+                    <i class="fa-solid fa-cake-candles" aria-hidden="true"></i> Bolos de Festa
                 </button>
                 <button class="category-btn" data-category="salgados">
                     <i class="fa-solid fa-pizza-slice" aria-hidden="true"></i> Salgados
                 </button>
-                <button class="category-btn" data-category="lembrancinhas">
-                    <i class="fa-solid fa-gift" aria-hidden="true"></i> Lembrancinhas &amp; Presentes
+                <button class="category-btn" data-category="sobremesas-tortas">
+                    <i class="fa-solid fa-ice-cream" aria-hidden="true"></i> Sobremesas e Tortas
                 </button>
             </nav>
         </div>
@@ -247,74 +81,130 @@
     </div>
 
     <div id="tela-produtos">
+        <!-- Wrapper para o Conteúdo da Home -->
+        <div id="home-content">
+            <!-- Hero Dinâmico slideshow -->
+            <section class="home-hero">
+                <div class="hero-slideshow" aria-hidden="true">
+                    <div class="hero-slide active" style="background-image: linear-gradient(rgba(26, 48, 56, 0.65), rgba(26, 48, 56, 0.65)), url('./assets/galeria/evento1.webp');"></div>
+                    <div class="hero-slide" style="background-image: linear-gradient(rgba(26, 48, 56, 0.65), rgba(26, 48, 56, 0.65)), url('./assets/Background2.webp');"></div>
+                    <div class="hero-slide" style="background-image: linear-gradient(rgba(26, 48, 56, 0.65), rgba(26, 48, 56, 0.65)), url('./assets/Bolos/BoloFesta1.webp');"></div>
+                    <div class="hero-slide" style="background-image: linear-gradient(rgba(26, 48, 56, 0.65), rgba(26, 48, 56, 0.65)), url('./assets/Lembrancinhas/bemCasado.webp');"></div>
+                </div>
 
-    <div class="hero-section">
-        <div class="hero-content">
-            <img src="./assets/Prancheta-1.webp" alt="Tons do Sabor - Atelier de Doces" class="hero-logo" fetchpriority="high" width="380" height="380">
-            <p>Tons que encantam, sabores que seduzem</p>
+                <div class="hero-overlay"></div>
 
-            <span class="canto-inferior-esquerdo"></span>
-            <span class="canto-inferior-direito"></span>
-        </div>
-    </div>
+                <div class="hero-brand">
+                    <p class="hero-eyebrow">Atelier de confeitaria</p>
+                    <h1 class="hero-title">Tons do Sabor Confeitaria</h1>
+                    <p class="hero-slogan">Tons que encantam, sabores que seduzem</p>
+                    <a href="#home-historia" class="hero-scroll-link">Descubra nossa história</a>
+                </div>
+            </section>
 
-    <section class="about-section" id="about">
-        <div class="about-container">
-            <div class="about-image">
-                <img src="./assets/Background2.webp" alt="Produção Tons do Sabor" loading="lazy" width="320" height="320">
-            </div>
-            <div class="about-text">
-                <h2>Quem Somos</h2>
-                <p>A <strong>Tons do Sabor</strong> nasceu da união entre <strong>Matheus Bastos</strong> e <strong>Tom Dias</strong>, dois apaixonados por transformar simples momentos em experiências cheias de afeto e alta gastronomia.</p>
-                
-                <p><strong>Matheus</strong>, profissional com mais de 15 anos de atuação e um olhar profundamente criativo e empreendedor, uniu sua sólida experiência à vontade de liderar um propósito doce: desenhar momentos inesquecíveis para cada cliente.</p>
-                
-                <p>Ao seu lado, <strong>Tom</strong> dá vida às receitas. Formado em Gastronomia pela PUCPR, atua há mais de uma década no universo culinária, acumulando passagens por confeitarias, cafés conceituados e eventos de grande porte em Curitiba, trazendo o rigor técnico e a excelência que se refletem em cada acabamento.</p>
-                
-                <p>Há mais de 5 anos no mercado, o atelier consolida sua trajetória de sucesso na criação de doces finos, macarons e bolos artísticos sob medida para casamentos, aniversários e celebrações memoráveis.</p>
-            </div>
-        </div>
-        <div class="important-info-container">
-            <div class="important-info-card" role="note">
-                <h3>Informações Importantes</h3>
-                <ul class="info-list">
-                    <li>
-                        <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
-                        <span><strong>Pedido mínimo:</strong> Trabalhamos com um limite mínimo de 20 unidades por sabor.</span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-clock" aria-hidden="true"></i>
-                        <span><strong>Taxa de urgência:</strong> Encomendas feitas com menos de 30 horas de antecedência terão acréscimo de 20% no valor do pedido (mediante disponibilidade de agenda).</span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
-                        <span><strong>Condições de pagamento:</strong> A produção é iniciada após a confirmação do sinal de 30%, e o saldo restante de 70% é pago no ato da entrega.</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="about-map-container">
-            <iframe data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115291.68819586144!2d-49.349925232982874!3d-25.438466699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce411933e1bd7%3A0x6739958189c490ff!2sCuritiba%20-%20PR!5e0!3m2!1spt-BR!2sbr!4v1718990000000!5m2!1spt-BR!2sbr" width="100" height="250" style="border:0; width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização do Atelier Tons do Sabor em Curitiba"></iframe>
-        </div>
-    </section>
+            <!-- Apresentação e História -->
+            <section id="home-historia" class="home-story home-section is-hidden-reveal">
+                <div class="story-container">
+                    <div class="story-image">
+                        <img src="./assets/Background2.webp" alt="Produção Tons do Sabor" loading="lazy" width="320" height="320">
+                    </div>
+                    <div class="story-content">
+                        <span class="section-eyebrow">Nossa essência</span>
+                        <h2>Histórias transformadas em sabores</h2>
+                        <p>A <strong>Tons do Sabor</strong> nasceu da união entre <strong>Matheus Bastos</strong> e <strong>Tom Dias</strong>, dois apaixonados por transformar simples momentos em experiências cheias de afeto e alta gastronomia.</p>
+                        <p><strong>Matheus</strong>, profissional com mais de 15 anos de atuação e um olhar profundamente criativo e empreendedor, uniu sua sólida experiência à vontade de liderar um propósito doce: desenhar momentos inesquecíveis para cada cliente.</p>
+                        <p>Ao seu lado, <strong>Tom</strong> dá vida às receitas. Formado em Gastronomia pela PUCPR, atua há mais de uma década no universo culinária, acumulando passagens por confeitarias, cafés conceituados e eventos de grande porte em Curitiba, trazendo o rigor técnico e a excelência que se refletem em cada acabamento.</p>
+                        <p>Há mais de 5 anos no mercado, o atelier consolida sua trajetória de sucesso na criação de doces finos, macarons e bolos artísticos sob medida para casamentos, aniversários e celebrações memoráveis.</p>
+                        <a href="#home-galeria" class="story-link">Conheça nossos momentos</a>
+                    </div>
+                </div>
+            </section>
 
-    <main class="products">
-        <h2 class="sr-only">Nossos Produtos</h2>
-        <h2 id="search-title" class="section-title" style="display: none; text-align: center; margin-top: 1.5rem; margin-bottom: 2.5rem; font-size: 2.2rem; color: var(--primary-strong);">Resultados da Busca</h2>
-        <ul class="products-container"><!-- cards gerados pelo script --></ul>
-    </main>
-    </div>
+            <!-- Chamada para o catálogo -->
+            <section class="catalog-cta home-section is-hidden-reveal">
+                <div class="cta-content">
+                    <h2>Feitos para celebrar</h2>
+                    <p>Conheça nossos doces, bolos e criações artesanais preparados para tornar cada momento inesquecível.</p>
+                    <div class="cta-buttons">
+                        <button class="cta-btn" data-action="ver-doces">Ver Doces</button>
+                        <button class="cta-btn" data-action="ver-bolos">Ver Bolos</button>
+                        <button class="cta-btn" data-action="planejar-festa">Planejar minha festa</button>
+                    </div>
+                </div>
+            </section>
 
-    <div id="tela-galeria" class="hidden">
-        <div class="galeria-nav-wrapper">
-            <button id="btn-voltar-cardapio" class="btn-voltar-cardapio">
-                <i class="fa-solid fa-arrow-left"></i> Voltar para o Cardápio
-            </button>
+            <!-- Galeria "Momentos Reais" -->
+            <section id="home-galeria" class="home-gallery home-section is-hidden-reveal">
+                <div class="gallery-wrapper">
+                    <h2>Momentos Reais</h2>
+                    <p class="gallery-intro">Vislumbres das celebrações reais e memórias felizes que ajudamos a criar.</p>
+                    <ul class="galeria-grid" id="galeria-container"></ul>
+                </div>
+            </section>
+
+            <!-- Avaliações de Clientes -->
+            <section id="home-avaliacoes" class="home-testimonials home-section is-hidden-reveal">
+                <div class="testimonials-wrapper">
+                    <h2>O que nossos clientes dizem</h2>
+                    <div class="testimonials-slider"></div>
+                </div>
+            </section>
+
+            <!-- Localização e Instagram (Dois grandes blocos lado a lado) -->
+            <section id="home-localizacao-instagram" class="home-info-blocks home-section is-hidden-reveal">
+                <div class="info-block location-block">
+                    <h2>Venha nos visitar</h2>
+                    <p>Atendemos com hora marcada em nosso atelier. Entre em contato para planejar suas comemorações e degustações especiais.</p>
+                    <div class="about-map-container">
+                        <iframe data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115291.68819586144!2d-49.349925232982874!3d-25.438466699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce411933e1bd7%3A0x6739958189c490ff!2sCuritiba%20-%20PR!5e0!3m2!1spt-BR!2sbr!4v1718990000000!5m2!1spt-BR!2sbr" width="100" height="250" style="border:0; width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização do Atelier Tons do Sabor em Curitiba"></iframe>
+                    </div>
+                    <a href="https://maps.app.goo.gl/r5w6W58189c490ff" target="_blank" rel="noopener noreferrer" class="location-cta">Abrir no Google Maps</a>
+                </div>
+
+                <div class="info-block instagram-block">
+                    <h2>Acompanhe a Tons do Sabor</h2>
+                    <p>Siga-nos no Instagram para acompanhar a nossa rotina, novidades e os bastidores das nossas produções diárias.</p>
+                    <div class="instagram-grid">
+                        <img src="./assets/reserva/brigadeiroTradicional.webp" alt="Instagram 1" loading="lazy">
+                        <img src="./assets/Background2.webp" alt="Instagram 2" loading="lazy">
+                        <img src="./assets/Bolos/BoloFesta1.webp" alt="Instagram 3" loading="lazy">
+                        <img src="./assets/Lembrancinhas/bemCasado.webp" alt="Instagram 4" loading="lazy">
+                    </div>
+                    <a href="https://www.instagram.com/tonsdosabor_/" target="_blank" rel="noopener noreferrer" class="instagram-cta">Siga-nos no Instagram</a>
+                </div>
+            </section>
+
+            <!-- Informações Importantes -->
+            <section class="important-info-section home-section is-hidden-reveal">
+                <div class="important-info-container">
+                    <div class="important-info-card" role="note">
+                        <h3>Informações Importantes</h3>
+                        <ul class="info-list">
+                            <li>
+                                <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>
+                                <span><strong>Pedido mínimo:</strong> Trabalhamos com um limite mínimo de 20 unidades por sabor.</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                                <span><strong>Taxa de urgência:</strong> Encomendas feitas com menos de 30 horas de antecedência terão acréscimo de 20% no valor do pedido (mediante disponibilidade de agenda).</span>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+                                <span><strong>Condições de pagamento:</strong> A produção é iniciada após a confirmação do sinal de 30%, e o saldo restante de 70% é pago no ato da entrega.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
         </div>
-        <section class="galeria-section">
-            <h2>Momentos Reais</h2>
-            <ul class="galeria-grid" id="galeria-container"></ul>
-        </section>
+
+        <!-- Wrapper para o Catálogo de Produtos -->
+        <main id="catalog-content" class="products is-hidden">
+            <div id="catalog-header" class="is-hidden"></div>
+            <h2 class="sr-only">Nossos Produtos</h2>
+            <h2 id="search-title" class="section-title is-hidden" style="text-align: center; margin-top: 1.5rem; margin-bottom: 2.5rem; font-size: 2.2rem; color: var(--primary-strong);">Resultados da Busca</h2>
+            <ul class="products-container"><!-- cards gerados pelo script --></ul>
+        </main>
     </div>
 
     <div class="cart-overlay"></div>
@@ -567,7 +457,7 @@
         <button class="modal-nav modal-next">&rsaquo;</button>
     </div>
 
-    <script src="./script.js?v=1.0.2"></script>
+    <script src="./script.js?v=1.1.0"></script>
 </body>
 
 </html>

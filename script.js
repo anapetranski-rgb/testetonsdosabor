@@ -138,7 +138,7 @@ const initApp = () => {
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Ao Leite", detalhe: "Brigadeiro gourmet coberto com splits de chocolate belga ao leite." },
+                { sabor: "Ao Leite", detalhe: "Brigadeiro fino coberto com splits de chocolate belga ao leite." },
                 { sabor: "Meio Amargo", detalhe: "Brigadeiro nobre coberto com granulado split meio amargo." },
                 { sabor: "Branco", detalhe: "Brigadeiro branco coberto com splits de chocolate belga branco." }
             ]
@@ -160,7 +160,7 @@ const initApp = () => {
             subcategoria: "finos",
             preco: 2.10,
             imagem: "./assets/DocesFinos/brigadeiroEspecial.webp",
-            descricao: "Brigadeiros gourmet em sabores especiais e receitas autorais.",
+            descricao: "Brigadeiros finos em sabores especiais e receitas autorais.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
@@ -353,7 +353,7 @@ const initApp = () => {
             categoria: "bolos",
             subcategoria: "especiais",
             preco: 250.00, 
-            imagem: "./assets/Bolos/gourmetG.webp",
+            imagem: "./assets/Bolos/finosG.webp",
             descricao: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg). Estrutura elegante ideal para comemorações.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -390,11 +390,11 @@ const initApp = () => {
         
         {
             id: 25,
-            nome: "Bolo Gourmet PP",
+            nome: "Bolo Fino PP",
             categoria: "bolos",
-            subcategoria: "gourmet",
+            subcategoria: "finos",
             preco: 115.00, 
-            imagem: "./assets/Bolos/gourmetPP.webp",
+            imagem: "./assets/Bolos/finosPP.webp",
             descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg). Combinações exclusivas de alta confeitaria.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -413,11 +413,11 @@ const initApp = () => {
         },
         {
             id: 26,
-            nome: "Bolo Gourmet P",
+            nome: "Bolo Fino P",
             categoria: "bolos",
-            subcategoria: "gourmet",
+            subcategoria: "finos",
             preco: 155.00, 
-            imagem: "./assets/Bolos/gourmetP.webp",
+            imagem: "./assets/Bolos/finosP.webp",
             descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg). Sabores finos e sofisticados.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -436,11 +436,11 @@ const initApp = () => {
         },
         {
             id: 27,
-            nome: "Bolo Gourmet M",
+            nome: "Bolo Fino M",
             categoria: "bolos",
-            subcategoria: "gourmet",
+            subcategoria: "finos",
             preco: 225.00, 
-            imagem: "./assets/Bolos/gourmetM.webp",
+            imagem: "./assets/Bolos/finosM.webp",
             descricao: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg). Criações requintadas.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -459,11 +459,11 @@ const initApp = () => {
         },
         {
             id: 28,
-            nome: "Bolo Gourmet G",
+            nome: "Bolo Fino G",
             categoria: "bolos",
-            subcategoria: "gourmet",
+            subcategoria: "finos",
             preco: 305.00, 
-            imagem: "./assets/Bolos/gourmetG.webp",
+            imagem: "./assets/Bolos/finosG.webp",
             descricao: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg). Experiência gastronômica marcante.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -482,11 +482,11 @@ const initApp = () => {
         },
         {
             id: 29,
-            nome: "Bolo Gourmet GG",
+            nome: "Bolo Fino GG",
             categoria: "bolos",
-            subcategoria: "gourmet",
+            subcategoria: "finos",
             preco: 429.00, 
-            imagem: "./assets/Bolos/gourmetGG.webp",
+            imagem: "./assets/Bolos/finosGG.webp",
             descricao: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg). O ápice do luxo para o seu grande dia.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
@@ -517,7 +517,7 @@ const initApp = () => {
                 { sabor: "Nutella", detalhe: "Massa de chocolate fofinha com recheio e cobertura generosa de Nutella pura." },
                 { sabor: "Doce de Leite", detalhe: "Massa de baunilha com recheio de doce de leite cozido e cobertura decorada." },
                 { sabor: "Beijinho", detalhe: "Massa de baunilha, recheio cremoso de coco e finalizado com cobertura de coco ralado." },
-                { sabor: "Brigadeiro Tradicional", detalhe: "Massa de chocolate com recheio e cobertura do nosso clássico brigadeiro gourmet." }
+                { sabor: "Brigadeiro Tradicional", detalhe: "Massa de chocolate com recheio e cobertura do nosso clássico brigadeiro fino." }
             ]
         },
         {
@@ -534,7 +534,7 @@ const initApp = () => {
                 { sabor: "Nutella", detalhe: "Massa de chocolate fofinha com recheio e cobertura generosa de Nutella pura." },
                 { sabor: "Doce de Leite", detalhe: "Massa de baunilha com recheio de doce de leite cozido e cobertura decorada." },
                 { sabor: "Beijinho", detalhe: "Massa de baunilha, recheio cremoso de coco e finalizado com cobertura de coco ralado." },
-                { sabor: "Brigadeiro Tradicional", detalhe: "Massa de chocolate com recheio e cobertura do nosso clássico brigadeiro gourmet." }
+                { sabor: "Brigadeiro Tradicional", detalhe: "Massa de chocolate com recheio e cobertura do nosso clássico brigadeiro fino." }
             ]
         },
         {
@@ -632,7 +632,7 @@ const initApp = () => {
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Brigadeiro em Granulado Split", detalhe: "Delicioso brigadeiro gourmet envolvido em splits de chocolate belga." },
+                { sabor: "Brigadeiro em Granulado Split", detalhe: "Delicioso brigadeiro fino envolvido em splits de chocolate belga." },
                 { sabor: "Caramelo Salgado em Crispearls", detalhe: "Brigadeiro de caramelo salgado finalizado com as famosas esferas crocantes Crispearls." }
             ]
         },
@@ -643,15 +643,15 @@ const initApp = () => {
             subcategoria: "finos",
             precoBase: 2.50,
             imagem: "./assets/DocesFinos/brigadeiroFerrero.webp",
-            descricao: "Sabores cl\u00e1ssicos refinados para festas e eventos. Pe\u00e7a o pistache e o suspiro como opcionais especiais.",
+            descricao: "Sabores clássicos refinados para festas e eventos. Peça o pistache e o suspiro como opcionais especiais.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Lim\u00e3o Siciliano", detalhe: "Brigadeiro gourmet saborizado de lim\u00e3o siciliano com granull\u00e9 branco.", adicional: 0.00 },
-                { sabor: "Caramelo Salgado", detalhe: "Brigadeiro cremoso de caramelo salgado com granull\u00e9 sabor caramelo.", adicional: 0.00 },
-                { sabor: "Ferrero", detalhe: "Feito com chocolate nobre e pedacinhos de avel\u00e3.", adicional: 0.00 },
-                { sabor: "Pistache Fino", detalhe: "Brigadeiro gourmet feito com pasta pura de pistache selecionado.", adicional: 1.80 },
-                { sabor: "Suspiro com Morangos", detalhe: "Combina\u00e7\u00e3o leve e crocante de mini suspiros com morango irresist\u00edvel.", adicional: 0.00 }
+                { sabor: "Limão Siciliano", detalhe: "Brigadeiro fino saborizado de limão siciliano com granullé branco.", adicional: 0.00 },
+                { sabor: "Caramelo Salgado", detalhe: "Brigadeiro cremoso de caramelo salgado com granullé sabor caramelo.", adicional: 0.00 },
+                { sabor: "Ferrero", detalhe: "Feito com chocolate nobre e pedacinhos de avelã.", adicional: 0.00 },
+                { sabor: "Pistache Fino", detalhe: "Brigadeiro fino feito com pasta pura de pistache selecionado.", adicional: 1.80 },
+                { sabor: "Suspiro com Morangos", detalhe: "Combinação leve e crocante de mini suspiros com morango irresistível.", adicional: 0.00 }
             ]
         },
         {
@@ -666,28 +666,28 @@ const initApp = () => {
             tipoPersonalizacao: "sabor",
             opcoes: [
                 { sabor: "Coco", detalhe: "Doce artesanal de coco super cremoso por dentro com casca crocante.", adicional: 0.00 },
-                { sabor: "Am\u00eandoa", detalhe: "Envolvido em l\u00e2minas crocantes de am\u00eandoa.", adicional: 2.20 },
+                { sabor: "Amêndoa", detalhe: "Envolvido em lâminas crocantes de amêndoa.", adicional: 2.20 },
                 { sabor: "Pistache", detalhe: "Recheio premium coberto com pistache triturado.", adicional: 2.60 }
             ]
         },
         {
             id: 49,
-            nome: "Sele\u00e7\u00e3o de Doces de Frutas & Castanhas",
+            nome: "Seleção de Doces de Frutas & Castanhas",
             categoria: "doces",
             subcategoria: "especiais",
             precoBase: 2.30,
             imagem: "./assets/DocesFinos/frutasECastanhas.webp",
-            descricao: "Doces finos cl\u00e1ssicos baseados em frutas nobres, castanhas e fondant.",
+            descricao: "Doces finos clássicos baseados em frutas nobres, castanhas e fondant.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Brigadeiro de Suspiro com Morangos", detalhe: "Combina\u00e7\u00e3o leve e crocante de mini suspiros com o sabor irresist\u00edvel de morango.", adicional: 0.00 },
+                { sabor: "Brigadeiro de Suspiro com Morangos", detalhe: "Combinação leve e crocante de mini suspiros com o sabor irresistível de morango.", adicional: 0.00 },
                 { sabor: "Olho de Sogra Fino - Ameixa", detalhe: "Beijinho cremoso combinado com ameixa selecionada.", adicional: 0.00 },
                 { sabor: "Olho de Sogra Fino - Damasco", detalhe: "Beijinho cremoso combinado com um toque nobre de damasco.", adicional: 0.00 },
                 { sabor: "Romeu e Julieta Fino", detalhe: "O casamento perfeito do queijo com a goiabada em roupagem fina.", adicional: 0.20 },
-                { sabor: "Morango Cristal", detalhe: "Morango inteiro envolto em brigadeiro e caramelizado com calda de a\u00e7\u00facar.", adicional: 1.60 },
-                { sabor: "Trouxinha de Nozes e Baba de Mo\u00e7a", detalhe: "Trouxinha fina recheada com estrogonofe de nozes e baba de mo\u00e7a.", adicional: 4.60 },
-                { sabor: "Trouxinha Marzipan", detalhe: "Trouxinha ultra premium com aut\u00eantica pasta de marzipan de am\u00eandoas.", adicional: 5.20 }
+                { sabor: "Morango Cristal", detalhe: "Morango inteiro envolto em brigadeiro e caramelizado com calda de açúcar.", adicional: 1.60 },
+                { sabor: "Trouxinha de Nozes e Baba de Moça", detalhe: "Trouxinha fina recheada com estrogonofe de nozes e baba de moça.", adicional: 4.60 },
+                { sabor: "Trouxinha Marzipan", detalhe: "Trouxinha ultra premium com autêntica pasta de marzipan de amêndoas.", adicional: 5.20 }
             ]
         },
         {
@@ -697,19 +697,19 @@ const initApp = () => {
             subcategoria: "especiais",
             precoBase: 2.90,
             imagem: "./assets/DocesFinos/copinhoClassico.webp",
-            descricao: "Copinhos de chocolate nobre com recheios cremosos e combina\u00e7\u00f5es exclusivas.",
+            descricao: "Copinhos de chocolate nobre com recheios cremosos e combinações exclusivas.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Mousse de Maracuj\u00e1", detalhe: "Mousse aerada de maracuj\u00e1 no copinho.", adicional: 0.00 },
-                { sabor: "Mousse de Lim\u00e3o", detalhe: "Mousse leve e refrescante de lim\u00e3o.", adicional: 0.00 },
-                { sabor: "Brigadeiro Tradicional", detalhe: "O nosso cl\u00e1ssico brigadeiro cremoso.", adicional: 0.00 },
+                { sabor: "Mousse de Maracujá", detalhe: "Mousse aerada de maracujá no copinho.", adicional: 0.00 },
+                { sabor: "Mousse de Limão", detalhe: "Mousse leve e refrescante de limão.", adicional: 0.00 },
+                { sabor: "Brigadeiro Tradicional", detalhe: "O nosso clássico brigadeiro cremoso.", adicional: 0.00 },
                 { sabor: "Beijinho de Coco", detalhe: "Delicioso creme artesanal de coco.", adicional: 0.00 },
                 { sabor: "Olho de Sogra", detalhe: "Beijinho de coco com toque de ameixa.", adicional: 0.00 },
                 { sabor: "Doce de Leite com Nozes", detalhe: "Doce de leite cozido com pedacinhos de nozes.", adicional: 0.00 },
-                { sabor: "Avel\u00e3 e Brigadeiro", detalhe: "Encontro de brigadeiro artesanal com creme de avel\u00e3.", adicional: 1.00 },
-                { sabor: "Abacaxi e Manjeric\u00e3o Premium", detalhe: "Combina\u00e7\u00e3o refrescante premium.", adicional: 1.60 },
-                { sabor: "Avel\u00e3 Crocante Premium", detalhe: "Recheio cremoso de avel\u00e3 com toque crocante.", adicional: 2.00 }
+                { sabor: "Avelã e Brigadeiro", detalhe: "Encontro de brigadeiro artesanal com creme de avelã.", adicional: 1.00 },
+                { sabor: "Abacaxi e Manjericão Premium", detalhe: "Combinação refrescante premium.", adicional: 1.60 },
+                { sabor: "Avelã Crocante Premium", detalhe: "Recheio cremoso de avelã com toque crocante.", adicional: 2.00 }
             ]
         },
         {
@@ -719,7 +719,7 @@ const initApp = () => {
             subcategoria: "especiais",
             precoBase: 4.90,
             imagem: "./assets/DocesFinos/caixinhaChocolate.webp",
-            descricao: "Elegantes caixinhas moldadas em chocolate com recheios finos e decora\u00e7\u00f5es sofisticadas. Selecione o seu sabor favorito.",
+            descricao: "Elegantes caixinhas moldadas em chocolate com recheios finos e decorações sofisticadas. Selecione o seu sabor favorito.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
@@ -734,8 +734,8 @@ const initApp = () => {
                     adicional: 0.00
                 },
                 {
-                    sabor: "Caixinha Br\u00fbll\u00e9",
-                    detalhe: "Creme br\u00fbl\u00e9e suave com a\u00e7\u00facar ma\u00e7aricado no topo.",
+                    sabor: "Caixinha Brûllé",
+                    detalhe: "Creme brûlée suave com açúcar maçaricado no topo.",
                     adicional: 1.00
                 },
                 {
@@ -750,30 +750,30 @@ const initApp = () => {
                 },
                 {
                     sabor: "Damasco",
-                    detalhe: "Combina\u00e7\u00e3o nobre com recheio artesanal de damasco.",
+                    detalhe: "Combinação nobre com recheio artesanal de damasco.",
                     adicional: -0.40
                 }
             ]
         },
         {
             id: 52,
-            nome: "Bombons Art\u00edsticos & Camafeus",
+            nome: "Bombons Artísticos & Camafeus",
             categoria: "doces",
             subcategoria: "finos",
             precoBase: 5.90,
             imagem: "./assets/DocesFinos/bombomArtistico.webp",
-            descricao: "Bombons finos pintados artesanalmente e camafeus tradicionais de nozes. Selecione a sua prefer\u00eancia.",
+            descricao: "Bombons finos pintados artesanalmente e camafeus tradicionais de nozes. Selecione a sua preferência.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Caf\u00e9", detalhe: "Recheio trufado intenso de caf\u00e9.", adicional: 0.00 },
-                { sabor: "Frutas Vermelhas", detalhe: "Ganache com geleia artesanal c\u00edtrica de frutas vermelhas.", adicional: 0.00 },
-                { sabor: "Abacaxi e Castanha do Par\u00e1", detalhe: "Equil\u00edbrio perfeito de fruta com a crocância da castanha.", adicional: 0.00 },
-                { sabor: "Lim\u00e3o Siciliano", detalhe: "Creme refrescante de lim\u00e3o siciliano.", adicional: 0.00 },
-                { sabor: "Toffee e Tomilho", detalhe: "Combina\u00e7\u00e3o sofisticada de caramelo toffee com infus\u00e3o de tomilho.", adicional: 0.00 },
-                { sabor: "Maracuj\u00e1", detalhe: "Ganache cremosa e azedinha de maracuj\u00e1.", adicional: 0.00 },
-                { sabor: "Camafeu de Nozes \u2014 Fondant Tradicional", detalhe: "O mais tradicional doce fino de casamento. Banhado na cl\u00e1ssica calda de a\u00e7\u00facar v\u00edtrea com nozes selecionadas.", adicional: -2.40 },
-                { sabor: "Camafeu de Nozes \u2014 Chocolate Branco", detalhe: "Camafeu em roupagem moderna banhado em puro chocolate branco nobre.", adicional: -2.40 }
+                { sabor: "Café", detalhe: "Recheio trufado intenso de café.", adicional: 0.00 },
+                { sabor: "Frutas Vermelhas", detalhe: "Ganache com geleia artesanal cítrica de frutas vermelhas.", adicional: 0.00 },
+                { sabor: "Abacaxi e Castanha do Pará", detalhe: "Equilíbrio perfeito de fruta com a crocância da castanha.", adicional: 0.00 },
+                { sabor: "Limão Siciliano", detalhe: "Creme refrescante de limão siciliano.", adicional: 0.00 },
+                { sabor: "Toffee e Tomilho", detalhe: "Combinação sofisticada de caramelo toffee com infusão de tomilho.", adicional: 0.00 },
+                { sabor: "Maracujá", detalhe: "Ganache cremosa e azedinha de maracujá.", adicional: 0.00 },
+                { sabor: "Camafeu de Nozes — Fondant Tradicional", detalhe: "O mais tradicional doce fino de casamento. Banhado na clássica calda de açúcar vítrea com nozes selecionadas.", adicional: -2.40 },
+                { sabor: "Camafeu de Nozes — Chocolate Branco", detalhe: "Camafeu em roupagem moderna banhado em puro chocolate branco nobre.", adicional: -2.40 }
             ]
         },
         {
@@ -787,25 +787,25 @@ const initApp = () => {
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Creme", detalhe: "Recheado com o cl\u00e1ssico creme de confeiteiro suave." },
+                { sabor: "Creme", detalhe: "Recheado com o clássico creme de confeiteiro suave." },
                 { sabor: "Doce de Leite", detalhe: "Recheado com doce de leite cozido cremoso." }
             ]
         },
         {
             id: 54,
-            nome: "Mini Tarteletes Gourmet",
+            nome: "Mini Tarteletes Finas",
             categoria: "sobremesas-tortas",
             subcategoria: "mini-sobremesas",
             precoBase: 5.90,
             imagem: "./assets/DocesFinos/tarteleteTradicional.webp",
-            descricao: "Mini tortas artesanais com massas crocantes, recheios finos e decora\u00e7\u00f5es sofisticadas.",
+            descricao: "Mini tortas artesanais com massas crocantes, recheios finos e decorações sofisticadas.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Lim\u00e3o Siciliano", detalhe: "Creme de lim\u00e3o siciliano e merengue ma\u00e7aricado.", adicional: 0.00 },
+                { sabor: "Limão Siciliano", detalhe: "Creme de limão siciliano e merengue maçaricado.", adicional: 0.00 },
                 { sabor: "Chocolate e Caramelo", detalhe: "Blend de chocolate meio amargo e caramelo.", adicional: 0.00 },
                 { sabor: "Frutas Tradicional", detalhe: "Creme de confeiteiro leve com frutas frescas.", adicional: 0.00 },
-                { sabor: "Maracuj\u00e1", detalhe: "Mousse de maracuj\u00e1 com sementinhas decorativas.", adicional: 0.00 },
+                { sabor: "Maracujá", detalhe: "Mousse de maracujá com sementinhas decorativas.", adicional: 0.00 },
                 { sabor: "Frutas Vermelhas com Mini Macaron Luxo", detalhe: "Base de frutas vermelhas com mini macaron no topo.", adicional: 3.00 },
                 { sabor: "Pistache com Mini Macaron Luxo", detalhe: "Creme de pistache nobre com mini macaron no topo.", adicional: 3.00 }
             ]
@@ -817,7 +817,7 @@ const initApp = () => {
             subcategoria: "mini-sobremesas",
             preco: 5.90,
             imagem: "./assets/DocesFinos/banoffee.webp",
-            descricao: "Cl\u00e1ssica sobremesa de banana com doce de leite e chantilly leve, montada em uma delicada por\u00e7\u00e3o individual.",
+            descricao: "Clássica sobremesa de banana com doce de leite e chantilly leve, montada em uma delicada porção individual.",
             requerPersonalizacao: false
         },
         {
@@ -827,7 +827,7 @@ const initApp = () => {
             subcategoria: "mini-sobremesas",
             preco: 3.30,
             imagem: "./assets/DocesFinos/pudim.webp",
-            descricao: "O cl\u00e1ssico pudim de leite condensado, super cremoso, em uma delicada vers\u00e3o mini para eventos.",
+            descricao: "O clássico pudim de leite condensado, super cremoso, em uma delicada versão mini para eventos.",
             requerPersonalizacao: false
         },
         {
@@ -837,7 +837,7 @@ const initApp = () => {
             subcategoria: "mini-sobremesas",
             preco: 3.90,
             imagem: "./assets/DocesFinos/quindim.webp",
-            descricao: "Doce tradicional \u00e0 base de gemas e coco, com brilho impec\u00e1vel e textura perfeita.",
+            descricao: "Doce tradicional à base de gemas e coco, com brilho impecável e textura perfeita.",
             requerPersonalizacao: false
         },
         {
@@ -861,7 +861,7 @@ const initApp = () => {
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
-                { sabor: "Brigadeiro com Morango", detalhe: "Coberto com nosso brigadeiro gourmet e peda\u00e7o de morango fresco." },
+                { sabor: "Brigadeiro com Morango", detalhe: "Coberto com nosso brigadeiro fino e pedaço de morango fresco." },
                 { sabor: "Nutella", detalhe: "Cobertura generosa de pura Nutella." }
             ]
         },
@@ -887,50 +887,50 @@ const initApp = () => {
             tipoPersonalizacao: "sabor",
             opcoes: [
                 { sabor: "Red Velvet", detalhe: "Camadas de bolo aveludado com creme de cream cheese." },
-                { sabor: "Torta de Lim\u00e3o", detalhe: "Creme c\u00edtrico de lim\u00e3o com base crocante e merengue." },
-                { sabor: "Mousse de Queijo e Frutas Vermelhas", detalhe: "Equil\u00edbrio perfeito do queijo com calda artesanal de frutas." },
-                { sabor: "Banoffee", detalhe: "O cl\u00e1ssico de banana, doce de leite e chantilly." },
-                { sabor: "Compota de Cereja", detalhe: "Deliciosa sobremesa com peda\u00e7os e calda de cereja." },
+                { sabor: "Torta de Limão", detalhe: "Creme cítrico de limão com base crocante e merengue." },
+                { sabor: "Mousse de Queijo e Frutas Vermelhas", detalhe: "Equilíbrio perfeito do queijo com calda artesanal de frutas." },
+                { sabor: "Banoffee", detalhe: "O clássico de banana, doce de leite e chantilly." },
+                { sabor: "Compota de Cereja", detalhe: "Deliciosa sobremesa com pedaços e calda de cereja." },
                 { sabor: "Panacotta", detalhe: "Tradicional receita italiana, leve e espelhada." },
-                { sabor: "Mousse de Chocolate, Amarula e Caramelo", detalhe: "Combina\u00e7\u00e3o intensa e cremosa com toque de licor." },
-                { sabor: "Mousse de Coulis de Maracuj\u00e1", detalhe: "Mousse aerada finalizada com calda brilhante de maracuj\u00e1." },
-                { sabor: "Sopa de Morangos", detalhe: "Sobremesa refrescante e nobre \u00e0 base de morangos selecionados." }
+                { sabor: "Mousse de Chocolate, Amarula e Caramelo", detalhe: "Combinação intensa e cremosa com toque de licor." },
+                { sabor: "Mousse de Coulis de Maracujá", detalhe: "Mousse aerada finalizada com calda brilhante de maracujá." },
+                { sabor: "Sopa de Morangos", detalhe: "Sobremesa refrescante e nobre à base de morangos selecionados." }
             ]
         },
         {
             id: 62,
-            nome: "Macarons em Pacote (Tecido e La\u00e7o)",
+            nome: "Macarons em Pacote (Tecido e Laço)",
             categoria: "lembrancinhas",
             preco: 9.50,
             imagem: "./assets/Lembrancinhas/macaronsPacote.webp",
-            descricao: "Delicados macarons embalados em pacote de tecido com um lindo acabamento em la\u00e7o.",
+            descricao: "Delicados macarons embalados em pacote de tecido com um lindo acabamento em laço.",
             requerPersonalizacao: false
         },
         {
             id: 63,
-            nome: "Macarons em Caixinha (Acr\u00edlico)",
+            nome: "Macarons em Caixinha (Acrílico)",
             categoria: "lembrancinhas",
             preco: 16.90,
             imagem: "./assets/Lembrancinhas/lembrancinhas-macaronsCaixinha.webp",
-            descricao: "Apresenta\u00e7\u00e3o luxuosa de macarons protegidos em uma caixinha transparente de acr\u00edlico.",
+            descricao: "Apresentação luxuosa de macarons protegidos em uma caixinha transparente de acrílico.",
             requerPersonalizacao: false
         },
         {
             id: 64,
-            nome: "Bem Casado Tradicional & Gourmet",
+            nome: "Bem Casado Tradicional & Fino",
             categoria: "lembrancinhas",
             preco: 7.90,
             imagem: "./assets/Lembrancinhas/bemCasado.webp",
-            descricao: "O maior cl\u00e1ssico das celebra\u00e7\u00f5es. Escolha o recheio perfeito para os seus convidados.",
+            descricao: "O maior clássico das celebrações. Escolha o recheio perfeito para os seus convidados.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
                 { sabor: "Doce de Leite", detalhe: "O recheio mais tradicional e amado por todos." },
                 { sabor: "Pistache", detalhe: "Creme nobre de pistache selecionado." },
-                { sabor: "Lim\u00e3o Siciliano", detalhe: "Toque c\u00edtrico e refrescante." },
+                { sabor: "Limão Siciliano", detalhe: "Toque cítrico e refrescante." },
                 { sabor: "Chocolate", detalhe: "Ganache cremosa de chocolate nobre." },
                 { sabor: "Brigadeiro", detalhe: "O nosso brigadeiro de festa artesanal." },
-                { sabor: "Frutas Vermelhas", detalhe: "Geleia artesanal peda\u00e7uda." },
+                { sabor: "Frutas Vermelhas", detalhe: "Geleia artesanal pedaçuda." },
                 { sabor: "Red Velvet", detalhe: "Massa vermelha aveludada com recheio especial." }
             ]
         },
@@ -945,11 +945,11 @@ const initApp = () => {
         },
         {
             id: 66,
-            nome: "P\u00e3o de Mel Gourmet",
+            nome: "Pão de Mel Fino",
             categoria: "lembrancinhas",
             preco: 7.90,
             imagem: "./assets/defaultLembrancinhas.webp",
-            descricao: "P\u00e3o de mel super fofinho com especiarias, recheado e banhado no chocolate nobre.",
+            descricao: "Pão de mel super fofinho com especiarias, recheado e banhado no chocolate nobre.",
             requerPersonalizacao: false
         },
         {
@@ -1023,7 +1023,7 @@ const initApp = () => {
         },
         {
             id: 72,
-            nome: "Mini Quiches Gourmet",
+            nome: "Mini Quiches Finas",
             categoria: "salgados",
             subcategoria: "assados",
             preco: 1.99,
@@ -1343,7 +1343,7 @@ const initApp = () => {
 
     const subcategoriasPorCategoria = {
         "doces": ["tradicionais", "especiais", "finos"],
-        "bolos": ["tradicionais", "frutados", "especiais"],
+        "bolos": ["tradicionais", "frutados", "especiais", "finos"],
         "salgados": ["fritos", "assados", "sanduiches"],
         "sobremesas-tortas": ["sobremesas-kg", "tortas-salgadas-kg"],
         "lembrancinhas": []
@@ -1358,7 +1358,8 @@ const initApp = () => {
         "bolos": {
             "tradicionais": { title: "Tradicionais", desc: "" },
             "frutados": { title: "Frutados", desc: "" },
-            "especiais": { title: "Especiais", desc: "" }
+            "especiais": { title: "Especiais", desc: "" },
+            "finos": { title: "Finos", desc: "" }
         },
         "salgados": {
             "fritos": { title: "Fritos", desc: "" },

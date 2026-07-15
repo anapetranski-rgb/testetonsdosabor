@@ -1580,9 +1580,9 @@ const initApp = () => {
 
         subcategoriaAtiva = subcategoria;
 
-        const megaDropdown = document.getElementById("megaDropdown");
+        const megaDropdown = document.getElementById("mega-dropdown");
         if (megaDropdown) {
-            megaDropdown.querySelectorAll(".chip").forEach(item => {
+            megaDropdown.querySelectorAll(".subcategory-card").forEach(item => {
                 if (item.dataset.subcategory === subcategoria) {
                     item.classList.add("active");
                 } else {
@@ -1619,24 +1619,28 @@ const initApp = () => {
             megaDropdown.classList.remove("is-hidden");
             megaDropdown.classList.add("show");
             megaDropdown.innerHTML = `
-                <div class="filter-chips-container">
+                <div class="subcategory-grid">
                     ${subcats.map(sub => {
                         const title = formatarNomeSubcategoria(sub);
                         const isActive = subcategoriaAtiva === sub;
-                        return `<button type="button" class="chip ${isActive ? 'active' : ''}" data-subcategory="${sub}">${title}</button>`;
+                        return `
+                            <button type="button" class="subcategory-card ${isActive ? 'active' : ''}" data-subcategory="${sub}">
+                                <span class="subcategory-card-title">${title}</span>
+                            </button>
+                        `;
                     }).join('')}
                 </div>
             `;
 
-            megaDropdown.querySelectorAll(".chip").forEach(btn => {
+            megaDropdown.querySelectorAll(".subcategory-card").forEach(btn => {
                 btn.addEventListener("click", (event) => {
-                    const chip = event.target.closest(".chip");
-                    if (!chip) return;
-                    const sub = chip.dataset.subcategory;
+                    const card = event.target.closest(".subcategory-card");
+                    if (!card) return;
+                    const sub = card.dataset.subcategory;
                     
                     subcategoriaAtiva = sub;
 
-                    megaDropdown.querySelectorAll(".chip").forEach(item => {
+                    megaDropdown.querySelectorAll(".subcategory-card").forEach(item => {
                         if (item.dataset.subcategory === sub) {
                             item.classList.add("active");
                         } else {

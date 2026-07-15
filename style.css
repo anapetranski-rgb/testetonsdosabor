@@ -58,7 +58,7 @@ h3 {
 
 /* Header */
 header {
-  background: #F3E9D8;
+  background: #ffffff;
   position: sticky;
   top: 0;
   z-index: 990;
@@ -69,7 +69,7 @@ header {
   gap: 1rem;
   flex-wrap: wrap;
   box-shadow: 0 6px 20px rgba(15, 23, 42, .06);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  border-bottom: 1px solid rgba(23, 127, 140, 0.12);
 }
 
 header a,
@@ -248,8 +248,8 @@ header button,
 
 /* Categorias */
 .categories-container {
-  background: #F3E9D8;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  background: #ffffff;
+  border-bottom: 1px solid rgba(23, 127, 140, 0.12);
   display: flex;
   overflow-x: auto;
   scrollbar-width: none;
@@ -2662,28 +2662,16 @@ footer .copyright {
   display: block;
 }
 
-/* CHIPS DE SUB-CATEGORIAS COMPACTOS */
-.mega-dropdown {
-  box-shadow: none;
-  border-bottom: none;
-  padding: 2rem 1.5rem 3.5rem;
-  margin: 0 auto 2.5rem auto;
-  opacity: 1;
-  visibility: visible;
-  max-height: none;
-  overflow: visible;
-  display: none;
-  max-width: 1200px;
+/* SUB-CATEGORIAS EM CARDS VISUAIS */
+.subcategory-selection-section {
   background: #FBF8F1;
-}
-
-.mega-dropdown.show {
-  display: block;
+  padding: 2rem 1.5rem 3.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .subcategory-grid {
   max-width: 1100px;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
@@ -2702,6 +2690,7 @@ footer .copyright {
   align-items: center;
   justify-content: center;
   text-align: center;
+  width: 100%;
 }
 
 .subcategory-card:hover,
@@ -2722,6 +2711,13 @@ footer .copyright {
   font-size: clamp(1.4rem, 2vw, 2rem);
   color: #1A3038;
   line-height: 1.2;
+}
+
+.subcategory-helper-text {
+  text-align: center;
+  font-family: "Lato", sans-serif;
+  font-size: 1.05rem;
+  color: #177F8C;
 }
 
 @media (max-width: 900px) {
@@ -2812,7 +2808,15 @@ footer .copyright {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(10, 58, 66, 0.72), rgba(10, 58, 66, 0.72));
+  background:
+    linear-gradient(
+      rgba(10, 58, 66, 0.68),
+      rgba(10, 58, 66, 0.72)
+    ),
+    linear-gradient(
+      rgba(243, 233, 216, 0.10),
+      rgba(243, 233, 216, 0.10)
+    );
   z-index: 3;
 }
 

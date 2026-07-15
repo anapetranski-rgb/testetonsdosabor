@@ -1508,9 +1508,14 @@ const initApp = () => {
 
         if (productsContainer) productsContainer.innerHTML = "";
         if (catalogHeader) catalogHeader.classList.add("is-hidden");
+        
         if (megaDropdown) {
             megaDropdown.classList.remove("show");
             megaDropdown.classList.add("is-hidden");
+        }
+        const subarea = document.getElementById("subcategory-selection-area");
+        if (subarea) {
+            subarea.classList.add("is-hidden");
         }
 
         atualizarCategoriasAtivas();
@@ -1580,9 +1585,9 @@ const initApp = () => {
 
         subcategoriaAtiva = subcategoria;
 
-        const megaDropdown = document.getElementById("mega-dropdown");
-        if (megaDropdown) {
-            megaDropdown.querySelectorAll(".subcategory-card").forEach(item => {
+        const subgrid = document.getElementById("subcategory-grid");
+        if (subgrid) {
+            subgrid.querySelectorAll(".subcategory-card").forEach(item => {
                 if (item.dataset.subcategory === subcategoria) {
                     item.classList.add("active");
                 } else {
@@ -1607,32 +1612,29 @@ const initApp = () => {
 
     const renderizarFiltrosSubcategoria = (cat) => {
         const subcats = obterSubcategoriasDaCategoria(cat);
+        const subarea = document.getElementById("subcategory-selection-area");
+        const subgrid = document.getElementById("subcategory-grid");
+
         if (subcats.length === 0) {
-            if (megaDropdown) {
-                megaDropdown.classList.remove("show");
-                megaDropdown.classList.add("is-hidden");
+            if (subarea) {
+                subarea.classList.add("is-hidden");
             }
             return;
         }
 
-        if (megaDropdown) {
-            megaDropdown.classList.remove("is-hidden");
-            megaDropdown.classList.add("show");
-            megaDropdown.innerHTML = `
-                <div class="subcategory-grid">
-                    ${subcats.map(sub => {
-                        const title = formatarNomeSubcategoria(sub);
-                        const isActive = subcategoriaAtiva === sub;
-                        return `
-                            <button type="button" class="subcategory-card ${isActive ? 'active' : ''}" data-subcategory="${sub}">
-                                <span class="subcategory-card-title">${title}</span>
-                            </button>
-                        `;
-                    }).join('')}
-                </div>
-            `;
+        if (subarea && subgrid) {
+            subarea.classList.remove("is-hidden");
+            subgrid.innerHTML = subcats.map(sub => {
+                const title = formatarNomeSubcategoria(sub);
+                const isActive = subcategoriaAtiva === sub;
+                return `
+                    <button type="button" class="subcategory-card ${isActive ? 'active' : ''}" data-subcategory="${sub}">
+                        <span class="subcategory-card-title">${title}</span>
+                    </button>
+                `;
+            }).join('');
 
-            megaDropdown.querySelectorAll(".subcategory-card").forEach(btn => {
+            subgrid.querySelectorAll(".subcategory-card").forEach(btn => {
                 btn.addEventListener("click", (event) => {
                     const card = event.target.closest(".subcategory-card");
                     if (!card) return;
@@ -1640,7 +1642,7 @@ const initApp = () => {
                     
                     subcategoriaAtiva = sub;
 
-                    megaDropdown.querySelectorAll(".subcategory-card").forEach(item => {
+                    subgrid.querySelectorAll(".subcategory-card").forEach(item => {
                         if (item.dataset.subcategory === sub) {
                             item.classList.add("active");
                         } else {
@@ -1795,6 +1797,7 @@ const initApp = () => {
         const catalogContent = document.getElementById("catalog-content");
         const searchTitle = document.getElementById("search-title");
         const catalogHeader = document.getElementById("catalog-header");
+        const subarea = document.getElementById("subcategory-selection-area");
 
         // GLOBAL SEARCH MODE
         if (termoBusca.trim() !== "") {
@@ -1803,6 +1806,9 @@ const initApp = () => {
             if (megaDropdown) {
                 megaDropdown.classList.remove("show");
                 megaDropdown.classList.add("is-hidden");
+            }
+            if (subarea) {
+                subarea.classList.add("is-hidden");
             }
             if (catalogHeader) catalogHeader.classList.add("is-hidden");
 
@@ -1875,6 +1881,9 @@ const initApp = () => {
                 megaDropdown.classList.remove("show");
                 megaDropdown.classList.add("is-hidden");
             }
+            if (subarea) {
+                subarea.classList.add("is-hidden");
+            }
             return;
         }
 
@@ -1885,11 +1894,7 @@ const initApp = () => {
 
         if (!subcategoriaAtiva) {
             renderizarCabecalhoEditorial(categoriaAtiva, 0);
-            container.innerHTML = `
-                <div class="catalog-selection-state">
-                    <p>Escolha uma opção acima para visualizar os produtos.</p>
-                </div>
-            `;
+            container.innerHTML = "";
             return;
         }
 
@@ -3236,73 +3241,21 @@ const initApp = () => {
     categoryBtns.forEach((btn) => {
         const cat = btn.dataset.category;
         
-        btn.addEventListener("mouseenter", () => {
-            if (window.innerWidth > 768) {
-                showMegaMenu(cat);
-            }
-        });
-
-        btn.addEventListener("mouseleave", () => {
-            if (window.innerWidth > 768) {
-                hideMegaMenu();
-            }
-        });
-
         btn.addEventListener("click", (e) => {
-            const subcats = getSubcategories(cat);
-            
-            if (window.innerWidth <= 768) {
-                
-                if (subcats.length > 0) {
-                    e.preventDefault();
-                    if (megaDropdown.classList.contains("show") && hoveredCategory === cat) {
-                        megaDropdown.classList.remove("show");
-                        hoveredCategory = null;
-                    } else {
-                        showMegaMenu(cat);
-                    }
-                } else {
-                    categoriaAtiva = cat;
-                    subcategoriaAtiva = "all";
-                    categoryBtns.forEach((b) => b.classList.remove("active"));
-                    btn.classList.add("active");
-                    megaDropdown.classList.remove("show");
-                    hoveredCategory = null;
-                    filtrarEMostrarProdutos();
-                    history.pushState({ categoria: cat }, "");
-                }
+            e.preventDefault();
+            if (cat === "home") {
+                mostrarHome(true);
             } else {
-                
-                categoriaAtiva = cat;
-                subcategoriaAtiva = "all";
-                categoryBtns.forEach((b) => b.classList.remove("active"));
-                btn.classList.add("active");
-                megaDropdown.classList.remove("show");
-                hoveredCategory = null;
-                filtrarEMostrarProdutos();
-                history.pushState({ categoria: cat }, "");
+                selecionarCategoria(cat, null, true);
             }
         });
     });
 
-    if (megaDropdown) {
-        megaDropdown.addEventListener("mouseenter", () => {
-            if (window.innerWidth > 768) {
-                clearTimeout(megaMenuTimeout);
-            }
-        });
-
-        megaDropdown.addEventListener("mouseleave", () => {
-            if (window.innerWidth > 768) {
-                hideMegaMenu();
-            }
-        });
-    }
-
     if (searchInput) {
         searchInput.addEventListener("input", (e) => {
             termoBusca = e.target.value;
-            if (megaDropdown) megaDropdown.classList.remove("show");
+            const subarea = document.getElementById("subcategory-selection-area");
+            if (subarea) subarea.classList.add("is-hidden");
             if (typeof telaProdutos !== "undefined" && telaProdutos && telaProdutos.classList.contains("hidden")) {
                 mostrarProdutosTela(true);
             }

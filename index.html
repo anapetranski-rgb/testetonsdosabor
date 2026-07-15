@@ -18,8 +18,8 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <!-- Estilos Asíncronos -->
-    <link rel="preload" href="./style.css?v=1.4.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="./style.css?v=1.4.0"></noscript>
+    <link rel="preload" href="./style.css?v=1.5.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="./style.css?v=1.5.0"></noscript>
     <title>Tons do Sabor</title>
     <link rel="icon" type="image/png" href="./assets/LOGO_TURQUESA_1.webp">
 </head>
@@ -160,7 +160,9 @@
                     <div class="about-map-container">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115291.68819586144!2d-49.349925232982874!3d-25.438466699999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce411933e1bd7%3A0x6739958189c490ff!2sCuritiba%20-%20PR!5e0!3m2!1spt-BR!2sbr!4v1718990000000!5m2!1spt-BR!2sbr" width="100%" height="320" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização do Atelier Tons do Sabor em Curitiba"></iframe>
                     </div>
-                    <a href="https://www.google.com/maps/place/Curitiba+-+PR" target="_blank" rel="noopener noreferrer" class="location-cta maps-button">Abrir no Google Maps</a>
+                    <div class="cta-wrapper">
+                        <a href="https://www.google.com/maps/place/Curitiba+-+PR" target="_blank" rel="noopener noreferrer" class="location-cta maps-button">Abrir no Google Maps</a>
+                    </div>
                 </div>
 
                 <div class="info-block instagram-block">
@@ -180,7 +182,9 @@
                             <img src="./assets/Lembrancinhas/bemCasado.webp" alt="Instagram 4" loading="lazy">
                         </a>
                     </div>
-                    <a href="https://www.instagram.com/tonsdosabor_/" target="_blank" rel="noopener noreferrer" class="instagram-cta">Siga-nos no Instagram</a>
+                    <div class="cta-wrapper">
+                        <a href="https://www.instagram.com/tonsdosabor_/" target="_blank" rel="noopener noreferrer" class="instagram-cta">Siga-nos no Instagram</a>
+                    </div>
                 </div>
             </section>
 
@@ -399,6 +403,32 @@
         </form>
     </dialog>
 
+    <dialog id="quickAddModal" class="modal">
+        <form class="customization-box" id="quick-add-form">
+            <button type="button" class="close" aria-label="Fechar janela">&times;</button>
+            <h2 id="quickAddTitle">Adicionar Produto</h2>
+            
+            <div style="padding: 0 1.5rem; text-align: center;">
+                <p class="quick-add-unit-price" id="quickAddUnitPrice" style="font-family: 'Lato', sans-serif; font-size: 1.15rem; color: #177F8C; font-weight: 700; margin-bottom: 0.5rem;"></p>
+                <p class="quick-add-minimum" id="quickAddMinimum" style="font-family: 'Lato', sans-serif; font-size: 0.95rem; color: #D4AF37; font-weight: 700; margin-bottom: 1.5rem;"></p>
+                
+                <div class="quick-add-quantity-control-wrapper" style="display: flex; justify-content: center; margin: 1.5rem 0;">
+                    <div class="quick-add-quantity-control" style="display: inline-flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 4px; overflow: hidden; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <button type="button" class="qty-btn qty-minus" style="background: #f1f5f9; border: none; width: 44px; height: 44px; font-size: 1.25rem; font-weight: bold; color: #177F8C; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s;">-</button>
+                        <input type="number" id="quickAddQtyInput" value="20" min="1" step="1" style="border: none; width: 70px; height: 44px; text-align: center; font-size: 1.2rem; font-weight: 700; color: #1A3038; margin: 0; outline: none; -moz-appearance: textfield;">
+                        <button type="button" class="qty-btn qty-plus" style="background: #f1f5f9; border: none; width: 44px; height: 44px; font-size: 1.25rem; font-weight: bold; color: #177F8C; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s;">+</button>
+                    </div>
+                </div>
+            </div>
+
+            <p class="quick-add-subtotal" id="quickAddSubtotal" style="font-size: 1.25rem; font-weight: 700; color: #8B4513; margin-bottom: 1.5rem; text-align: center; font-family: 'Playfair Display', serif;"></p>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn-confirm">Confirmar e Adicionar</button>
+            </div>
+        </form>
+    </dialog>
+
     <dialog id="calculatorModal" class="modal">
         <div class="calculator-box">
             <button type="button" class="close-calc" aria-label="Fechar janela">&times;</button>
@@ -475,7 +505,7 @@
         <button class="modal-nav modal-next">&rsaquo;</button>
     </div>
 
-    <script src="./script.js?v=1.4.0"></script>
+    <script src="./script.js?v=1.5.0"></script>
 </body>
 
 </html>

@@ -1513,6 +1513,8 @@ const initApp = () => {
 
         document.documentElement.style.removeProperty("overflow");
         document.body.style.removeProperty("overflow");
+        
+        if (typeof fecharQuickAddModal === "function") fecharQuickAddModal();
     }
 
     function mostrarHome(atualizarHistorico = true) {
@@ -2021,6 +2023,28 @@ const initApp = () => {
                 nome: produto.nome,
                 preco: basePreco,
                 quantidade: qtdInicial,
+                imagem: produto.imagem
+            });
+        }
+        atualizarCarrinho();
+    };
+
+    const adicionarAoCarrinhoComQuantidade = (produtoId, quantidade, productCard) => {
+        if (productCard) animacaoVoarParaCarrinho(productCard);
+        const produto = produtos.find((p) => p.id === produtoId);
+        if (!produto) return;
+
+        const basePreco = limparEParsarPreco(produto.preco !== undefined ? produto.preco : produto.precoBase);
+
+        const itemNoCarrinho = carrinho.find((item) => item.id === String(produto.id));
+        if (itemNoCarrinho) {
+            itemNoCarrinho.quantidade += quantidade;
+        } else {
+            carrinho.push({
+                id: String(produto.id),
+                nome: produto.nome,
+                preco: basePreco,
+                quantidade: quantidade,
                 imagem: produto.imagem
             });
         }
@@ -2960,6 +2984,138 @@ const initApp = () => {
         produtoSendoPersonalizado = null;
     });
 
+    const quickAddModal = document.getElementById('quickAddModal');
+    const quickAddForm = document.getElementById('quick-add-form');
+    const quickAddTitle = document.getElementById('quickAddTitle');
+    const quickAddUnitPrice = document.getElementById('quickAddUnitPrice');
+    const quickAddMinimum = document.getElementById('quickAddMinimum');
+    const quickAddQtyInput = document.getElementById('quickAddQtyInput');
+    const quickAddSubtotal = document.getElementById('quickAddSubtotal');
+
+    let quickAddProduct = null;
+    let quickAddCard = null;
+
+    function abrirQuickAddModal(productId, productCard) {
+        const product = produtos.find(p => p.id === productId);
+        if (!product) return;
+
+        quickAddProduct = product;
+        quickAddCard = productCard;
+
+        quickAddTitle.textContent = product.nome;
+
+        const basePreco = limparEParsarPreco(product.preco !== undefined ? product.preco : product.precoBase);
+        quickAddUnitPrice.textContent = `${formatarMoeda(basePreco)} por unidade`;
+
+        const requiresMinimum = product.categoria !== "bolos" && product.id !== 45;
+        const minQty = requiresMinimum ? 20 : 1;
+
+        if (requiresMinimum) {
+            quickAddMinimum.style.display = "block";
+            quickAddMinimum.textContent = `Pedido mínimo: 20 unidades`;
+            quickAddQtyInput.min = 20;
+            quickAddQtyInput.value = 20;
+        } else {
+            quickAddMinimum.style.display = "none";
+            quickAddQtyInput.min = 1;
+            quickAddQtyInput.value = 1;
+        }
+
+        atualizarQuickAddSubtotal();
+        if (modalMask) modalMask.classList.add('show');
+        quickAddModal.showModal();
+        quickAddModal.classList.add('show');
+        lockScroll();
+        setTimeout(() => createFocusTrap(quickAddModal), 50);
+    }
+
+    function fecharQuickAddModal() {
+        if (quickAddModal) {
+            quickAddModal.classList.remove('show');
+            if (quickAddModal.open) quickAddModal.close();
+        }
+        if (modalMask) modalMask.classList.remove('show');
+        unlockScroll();
+        quickAddProduct = null;
+        quickAddCard = null;
+    }
+
+    window.fecharQuickAddModal = fecharQuickAddModal;
+
+    function atualizarQuickAddSubtotal() {
+        if (!quickAddProduct) return;
+        const basePreco = limparEParsarPreco(quickAddProduct.preco !== undefined ? quickAddProduct.preco : quickAddProduct.precoBase);
+        const qty = parseInt(quickAddQtyInput.value) || 1;
+        const subtotal = basePreco * qty;
+        quickAddSubtotal.textContent = `Subtotal: ${formatarMoeda(subtotal)}`;
+    }
+
+    if (quickAddForm) {
+        const quickAddMinus = quickAddForm.querySelector('.qty-minus');
+        const quickAddPlus = quickAddForm.querySelector('.qty-plus');
+
+        if (quickAddMinus && quickAddPlus) {
+            quickAddMinus.addEventListener('click', () => {
+                const min = parseInt(quickAddQtyInput.min) || 1;
+                let qty = parseInt(quickAddQtyInput.value) || 1;
+                if (qty > min) {
+                    qty--;
+                    quickAddQtyInput.value = qty;
+                    atualizarQuickAddSubtotal();
+                }
+            });
+
+            quickAddPlus.addEventListener('click', () => {
+                let qty = parseInt(quickAddQtyInput.value) || 1;
+                qty++;
+                quickAddQtyInput.value = qty;
+                atualizarQuickAddSubtotal();
+            });
+        }
+
+        quickAddQtyInput.addEventListener('input', () => {
+            atualizarQuickAddSubtotal();
+        });
+
+        quickAddQtyInput.addEventListener('change', () => {
+            const min = parseInt(quickAddQtyInput.min) || 1;
+            let qty = parseInt(quickAddQtyInput.value) || 1;
+            if (qty < min) {
+                quickAddQtyInput.value = min;
+            }
+            atualizarQuickAddSubtotal();
+        });
+
+        quickAddForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!quickAddProduct) return;
+
+            const qty = parseInt(quickAddQtyInput.value) || 1;
+            const min = parseInt(quickAddQtyInput.min) || 1;
+            if (qty < min) {
+                alert(`A quantidade mínima é de ${min} unidades.`);
+                return;
+            }
+
+            adicionarAoCarrinhoComQuantidade(quickAddProduct.id, qty, quickAddCard);
+            fecharQuickAddModal();
+        });
+    }
+
+    const quickAddClose = document.querySelector("#quickAddModal .close");
+    if (quickAddClose) {
+        quickAddClose.addEventListener('click', fecharQuickAddModal);
+    }
+
+    if (quickAddModal) {
+        quickAddModal.addEventListener("click", (e) => {
+            if (e.target === quickAddModal) {
+                fecharQuickAddModal();
+            }
+        });
+        quickAddModal.addEventListener("close", fecharQuickAddModal);
+    }
+
     function abrirCalculatorModal() {
         calculatorResults.style.display = 'none';
         btnApplySuggestion.style.display = 'none';
@@ -3329,7 +3485,7 @@ const initApp = () => {
                 if (product && product.requerPersonalizacao) {
                     abrirModalCustomizacao(id);
                 } else {
-                    adicionarAoCarrinho(id, productCard);
+                    abrirQuickAddModal(id, productCard);
                 }
             }
         });

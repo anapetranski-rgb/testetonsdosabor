@@ -1298,6 +1298,18 @@ dialog.modal::backdrop {
   border-radius: 0 !important;
 }
 
+/* Custom height for Quick Add Modal dialog */
+#quickAddModal {
+  height: auto !important;
+  max-height: 90vh !important;
+}
+
+#quickAddModal .customization-box {
+  height: auto !important;
+  max-height: 90vh !important;
+  padding-bottom: 1rem !important;
+}
+
 .customization-box h2,
 .calculator-box h2 {
   font-family: 'Cinzel Decorative', serif !important;
@@ -3265,17 +3277,28 @@ footer .copyright {
   margin-bottom: 2rem;
 }
 
+.cta-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .location-cta {
-  display: inline-block;
-  align-self: flex-start;
-  background: #177F8C;
-  color: #ffffff;
-  padding: 0.9rem 2.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  padding: 1rem 1.75rem;
+  margin: 2rem auto 0;
+  text-align: center;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
+  border-radius: 4px;
+  background: #177F8C;
+  color: #ffffff;
   border: 1px solid #177F8C;
   transition: all 0.3s ease;
 }
@@ -3333,21 +3356,38 @@ footer .copyright {
 }
 
 .instagram-cta {
-  display: inline-block;
-  align-self: flex-start;
-  background: #1A3038;
-  color: #FBF8F1;
-  padding: 0.9rem 2.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  padding: 1rem 1.75rem;
+  margin: 2rem auto 0;
+  text-align: center;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
+  border-radius: 4px;
+  background: #1A3038;
+  color: #FBF8F1;
+  border: 1px solid #1A3038;
   transition: all 0.3s ease;
 }
 
 .instagram-cta:hover {
   background: #20A4B4;
+  border-color: #20A4B4;
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .location-cta,
+  .instagram-cta {
+    width: 100%;
+    max-width: 320px;
+    min-width: 0;
+  }
 }
 
 /* Important Info Section */

@@ -3093,47 +3093,26 @@ footer .copyright {
   margin-bottom: 3.5rem;
 }
 
-/* Asymmetric / Editorial Gallery Grid */
-/* Slider de Momentos Reais */
-.momentos-reais-slider {
-  display: flex;
+/* Grid de Momentos Reais */
+.momentos-reais-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.5rem;
-  overflow-x: auto;
-  padding: 0.5rem 1rem 1.5rem 1rem;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(23, 127, 140, 0.3) transparent;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
   list-style: none;
+  padding: 0;
   margin: 0;
 }
 
-.momentos-reais-slider::-webkit-scrollbar {
-  height: 6px;
-}
-
-.momentos-reais-slider::-webkit-scrollbar-thumb {
-  background-color: rgba(23, 127, 140, 0.3);
-  border-radius: 3px;
-}
-
-.momentos-reais-slider > * {
-  flex: 0 0 auto;
-  scroll-snap-align: start;
-}
-
-.momentos-reais-slider .galeria-item {
-  width: 280px;
+@media (max-width: 1024px) {
+  .momentos-reais-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
-  .momentos-reais-slider {
+  .momentos-reais-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
-    padding-bottom: 1rem;
-  }
-  .momentos-reais-slider .galeria-item {
-    width: 44vw;
-    max-width: 220px;
   }
 }
 

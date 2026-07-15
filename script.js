@@ -3432,12 +3432,10 @@ const initApp = () => {
 
     // --- LOGICA DA GALERIA SPA ---
     const imagensGaleria = [
-        "./assets/galeria/evento1.webp",
         "./assets/galeria/evento2.webp",
         "./assets/galeria/evento3.webp",
         "./assets/galeria/evento4.webp",
         "./assets/galeria/evento5.webp",
-        "./assets/galeria/evento6.webp",
         "./assets/galeria/evento7.webp",
         "./assets/galeria/evento8.webp",
         "./assets/galeria/evento9.webp"

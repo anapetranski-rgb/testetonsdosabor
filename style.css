@@ -3242,14 +3242,14 @@ footer .copyright {
 }
 
 .location-block {
-  background: #177F8C;
-  color: #FBF8F1;
+  background: #EADFC6;
+  color: #1A3038;
 }
 
 .location-block h2 {
   font-family: "Cormorant Garamond", "Playfair Display", serif;
   font-size: 2.6rem;
-  color: var(--brand-gold);
+  color: #1A3038;
   margin-bottom: 1rem;
 }
 
@@ -3258,7 +3258,7 @@ footer .copyright {
   font-size: 1.05rem;
   line-height: 1.7;
   margin-bottom: 2rem;
-  color: #E2F3F2;
+  color: #1A3038;
 }
 
 .location-block .about-map-container {
@@ -3268,19 +3268,22 @@ footer .copyright {
 .location-cta {
   display: inline-block;
   align-self: flex-start;
-  background: var(--brand-gold);
-  color: #1A3038;
+  background: #177F8C;
+  color: #ffffff;
   padding: 0.9rem 2.2rem;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
+  border: 1px solid #177F8C;
   transition: all 0.3s ease;
 }
 
 .location-cta:hover {
-  background: #ffffff;
+  background: #20A4B4;
+  border-color: #20A4B4;
+  color: #ffffff;
 }
 
 .instagram-block {

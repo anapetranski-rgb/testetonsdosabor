@@ -1755,8 +1755,12 @@ const initApp = () => {
                 </div>
             `;
         } else {
-            const subTitle = formatarNomeSubcategoria(subcategoriaAtiva);
-            tituloExibir = `${meta.title} - ${subTitle}`;
+            if (subcategoriaAtiva === "all" || !categoriaPossuiSubcategoriasReais(cat)) {
+                tituloExibir = meta.title;
+            } else {
+                const subTitle = formatarNomeSubcategoria(subcategoriaAtiva);
+                tituloExibir = `${meta.title} - ${subTitle}`;
+            }
             catalogHeader.innerHTML = `
                 <div class="catalog-editorial">
                     <span class="editorial-subtitle">CATÁLOGO TONS DO SABOR</span>

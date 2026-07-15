@@ -1125,20 +1125,42 @@ const initApp = () => {
     ];
 
     
+    const imagensDocesTradicionais = {
+        1: "./assets/reserva/brigadeiroTradicional.webp",
+        2: "./assets/reserva/brigadeiroBranco.webp",
+        3: "./assets/reserva/beijinho.webp",
+        4: "./assets/reserva/cajuzinho.webp"
+    };
+
+    function obterImagemDefaultDoce(produto) {
+        return "./assets/defaultDoces.webp";
+    }
+
+    function obterImagemProduto(produto) {
+        if (
+            produto.categoria === "doces" &&
+            produto.subcategoria === "tradicionais"
+        ) {
+            return imagensDocesTradicionais[produto.id] ||
+                obterImagemDefaultDoce(produto);
+        }
+
+        return produto.imagem;
+    }
+
+    window.aplicarFallbackImagem = function(img) {
+        img.addEventListener(
+            "error",
+            () => {
+                img.src = "./assets/defaultDoces.webp";
+            },
+            { once: true }
+        );
+    };
+
     produtos.forEach(p => {
-        if (p.categoria === "doces-tradicionais") {
-            const reservaImagens = {
-                1: "./assets/reserva/brigadeiroTradicional.webp",
-                2: "./assets/reserva/brigadeiroBranco.webp",
-                3: "./assets/reserva/beijinho.webp",
-                4: "./assets/reserva/cajuzinho.webp"
-            };
-            if (reservaImagens[p.id]) {
-                p.imagem = reservaImagens[p.id];
-            } else {
-                p.imagem = "./assets/defaultDoces.webp";
-            }
-        } else if (!p.imagem || p.imagem.trim() === "") {
+        p.imagem = obterImagemProduto(p);
+        if (!p.imagem || p.imagem.trim() === "") {
             p.imagem = p.categoria === "salgados" ? "./assets/defaultSalgado.webp" : (p.categoria === "lembrancinhas" ? "./assets/defaultLembrancinhas.webp" : "./assets/defaultDoces.webp");
         }
     });
@@ -1436,49 +1458,50 @@ const initApp = () => {
         });
     };
 
+    // Conteúdo temporário de demonstração.
+    // Substituir por avaliações reais aprovadas antes da publicação definitiva.
+    const depoimentosDemonstrativos = [
+        {
+            nome: "Depoimento demonstrativo 1",
+            evento: "Casamento",
+            texto: "Os doces fizeram parte de cada detalhe da celebração. A apresentação ficou delicada e encantadora.",
+            nota: 5,
+            demonstrativo: true
+        },
+        {
+            nome: "Depoimento demonstrativo 2",
+            evento: "Aniversário",
+            texto: "A mesa ficou linda e os sabores combinaram perfeitamente com a proposta da festa.",
+            nota: 5,
+            demonstrativo: true
+        },
+        {
+            nome: "Depoimento demonstrativo 3",
+            evento: "Evento especial",
+            texto: "O cuidado com os acabamentos e a organização transformou a encomenda em uma experiência especial.",
+            nota: 5,
+            demonstrativo: true
+        }
+    ];
+
     const renderTestimonials = () => {
-        const testimonialsSection = document.getElementById("home-avaliacoes");
-        const slider = document.querySelector(".testimonials-slider");
-        if (!testimonialsSection || !slider) return;
+        const testimonialsSection = document.getElementById("home-depoimentos");
+        const container = document.getElementById("testimonials-container");
+        if (!testimonialsSection || !container) return;
 
-        if (avaliacoes.length === 0) {
-            testimonialsSection.classList.add("is-hidden");
-            return;
-        }
-
-        testimonialsSection.classList.remove("is-hidden");
-
-        slider.innerHTML = `
-            <div class="testimonials-container" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; gap: 2rem; padding: 1rem 0;">
-                ${avaliacoes.map((av) => `
-                    <div class="testimonial-card" style="flex: 0 0 100%; scroll-snap-align: start; padding: 2.5rem 2rem; background: #ffffff; border: 1px solid #eef2f7; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.025);">
-                        <div class="stars" style="color: var(--brand-gold); font-size: 1.3rem; margin-bottom: 1.2rem;">
-                            ${"★".repeat(av.estrelas)}${"☆".repeat(5 - av.estrelas)}
-                        </div>
-                        <p style="font-family: 'Lato', sans-serif; font-size: 1.1rem; font-style: italic; line-height: 1.6; color: var(--brand-text); max-width: 600px; margin-bottom: 1.5rem; text-align: center;">"${av.texto}"</p>
-                        <h4 style="font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 700; color: var(--brand-dark); margin-bottom: 0.25rem;">${av.nome}</h4>
-                        ${av.evento ? `<span style="font-family: 'Lato', sans-serif; font-size: 0.85rem; color: #8fa4ab;">${av.evento}</span>` : ""}
-                    </div>
-                `).join('')}
+        container.innerHTML = depoimentosDemonstrativos.map((av) => `
+            <div class="testimonial-card">
+                <div class="testimonial-quote-icon">“</div>
+                <p class="testimonial-text">"${av.texto}"</p>
+                <div class="testimonial-stars">
+                    ${"★".repeat(av.nota)}${"☆".repeat(5 - av.nota)}
+                </div>
+                <div class="testimonial-meta">
+                    <span class="testimonial-event">${av.evento}</span>
+                    <span class="testimonial-tag">Depoimento demonstrativo</span>
+                </div>
             </div>
-            <div class="slider-controls" style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
-                <button type="button" class="slider-control-btn prev-btn" aria-label="Avaliação anterior" style="background: transparent; border: 1px solid var(--brand-dark); color: var(--brand-dark); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"><i class="fa-solid fa-chevron-left"></i></button>
-                <button type="button" class="slider-control-btn next-btn" aria-label="Próxima avaliação" style="background: transparent; border: 1px solid var(--brand-dark); color: var(--brand-dark); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
-        `;
-
-        const prevBtn = slider.querySelector(".prev-btn");
-        const nextBtn = slider.querySelector(".next-btn");
-        const container = slider.querySelector(".testimonials-container");
-
-        if (prevBtn && nextBtn && container) {
-            prevBtn.addEventListener("click", () => {
-                container.scrollBy({ left: -container.offsetWidth, behavior: 'smooth' });
-            });
-            nextBtn.addEventListener("click", () => {
-                container.scrollBy({ left: container.offsetWidth, behavior: 'smooth' });
-            });
-        }
+        `).join('');
     };
 
     function limparBloqueiosDeNavegacao() {
@@ -1531,6 +1554,7 @@ const initApp = () => {
         iniciarSlideshow();
         iniciarBrandAnimations();
         renderizarGaleria();
+        configurarNavegacaoMomentos();
         renderTestimonials();
         registrarScrollRevealHome();
 
@@ -1538,6 +1562,23 @@ const initApp = () => {
             top: 0,
             behavior: "smooth"
         });
+    }
+
+    function categoriaPossuiSubcategoriasReais(categoria) {
+        const valores = [
+            ...new Set(
+                produtos
+                    .filter((produto) =>
+                        produto.categoria === categoria
+                    )
+                    .map((produto) =>
+                        produto.subcategoria?.trim()
+                    )
+                    .filter(Boolean)
+            )
+        ];
+
+        return valores.length > 1;
     }
 
     function selecionarCategoria(categoria, subcategoria = null, atualizarHistorico = true) {
@@ -1556,6 +1597,11 @@ const initApp = () => {
         if (homeContent) homeContent.classList.add("is-hidden");
         if (catalogContent) catalogContent.classList.remove("is-hidden");
 
+        // If the category has no real subcategories, show all products immediately and skip selecting subcategory
+        if (!categoriaPossuiSubcategoriasReais(categoria)) {
+            subcategoriaAtiva = "all";
+        }
+
         renderizarFiltrosSubcategoria(categoriaAtiva);
         filtrarEMostrarProdutos();
         atualizarCategoriasAtivas();
@@ -1565,7 +1611,7 @@ const initApp = () => {
                 {
                     view: "catalog",
                     categoria: categoriaAtiva,
-                    subcategoria: subcategoriaAtiva
+                    subcategoria: subcategoriaAtiva === "all" ? null : subcategoriaAtiva
                 },
                 ""
             );
@@ -1615,7 +1661,7 @@ const initApp = () => {
         const subarea = document.getElementById("subcategory-selection-area");
         const subgrid = document.getElementById("subcategory-grid");
 
-        if (subcats.length === 0) {
+        if (subcats.length === 0 || !categoriaPossuiSubcategoriasReais(cat)) {
             if (subarea) {
                 subarea.classList.add("is-hidden");
             }
@@ -1848,7 +1894,7 @@ const initApp = () => {
                                 <li class="product-list-item">
                                     <article class="product-card" data-id="${p.id}">
                                         <div class="card-image-container">
-                                            <img class="product-img" src="${imgSrc}" ${dataSrc} alt="${p.nome}" loading="lazy" width="250" height="240">
+                                            <img class="product-img" src="${imgSrc}" ${dataSrc} alt="${p.nome}" onerror="aplicarFallbackImagem(this)" loading="lazy" width="250" height="240">
                                         </div>
                                         
                                         <div class="product-info">
@@ -1900,9 +1946,14 @@ const initApp = () => {
 
         let produtosFiltrados = produtos.filter((produto) => {
             const correspondeCategoria = produto.categoria === categoriaAtiva;
-            const correspondeSubcategoria = subcategoriaAtiva === "outros"
-                ? !produto.subcategoria
-                : produto.subcategoria === subcategoriaAtiva;
+            let correspondeSubcategoria = false;
+            if (subcategoriaAtiva === "all" || !categoriaPossuiSubcategoriasReais(categoriaAtiva)) {
+                correspondeSubcategoria = true;
+            } else if (subcategoriaAtiva === "outros") {
+                correspondeSubcategoria = !produto.subcategoria;
+            } else {
+                correspondeSubcategoria = produto.subcategoria === subcategoriaAtiva;
+            }
             return correspondeCategoria && correspondeSubcategoria;
         });
 
@@ -1928,7 +1979,7 @@ const initApp = () => {
                             <li class="product-list-item">
                                 <article class="product-card" data-id="${p.id}">
                                     <div class="card-image-container">
-                                        <img class="product-img" src="${imgSrc}" ${dataSrc} alt="${p.nome}" loading="lazy" width="250" height="240">
+                                        <img class="product-img" src="${imgSrc}" ${dataSrc} alt="${p.nome}" onerror="aplicarFallbackImagem(this)" loading="lazy" width="250" height="240">
                                     </div>
                                     
                                     <div class="product-info">
@@ -3460,12 +3511,12 @@ const initApp = () => {
         
         galeriaContainer.innerHTML = imagensGaleria.map((imgSrc, index) => {
             return `
-                <li class="galeria-item" data-index="${index}">
+                <article class="gallery-item galeria-item" data-index="${index}">
                     <img class="galeria-img" src="${imgSrc}" alt="Momento Real ${index + 1}" loading="lazy">
                     <div class="galeria-overlay">
                         <i class="fa-solid fa-magnifying-glass-plus"></i>
                     </div>
-                </li>
+                </article>
             `;
         }).join('');
         
@@ -3479,6 +3530,36 @@ const initApp = () => {
         });
         
         galeriaRenderizada = true;
+    }
+
+    function configurarNavegacaoMomentos() {
+        const carousel = document.querySelector(".moments-carousel");
+        const previousButton = document.querySelector(".moments-nav-prev");
+        const nextButton = document.querySelector(".moments-nav-next");
+
+        if (!carousel || !previousButton || !nextButton) return;
+
+        const obterDistancia = () => Math.max(carousel.clientWidth * 0.75, 300);
+
+        // Remove old listeners by replacing with clones
+        const newPrev = previousButton.cloneNode(true);
+        const newNext = nextButton.cloneNode(true);
+        previousButton.parentNode.replaceChild(newPrev, previousButton);
+        nextButton.parentNode.replaceChild(newNext, nextButton);
+
+        newPrev.addEventListener("click", () => {
+            carousel.scrollBy({
+                left: -obterDistancia(),
+                behavior: "smooth"
+            });
+        });
+
+        newNext.addEventListener("click", () => {
+            carousel.scrollBy({
+                left: obterDistancia(),
+                behavior: "smooth"
+            });
+        });
     }
 
     function mostrarGaleriaTela(push = true) {

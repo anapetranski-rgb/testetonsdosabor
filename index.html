@@ -18,8 +18,8 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <!-- Estilos Asíncronos -->
-    <link rel="preload" href="style.css?v=1.2.2.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=1.2.2.0"></noscript>
+    <link rel="preload" href="./style.css?v=1.3.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="./style.css?v=1.3.0"></noscript>
     <title>Tons do Sabor</title>
     <link rel="icon" type="image/png" href="./assets/LOGO_TURQUESA_1.webp">
 </head>
@@ -132,16 +132,24 @@
                 <div class="gallery-wrapper">
                     <h2>Momentos Reais</h2>
                     <p class="gallery-intro">Vislumbres das celebrações reais e memórias felizes que ajudamos a criar.</p>
-                    <ul class="momentos-reais-grid" id="galeria-container"></ul>
+                    <div class="moments-carousel-wrapper">
+                        <button type="button" class="moments-nav moments-nav-prev" aria-label="Ver imagens anteriores">‹</button>
+                        <div class="moments-carousel" id="galeria-container">
+                            <!-- imagens renderizadas -->
+                        </div>
+                        <button type="button" class="moments-nav moments-nav-next" aria-label="Ver próximas imagens">›</button>
+                    </div>
                 </div>
             </section>
 
-            <!-- Avaliações de Clientes -->
-            <section id="home-avaliacoes" class="home-testimonials home-section is-hidden-reveal">
-                <div class="testimonials-wrapper">
-                    <h2>O que nossos clientes dizem</h2>
-                    <div class="testimonials-slider"></div>
+            <!-- Seção de Depoimentos Demonstrativos -->
+            <section id="home-depoimentos" class="testimonials-section home-section is-hidden-reveal">
+                <div class="testimonials-heading">
+                    <span class="section-eyebrow">Conteúdo demonstrativo</span>
+                    <h2>O que dizem sobre a Tons do Sabor</h2>
+                    <p>Exemplos visuais que serão substituídos por avaliações reais.</p>
                 </div>
+                <div class="testimonials-carousel" id="testimonials-container"></div>
             </section>
 
             <!-- Localização e Instagram (Dois grandes blocos lado a lado) -->
@@ -467,7 +475,7 @@
         <button class="modal-nav modal-next">&rsaquo;</button>
     </div>
 
-    <script src="./script.js?v=1.2.0.0"></script>
+    <script src="./script.js?v=1.3.0"></script>
 </body>
 
 </html>

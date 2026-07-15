@@ -68,7 +68,8 @@ const initApp = () => {
         {
             id: 1,
             nome: "Brigadeiro Preto Tradicional",
-            categoria: "doces-tradicionais",
+            categoria: "doces",
+            subcategoria: "tradicionais",
             preco: 1.49,
             imagem: "./assets/DocesTradicionais/brigadeiroTradicional.webp",
             descricao: "O clássico e amado brigadeiro ao leite. Produto artesanal com aprox. 20g.",
@@ -77,7 +78,8 @@ const initApp = () => {
         {
             id: 2,
             nome: "Brigadeiro Branco Tradicional",
-            categoria: "doces-tradicionais",
+            categoria: "doces",
+            subcategoria: "tradicionais",
             preco: 1.49,
             imagem: "./assets/DocesTradicionais/brigadeiroBranco.webp",
             descricao: "Brigadeiro branco cremoso tradicional. Produto artesanal com aprox. 20g.",
@@ -86,7 +88,8 @@ const initApp = () => {
         {
             id: 3,
             nome: "Brigadeiro Beijinho",
-            categoria: "doces-tradicionais",
+            categoria: "doces",
+            subcategoria: "tradicionais",
             preco: 1.49,
             imagem: "./assets/DocesTradicionais/beijinho.webp",
             descricao: "Delicioso doce tradicional de coco ralado e leite condensado.",
@@ -95,7 +98,8 @@ const initApp = () => {
         {
             id: 4,
             nome: "Brigadeiro Cajuzinho",
-            categoria: "doces-tradicionais",
+            categoria: "doces",
+            subcategoria: "tradicionais",
             preco: 1.49,
             imagem: "./assets/DocesTradicionais/cajuzinho.webp",
             descricao: "Doce tradicional de amendoim com aquele toque clássico.",
@@ -104,7 +108,8 @@ const initApp = () => {
         {
             id: 5,
             nome: "Brigadeiro de Paçoca",
-            categoria: "doces-tradicionais",
+            categoria: "doces",
+            subcategoria: "tradicionais",
             preco: 1.49,
             imagem: "./assets/DocesTradicionais/paçoca.webp",
             descricao: "Sabor marcante de paçoca em formato de brigadeiro de festa.",
@@ -113,7 +118,8 @@ const initApp = () => {
         {
             id: 6,
             nome: "Brigadeiro Moranguinho",
-            categoria: "doces-tradicionais",
+            categoria: "doces",
+            subcategoria: "tradicionais",
             preco: 1.49,
             imagem: "./assets/DocesTradicionais/moranguinho.webp",
             descricao: "O clássico bicho de pé, brigadeiro saborizado de morango.",
@@ -124,8 +130,8 @@ const initApp = () => {
         {
             id: 7,
             nome: "Brigadeiro Granullé",
-            categoria: "doces-finos",
-            subcategoria: "brigadeiros-finos",
+            categoria: "doces",
+            subcategoria: "finos",
             preco: 2.50,
             imagem: "./assets/DocesFinos/brigadeiroGranule.webp",
             descricao: "Brigadeiro nobre coberto com splits de chocolate. Escolha a sua variação favorita.",
@@ -140,8 +146,8 @@ const initApp = () => {
         {
             id: 8,
             nome: "Brigadeiro Dois Amores",
-            categoria: "doces-finos",
-            subcategoria: "brigadeiros-finos",
+            categoria: "doces",
+            subcategoria: "finos",
             preco: 2.80,
             imagem: "./assets/DocesFinos/doisAmores.webp",
             descricao: "A união perfeita do brigadeiro preto e branco.",
@@ -150,8 +156,8 @@ const initApp = () => {
         {
             id: 9,
             nome: "Seleção de Brigadeiros Especiais",
-            categoria: "doces-finos",
-            subcategoria: "brigadeiros-finos",
+            categoria: "doces",
+            subcategoria: "finos",
             preco: 2.10,
             imagem: "./assets/DocesFinos/brigadeiroEspecial.webp",
             descricao: "Brigadeiros gourmet em sabores especiais e receitas autorais.",
@@ -168,8 +174,8 @@ const initApp = () => {
         {
             id: 13,
             nome: "Palha Italiana",
-            categoria: "doces-finos",
-            subcategoria: "brigadeiros-finos",
+            categoria: "doces",
+            subcategoria: "finos",
             preco: 1.90,
             imagem: "./assets/DocesFinos/palhaItaliana.webp",
             descricao: "Tradicional pedaço de palha italiana feito com brigadeiro cremoso e biscoito.",
@@ -500,8 +506,8 @@ const initApp = () => {
         {
             id: 40,
             nome: "Cupcake P",
-            categoria: "sobremesas-individuais",
-            subcategoria: "cupcakes",
+            categoria: "doces",
+            subcategoria: "especiais",
             preco: 4.50, 
             imagem: "./assets/DocesFinos/cupcakeP.webp",
             descricao: "Delicado mini bolo recheado e decorado com cobertura artesanal. Escolha o seu sabor favorito.",
@@ -517,8 +523,8 @@ const initApp = () => {
         {
             id: 41,
             nome: "Cupcake G",
-            categoria: "sobremesas-individuais",
-            subcategoria: "cupcakes",
+            categoria: "doces",
+            subcategoria: "especiais",
             preco: 8.50, 
             imagem: "./assets/DocesFinos/cupcakeG.webp",
             descricao: "Tamanho perfeito para lanches individuais ou lembrancinhas. Recheado e lindamente decorado.",
@@ -534,8 +540,8 @@ const initApp = () => {
         {
             id: 42,
             nome: "Bombons Tradicionais (Sicao)",
-            categoria: "doces-finos",
-            subcategoria: "bombons-e-macarons", 
+            categoria: "doces",
+            subcategoria: "finos", 
             precoBase: 2.90,
             imagem: "./assets/DocesFinos/bombomTradicional.webp",
             descricao: "Deliciosos bombons tradicionais com cobertura fracionada Sicao.",
@@ -553,8 +559,8 @@ const initApp = () => {
         {
             id: 43,
             nome: "Bombons Finos (Chocolate Nobre)",
-            categoria: "doces-finos",
-            subcategoria: "bombons-e-macarons", 
+            categoria: "doces",
+            subcategoria: "finos", 
             precoBase: 4.90,
             imagem: "./assets/DocesFinos/bombomFino.webp",
             descricao: "Bombons requintados de alta confeitaria produzidos com puro chocolate nobre temperado.",
@@ -571,8 +577,8 @@ const initApp = () => {
         {
             id: 44,
             nome: "Macarons Artesanais",
-            categoria: "doces-finos",
-            subcategoria: "bombons-e-macarons",
+            categoria: "doces",
+            subcategoria: "finos",
             preco: 7.90, 
             imagem: "./assets/DocesFinos/macaronsUnidade.webp",
             descricao: "Clássico doce francês crocante por fora e incrivelmente macio por dentro.",
@@ -589,8 +595,8 @@ const initApp = () => {
         {
             id: 45,
             nome: "Torre de Macarons",
-            categoria: "doces-finos",
-            subcategoria: "bombons-e-macarons",
+            categoria: "doces",
+            subcategoria: "finos",
             precoBase: 425.00, 
             imagem: "./assets/DocesFinos/torreMacarons.webp",
             descricao: "Uma belíssima torre de macarons para sua mesa de doces. Selecione o tamanho desejado e digite as cores de preferência na caixinha de texto. (De acordo com o limite)",
@@ -618,8 +624,8 @@ const initApp = () => {
         {
             id: 46,
             nome: "Brigadeiros Callebaut",
-            categoria: "doces-finos",
-            subcategoria: "brigadeiros-finos", 
+            categoria: "doces",
+            subcategoria: "finos", 
             preco: 6.50,
             imagem: "./assets/DocesFinos/brigadeiroCallebaut.webp",
             descricao: "Linha premium produzida com o autêntico chocolate belga Callebaut. Escolha a sua opção favorita.",
@@ -633,8 +639,8 @@ const initApp = () => {
         {
             id: 47,
             nome: "Brigadeiros Finos & Especiais",
-            categoria: "doces-finos",
-            subcategoria: "brigadeiros-finos",
+            categoria: "doces",
+            subcategoria: "finos",
             precoBase: 2.50,
             imagem: "./assets/DocesFinos/brigadeiroFerrero.webp",
             descricao: "Sabores cl\u00e1ssicos refinados para festas e eventos. Pe\u00e7a o pistache e o suspiro como opcionais especiais.",
@@ -651,8 +657,8 @@ const initApp = () => {
         {
             id: 48,
             nome: "Ouricos Artesanais",
-            categoria: "doces-finos",
-            subcategoria: "doces-especiais",
+            categoria: "doces",
+            subcategoria: "especiais",
             precoBase: 2.30,
             imagem: "./assets/DocesFinos/ouricoAmendoa.webp",
             descricao: "Doces finos modelados com texturas marcantes e crocantes.",
@@ -667,8 +673,8 @@ const initApp = () => {
         {
             id: 49,
             nome: "Sele\u00e7\u00e3o de Doces de Frutas & Castanhas",
-            categoria: "doces-finos",
-            subcategoria: "doces-especiais",
+            categoria: "doces",
+            subcategoria: "especiais",
             precoBase: 2.30,
             imagem: "./assets/DocesFinos/frutasECastanhas.webp",
             descricao: "Doces finos cl\u00e1ssicos baseados em frutas nobres, castanhas e fondant.",
@@ -687,8 +693,8 @@ const initApp = () => {
         {
             id: 50,
             nome: "Copinhos de Chocolate Artesanais",
-            categoria: "doces-finos",
-            subcategoria: "copinhos-e-caixinhas",
+            categoria: "doces",
+            subcategoria: "especiais",
             precoBase: 2.90,
             imagem: "./assets/DocesFinos/copinhoClassico.webp",
             descricao: "Copinhos de chocolate nobre com recheios cremosos e combina\u00e7\u00f5es exclusivas.",
@@ -709,8 +715,8 @@ const initApp = () => {
         {
             id: 51,
             nome: "Caixinhas de Chocolate Personalizadas",
-            categoria: "doces-finos",
-            subcategoria: "copinhos-e-caixinhas",
+            categoria: "doces",
+            subcategoria: "especiais",
             precoBase: 4.90,
             imagem: "./assets/DocesFinos/caixinhaChocolate.webp",
             descricao: "Elegantes caixinhas moldadas em chocolate com recheios finos e decora\u00e7\u00f5es sofisticadas. Selecione o seu sabor favorito.",
@@ -752,8 +758,8 @@ const initApp = () => {
         {
             id: 52,
             nome: "Bombons Art\u00edsticos & Camafeus",
-            categoria: "doces-finos",
-            subcategoria: "bombons-e-macarons",
+            categoria: "doces",
+            subcategoria: "finos",
             precoBase: 5.90,
             imagem: "./assets/DocesFinos/bombomArtistico.webp",
             descricao: "Bombons finos pintados artesanalmente e camafeus tradicionais de nozes. Selecione a sua prefer\u00eancia.",
@@ -773,7 +779,7 @@ const initApp = () => {
         {
             id: 53,
             nome: "Mini Mil Folhas",
-            categoria: "sobremesas-individuais",
+            categoria: "sobremesas-tortas",
             subcategoria: "mini-sobremesas",
             preco: 5.90,
             imagem: "./assets/DocesFinos/milFolhas.webp",
@@ -788,7 +794,7 @@ const initApp = () => {
         {
             id: 54,
             nome: "Mini Tarteletes Gourmet",
-            categoria: "sobremesas-individuais",
+            categoria: "sobremesas-tortas",
             subcategoria: "mini-sobremesas",
             precoBase: 5.90,
             imagem: "./assets/DocesFinos/tarteleteTradicional.webp",
@@ -807,7 +813,7 @@ const initApp = () => {
         {
             id: 55,
             nome: "Mini Banoffee",
-            categoria: "sobremesas-individuais",
+            categoria: "sobremesas-tortas",
             subcategoria: "mini-sobremesas",
             preco: 5.90,
             imagem: "./assets/DocesFinos/banoffee.webp",
@@ -817,7 +823,7 @@ const initApp = () => {
         {
             id: 56,
             nome: "Mini Pudim",
-            categoria: "sobremesas-individuais",
+            categoria: "sobremesas-tortas",
             subcategoria: "mini-sobremesas",
             preco: 3.30,
             imagem: "./assets/DocesFinos/pudim.webp",
@@ -827,7 +833,7 @@ const initApp = () => {
         {
             id: 57,
             nome: "Mini Quindim",
-            categoria: "sobremesas-individuais",
+            categoria: "sobremesas-tortas",
             subcategoria: "mini-sobremesas",
             preco: 3.90,
             imagem: "./assets/DocesFinos/quindim.webp",
@@ -837,7 +843,7 @@ const initApp = () => {
         {
             id: 58,
             nome: "Mini Pavlova",
-            categoria: "sobremesas-individuais",
+            categoria: "sobremesas-tortas",
             subcategoria: "mini-sobremesas",
             preco: 4.90,
             imagem: "./assets/DocesFinos/miniPavlova.webp",
@@ -847,7 +853,7 @@ const initApp = () => {
         {
             id: 59,
             nome: "Mini Brownies Especiais",
-            categoria: "sobremesas-individuais",
+            categoria: "sobremesas-tortas",
             subcategoria: "mini-sobremesas",
             preco: 4.90,
             imagem: "./assets/defaultDoces.webp",
@@ -862,7 +868,7 @@ const initApp = () => {
         {
             id: 60,
             nome: "Mini Cheesecake",
-            categoria: "sobremesas-individuais",
+            categoria: "sobremesas-tortas",
             subcategoria: "mini-sobremesas",
             preco: 6.90,
             imagem: "./assets/defaultDoces.webp",
@@ -872,7 +878,7 @@ const initApp = () => {
         {
             id: 61,
             nome: "Petit Verrines Premium",
-            categoria: "sobremesas-individuais",
+            categoria: "sobremesas-tortas",
             subcategoria: "petit-verrines",
             preco: 12.90,
             imagem: "./assets/defaultDoces.webp",
@@ -1276,6 +1282,35 @@ const initApp = () => {
     };
 
     
+    
+    function formatarNomeSubcategoria(valor) {
+        if (valor === "outros") return "Outros";
+        return valor
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (letra) => letra.toUpperCase());
+    }
+
+    function obterSubcategoriasDaCategoria(categoria) {
+        const subcats = [
+            ...new Set(
+                produtos
+                    .filter((produto) => produto.categoria === categoria)
+                    .map((produto) => produto.subcategoria)
+                    .filter(Boolean)
+            )
+        ];
+        
+        const temSemSubcategoria = produtos.some(
+            (produto) => produto.categoria === categoria && !produto.subcategoria
+        );
+        
+        if (temSemSubcategoria) {
+            subcats.push("outros");
+        }
+        
+        return subcats;
+    }
+
     const categoriaNomes = {
         "doces": "Doces",
         "lembrancinhas": "Lembrancinhas",
@@ -1500,11 +1535,11 @@ const initApp = () => {
         });
     }
 
-    function selecionarCategoria(categoria, subcategoria = "all", atualizarHistorico = true) {
+    function selecionarCategoria(categoria, subcategoria = null, atualizarHistorico = true) {
         limparBloqueiosDeNavegacao();
         
         categoriaAtiva = categoria;
-        subcategoriaAtiva = subcategoria || "all";
+        subcategoriaAtiva = subcategoria;
 
         // Reset search input on category change
         if (searchInput) searchInput.value = "";
@@ -1540,8 +1575,38 @@ const initApp = () => {
         }
     }
 
+    function selecionarSubcategoria(subcategoria, atualizarHistorico = true) {
+        if (!categoriaAtiva || !subcategoria) return;
+
+        subcategoriaAtiva = subcategoria;
+
+        const megaDropdown = document.getElementById("megaDropdown");
+        if (megaDropdown) {
+            megaDropdown.querySelectorAll(".chip").forEach(item => {
+                if (item.dataset.subcategory === subcategoria) {
+                    item.classList.add("active");
+                } else {
+                    item.classList.remove("active");
+                }
+            });
+        }
+
+        filtrarEMostrarProdutos();
+
+        if (atualizarHistorico) {
+            history.pushState(
+                {
+                    view: "catalog",
+                    categoria: categoriaAtiva,
+                    subcategoria: subcategoriaAtiva
+                },
+                ""
+            );
+        }
+    }
+
     const renderizarFiltrosSubcategoria = (cat) => {
-        const subcats = getSubcategories(cat);
+        const subcats = obterSubcategoriasDaCategoria(cat);
         if (subcats.length === 0) {
             if (megaDropdown) {
                 megaDropdown.classList.remove("show");
@@ -1550,42 +1615,53 @@ const initApp = () => {
             return;
         }
 
-        megaDropdown.innerHTML = `
-            <div class="filter-chips-container">
-                <button type="button" class="chip ${subcategoriaAtiva === 'all' ? 'active' : ''}" data-subcategory="all">Todos</button>
-                ${subcats.map(sub => {
-                    const subcatMeta = subcategoryMeta[cat] && subcategoryMeta[cat][sub];
-                    const title = subcatMeta ? subcatMeta.title : sub;
-                    const isActive = subcategoriaAtiva === sub;
-                    return `<button type="button" class="chip ${isActive ? 'active' : ''}" data-subcategory="${sub}">${title}</button>`;
-                }).join('')}
-            </div>
-        `;
+        if (megaDropdown) {
+            megaDropdown.classList.remove("is-hidden");
+            megaDropdown.classList.add("show");
+            megaDropdown.innerHTML = `
+                <div class="filter-chips-container">
+                    ${subcats.map(sub => {
+                        const title = formatarNomeSubcategoria(sub);
+                        const isActive = subcategoriaAtiva === sub;
+                        return `<button type="button" class="chip ${isActive ? 'active' : ''}" data-subcategory="${sub}">${title}</button>`;
+                    }).join('')}
+                </div>
+            `;
 
-        megaDropdown.querySelectorAll(".chip").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const sub = btn.dataset.subcategory;
-                subcategoriaAtiva = sub;
+            megaDropdown.querySelectorAll(".chip").forEach(btn => {
+                btn.addEventListener("click", (event) => {
+                    const chip = event.target.closest(".chip");
+                    if (!chip) return;
+                    const sub = chip.dataset.subcategory;
+                    
+                    subcategoriaAtiva = sub;
 
-                megaDropdown.querySelectorAll(".chip").forEach(item => {
-                    if (item.dataset.subcategory === sub) {
-                        item.classList.add("active");
-                    } else {
-                        item.classList.remove("active");
+                    megaDropdown.querySelectorAll(".chip").forEach(item => {
+                        if (item.dataset.subcategory === sub) {
+                            item.classList.add("active");
+                        } else {
+                            item.classList.remove("active");
+                        }
+                    });
+
+                    filtrarEMostrarProdutos();
+
+                    history.pushState(
+                        {
+                            view: "catalog",
+                            categoria: categoriaAtiva,
+                            subcategoria: subcategoriaAtiva
+                        },
+                        ""
+                    );
+                    
+                    const catalogHeader = document.getElementById("catalog-header");
+                    if (catalogHeader) {
+                        catalogHeader.scrollIntoView({ behavior: "smooth", block: "start" });
                     }
                 });
-
-                filtrarEMostrarProdutos();
-                history.pushState({ view: "catalog", categoria: cat, subcategoria: sub }, "");
-                
-                const catalogHeader = document.getElementById("catalog-header");
-                if (catalogHeader) {
-                    catalogHeader.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
             });
-        });
-        megaDropdown.classList.remove("is-hidden");
-        megaDropdown.classList.add("show");
+        }
     };
 
     const atualizarCategoriasAtivas = () => {
@@ -1614,22 +1690,31 @@ const initApp = () => {
         }
 
         let tituloExibir = meta.title;
-        if (subcategoriaAtiva && subcategoriaAtiva !== "all") {
-            const subcatMeta = subcategoryMeta[cat] && subcategoryMeta[cat][subcategoriaAtiva];
-            if (subcatMeta) {
-                tituloExibir = `${meta.title} - ${subcatMeta.title}`;
-            }
-        }
+        let descExibir = meta.desc;
 
-        catalogHeader.innerHTML = `
-            <div class="catalog-editorial">
-                <span class="editorial-subtitle">CATÁLOGO TONS DO SABOR</span>
-                <h2 class="editorial-title">${tituloExibir}</h2>
-                <p class="editorial-desc">${meta.desc}</p>
-                <div class="editorial-divider">◇</div>
-                <span class="editorial-count">${count} ${count === 1 ? 'PRODUTO' : 'PRODUTOS'}</span>
-            </div>
-        `;
+        if (!subcategoriaAtiva) {
+            descExibir = "Selecione uma opção para conhecer nossas criações";
+            catalogHeader.innerHTML = `
+                <div class="catalog-editorial">
+                    <span class="editorial-subtitle">CATÁLOGO TONS DO SABOR</span>
+                    <h2 class="editorial-title">${tituloExibir}</h2>
+                    <p class="editorial-desc">${descExibir}</p>
+                    <div class="editorial-divider">◇</div>
+                </div>
+            `;
+        } else {
+            const subTitle = formatarNomeSubcategoria(subcategoriaAtiva);
+            tituloExibir = `${meta.title} - ${subTitle}`;
+            catalogHeader.innerHTML = `
+                <div class="catalog-editorial">
+                    <span class="editorial-subtitle">CATÁLOGO TONS DO SABOR</span>
+                    <h2 class="editorial-title">${tituloExibir}</h2>
+                    <p class="editorial-desc">${descExibir}</p>
+                    <div class="editorial-divider">◇</div>
+                    <span class="editorial-count">${count} ${count === 1 ? 'PRODUTO' : 'PRODUTOS'}</span>
+                </div>
+            `;
+        }
         catalogHeader.classList.remove("is-hidden");
     };
 
@@ -1664,8 +1749,8 @@ const initApp = () => {
     };
 
     const getSubcategories = (cat) => {
-        return subcategoriasPorCategoria[cat] || [];
-    };
+        return obterSubcategoriasDaCategoria(cat);
+    };;
 
     const initProductLazyLoading = () => {
         const lazyImages = document.querySelectorAll(".product-img[data-src]");
@@ -1792,17 +1877,26 @@ const initApp = () => {
         if (homeContent) homeContent.classList.add("is-hidden");
         if (catalogContent) catalogContent.classList.remove("is-hidden");
 
-        let produtosFiltrados = produtos;
+        const container = document.querySelector(".products-container");
 
-        if (categoriaAtiva !== "all") {
-            produtosFiltrados = produtos.filter((produto) => {
-                const correspondeCategoria = produto.categoria === categoriaAtiva;
-                const correspondeSubcategoria = subcategoriaAtiva === "all" || produto.subcategoria === subcategoriaAtiva;
-                return correspondeCategoria && correspondeSubcategoria;
-            });
+        if (!subcategoriaAtiva) {
+            renderizarCabecalhoEditorial(categoriaAtiva, 0);
+            container.innerHTML = `
+                <div class="catalog-selection-state">
+                    <p>Escolha uma opção acima para visualizar os produtos.</p>
+                </div>
+            `;
+            return;
         }
 
-        const container = document.querySelector(".products-container");
+        let produtosFiltrados = produtos.filter((produto) => {
+            const correspondeCategoria = produto.categoria === categoriaAtiva;
+            const correspondeSubcategoria = subcategoriaAtiva === "outros"
+                ? !produto.subcategoria
+                : produto.subcategoria === subcategoriaAtiva;
+            return correspondeCategoria && correspondeSubcategoria;
+        });
+
         if (produtosFiltrados.length === 0) {
             renderizarCabecalhoEditorial(categoriaAtiva, 0);
             container.innerHTML = `
@@ -1840,14 +1934,10 @@ const initApp = () => {
                 )
                 .join("");
             
-            if (megaDropdown && getSubcategories(categoriaAtiva).length > 0) {
-                megaDropdown.classList.remove("is-hidden");
-                megaDropdown.classList.add("show");
-            }
             initProductLazyLoading();
             registrarScrollReveal();
         }
-    };
+    };;
 
     const adicionarAoCarrinho = (produtoId, productCard) => {
         if (productCard) animacaoVoarParaCarrinho(productCard);
@@ -3540,7 +3630,7 @@ const initApp = () => {
                 return;
             }
 
-            selecionarCategoria(category, "all", true);
+            selecionarCategoria(category, null, true);
         });
     });
 
@@ -3552,7 +3642,7 @@ const initApp = () => {
             const category = event.currentTarget.dataset.category;
             if (!category) return;
 
-            selecionarCategoria(category, "all", true);
+            selecionarCategoria(category, null, true);
         });
     });
 
@@ -3608,10 +3698,27 @@ const initApp = () => {
             return;
         }
 
-        if (state.view === "catalog") {
+        if (
+            state.view === "catalog" &&
+            state.categoria &&
+            !state.subcategoria
+        ) {
             selecionarCategoria(
                 state.categoria,
-                state.subcategoria || "all",
+                null,
+                false
+            );
+            return;
+        }
+
+        if (
+            state.view === "catalog" &&
+            state.categoria &&
+            state.subcategoria
+        ) {
+            selecionarCategoria(
+                state.categoria,
+                state.subcategoria,
                 false
             );
         }
@@ -3620,7 +3727,7 @@ const initApp = () => {
     // Inicialização da tela (SPA) baseada no estado do histórico ou padrão
     const state = history.state;
     if (state && state.view === "catalog") {
-        selecionarCategoria(state.categoria, state.subcategoria || "all", false);
+        selecionarCategoria(state.categoria, state.subcategoria || null, false);
     } else {
         mostrarHome(false);
     }

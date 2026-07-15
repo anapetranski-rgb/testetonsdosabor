@@ -2827,6 +2827,17 @@ footer .copyright {
   gap: 1rem;
 }
 
+.hero-main-logo {
+  display: block;
+  width: min(520px, 78vw);
+  max-height: 240px;
+  object-fit: contain;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease 0.6s, transform 1.2s ease 0.6s;
+}
+
 .hero-eyebrow {
   font-family: 'Lato', sans-serif;
   font-size: 0.9rem;
@@ -2882,6 +2893,7 @@ footer .copyright {
   color: var(--brand-gold);
 }
 
+.home-hero.reveal-active .hero-main-logo,
 .home-hero.reveal-active .hero-eyebrow,
 .home-hero.reveal-active .hero-title,
 .home-hero.reveal-active .hero-slogan,
@@ -3310,6 +3322,7 @@ footer .copyright {
     transform: none !important;
     transition: none !important;
   }
+  .hero-main-logo,
   .hero-eyebrow,
   .hero-title,
   .hero-slogan,
@@ -3324,4 +3337,17 @@ footer .copyright {
   .instagram-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* Estado de Seleção Vazia de Subcategoria */
+.catalog-selection-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+.catalog-selection-state p {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #177F8C;
 }

@@ -157,10 +157,10 @@ const initApp = () => {
             id: 9,
             nome: "Seleção de Brigadeiros Especiais",
             categoria: "doces",
-            subcategoria: "finos",
+            subcategoria: "tradicionais",
             preco: 2.10,
             imagem: "./assets/DocesFinos/brigadeiroEspecial.webp",
-            descricao: "Brigadeiros finos em sabores especiais e receitas autorais.",
+            descricao: "Brigadeiros em sabores especiais e receitas autorais.",
             requerPersonalizacao: true,
             tipoPersonalizacao: "sabor",
             opcoes: [
@@ -168,7 +168,8 @@ const initApp = () => {
                 { sabor: "Ninho com Nutella", detalhe: "Brigadeiro de leite Ninho original recheado com Nutella pura." },
                 { sabor: "Uva Verde", detalhe: "Uva verde fresca envolvida por brigadeiro branco." },
                 { sabor: "Brûlée", detalhe: "Brigadeiro de baunilha com crosta de açúcar maçaricado." },
-                { sabor: "Flor de Morango", detalhe: "Brigadeiro de morango (Nesquik) moldado em formato de florzinha." }
+                { sabor: "Flor de Morango", detalhe: "Brigadeiro de morango (Nesquik) moldado em formato de florzinha." },
+                { sabor: "Dois Amores", detalhe: "A união perfeita do brigadeiro preto e branco em um único docinho." }
             ]
         },
         {

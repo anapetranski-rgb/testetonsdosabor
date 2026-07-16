@@ -337,16 +337,6 @@ const initApp = () => {
         ]
         },
         {
-        id: 8,
-        nome: "Brigadeiro Dois Amores",
-        categoria: "doces",
-        subcategoria: "finos",
-        preco: 2.80,
-        imagem: "./assets/DocesFinos/doisAmores.webp",
-        descricao: "A união perfeita do brigadeiro preto e branco.",
-        requerPersonalizacao: false
-        },
-        {
         id: 7,
         nome: "Brigadeiro Granullé",
         categoria: "doces",

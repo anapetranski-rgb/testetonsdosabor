@@ -55,20 +55,23 @@
                 <button type="button" class="category-btn active" data-category="home">
                     <i class="fa-solid fa-house" aria-hidden="true"></i> Home
                 </button>
-                <button type="button" class="category-btn" data-category="doces">
-                    <i class="fa-solid fa-cookie-bite" aria-hidden="true"></i> Doces
+                <button type="button" class="category-btn" data-category="doces-classicos-especiais">
+                    <i class="fa-solid fa-cookie-bite" aria-hidden="true"></i> Clássicos & Especiais
                 </button>
-                <button type="button" class="category-btn" data-category="lembrancinhas">
-                    <i class="fa-solid fa-gift" aria-hidden="true"></i> Lembrancinhas
+                <button type="button" class="category-btn" data-category="doces-finos-artisticos">
+                    <i class="fa-solid fa-gem" aria-hidden="true"></i> Finos & Artísticos
                 </button>
                 <button type="button" class="category-btn" data-category="bolos">
-                    <i class="fa-solid fa-cake-candles" aria-hidden="true"></i> Bolos de Festa
+                    <i class="fa-solid fa-cake-candles" aria-hidden="true"></i> Bolos
                 </button>
                 <button type="button" class="category-btn" data-category="salgados">
                     <i class="fa-solid fa-pizza-slice" aria-hidden="true"></i> Salgados
                 </button>
+                <button type="button" class="category-btn" data-category="lembrancinhas">
+                    <i class="fa-solid fa-gift" aria-hidden="true"></i> Lembrancinhas
+                </button>
                 <button type="button" class="category-btn" data-category="sobremesas-tortas">
-                    <i class="fa-solid fa-ice-cream" aria-hidden="true"></i> Sobremesas e Tortas
+                    <i class="fa-solid fa-ice-cream" aria-hidden="true"></i> Sobremesas & Tortas
                 </button>
             </nav>
         </div>
@@ -120,7 +123,7 @@
                     <h2>Feitos para celebrar</h2>
                     <p>Conheça nossos doces, bolos e criações artesanais preparados para tornar cada momento inesquecível.</p>
                     <div class="cta-buttons">
-                        <button type="button" class="cta-btn celebrate-action" data-category="doces">Ver Doces</button>
+                        <button type="button" class="cta-btn celebrate-action" data-category="doces-classicos-especiais">Ver Doces</button>
                         <button type="button" class="cta-btn celebrate-action" data-category="bolos">Ver Bolos</button>
                         <button type="button" class="cta-btn" id="celebrate-calculator">Planejar minha festa</button>
                     </div>
@@ -215,6 +218,18 @@
         <!-- Wrapper para o Catálogo de Produtos -->
         <main id="catalog-content" class="products is-hidden">
             <div id="catalog-header" class="is-hidden"></div>
+            
+            <!-- Breadcrumb e Botão Voltar -->
+            <div id="catalog-breadcrumb-area" class="catalog-breadcrumb-area is-hidden">
+                <div class="breadcrumb-nav">
+                    <span id="breadcrumb-category">Categoria</span>
+                    <i class="fa-solid fa-chevron-right breadcrumb-separator"></i>
+                    <span id="breadcrumb-subcategory" class="breadcrumb-current">Subcategoria</span>
+                </div>
+                <button type="button" id="btn-back-to-subcategories" class="btn-back-to-subcategories">
+                    <i class="fa-solid fa-arrow-left"></i> Voltar às subcategorias
+                </button>
+            </div>
             <h2 class="sr-only">Nossos Produtos</h2>
             <h2 id="search-title" class="section-title is-hidden" style="text-align: center; margin-top: 1.5rem; margin-bottom: 2.5rem; font-size: 2.2rem; color: var(--primary-strong);">Resultados da Busca</h2>
             

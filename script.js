@@ -64,9 +64,9 @@ const initApp = () => {
 
     
     const produtos = [
-        {
+{
         id: 3,
-        nome: "Brigadeiro Beijinho",
+        nome: "Beijinho",
         categoria: "doces",
         subcategoria: "tradicionais",
         preco: 1.49,
@@ -74,9 +74,9 @@ const initApp = () => {
         descricao: "Delicioso doce tradicional de coco ralado e leite condensado.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 2,
-        nome: "Brigadeiro Branco Tradicional",
+        nome: "Brigadeiro Branco",
         categoria: "doces",
         subcategoria: "tradicionais",
         preco: 1.49,
@@ -85,16 +85,26 @@ const initApp = () => {
         requerPersonalizacao: false
         },
         {
-        id: 4,
-        nome: "Brigadeiro Cajuzinho",
+        id: 102,
+        nome: "Brigadeiro Brûlée",
         categoria: "doces",
         subcategoria: "tradicionais",
-        preco: 1.49,
-        imagem: "./assets/DocesTradicionais/cajuzinho.webp",
-        descricao: "Doce tradicional de amendoim com aquele toque clássico.",
+        preco: 2.10,
+        imagem: "./assets/DocesFinos/brigadeiroEspecial.webp",
+        descricao: "Brigadeiro de baunilha com crosta de açúcar maçaricado.",
         requerPersonalizacao: false
         },
         {
+        id: 101,
+        nome: "Brigadeiro Churros",
+        categoria: "doces",
+        subcategoria: "tradicionais",
+        preco: 2.10,
+        imagem: "./assets/DocesFinos/brigadeiroEspecial.webp",
+        descricao: "Brigadeiro artesanal de canela finalizado com doce de leite.",
+        requerPersonalizacao: false
+        },
+{
         id: 5,
         nome: "Brigadeiro de Paçoca",
         categoria: "doces",
@@ -105,16 +115,36 @@ const initApp = () => {
         requerPersonalizacao: false
         },
         {
-        id: 6,
-        nome: "Brigadeiro Moranguinho",
+        id: 103,
+        nome: "Brigadeiro Dois Amores",
         categoria: "doces",
         subcategoria: "tradicionais",
-        preco: 1.49,
-        imagem: "./assets/DocesTradicionais/moranguinho.webp",
-        descricao: "O clássico bicho de pé, brigadeiro saborizado de morango.",
+        preco: 2.10,
+        imagem: "./assets/DocesFinos/doisAmores.webp",
+        descricao: "A união perfeita do brigadeiro preto e branco em um único docinho.",
         requerPersonalizacao: false
         },
         {
+        id: 104,
+        nome: "Brigadeiro Flor de Morango",
+        categoria: "doces",
+        subcategoria: "tradicionais",
+        preco: 2.10,
+        imagem: "./assets/DocesFinos/brigadeiroEspecial.webp",
+        descricao: "Brigadeiro de morango (Nesquik) moldado em formato de florzinha.",
+        requerPersonalizacao: false
+        },
+        {
+        id: 105,
+        nome: "Brigadeiro Ninho com Nutella",
+        categoria: "doces",
+        subcategoria: "tradicionais",
+        preco: 2.10,
+        imagem: "./assets/DocesFinos/brigadeiroEspecial.webp",
+        descricao: "Brigadeiro de leite Ninho original recheado com Nutella pura.",
+        requerPersonalizacao: false
+        },
+{
         id: 1,
         nome: "Brigadeiro Preto Tradicional",
         categoria: "doces",
@@ -125,6 +155,36 @@ const initApp = () => {
         requerPersonalizacao: false
         },
         {
+        id: 106,
+        nome: "Brigadeiro Uva Verde",
+        categoria: "doces",
+        subcategoria: "tradicionais",
+        preco: 2.10,
+        imagem: "./assets/DocesFinos/brigadeiroEspecial.webp",
+        descricao: "Uva verde fresca envolvida por brigadeiro branco.",
+        requerPersonalizacao: false
+        },
+{
+        id: 4,
+        nome: "Cajuzinho",
+        categoria: "doces",
+        subcategoria: "tradicionais",
+        preco: 1.49,
+        imagem: "./assets/DocesTradicionais/cajuzinho.webp",
+        descricao: "Doce tradicional de amendoim com aquele toque clássico.",
+        requerPersonalizacao: false
+        },
+{
+        id: 6,
+        nome: "Moranguinho",
+        categoria: "doces",
+        subcategoria: "tradicionais",
+        preco: 1.49,
+        imagem: "./assets/DocesTradicionais/moranguinho.webp",
+        descricao: "O clássico bicho de pé, brigadeiro saborizado de morango.",
+        requerPersonalizacao: false
+        },
+{
         id: 9,
         nome: "Seleção de Brigadeiros Especiais",
         categoria: "doces",
@@ -141,9 +201,10 @@ const initApp = () => {
         { sabor: "Brûlée", detalhe: "Brigadeiro de baunilha com crosta de açúcar maçaricado." },
         { sabor: "Flor de Morango", detalhe: "Brigadeiro de morango (Nesquik) moldado em formato de florzinha." },
         { sabor: "Dois Amores", detalhe: "A união perfeita do brigadeiro preto e branco em um único docinho." }
-        ]
+        ],
+        ativo: false
         },
-        {
+{
         id: 51,
         nome: "Caixinhas de Chocolate Personalizadas",
         categoria: "doces",
@@ -186,7 +247,7 @@ const initApp = () => {
         }
         ]
         },
-        {
+{
         id: 50,
         nome: "Copinhos de Chocolate Artesanais",
         categoria: "doces",
@@ -208,7 +269,7 @@ const initApp = () => {
         { sabor: "Avelã Crocante Premium", detalhe: "Recheio cremoso de avelã com toque crocante.", adicional: 2.00 }
         ]
         },
-        {
+{
         id: 41,
         nome: "Cupcake G",
         categoria: "doces",
@@ -225,7 +286,7 @@ const initApp = () => {
         { sabor: "Brigadeiro Tradicional", detalhe: "Massa de chocolate com recheio e cobertura do nosso clássico brigadeiro fino." }
         ]
         },
-        {
+{
         id: 40,
         nome: "Cupcake P",
         categoria: "doces",
@@ -242,7 +303,7 @@ const initApp = () => {
         { sabor: "Brigadeiro Tradicional", detalhe: "Massa de chocolate com recheio e cobertura do nosso clássico brigadeiro fino." }
         ]
         },
-        {
+{
         id: 48,
         nome: "Ouricos Artesanais",
         categoria: "doces",
@@ -258,7 +319,7 @@ const initApp = () => {
         { sabor: "Pistache", detalhe: "Recheio premium coberto com pistache triturado.", adicional: 2.60 }
         ]
         },
-        {
+{
         id: 49,
         nome: "Seleção de Doces de Frutas & Castanhas",
         categoria: "doces",
@@ -278,7 +339,7 @@ const initApp = () => {
         { sabor: "Trouxinha Marzipan", detalhe: "Trouxinha ultra premium com autêntica pasta de marzipan de amêndoas.", adicional: 5.20 }
         ]
         },
-        {
+{
         id: 52,
         nome: "Bombons Artísticos & Camafeus",
         categoria: "doces",
@@ -299,7 +360,7 @@ const initApp = () => {
         { sabor: "Camafeu de Nozes — Chocolate Branco", detalhe: "Camafeu em roupagem moderna banhado em puro chocolate branco nobre.", adicional: -2.40 }
         ]
         },
-        {
+{
         id: 43,
         nome: "Bombons Finos (Chocolate Nobre)",
         categoria: "doces",
@@ -317,7 +378,7 @@ const initApp = () => {
         { sabor: "Morango Luxo", detalhe: "A versão mais imponente, decorada e requintada com chocolate nobre.", adicional: 1.60 }
         ]
         },
-        {
+{
         id: 42,
         nome: "Bombons Tradicionais (Sicao)",
         categoria: "doces",
@@ -336,7 +397,7 @@ const initApp = () => {
         { sabor: "Limão", detalhe: "Creme trufado de limão refrescante e casquinha Sicao.", adicional: 0.20 }
         ]
         },
-        {
+{
         id: 7,
         nome: "Brigadeiro Granullé",
         categoria: "doces",
@@ -352,7 +413,7 @@ const initApp = () => {
         { sabor: "Branco", detalhe: "Brigadeiro branco coberto com splits de chocolate belga branco." }
         ]
         },
-        {
+{
         id: 46,
         nome: "Brigadeiros Callebaut",
         categoria: "doces",
@@ -367,7 +428,7 @@ const initApp = () => {
         { sabor: "Caramelo Salgado em Crispearls", detalhe: "Brigadeiro de caramelo salgado finalizado com as famosas esferas crocantes Crispearls." }
         ]
         },
-        {
+{
         id: 47,
         nome: "Brigadeiros Finos & Especiais",
         categoria: "doces",
@@ -385,7 +446,7 @@ const initApp = () => {
         { sabor: "Suspiro com Morangos", detalhe: "Combinação leve e crocante de mini suspiros com morango irresistível.", adicional: 0.00 }
         ]
         },
-        {
+{
         id: 44,
         nome: "Macarons Artesanais",
         categoria: "doces",
@@ -403,7 +464,7 @@ const initApp = () => {
         { sabor: "Limão Siciliano", detalhe: "Creme refrescante e cítrico de limão siciliano." }
         ]
         },
-        {
+{
         id: 13,
         nome: "Palha Italiana",
         categoria: "doces",
@@ -413,7 +474,7 @@ const initApp = () => {
         descricao: "Tradicional pedaço de palha italiana feito com brigadeiro cremoso e biscoito.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 45,
         nome: "Torre de Macarons",
         categoria: "doces",
@@ -443,69 +504,234 @@ const initApp = () => {
         ]
         },
         {
-        id: 15,
-        nome: "Bolo Tradicional PP",
+        id: 301,
+        nome: "Bolo Brigadeiro",
         categoria: "bolos",
         subcategoria: "tradicionais",
-        preco: 99.00,
+        precoBase: 99.00,
         imagem: "./assets/Bolos/tradicionalPP.webp",
-        descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg). Lindo acabamento em chantilly.",
+        descricao: "Massa de chocolate fofinha com recheio cremoso de brigadeiro tradicional.",
         requerPersonalizacao: true,
-        tipoPersonalizacao: "sabor",
-        permiteUploadInspiracao: true,
-        opcoesCoberturaExtra: [],
+        tipoPersonalizacao: "tamanho-bolo",
         opcoes: [
-        { sabor: "Brigadeiro", detalhe: "Massa de chocolate fofinha com recheio cremoso de brigadeiro tradicional." },
-        { sabor: "Prestígio", detalhe: "Massa de chocolate marcante com recheio cremoso de coco flocado." },
-        { sabor: "2 Amores", detalhe: "Duas camadas de recheio: brigadeiro preto casado com brigadeiro branco cremoso." },
-        { sabor: "Ninho", detalhe: "Massa de chocolate combinada com um autêntico brigadeiro de leite em pó." },
-        { sabor: "4 Leites", detalhe: "Massa branca delicada com recheio premium de brigadeiro de quatro leites." },
-        { sabor: "Paçoca", detalhe: "Massa branca macia com um surpreendente brigadeiro artesanal de paçoca." }
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 10.90
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg).",
+                adicional: 36.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 81.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 200.00
+            }
         ]
         },
         {
-        id: 16,
-        nome: "Bolo Tradicional P",
+        id: 303,
+        nome: "Bolo Dois Amores",
         categoria: "bolos",
         subcategoria: "tradicionais",
-        preco: 109.90,
-        imagem: "./assets/Bolos/tradicionalP.webp",
-        descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg). Lindo acabamento em chantilly.",
+        precoBase: 99.00,
+        imagem: "./assets/Bolos/tradicionalPP.webp",
+        descricao: "Duas camadas de recheio: brigadeiro preto casado com brigadeiro branco cremoso.",
         requerPersonalizacao: true,
-        tipoPersonalizacao: "sabor",
-        permiteUploadInspiracao: true,
-        opcoesCoberturaExtra: [],
+        tipoPersonalizacao: "tamanho-bolo",
         opcoes: [
-        { sabor: "Brigadeiro", detalhe: "Massa de chocolate fofinha com recheio cremoso de brigadeiro tradicional." },
-        { sabor: "Prestígio", detalhe: "Massa de chocolate marcante com recheio cremoso de coco flocado." },
-        { sabor: "2 Amores", detalhe: "Duas camadas de recheio: brigadeiro preto casado com brigadeiro branco cremoso." },
-        { sabor: "Ninho", detalhe: "Massa de chocolate combinada com um autêntico brigadeiro de leite em pó." },
-        { sabor: "4 Leites", detalhe: "Massa branca delicada com recheio premium de brigadeiro de quatro leites." },
-        { sabor: "Paçoca", detalhe: "Massa branca macia com um surpreendente brigadeiro artesanal de paçoca." }
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 10.90
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg).",
+                adicional: 36.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 81.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 200.00
+            }
         ]
         },
         {
-        id: 17,
-        nome: "Bolo Tradicional M",
+        id: 304,
+        nome: "Bolo Ninho",
         categoria: "bolos",
         subcategoria: "tradicionais",
-        preco: 135.00,
-        imagem: "./assets/Bolos/tradicionalM.webp",
-        descricao: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg). Lindo acabamento em chantilly.",
+        precoBase: 99.00,
+        imagem: "./assets/Bolos/tradicionalPP.webp",
+        descricao: "Massa de chocolate combinada com um autêntico brigadeiro de leite em pó.",
         requerPersonalizacao: true,
-        tipoPersonalizacao: "sabor",
-        permiteUploadInspiracao: true,
-        opcoesCoberturaExtra: [],
+        tipoPersonalizacao: "tamanho-bolo",
         opcoes: [
-        { sabor: "Brigadeiro", detalhe: "Massa de chocolate fofinha com recheio cremoso de brigadeiro tradicional." },
-        { sabor: "Prestígio", detalhe: "Massa de chocolate marcante com recheio cremoso de coco flocado." },
-        { sabor: "2 Amores", detalhe: "Duas camadas de recheio: brigadeiro preto casado com brigadeiro branco cremoso." },
-        { sabor: "Ninho", detalhe: "Massa de chocolate combinada com um autêntico brigadeiro de leite em pó." },
-        { sabor: "4 Leites", detalhe: "Massa branca delicada com recheio premium de brigadeiro de quatro leites." },
-        { sabor: "Paçoca", detalhe: "Massa branca macia com um surpreendente brigadeiro artesanal de paçoca." }
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 10.90
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg).",
+                adicional: 36.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 81.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 200.00
+            }
         ]
         },
         {
+        id: 306,
+        nome: "Bolo Paçoca",
+        categoria: "bolos",
+        subcategoria: "tradicionais",
+        precoBase: 99.00,
+        imagem: "./assets/Bolos/tradicionalPP.webp",
+        descricao: "Massa branca macia com um surpreendente brigadeiro artesanal de paçoca.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "tamanho-bolo",
+        opcoes: [
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 10.90
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg).",
+                adicional: 36.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 81.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 200.00
+            }
+        ]
+        },
+        {
+        id: 302,
+        nome: "Bolo Prestígio",
+        categoria: "bolos",
+        subcategoria: "tradicionais",
+        precoBase: 99.00,
+        imagem: "./assets/Bolos/tradicionalPP.webp",
+        descricao: "Massa de chocolate marcante com recheio cremoso de coco flocado.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "tamanho-bolo",
+        opcoes: [
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 10.90
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg).",
+                adicional: 36.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 81.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 200.00
+            }
+        ]
+        },
+        {
+        id: 305,
+        nome: "Bolo Quatro Leites",
+        categoria: "bolos",
+        subcategoria: "tradicionais",
+        precoBase: 99.00,
+        imagem: "./assets/Bolos/tradicionalPP.webp",
+        descricao: "Massa branca delicada com recheio premium de brigadeiro de quatro leites.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "tamanho-bolo",
+        opcoes: [
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 10.90
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg).",
+                adicional: 36.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 81.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 200.00
+            }
+        ]
+        },
+{
         id: 18,
         nome: "Bolo Tradicional G",
         categoria: "bolos",
@@ -524,9 +750,10 @@ const initApp = () => {
         { sabor: "Ninho", detalhe: "Massa de chocolate combinada com um autêntico brigadeiro de leite em pó." },
         { sabor: "4 Leites", detalhe: "Massa branca delicada com recheio premium de brigadeiro de quatro leites." },
         { sabor: "Paçoca", detalhe: "Massa branca macia com um surpreendente brigadeiro artesanal de paçoca." }
-        ]
+        ],
+        ativo: false
         },
-        {
+{
         id: 19,
         nome: "Bolo Tradicional GG",
         categoria: "bolos",
@@ -545,69 +772,266 @@ const initApp = () => {
         { sabor: "Ninho", detalhe: "Massa de chocolate combinada com um autêntico brigadeiro de leite em pó." },
         { sabor: "4 Leites", detalhe: "Massa branca delicada com recheio premium de brigadeiro de quatro leites." },
         { sabor: "Paçoca", detalhe: "Massa branca macia com um surpreendente brigadeiro artesanal de paçoca." }
-        ]
+        ],
+        ativo: false
+        },
+{
+        id: 17,
+        nome: "Bolo Tradicional M",
+        categoria: "bolos",
+        subcategoria: "tradicionais",
+        preco: 135.00,
+        imagem: "./assets/Bolos/tradicionalM.webp",
+        descricao: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg). Lindo acabamento em chantilly.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "sabor",
+        permiteUploadInspiracao: true,
+        opcoesCoberturaExtra: [],
+        opcoes: [
+        { sabor: "Brigadeiro", detalhe: "Massa de chocolate fofinha com recheio cremoso de brigadeiro tradicional." },
+        { sabor: "Prestígio", detalhe: "Massa de chocolate marcante com recheio cremoso de coco flocado." },
+        { sabor: "2 Amores", detalhe: "Duas camadas de recheio: brigadeiro preto casado com brigadeiro branco cremoso." },
+        { sabor: "Ninho", detalhe: "Massa de chocolate combinada com um autêntico brigadeiro de leite em pó." },
+        { sabor: "4 Leites", detalhe: "Massa branca delicada com recheio premium de brigadeiro de quatro leites." },
+        { sabor: "Paçoca", detalhe: "Massa branca macia com um surpreendente brigadeiro artesanal de paçoca." }
+        ],
+        ativo: false
+        },
+{
+        id: 16,
+        nome: "Bolo Tradicional P",
+        categoria: "bolos",
+        subcategoria: "tradicionais",
+        preco: 109.90,
+        imagem: "./assets/Bolos/tradicionalP.webp",
+        descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg). Lindo acabamento em chantilly.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "sabor",
+        permiteUploadInspiracao: true,
+        opcoesCoberturaExtra: [],
+        opcoes: [
+        { sabor: "Brigadeiro", detalhe: "Massa de chocolate fofinha com recheio cremoso de brigadeiro tradicional." },
+        { sabor: "Prestígio", detalhe: "Massa de chocolate marcante com recheio cremoso de coco flocado." },
+        { sabor: "2 Amores", detalhe: "Duas camadas de recheio: brigadeiro preto casado com brigadeiro branco cremoso." },
+        { sabor: "Ninho", detalhe: "Massa de chocolate combinada com um autêntico brigadeiro de leite em pó." },
+        { sabor: "4 Leites", detalhe: "Massa branca delicada com recheio premium de brigadeiro de quatro leites." },
+        { sabor: "Paçoca", detalhe: "Massa branca macia com um surpreendente brigadeiro artesanal de paçoca." }
+        ],
+        ativo: false
+        },
+{
+        id: 15,
+        nome: "Bolo Tradicional PP",
+        categoria: "bolos",
+        subcategoria: "tradicionais",
+        preco: 99.00,
+        imagem: "./assets/Bolos/tradicionalPP.webp",
+        descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg). Lindo acabamento em chantilly.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "sabor",
+        permiteUploadInspiracao: true,
+        opcoesCoberturaExtra: [],
+        opcoes: [
+        { sabor: "Brigadeiro", detalhe: "Massa de chocolate fofinha com recheio cremoso de brigadeiro tradicional." },
+        { sabor: "Prestígio", detalhe: "Massa de chocolate marcante com recheio cremoso de coco flocado." },
+        { sabor: "2 Amores", detalhe: "Duas camadas de recheio: brigadeiro preto casado com brigadeiro branco cremoso." },
+        { sabor: "Ninho", detalhe: "Massa de chocolate combinada com um autêntico brigadeiro de leite em pó." },
+        { sabor: "4 Leites", detalhe: "Massa branca delicada com recheio premium de brigadeiro de quatro leites." },
+        { sabor: "Paçoca", detalhe: "Massa branca macia com um surpreendente brigadeiro artesanal de paçoca." }
+        ],
+        ativo: false
         },
         {
-        id: 20,
-        nome: "Bolo Especial PP",
+        id: 310,
+        nome: "Bolo Abacaxi com Coco",
         categoria: "bolos",
         subcategoria: "especiais",
-        preco: 105.00,
+        precoBase: 105.00,
         imagem: "./assets/Bolos/especialPP.webp",
-        descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg). Deliciosas combinações com frutas frescas.",
+        descricao: "Massa branca com creme de nata, coco cremoso e abacaxi em cubos.",
         requerPersonalizacao: true,
-        tipoPersonalizacao: "sabor",
-        permiteUploadInspiracao: true,
-        opcoesCoberturaExtra: [],
+        tipoPersonalizacao: "tamanho-bolo",
         opcoes: [
-        { sabor: "Tropical", detalhe: "Massa branca com creme de natas e abacaxi, pêssego, uva, morango e ameixa." },
-        { sabor: "Morango com Chocolate", detalhe: "Massa de chocolate, brigadeiro preto com pedaços de morango." },
-        { sabor: "Ninho com Uva ou Morango", detalhe: "Massa branca, brigadeiro de leite em pó e frutas (uva ou morango)." },
-        { sabor: "Abacaxi com Coco", detalhe: "Massa branca com creme de nata, coco cremoso e abacaxi em cubos." },
-        { sabor: "Nata com Morangos e Suspiros", detalhe: "Massa branca, creme de natas, morango e suspiros." }
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 20.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg).",
+                adicional: 64.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 145.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 264.00
+            }
         ]
         },
         {
-        id: 21,
-        nome: "Bolo Especial P",
+        id: 308,
+        nome: "Bolo Morango com Chocolate",
         categoria: "bolos",
         subcategoria: "especiais",
-        preco: 125.00,
-        imagem: "./assets/Bolos/especialP.webp",
-        descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg). Perfeito equilíbrio de doçura e frescor.",
+        precoBase: 105.00,
+        imagem: "./assets/Bolos/especialPP.webp",
+        descricao: "Massa de chocolate, brigadeiro preto com pedaços de morango.",
         requerPersonalizacao: true,
-        tipoPersonalizacao: "sabor",
-        permiteUploadInspiracao: true,
-        opcoesCoberturaExtra: [],
+        tipoPersonalizacao: "tamanho-bolo",
         opcoes: [
-        { sabor: "Tropical", detalhe: "Massa branca com creme de natas e abacaxi, pêssego, uva, morango e ameixa." },
-        { sabor: "Morango com Chocolate", detalhe: "Massa de chocolate, brigadeiro preto com pedaços de morango." },
-        { sabor: "Ninho com Uva ou Morango", detalhe: "Massa branca, brigadeiro de leite em pó e frutas (uva ou morango)." },
-        { sabor: "Abacaxi com Coco", detalhe: "Massa branca com creme de nata, coco cremoso e abacaxi em cubos." },
-        { sabor: "Nata com Morangos e Suspiros", detalhe: "Massa branca, creme de natas, morango e suspiros." }
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 20.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg).",
+                adicional: 64.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 145.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 264.00
+            }
         ]
         },
         {
-        id: 22,
-        nome: "Bolo Especial M",
+        id: 311,
+        nome: "Bolo Nata com Morangos e Suspiros",
         categoria: "bolos",
         subcategoria: "especiais",
-        preco: 169.00,
-        imagem: "./assets/Bolos/especialM.webp",
-        descricao: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg). Recheios artesanais com frutas selecionadas.",
+        precoBase: 105.00,
+        imagem: "./assets/Bolos/especialPP.webp",
+        descricao: "Massa branca, creme de natas, morango e suspiros.",
         requerPersonalizacao: true,
-        tipoPersonalizacao: "sabor",
-        permiteUploadInspiracao: true,
-        opcoesCoberturaExtra: [],
+        tipoPersonalizacao: "tamanho-bolo",
         opcoes: [
-        { sabor: "Tropical", detalhe: "Massa branca com creme de natas e abacaxi, pêssego, uva, morango e ameixa." },
-        { sabor: "Morango com Chocolate", detalhe: "Massa de chocolate, brigadeiro preto com pedaços de morango." },
-        { sabor: "Ninho com Uva ou Morango", detalhe: "Massa branca, brigadeiro de leite em pó e frutas (uva ou morango)." },
-        { sabor: "Abacaxi com Coco", detalhe: "Massa branca com creme de nata, coco cremoso e abacaxi em cubos." },
-        { sabor: "Nata com Morangos e Suspiros", detalhe: "Massa branca, creme de natas, morango e suspiros." }
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 20.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg).",
+                adicional: 64.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 145.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 264.00
+            }
         ]
         },
         {
+        id: 309,
+        nome: "Bolo Ninho com Uva ou Morango",
+        categoria: "bolos",
+        subcategoria: "especiais",
+        precoBase: 105.00,
+        imagem: "./assets/Bolos/especialPP.webp",
+        descricao: "Massa branca, brigadeiro de leite em pó e frutas (uva ou morango).",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "tamanho-bolo",
+        opcoes: [
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 20.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg).",
+                adicional: 64.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 145.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 264.00
+            }
+        ]
+        },
+        {
+        id: 307,
+        nome: "Bolo Tropical",
+        categoria: "bolos",
+        subcategoria: "especiais",
+        precoBase: 105.00,
+        imagem: "./assets/Bolos/especialPP.webp",
+        descricao: "Massa branca com creme de natas e abacaxi, pêssego, uva, morango e ameixa.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "tamanho-bolo",
+        opcoes: [
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 20.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg).",
+                adicional: 64.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 145.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 264.00
+            }
+        ]
+        },
+{
         id: 23,
         nome: "Bolo Especial G",
         categoria: "bolos",
@@ -625,9 +1049,10 @@ const initApp = () => {
         { sabor: "Ninho com Uva ou Morango", detalhe: "Massa branca, brigadeiro de leite em pó e frutas (uva ou morango)." },
         { sabor: "Abacaxi com Coco", detalhe: "Massa branca com creme de nata, coco cremoso e abacaxi em cubos." },
         { sabor: "Nata com Morangos e Suspiros", detalhe: "Massa branca, creme de natas, morango e suspiros." }
-        ]
+        ],
+        ativo: false
         },
-        {
+{
         id: 24,
         nome: "Bolo Especial GG",
         categoria: "bolos",
@@ -645,78 +1070,377 @@ const initApp = () => {
         { sabor: "Ninho com Uva ou Morango", detalhe: "Massa branca, brigadeiro de leite em pó e frutas (uva ou morango)." },
         { sabor: "Abacaxi com Coco", detalhe: "Massa branca com creme de nata, coco cremoso e abacaxi em cubos." },
         { sabor: "Nata com Morangos e Suspiros", detalhe: "Massa branca, creme de natas, morango e suspiros." }
-        ]
+        ],
+        ativo: false
+        },
+{
+        id: 22,
+        nome: "Bolo Especial M",
+        categoria: "bolos",
+        subcategoria: "especiais",
+        preco: 169.00,
+        imagem: "./assets/Bolos/especialM.webp",
+        descricao: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 2kg). Recheios artesanais com frutas selecionadas.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "sabor",
+        permiteUploadInspiracao: true,
+        opcoesCoberturaExtra: [],
+        opcoes: [
+        { sabor: "Tropical", detalhe: "Massa branca com creme de natas e abacaxi, pêssego, uva, morango e ameixa." },
+        { sabor: "Morango com Chocolate", detalhe: "Massa de chocolate, brigadeiro preto com pedaços de morango." },
+        { sabor: "Ninho com Uva ou Morango", detalhe: "Massa branca, brigadeiro de leite em pó e frutas (uva ou morango)." },
+        { sabor: "Abacaxi com Coco", detalhe: "Massa branca com creme de nata, coco cremoso e abacaxi em cubos." },
+        { sabor: "Nata com Morangos e Suspiros", detalhe: "Massa branca, creme de natas, morango e suspiros." }
+        ],
+        ativo: false
+        },
+{
+        id: 21,
+        nome: "Bolo Especial P",
+        categoria: "bolos",
+        subcategoria: "especiais",
+        preco: 125.00,
+        imagem: "./assets/Bolos/especialP.webp",
+        descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg). Perfeito equilíbrio de doçura e frescor.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "sabor",
+        permiteUploadInspiracao: true,
+        opcoesCoberturaExtra: [],
+        opcoes: [
+        { sabor: "Tropical", detalhe: "Massa branca com creme de natas e abacaxi, pêssego, uva, morango e ameixa." },
+        { sabor: "Morango com Chocolate", detalhe: "Massa de chocolate, brigadeiro preto com pedaços de morango." },
+        { sabor: "Ninho com Uva ou Morango", detalhe: "Massa branca, brigadeiro de leite em pó e frutas (uva ou morango)." },
+        { sabor: "Abacaxi com Coco", detalhe: "Massa branca com creme de nata, coco cremoso e abacaxi em cubos." },
+        { sabor: "Nata com Morangos e Suspiros", detalhe: "Massa branca, creme de natas, morango e suspiros." }
+        ],
+        ativo: false
+        },
+{
+        id: 20,
+        nome: "Bolo Especial PP",
+        categoria: "bolos",
+        subcategoria: "especiais",
+        preco: 105.00,
+        imagem: "./assets/Bolos/especialPP.webp",
+        descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg). Deliciosas combinações com frutas frescas.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "sabor",
+        permiteUploadInspiracao: true,
+        opcoesCoberturaExtra: [],
+        opcoes: [
+        { sabor: "Tropical", detalhe: "Massa branca com creme de natas e abacaxi, pêssego, uva, morango e ameixa." },
+        { sabor: "Morango com Chocolate", detalhe: "Massa de chocolate, brigadeiro preto com pedaços de morango." },
+        { sabor: "Ninho com Uva ou Morango", detalhe: "Massa branca, brigadeiro de leite em pó e frutas (uva ou morango)." },
+        { sabor: "Abacaxi com Coco", detalhe: "Massa branca com creme de nata, coco cremoso e abacaxi em cubos." },
+        { sabor: "Nata com Morangos e Suspiros", detalhe: "Massa branca, creme de natas, morango e suspiros." }
+        ],
+        ativo: false
         },
         {
-        id: 25,
-        nome: "Bolo Fino PP",
+        id: 314,
+        nome: "Bolo Brigadeiro Brûlée com Frutas Vermelhas",
         categoria: "bolos",
         subcategoria: "finos",
-        preco: 115.00,
+        precoBase: 115.00,
         imagem: "./assets/Bolos/finosPP.webp",
-        descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg). Combinações exclusivas de alta confeitaria.",
+        descricao: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas.",
         requerPersonalizacao: true,
-        tipoPersonalizacao: "sabor",
-        permiteUploadInspiracao: true,
-        opcoesCoberturaExtra: [],
+        tipoPersonalizacao: "tamanho-bolo",
         opcoes: [
-        { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella." },
-        { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas." },
-        { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas." },
-        { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça." },
-        { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano." },
-        { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
-        { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
-        { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 40.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg).",
+                adicional: 110.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 190.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 314.00
+            }
         ]
         },
         {
-        id: 26,
-        nome: "Bolo Fino P",
+        id: 315,
+        nome: "Bolo Marta Rocha",
         categoria: "bolos",
         subcategoria: "finos",
-        preco: 155.00,
-        imagem: "./assets/Bolos/finosP.webp",
-        descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg). Sabores finos e sofisticados.",
+        precoBase: 115.00,
+        imagem: "./assets/Bolos/finosPP.webp",
+        descricao: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça.",
         requerPersonalizacao: true,
-        tipoPersonalizacao: "sabor",
-        permiteUploadInspiracao: true,
-        opcoesCoberturaExtra: [],
+        tipoPersonalizacao: "tamanho-bolo",
         opcoes: [
-        { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella." },
-        { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas." },
-        { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas." },
-        { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça." },
-        { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano." },
-        { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
-        { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
-        { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 40.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg).",
+                adicional: 110.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 190.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 314.00
+            }
         ]
         },
         {
-        id: 27,
-        nome: "Bolo Fino M",
+        id: 312,
+        nome: "Bolo Ninho com Nutella",
         categoria: "bolos",
         subcategoria: "finos",
-        preco: 225.00,
-        imagem: "./assets/Bolos/finosM.webp",
-        descricao: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg). Criações requintadas.",
+        precoBase: 115.00,
+        imagem: "./assets/Bolos/finosPP.webp",
+        descricao: "Massa de chocolate, brigadeiro de leite em pó e Nutella.",
         requerPersonalizacao: true,
-        tipoPersonalizacao: "sabor",
-        permiteUploadInspiracao: true,
-        opcoesCoberturaExtra: [],
+        tipoPersonalizacao: "tamanho-bolo",
         opcoes: [
-        { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella." },
-        { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas." },
-        { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas." },
-        { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça." },
-        { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano." },
-        { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
-        { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
-        { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 40.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg).",
+                adicional: 110.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 190.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 314.00
+            }
         ]
         },
         {
+        id: 317,
+        nome: "Bolo Ouro Branco",
+        categoria: "bolos",
+        subcategoria: "finos",
+        precoBase: 115.00,
+        imagem: "./assets/Bolos/finosPP.webp",
+        descricao: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "tamanho-bolo",
+        opcoes: [
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 40.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg).",
+                adicional: 110.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 190.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 314.00
+            }
+        ]
+        },
+        {
+        id: 313,
+        nome: "Bolo Pistache com Frutas Vermelhas",
+        categoria: "bolos",
+        subcategoria: "finos",
+        precoBase: 115.00,
+        imagem: "./assets/Bolos/finosPP.webp",
+        descricao: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "tamanho-bolo",
+        opcoes: [
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 40.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg).",
+                adicional: 110.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 190.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 314.00
+            }
+        ]
+        },
+        {
+        id: 316,
+        nome: "Bolo Pistache e Limão Siciliano",
+        categoria: "bolos",
+        subcategoria: "finos",
+        precoBase: 115.00,
+        imagem: "./assets/Bolos/finosPP.webp",
+        descricao: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "tamanho-bolo",
+        opcoes: [
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 40.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg).",
+                adicional: 110.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 190.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 314.00
+            }
+        ]
+        },
+        {
+        id: 319,
+        nome: "Bolo Red Velvet",
+        categoria: "bolos",
+        subcategoria: "finos",
+        precoBase: 115.00,
+        imagem: "./assets/Bolos/finosPP.webp",
+        descricao: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "tamanho-bolo",
+        opcoes: [
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 40.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg).",
+                adicional: 110.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 190.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 314.00
+            }
+        ]
+        },
+        {
+        id: 318,
+        nome: "Bolo Strogonoff de Nozes",
+        categoria: "bolos",
+        subcategoria: "finos",
+        precoBase: 115.00,
+        imagem: "./assets/Bolos/finosPP.webp",
+        descricao: "Massa branca, creme de doce de leite e nozes.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "tamanho-bolo",
+        opcoes: [
+            {
+                sabor: "PP",
+                detalhe: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg).",
+                adicional: 0.00
+            },
+            {
+                sabor: "P",
+                detalhe: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg).",
+                adicional: 40.00
+            },
+            {
+                sabor: "M",
+                detalhe: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg).",
+                adicional: 110.00
+            },
+            {
+                sabor: "G",
+                detalhe: "Rende até 30 fatias. Diâmetro de 20cm (Aprox. 3kg).",
+                adicional: 190.00
+            },
+            {
+                sabor: "GG",
+                detalhe: "Rende até 48 fatias. Diâmetro de 27cm (Aprox. 4,5kg).",
+                adicional: 314.00
+            }
+        ]
+        },
+{
         id: 28,
         nome: "Bolo Fino G",
         categoria: "bolos",
@@ -737,9 +1461,10 @@ const initApp = () => {
         { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
         { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
         { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
-        ]
+        ],
+        ativo: false
         },
-        {
+{
         id: 29,
         nome: "Bolo Fino GG",
         categoria: "bolos",
@@ -760,9 +1485,82 @@ const initApp = () => {
         { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
         { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
         { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
-        ]
+        ],
+        ativo: false
         },
-        {
+{
+        id: 27,
+        nome: "Bolo Fino M",
+        categoria: "bolos",
+        subcategoria: "finos",
+        preco: 225.00,
+        imagem: "./assets/Bolos/finosM.webp",
+        descricao: "Rende até 18 fatias. Diâmetro de 17cm (Aprox. 1,8kg). Criações requintadas.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "sabor",
+        permiteUploadInspiracao: true,
+        opcoesCoberturaExtra: [],
+        opcoes: [
+        { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella." },
+        { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas." },
+        { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas." },
+        { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça." },
+        { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano." },
+        { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
+        { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
+        { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
+        ],
+        ativo: false
+        },
+{
+        id: 26,
+        nome: "Bolo Fino P",
+        categoria: "bolos",
+        subcategoria: "finos",
+        preco: 155.00,
+        imagem: "./assets/Bolos/finosP.webp",
+        descricao: "Rende até 11 fatias. Diâmetro de 15cm (Aprox. 1,5kg). Sabores finos e sofisticados.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "sabor",
+        permiteUploadInspiracao: true,
+        opcoesCoberturaExtra: [],
+        opcoes: [
+        { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella." },
+        { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas." },
+        { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas." },
+        { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça." },
+        { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano." },
+        { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
+        { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
+        { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
+        ],
+        ativo: false
+        },
+{
+        id: 25,
+        nome: "Bolo Fino PP",
+        categoria: "bolos",
+        subcategoria: "finos",
+        preco: 115.00,
+        imagem: "./assets/Bolos/finosPP.webp",
+        descricao: "Rende até 6 fatias. Diâmetro de 13cm (Aprox. 1kg). Combinações exclusivas de alta confeitaria.",
+        requerPersonalizacao: true,
+        tipoPersonalizacao: "sabor",
+        permiteUploadInspiracao: true,
+        opcoesCoberturaExtra: [],
+        opcoes: [
+        { sabor: "Ninho com Nutella", detalhe: "Massa de chocolate, brigadeiro de leite em pó e Nutella." },
+        { sabor: "Pistache com Frutas Vermelhas", detalhe: "Massa branca, mousse de pistache com pistache triturado e geleia de frutas vermelhas." },
+        { sabor: "Brigadeiro Brûlée com Frutas Vermelhas", detalhe: "Massa branca, brigadeiro brûlée (gemas e baunilha) e geleia artesanal de frutas vermelhas." },
+        { sabor: "Marta Rocha", detalhe: "Massa branca e de chocolate, recheio de damasco e ameixa, crocante de nozes, creme de nata, suspiro e baba de moça." },
+        { sabor: "Pistache e Limão Siciliano", detalhe: "Massa branca, recheio de pistache com pistache triturado e brigadeiro de limão siciliano." },
+        { sabor: "Ouro Branco", detalhe: "Massa branca e chocolate, creme de nata, bombom ouro branco triturado e ganache." },
+        { sabor: "Strogonoff de Nozes", detalhe: "Massa branca, creme de doce de leite e nozes." },
+        { sabor: "Red Velvet", detalhe: "Massa vermelha, creme à base de cream cheese saborizado de limão e baunilha com geleia de frutas vermelhas." }
+        ],
+        ativo: false
+        },
+{
         id: 65,
         nome: "Alfajor Artesanal",
         categoria: "lembrancinhas",
@@ -771,7 +1569,7 @@ const initApp = () => {
         descricao: "Massa delicada recheada com muito doce de leite e coberta com uma generosa camada de chocolate.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 64,
         nome: "Bem Casado Tradicional & Fino",
         categoria: "lembrancinhas",
@@ -790,7 +1588,7 @@ const initApp = () => {
         { sabor: "Red Velvet", detalhe: "Massa vermelha aveludada com recheio especial." }
         ]
         },
-        {
+{
         id: 67,
         nome: "Caixinha de Medians",
         categoria: "lembrancinhas",
@@ -799,7 +1597,7 @@ const initApp = () => {
         descricao: "Caixinha fina contendo os tradicionais disquinhos de chocolate com frutas secas e nuts por cima.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 68,
         nome: "Caixinha de Mini Fudge",
         categoria: "lembrancinhas",
@@ -808,7 +1606,7 @@ const initApp = () => {
         descricao: "Caixinha elegante com quadradinhos de fudge de chocolate ultra macios e intensos.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 63,
         nome: "Macarons em Caixinha (Acrílico)",
         categoria: "lembrancinhas",
@@ -817,7 +1615,7 @@ const initApp = () => {
         descricao: "Apresentação luxuosa de macarons protegidos em uma caixinha transparente de acrílico.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 62,
         nome: "Macarons em Pacote (Tecido e Laço)",
         categoria: "lembrancinhas",
@@ -826,7 +1624,7 @@ const initApp = () => {
         descricao: "Delicados macarons embalados em pacote de tecido com um lindo acabamento em laço.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 66,
         nome: "Pão de Mel Fino",
         categoria: "lembrancinhas",
@@ -836,6 +1634,66 @@ const initApp = () => {
         requerPersonalizacao: false
         },
         {
+        id: 205,
+        nome: "Bolinha de Queijo",
+        categoria: "salgados",
+        subcategoria: "fritos",
+        preco: 1.90,
+        imagem: "./assets/Salgados/fritos.webp",
+        descricao: "Favorita das festas, recheada com queijo que derrete.",
+        requerPersonalizacao: false
+        },
+        {
+        id: 201,
+        nome: "Coxinha",
+        categoria: "salgados",
+        subcategoria: "fritos",
+        preco: 1.90,
+        imagem: "./assets/Salgados/fritos.webp",
+        descricao: "Clássica coxinha de frango desfiado temperado.",
+        requerPersonalizacao: false
+        },
+        {
+        id: 206,
+        nome: "Croquete de Salsicha",
+        categoria: "salgados",
+        subcategoria: "fritos",
+        preco: 1.90,
+        imagem: "./assets/Salgados/fritos.webp",
+        descricao: "Salgadinho crocante recheado com salsicha selecionada.",
+        requerPersonalizacao: false
+        },
+        {
+        id: 204,
+        nome: "Quibe",
+        categoria: "salgados",
+        subcategoria: "fritos",
+        preco: 1.90,
+        imagem: "./assets/Salgados/fritos.webp",
+        descricao: "Quibe frito tradicional com tempero da casa.",
+        requerPersonalizacao: false
+        },
+        {
+        id: 202,
+        nome: "Risoles de Carne",
+        categoria: "salgados",
+        subcategoria: "fritos",
+        preco: 1.90,
+        imagem: "./assets/Salgados/fritos.webp",
+        descricao: "Massa leve com recheio de carne perfeitamente temperada.",
+        requerPersonalizacao: false
+        },
+        {
+        id: 203,
+        nome: "Risoles de Queijo e Presunto",
+        categoria: "salgados",
+        subcategoria: "fritos",
+        preco: 1.90,
+        imagem: "./assets/Salgados/fritos.webp",
+        descricao: "O tradicional risoles misto super cremoso.",
+        requerPersonalizacao: false
+        },
+{
         id: 69,
         nome: "Salgados Fritos Cl\u00e1ssicos",
         categoria: "salgados",
@@ -852,9 +1710,10 @@ const initApp = () => {
         { sabor: "Quibe", detalhe: "Quibe frito tradicional com tempero da casa." },
         { sabor: "Bolinha de Queijo", detalhe: "Favorita das festas, recheada com queijo que derrete." },
         { sabor: "Croquete de Salsicha", detalhe: "Salgadinho crocante recheado com salsicha selecionada." }
-        ]
+        ],
+        ativo: false
         },
-        {
+{
         id: 73,
         nome: "Croissants Folhados",
         categoria: "salgados",
@@ -870,7 +1729,7 @@ const initApp = () => {
         { sabor: "Chocolate", detalhe: "Op\u00e7\u00e3o doce com recheio cremoso de chocolate." }
         ]
         },
-        {
+{
         id: 75,
         nome: "Mini Doguinho Assado",
         categoria: "salgados",
@@ -880,7 +1739,7 @@ const initApp = () => {
         descricao: "Mini salsicha envolta em uma massa de p\u00e3ozinha assada super macia.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 71,
         nome: "Mini Empadas",
         categoria: "salgados",
@@ -896,7 +1755,7 @@ const initApp = () => {
         { sabor: "Frango com Palmito", detalhe: "A combina\u00e7\u00e3o perfeita dos dois recheios." }
         ]
         },
-        {
+{
         id: 70,
         nome: "Mini Esfihas Assadas",
         categoria: "salgados",
@@ -912,7 +1771,7 @@ const initApp = () => {
         { sabor: "Queijo e Presunto", detalhe: "O cl\u00e1ssico recheio misto." }
         ]
         },
-        {
+{
         id: 74,
         nome: "Mini Folhados Especiais",
         categoria: "salgados",
@@ -930,7 +1789,7 @@ const initApp = () => {
         { sabor: "Calabresa", detalhe: "Calabresa mo\u00edda saborosa." }
         ]
         },
-        {
+{
         id: 72,
         nome: "Mini Quiches Finas",
         categoria: "salgados",
@@ -947,7 +1806,7 @@ const initApp = () => {
         { sabor: "Tomate com Br\u00f3colis", detalhe: "Leve, colorido e vegetariano." }
         ]
         },
-        {
+{
         id: 76,
         nome: "Mini Hamb\u00farger",
         categoria: "salgados",
@@ -957,7 +1816,7 @@ const initApp = () => {
         descricao: "Mini hamb\u00farger artesanal completo e suculento, perfeito para festas.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 78,
         nome: "Mini Sandu\u00edche de Carne na Cerveja",
         categoria: "salgados",
@@ -967,7 +1826,7 @@ const initApp = () => {
         descricao: "Sofisticado mini sandu\u00edche recheado com carne cozida lentamente na cerveja, super suculenta.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 77,
         nome: "Mini Sandu\u00edche de Frango",
         categoria: "salgados",
@@ -977,7 +1836,7 @@ const initApp = () => {
         descricao: "Mini sandu\u00edche com recheio cremoso e super temperado de frango desfiado.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 79,
         nome: "Mini Sandu\u00edche de Salame",
         categoria: "salgados",
@@ -987,7 +1846,7 @@ const initApp = () => {
         descricao: "Cl\u00e1ssica e saborosa combina\u00e7\u00e3o de mini sandu\u00edche com fatias de salame selecionado.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 55,
         nome: "Mini Banoffee",
         categoria: "sobremesas-tortas",
@@ -997,7 +1856,7 @@ const initApp = () => {
         descricao: "Clássica sobremesa de banana com doce de leite e chantilly leve, montada em uma delicada porção individual.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 59,
         nome: "Mini Brownies Especiais",
         categoria: "sobremesas-tortas",
@@ -1012,7 +1871,7 @@ const initApp = () => {
         { sabor: "Nutella", detalhe: "Cobertura generosa de pura Nutella." }
         ]
         },
-        {
+{
         id: 60,
         nome: "Mini Cheesecake",
         categoria: "sobremesas-tortas",
@@ -1022,7 +1881,7 @@ const initApp = () => {
         descricao: "Base de biscoito crocante com creme de cream cheese suave e finalizado com calda artesanal de frutas vermelhas.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 53,
         nome: "Mini Mil Folhas",
         categoria: "sobremesas-tortas",
@@ -1037,7 +1896,7 @@ const initApp = () => {
         { sabor: "Doce de Leite", detalhe: "Recheado com doce de leite cozido cremoso." }
         ]
         },
-        {
+{
         id: 58,
         nome: "Mini Pavlova",
         categoria: "sobremesas-tortas",
@@ -1047,7 +1906,7 @@ const initApp = () => {
         descricao: "Delicada base de merengue assado, crocante por fora e macia por dentro, recheada com creme leve e frutas.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 56,
         nome: "Mini Pudim",
         categoria: "sobremesas-tortas",
@@ -1057,7 +1916,7 @@ const initApp = () => {
         descricao: "O clássico pudim de leite condensado, super cremoso, em uma delicada versão mini para eventos.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 57,
         nome: "Mini Quindim",
         categoria: "sobremesas-tortas",
@@ -1067,7 +1926,7 @@ const initApp = () => {
         descricao: "Doce tradicional à base de gemas e coco, com brilho impecável e textura perfeita.",
         requerPersonalizacao: false
         },
-        {
+{
         id: 54,
         nome: "Mini Tarteletes Finas",
         categoria: "sobremesas-tortas",
@@ -1086,7 +1945,7 @@ const initApp = () => {
         { sabor: "Pistache com Mini Macaron Luxo", detalhe: "Creme de pistache nobre com mini macaron no topo.", adicional: 3.00 }
         ]
         },
-        {
+{
         id: 61,
         nome: "Petit Verrines Premium",
         categoria: "sobremesas-tortas",
@@ -1643,6 +2502,14 @@ const initApp = () => {
                 ""
             );
         }
+
+        const container = document.querySelector(".products-container");
+        if (container) {
+            container.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
     }
 
     const renderizarFiltrosSubcategoria = (cat) => {
@@ -1854,8 +2721,10 @@ const initApp = () => {
             const termo = termoBusca.toLowerCase();
             const produtosFiltrados = produtos.filter(
                 (produto) =>
+                    produto.ativo !== false && (
                     produto.nome.toLowerCase().includes(termo) ||
                     produto.descricao.toLowerCase().includes(termo)
+                    )
             );
 
             const container = document.querySelector(".products-container");
@@ -1938,6 +2807,7 @@ const initApp = () => {
         }
 
         let produtosFiltrados = produtos.filter((produto) => {
+            if (produto.ativo === false) return false;
             const correspondeCategoria = produto.categoria === categoriaAtiva;
             let correspondeSubcategoria = false;
             if (subcategoriaAtiva === "all" || !categoriaPossuiSubcategoriasReais(categoriaAtiva)) {
@@ -2740,6 +3610,52 @@ const initApp = () => {
             customizationFields.appendChild(labelPaint);
             customizationFields.appendChild(inputPaint);
         }
+        else if (product.tipoPersonalizacao === "tamanho-bolo") {
+            const label = document.createElement('label');
+            label.textContent = 'Selecione o Tamanho:';
+
+            const grid = document.createElement('div');
+            grid.className = 'options-grid';
+            grid.id = 'custom-select-tamanho-grid';
+
+            const basePreco = limparEParsarPreco(product.precoBase !== undefined ? product.precoBase : product.preco);
+
+            product.opcoes.forEach((opcao, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'radio-pill-wrapper';
+
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = 'tamanho';
+                radio.id = `opt-tamanho-${idx}`;
+                radio.className = 'radio-pill-input';
+                radio.required = true;
+                radio.value = opcao.sabor;
+                if (opcao.adicional !== undefined) {
+                    radio.dataset.adicional = opcao.adicional;
+                }
+                if (idx === 0) radio.checked = true;
+
+                let text = opcao.sabor;
+                if (opcao.detalhe) {
+                    text += ` - ${opcao.detalhe}`;
+                }
+                const precoTamanho = basePreco + (opcao.adicional || 0);
+                text += ` (${formatarMoeda(precoTamanho)})`;
+
+                const labelOpt = document.createElement('label');
+                labelOpt.setAttribute('for', `opt-tamanho-${idx}`);
+                labelOpt.className = 'radio-pill-label';
+                labelOpt.textContent = text;
+
+                wrapper.appendChild(radio);
+                wrapper.appendChild(labelOpt);
+                grid.appendChild(wrapper);
+            });
+
+            customizationFields.appendChild(label);
+            customizationFields.appendChild(grid);
+        }
 
         if (product.categoria === "bolos") {
             const labelRef = document.createElement('label');
@@ -3221,9 +4137,9 @@ const initApp = () => {
             if (salgadosQtd < 20) {
                 salgadosQtd = 20;
             }
-            sugestoesCalculadas.salgados = { id: 69, quantidade: salgadosQtd };
-            const pSalgado = produtos.find(p => p.id === 69);
-            htmlResultados += `<li><strong>Salgados:</strong> ${salgadosQtd} unidades recomendadas. Sugerimos o <em>${pSalgado ? pSalgado.nome : 'Salgados Fritos Clássicos'}</em>.</li>`;
+            sugestoesCalculadas.salgados = { id: 201, quantidade: salgadosQtd };
+            const pSalgado = produtos.find(p => p.id === 201);
+            htmlResultados += `<li><strong>Salgados:</strong> ${salgadosQtd} unidades recomendadas. Sugerimos o clássico <em>${pSalgado ? pSalgado.nome : 'Coxinha'}</em>.</li>`;
         }
 
         htmlResultados += `</ul><p style="margin-top: 0.8rem; font-size: 0.85rem; color: #666;">*Estimativa de porção para crianças calculada como meia porção de adulto.</p>`;
@@ -3398,6 +4314,17 @@ const initApp = () => {
                 personalizacaoObj = { formato, sabor, pintura };
 
                 nomeCustomizado = `${produtoSendoPersonalizado.nome} (${formato} - ${sabor} - Pintura: ${pintura})`;
+            }
+            else if (produtoSendoPersonalizado.tipoPersonalizacao === "tamanho-bolo") {
+                const tamanho = escapeHTML(formData.get("tamanho"));
+                personalizacaoObj = { tamanho };
+
+                const selectedOpt = dynamicCustomizationForm.querySelector("input[name='tamanho']:checked");
+                if (selectedOpt && selectedOpt.dataset.adicional) {
+                    adicionalPreco = limparEParsarPreco(selectedOpt.dataset.adicional);
+                }
+
+                nomeCustomizado = `${produtoSendoPersonalizado.nome} (${tamanho})`;
             }
 
             if (produtoSendoPersonalizado.categoria === "bolos") {

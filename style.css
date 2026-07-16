@@ -2414,6 +2414,10 @@ footer .copyright {
     font-size: 1.15rem !important;
     padding: 1.5rem 3rem 0 3rem !important;
   }
+  .products-container {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
 }
 
 /* 1. Forçar a remoção de qualquer borda, contorno ou sombra no estado normal e de foco */

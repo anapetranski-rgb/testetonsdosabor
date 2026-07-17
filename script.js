@@ -1,4 +1,5 @@
 const initApp = () => {
+    document.documentElement.classList.add("motion-ready");
     
     const cartIcon = document.querySelector(".cart-icon"),
         cartSidebar = document.querySelector(".cart-sidebar"),
@@ -6388,13 +6389,7 @@ const initApp = () => {
         }
     });
 
-    // Inicialização da tela (SPA) baseada no estado do histórico ou padrão
-    const state = history.state;
-    if (state && state.view === "catalog") {
-        selecionarCategoria(state.categoria, state.subcategoria || null, false);
-    } else {
-        mostrarHome(false);
-    }
+
 
     // --- DYNAMIC SCROLL INDICATOR FOR SUBCATEGORIES ---
     const updateScrollIndicator = () => {
@@ -6443,9 +6438,15 @@ const initApp = () => {
     // 1. Inicializar e desenhar Arabescos conforme o scroll
     const initArabescos = () => {
         document.querySelectorAll(".story-trail-path").forEach(path => {
-            const pathLength = path.getTotalLength() || 1200;
-            path.style.strokeDasharray = pathLength;
-            path.style.strokeDashoffset = pathLength;
+            try {
+                const pathLength = path.getTotalLength() || 1200;
+                path.style.strokeDasharray = pathLength;
+                path.style.strokeDashoffset = pathLength;
+            } catch (err) {
+                console.warn("Could not get SVG path length:", err);
+                path.style.strokeDasharray = "none";
+                path.style.strokeDashoffset = "0";
+            }
         });
         animarArabescos();
     };
@@ -6469,9 +6470,13 @@ const initApp = () => {
                 const scrollProgress = (viewHeight - rect.top) / totalDistance;
                 const progress = Math.min(Math.max(scrollProgress, 0), 1);
                 
-                const pathLength = path.getTotalLength() || 1200;
-                // Desenha a linha proporcionalmente (multiplicado por 1.4 para completar o desenho um pouco mais cedo)
-                path.style.strokeDashoffset = pathLength * (1 - Math.min(progress * 1.4, 1));
+                try {
+                    const pathLength = path.getTotalLength() || 1200;
+                    // Desenha a linha proporcionalmente (multiplicado por 1.4 para completar o desenho um pouco mais cedo)
+                    path.style.strokeDashoffset = pathLength * (1 - Math.min(progress * 1.4, 1));
+                } catch (err) {
+                    path.style.strokeDashoffset = "0";
+                }
             }
         });
     };
@@ -6581,6 +6586,14 @@ const initApp = () => {
     window.registrarCriacoesRevealMobile = registrarCriacoesRevealMobile;
     window.registrarGaleriaReveal = registrarGaleriaReveal;
     window.initCardTiltEffect = initCardTiltEffect;
+
+    // Inicialização da tela (SPA) baseada no estado do histórico ou padrão
+    const state = history.state;
+    if (state && state.view === "catalog") {
+        selecionarCategoria(state.categoria, state.subcategoria || null, false);
+    } else {
+        mostrarHome(false);
+    }
 
     atualizarCarrinho();
 };

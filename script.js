@@ -3685,7 +3685,7 @@ const initApp = () => {
         "doces-classicos-especiais": {
             "doces-classicos": { title: "Doces Clássicos", desc: "Os tradicionais docinhos que não podem faltar em nenhuma comemoração." },
             "brigadeiros-especiais": { title: "Brigadeiros Especiais", desc: "Sabores diferenciados e receitas autorais exclusivas." },
-            "copinhos": { title: "Copinhos de Chocolate", desc: "Delicados copinhos de chocolate com recheios cremosos e irresistíveis." },
+            "copinhos": { title: "Copinhos", desc: "Delicados copinhos de chocolate com recheios cremosos e irresistíveis." },
             "cupcakes-macarons": { title: "Cupcakes & Macarons", desc: "Cupcakes artesanais e o clássico doce francês feito com perfeição." },
             "frutas-castanhas": { title: "Doces de Frutas & Castanhas", desc: "Doces finos clássicos baseados em frutas nobres, damasco, nozes e fondant." }
         },

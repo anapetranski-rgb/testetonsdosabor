@@ -3840,24 +3840,59 @@ const initApp = () => {
         }
     ];
 
+    let activeTestimonialIndex = 0;
     const renderTestimonials = () => {
         const testimonialsSection = document.getElementById("home-depoimentos");
-        const container = document.getElementById("testimonials-container");
-        if (!testimonialsSection || !container) return;
+        const activeCardContainer = document.getElementById("testimonial-active-card");
+        const dotsContainer = document.getElementById("depoimento-dots");
+        const prevBtn = document.getElementById("depoimento-prev-btn");
+        const nextBtn = document.getElementById("depoimento-next-btn");
 
-        container.innerHTML = depoimentosDemonstrativos.map((av) => `
-            <div class="testimonial-card">
+        if (!testimonialsSection || !activeCardContainer) return;
+
+        const av = depoimentosDemonstrativos[activeTestimonialIndex];
+        activeCardContainer.innerHTML = `
+            <div class="testimonial-card-single testimonial-fade">
                 <div class="testimonial-quote-icon">“</div>
                 <p class="testimonial-text">"${av.texto}"</p>
                 <div class="testimonial-stars">
                     ${"★".repeat(av.nota)}${"☆".repeat(5 - av.nota)}
                 </div>
-                <div class="testimonial-meta">
-                    <span class="testimonial-event">${av.evento}</span>
-                    <span class="testimonial-tag">Depoimento demonstrativo</span>
-                </div>
+                <h4 class="testimonial-author">${av.nome}</h4>
+                <span class="testimonial-event">${av.evento}</span>
             </div>
-        `).join('');
+        `;
+
+        if (dotsContainer) {
+            dotsContainer.innerHTML = depoimentosDemonstrativos.map((_, idx) => `
+                <div class="testimonial-dot ${idx === activeTestimonialIndex ? 'active' : ''}" data-index="${idx}"></div>
+            `).join('');
+
+            dotsContainer.querySelectorAll(".testimonial-dot").forEach(dot => {
+                dot.addEventListener("click", (e) => {
+                    const targetIndex = parseInt(e.currentTarget.dataset.index, 10);
+                    if (targetIndex !== activeTestimonialIndex) {
+                        activeTestimonialIndex = targetIndex;
+                        renderTestimonials();
+                    }
+                });
+            });
+        }
+
+        if (prevBtn && !prevBtn.dataset.listenerBound) {
+            prevBtn.dataset.listenerBound = "true";
+            prevBtn.addEventListener("click", () => {
+                activeTestimonialIndex = (activeTestimonialIndex - 1 + depoimentosDemonstrativos.length) % depoimentosDemonstrativos.length;
+                renderTestimonials();
+            });
+        }
+        if (nextBtn && !nextBtn.dataset.listenerBound) {
+            nextBtn.dataset.listenerBound = "true";
+            nextBtn.addEventListener("click", () => {
+                activeTestimonialIndex = (activeTestimonialIndex + 1) % depoimentosDemonstrativos.length;
+                renderTestimonials();
+            });
+        }
     };
 
     function limparBloqueiosDeNavegacao() {
@@ -3922,6 +3957,9 @@ const initApp = () => {
             registrarCriacoesRevealMobile();
             registrarGaleriaReveal();
             initCardTiltEffect();
+            if (typeof updateStripScroll === "function") {
+                updateStripScroll();
+            }
         }, 150);
 
         window.scrollTo({
@@ -6132,63 +6170,45 @@ const initApp = () => {
 
     function renderizarGaleria() {
         if (galeriaRenderizada) return;
-        
-        galeriaContainer.innerHTML = imagensGaleria.map((imgSrc, index) => {
-            return `
-                <article class="gallery-item galeria-item" data-index="${index}">
-                    <img class="galeria-img" src="${imgSrc}" alt="Momento Real ${index + 1}" loading="lazy">
-                    <div class="galeria-overlay">
-                        <i class="fa-solid fa-magnifying-glass-plus"></i>
-                    </div>
-                </article>
-            `;
-        }).join('');
-        
-        // Evento de clique para abrir o Lightbox
-        const items = galeriaContainer.querySelectorAll(".galeria-item");
-        items.forEach(item => {
-            item.addEventListener("click", () => {
-                const index = parseInt(item.dataset.index, 10);
-                abrirGaleriaModal(index);
+
+        const magazineContainer = document.getElementById("galeria-magazine-container");
+        if (magazineContainer) {
+            magazineContainer.innerHTML = imagensGaleria.slice(0, 4).map((imgSrc, index) => {
+                return `
+                    <article class="gallery-item galeria-item" data-index="${index}">
+                        <img class="galeria-img" src="${imgSrc}" alt="Momento Real ${index + 1}" loading="lazy">
+                        <div class="galeria-overlay">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            const items = magazineContainer.querySelectorAll(".galeria-item");
+            items.forEach(item => {
+                item.addEventListener("click", () => {
+                    const index = parseInt(item.dataset.index, 10);
+                    abrirGaleriaModal(index);
+                });
             });
-        });
-        
-        // Ativa reveal das fotos após renderização
+        }
+
+        const btnOpenGalleryLightbox = document.getElementById("btn-open-gallery-lightbox");
+        if (btnOpenGalleryLightbox) {
+            btnOpenGalleryLightbox.addEventListener("click", () => {
+                abrirGaleriaModal(0);
+            });
+        }
+
         if (typeof registrarGaleriaReveal === "function") {
             registrarGaleriaReveal();
         }
-        
+
         galeriaRenderizada = true;
     }
 
     function configurarNavegacaoMomentos() {
-        const carousel = document.querySelector(".moments-carousel");
-        const previousButton = document.querySelector(".moments-nav-prev");
-        const nextButton = document.querySelector(".moments-nav-next");
-
-        if (!carousel || !previousButton || !nextButton) return;
-
-        const obterDistancia = () => Math.max(carousel.clientWidth * 0.75, 300);
-
-        // Remove old listeners by replacing with clones
-        const newPrev = previousButton.cloneNode(true);
-        const newNext = nextButton.cloneNode(true);
-        previousButton.parentNode.replaceChild(newPrev, previousButton);
-        nextButton.parentNode.replaceChild(newNext, nextButton);
-
-        newPrev.addEventListener("click", () => {
-            carousel.scrollBy({
-                left: -obterDistancia(),
-                behavior: "smooth"
-            });
-        });
-
-        newNext.addEventListener("click", () => {
-            carousel.scrollBy({
-                left: obterDistancia(),
-                behavior: "smooth"
-            });
-        });
+        // No-op for magazine layout
     }
 
     function mostrarGaleriaTela(push = true) {
@@ -6317,6 +6337,87 @@ const initApp = () => {
 
         abrirCalculatorModal();
     });
+
+    // Parallax mousemove on Hero layers
+    const heroSection = document.querySelector(".home-hero");
+    if (heroSection && window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        heroSection.addEventListener("mousemove", (e) => {
+            const layers = heroSection.querySelectorAll(".hero-layer");
+            const x = (window.innerWidth - e.pageX * 2) / 150;
+            const y = (window.innerHeight - e.pageY * 2) / 150;
+
+            layers.forEach((layer, index) => {
+                const speed = (index + 1) * 0.8;
+                layer.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    }
+
+    // History Modal listeners
+    const historyModal = document.getElementById("historyModal");
+    const closeHistoryBtn = document.getElementById("close-history-modal");
+    const btnHeroStory = document.getElementById("btn-hero-story");
+    const btnReadStory = document.getElementById("btn-read-story");
+
+    const abrirHistoryModal = () => {
+        if (historyModal) {
+            if (typeof historyModal.showModal === "function") {
+                historyModal.showModal();
+                historyModal.classList.add("show");
+            } else {
+                historyModal.classList.add("show");
+            }
+        }
+    };
+
+    const fecharHistoryModal = () => {
+        if (historyModal) {
+            if (historyModal.open) {
+                historyModal.close();
+            }
+            historyModal.classList.remove("show");
+        }
+    };
+
+    if (btnHeroStory) btnHeroStory.addEventListener("click", abrirHistoryModal);
+    if (btnReadStory) btnReadStory.addEventListener("click", abrirHistoryModal);
+    if (closeHistoryBtn) closeHistoryBtn.addEventListener("click", fecharHistoryModal);
+    if (historyModal) {
+        historyModal.addEventListener("click", (e) => {
+            if (e.target === historyModal) {
+                fecharHistoryModal();
+            }
+        });
+    }
+
+    // Categories Strip scroll progress tracking
+    const stripGrid = document.getElementById("categories-strip-grid");
+    const stripIndicator = document.getElementById("strip-scroll-indicator");
+    const stripThumb = document.getElementById("strip-scroll-thumb");
+
+    const updateStripScroll = () => {
+        if (!stripGrid || !stripIndicator || !stripThumb) return;
+        const scrollWidth = stripGrid.scrollWidth;
+        const clientWidth = stripGrid.clientWidth;
+        const maxScroll = scrollWidth - clientWidth;
+        
+        if (maxScroll > 10) {
+            stripIndicator.classList.remove("is-hidden");
+            const currentScroll = stripGrid.scrollLeft;
+            const thumbWidth = Math.max((clientWidth / scrollWidth) * 100, 15);
+            stripThumb.style.width = `${thumbWidth}%`;
+            const moveRange = 100 - thumbWidth;
+            const tx = (currentScroll / maxScroll) * moveRange;
+            stripThumb.style.transform = `translateX(${tx}%)`;
+        } else {
+            stripIndicator.classList.add("is-hidden");
+        }
+    };
+
+    if (stripGrid && stripIndicator && stripThumb) {
+        stripGrid.addEventListener("scroll", updateStripScroll, { passive: true });
+        window.addEventListener("resize", updateStripScroll, { passive: true });
+    }
 
     if (btnCloseModal) {
         btnCloseModal.addEventListener("click", fecharGaleriaModal);

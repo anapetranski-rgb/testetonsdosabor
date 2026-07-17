@@ -3915,6 +3915,14 @@ const initApp = () => {
         renderTestimonials();
         registrarScrollRevealHome();
 
+        // Inicia a experiência de animações interativas e arabescos
+        setTimeout(() => {
+            initArabescos();
+            registrarCriacoesRevealMobile();
+            registrarGaleriaReveal();
+            initCardTiltEffect();
+        }, 150);
+
         window.scrollTo({
             top: 0,
             behavior: "smooth"
@@ -6144,6 +6152,11 @@ const initApp = () => {
             });
         });
         
+        // Ativa reveal das fotos após renderização
+        if (typeof registrarGaleriaReveal === "function") {
+            registrarGaleriaReveal();
+        }
+        
         galeriaRenderizada = true;
     }
 
@@ -6424,6 +6437,150 @@ const initApp = () => {
         subgridElement.addEventListener("scroll", updateScrollIndicator);
         window.addEventListener("resize", updateScrollIndicator);
     }
+
+    // --- HOME PAGE EXPERIMENTAL ANIMAÇÕES & INTERAÇÕES ---
+
+    // 1. Inicializar e desenhar Arabescos conforme o scroll
+    const initArabescos = () => {
+        document.querySelectorAll(".story-trail-path").forEach(path => {
+            const pathLength = path.getTotalLength() || 1200;
+            path.style.strokeDasharray = pathLength;
+            path.style.strokeDashoffset = pathLength;
+        });
+        animarArabescos();
+    };
+
+    const animarArabescos = () => {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            document.querySelectorAll(".story-trail-path").forEach(path => {
+                path.style.strokeDashoffset = "0";
+            });
+            return;
+        }
+
+        const paths = document.querySelectorAll(".story-trail-path");
+        paths.forEach(path => {
+            const rect = path.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+            
+            // Verifica se o caminho SVG está visível no viewport
+            if (rect.top < viewHeight && rect.bottom > 0) {
+                const totalDistance = viewHeight + rect.height;
+                const scrollProgress = (viewHeight - rect.top) / totalDistance;
+                const progress = Math.min(Math.max(scrollProgress, 0), 1);
+                
+                const pathLength = path.getTotalLength() || 1200;
+                // Desenha a linha proporcionalmente (multiplicado por 1.4 para completar o desenho um pouco mais cedo)
+                path.style.strokeDashoffset = pathLength * (1 - Math.min(progress * 1.4, 1));
+            }
+        });
+    };
+
+    // 2. Parallax suave na galeria de imagens
+    const animarParallaxGaleria = () => {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        
+        const items = document.querySelectorAll(".galeria-item");
+        items.forEach(item => {
+            const rect = item.getBoundingClientRect();
+            const viewHeight = window.innerHeight;
+            
+            if (rect.top < viewHeight && rect.bottom > 0) {
+                const scrollDistance = viewHeight - rect.top;
+                const progress = scrollDistance / (viewHeight + rect.height);
+                const img = item.querySelector(".galeria-img");
+                if (img) {
+                    const translateY = (progress - 0.5) * 15; // Máximo de +/- 7.5px
+                    img.style.transform = `scale(1.06) translateY(${translateY}px)`;
+                }
+            }
+        });
+    };
+
+    // 3. Revelação dos cards de criação no scroll mobile
+    const registrarCriacoesRevealMobile = () => {
+        const isMobile = window.matchMedia("(max-width: 768px)").matches || ("ontouchstart" in window);
+        if (!isMobile) return;
+
+        const cards = document.querySelectorAll(".criacao-card");
+        if (cards.length === 0) return;
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            cards.forEach(card => card.classList.add("mobile-revealed"));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("mobile-revealed");
+                }
+            });
+        }, { threshold: 0.35 });
+
+        cards.forEach(card => observer.observe(card));
+    };
+
+    // 4. Revelação suave das fotos da galeria
+    const registrarGaleriaReveal = () => {
+        const items = document.querySelectorAll(".galeria-item");
+        if (items.length === 0) return;
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            items.forEach(item => item.classList.add("revealed"));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("revealed");
+                }
+            });
+        }, { threshold: 0.12 });
+
+        items.forEach(item => observer.observe(item));
+    };
+
+    // 5. Inclinamento 3D interativo nos cards (Desktop)
+    const initCardTiltEffect = () => {
+        const isMobile = window.matchMedia("(max-width: 768px)").matches || ("ontouchstart" in window);
+        if (isMobile || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        const cards = document.querySelectorAll(".criacao-card, .testimonial-card, .review-card, .info-card");
+        cards.forEach(card => {
+            card.addEventListener("mousemove", (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((centerY - y) / centerY) * 3; // Max 3 graus
+                const rotateY = ((x - centerX) / centerX) * 3;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+            });
+            
+            card.addEventListener("mouseleave", () => {
+                card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
+            });
+        });
+    };
+
+    // Registra eventos globais de rolagem e redimensionamento
+    window.addEventListener("scroll", () => {
+        animarArabescos();
+        animarParallaxGaleria();
+    });
+    window.addEventListener("resize", animarArabescos);
+
+    // Expõe funções no escopo global para acionamento SPA se necessário
+    window.initArabescos = initArabescos;
+    window.registrarCriacoesRevealMobile = registrarCriacoesRevealMobile;
+    window.registrarGaleriaReveal = registrarGaleriaReveal;
+    window.initCardTiltEffect = initCardTiltEffect;
 
     atualizarCarrinho();
 };

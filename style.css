@@ -3615,6 +3615,270 @@ footer .copyright {
   transition: transform 0.1s linear, width 0.15s ease;
   transform-origin: left center;
 }
+/* ==========================================================================
+   ANIMAÇÕES E COMPONENTES INTERATIVOS DA HOME EXPERIMENTAL
+   ========================================================================== */
+
+/* 1. Traço Ornamental (Arabescos SVG) */
+.story-trail-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+  z-index: 10;
+  margin: -1.5rem 0; /* overlaps sections slightly for seamless connection */
+}
+
+.story-trail-svg {
+  width: 100%;
+  height: 140px;
+  display: block;
+}
+
+.story-trail-path {
+  stroke: var(--primary-strong);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  transition: stroke-dashoffset 0.1s ease-out;
+}
+
+.trail-gold-star {
+  opacity: 0;
+  transform: scale(0) rotate(-45deg);
+  transform-origin: center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+  transition-delay: 0.3s;
+}
+
+/* When section is revealed, make the star appear */
+.reveal-active + .story-trail-container .trail-gold-star,
+.story-trail-container.reveal-active .trail-gold-star {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* 2. Seção de Criações em Destaque */
+.home-criacoes-section {
+  padding: 5rem 1rem;
+  background: var(--bg-main, #FBF8F1);
+  position: relative;
+}
+
+.home-criacoes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto;
+}
+
+@media (max-width: 768px) {
+  .home-criacoes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.2rem;
+    padding: 0 0.5rem;
+  }
+}
+
+.criacao-card {
+  position: relative;
+  overflow: hidden;
+  height: 360px;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background: #ffffff;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+@media (max-width: 768px) {
+  .criacao-card {
+    height: 300px;
+  }
+}
+
+.criacao-card-img-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.criacao-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: blur(4px) grayscale(15%);
+  opacity: 0.85;
+  transform: scale(1.04);
+  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.criacao-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(26, 48, 56, 0.85), rgba(26, 48, 56, 0.2) 65%);
+  opacity: 0.85;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.criacao-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.8rem;
+  text-align: left;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.criacao-card-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin: 0 0 0.4rem 0;
+  font-weight: 700;
+}
+
+.criacao-card-content p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* Hover reveals (Desktop only) */
+@media (hover: hover) {
+  .criacao-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  .criacao-card:hover .criacao-card-img {
+    filter: blur(0) grayscale(0);
+    opacity: 1;
+    transform: scale(1.0);
+  }
+  
+  .criacao-card:hover .criacao-card-overlay {
+    opacity: 0.9;
+  }
+}
+
+/* Trigger reveal style for mobile scroll active card */
+.criacao-card.mobile-revealed .criacao-card-img {
+  filter: blur(0) grayscale(0);
+  opacity: 1;
+  transform: scale(1.0);
+}
+
+/* 3. Hero Slide Ken Burns & clip-path curtain effect */
+.hero-slide {
+  clip-path: inset(0 0 100% 0);
+  transition: opacity 1.5s ease-in-out, clip-path 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-slide.active {
+  clip-path: inset(0 0 0 0);
+  animation: kenBurnsAnimation 20s ease-in-out infinite;
+}
+
+@keyframes kenBurnsAnimation {
+  0% {
+    transform: scale(1.04) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.10) translate(-0.8%, 0.4%);
+  }
+  100% {
+    transform: scale(1.04) translate(0, 0);
+  }
+}
+
+/* 4. Galeria Items Alternating Layout & Entry */
+.galeria-item {
+  opacity: 0;
+  transform: translateY(24px) rotate(1.5deg);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.galeria-item.revealed {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+/* Alternating shifts to make the layout organic and artistic */
+.galeria-item:nth-child(even).revealed {
+  transform: translateY(8px) rotate(-0.5deg);
+}
+
+.galeria-item:nth-child(odd).revealed {
+  transform: translateY(-6px) rotate(0.5deg);
+}
+
+/* 5. 3D Tilt return ease */
+.testimonial-card,
+.review-card,
+.info-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+/* prefers-reduced-motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  .story-trail-container {
+    display: none !important;
+  }
+  .story-trail-path {
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+  }
+  .criacao-card,
+  .galeria-item,
+  .testimonial-card,
+  .review-card,
+  .info-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .criacao-card-img {
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-slide {
+    clip-path: none !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .hero-slide.active {
+    animation: none !important;
+  }
+  .trail-gold-star {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 /* Suporte a temas claros e escuros no nível do navegador */
 :root {
   color-scheme: light dark;

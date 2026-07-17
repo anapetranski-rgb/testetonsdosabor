@@ -3693,7 +3693,7 @@ const initApp = () => {
             "caixinhas-ouricos": { title: "Caixinhas & Ouriços", desc: "Copos decorados e ouriços caramelizados ou envoltos em amêndoas e pistache." },
             "bombons-tradicionais": { title: "Bombons Tradicionais", desc: "Deliciosos bombons artesanais com cobertura fracionada premium." },
             "bombons-finos-camafeus": { title: "Bombons Finos & Camafeus", desc: "Bombons refinados, trufados e camafeus clássicos de nozes." },
-            "bombons-artisticos-torres": { title: "Bombons Artísticos & Torres", desc: "Criações artísticas pintadas à mão e a imponente torre de macarons." },
+            "bombons-artisticos-torres": { title: "Artísticos & Torres", desc: "Criações artísticas pintadas à mão e a imponente torre de macarons." },
             "brigadeiros-finos": { title: "Brigadeiros Finos", desc: "O ápice do brigadeiro de festa, feito com chocolate belga e granullés finos." }
         },
         "bolos": {

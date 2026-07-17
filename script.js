@@ -3993,6 +3993,12 @@ const initApp = () => {
             subgrid.querySelectorAll(".subcategory-card").forEach(item => {
                 if (item.dataset.subcategory === subcategoria) {
                     item.classList.add("active");
+                    setTimeout(() => {
+                        item.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+                        if (typeof updateScrollIndicator === "function") {
+                            updateScrollIndicator();
+                        }
+                    }, 50);
                 } else {
                     item.classList.remove("active");
                 }
@@ -4045,6 +4051,23 @@ const initApp = () => {
                 `;
             }).join('');
 
+            // Auto-scroll active card into view and update indicator
+            const activeCard = subgrid.querySelector(".subcategory-card.active");
+            if (activeCard) {
+                setTimeout(() => {
+                    activeCard.scrollIntoView({ behavior: "auto", block: "nearest", inline: "center" });
+                    if (typeof updateScrollIndicator === "function") {
+                        updateScrollIndicator();
+                    }
+                }, 50);
+            } else {
+                setTimeout(() => {
+                    if (typeof updateScrollIndicator === "function") {
+                        updateScrollIndicator();
+                    }
+                }, 50);
+            }
+
             subgrid.querySelectorAll(".subcategory-card").forEach(btn => {
                 btn.addEventListener("click", (event) => {
                     const card = event.target.closest(".subcategory-card");
@@ -4056,6 +4079,8 @@ const initApp = () => {
                     subgrid.querySelectorAll(".subcategory-card").forEach(item => {
                         if (item.dataset.subcategory === sub) {
                             item.classList.add("active");
+                            // Scroll clicked item into view smoothly
+                            item.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
                         } else {
                             item.classList.remove("active");
                         }
@@ -6356,6 +6381,48 @@ const initApp = () => {
         selecionarCategoria(state.categoria, state.subcategoria || null, false);
     } else {
         mostrarHome(false);
+    }
+
+    // --- DYNAMIC SCROLL INDICATOR FOR SUBCATEGORIES ---
+    const updateScrollIndicator = () => {
+        const grid = document.getElementById("subcategory-grid");
+        const indicator = document.getElementById("subcategory-scroll-indicator");
+        const thumb = document.getElementById("subcategory-scroll-thumb");
+        
+        if (!grid || !indicator || !thumb) return;
+        
+        const scrollWidth = grid.scrollWidth;
+        const clientWidth = grid.clientWidth;
+        const scrollLeft = grid.scrollLeft;
+        
+        // Show only if there is horizontal overflow (more content than viewport width)
+        if (scrollWidth > clientWidth + 4) {
+            indicator.classList.remove("is-hidden");
+            
+            const maxScroll = scrollWidth - clientWidth;
+            const scrollFraction = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+            
+            // Proportional thumb width, minimum 15%
+            const thumbWidthFraction = clientWidth / scrollWidth;
+            const thumbWidthPercent = Math.max(15, thumbWidthFraction * 100);
+            
+            const maxThumbTravel = 100 - thumbWidthPercent;
+            const thumbLeftPercent = scrollFraction * maxThumbTravel;
+            
+            thumb.style.width = `${thumbWidthPercent}%`;
+            thumb.style.transform = `translateX(${thumbLeftPercent * (100 / thumbWidthPercent)}%)`;
+        } else {
+            indicator.classList.add("is-hidden");
+        }
+    };
+
+    // Expose it on the window object temporarily if needed, but since it's in scope, just window assignment works too
+    window.updateScrollIndicator = updateScrollIndicator;
+
+    const subgridElement = document.getElementById("subcategory-grid");
+    if (subgridElement) {
+        subgridElement.addEventListener("scroll", updateScrollIndicator);
+        window.addEventListener("resize", updateScrollIndicator);
     }
 
     atualizarCarrinho();

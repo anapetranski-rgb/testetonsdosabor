@@ -3586,3 +3586,196 @@ footer .copyright {
   font-weight: 500;
   color: #177F8C;
 }
+
+/* Scroll Indicator styles */
+.subcategory-scroll-indicator {
+  position: relative;
+  width: 100px;
+  height: 4px;
+  background: rgba(23, 127, 140, 0.12);
+  border-radius: 4px;
+  margin: 0.5rem auto 1.5rem;
+  overflow: hidden;
+  pointer-events: none;
+  display: block;
+}
+
+.subcategory-scroll-indicator.is-hidden {
+  display: none !important;
+}
+
+.subcategory-scroll-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--primary-strong);
+  border-radius: 4px;
+  transition: transform 0.1s linear, width 0.15s ease;
+  transform-origin: left center;
+}
+
+/* FORÇA O TEMA CLARO: EVITA AUTO-DARK MODE E ADAPTAÇÕES DE CORES DO APARELHO */
+:root {
+  color-scheme: only light !important;
+}
+
+html, body, header, nav, section, main, footer, 
+div, span, h1, h2, h3, h4, h5, h6, p, ul, li, a, 
+button, input, select, textarea, label, form, dialog, 
+article, aside, table, tr, td, th {
+  color-scheme: only light !important;
+}
+
+html {
+  background-color: #FBF8F1 !important;
+  color: #1A3038 !important;
+}
+
+body {
+  background: #FBF8F1 !important;
+  background-color: #FBF8F1 !important;
+  color: #1A3038 !important;
+}
+
+/* Forçar cores de fundo e textos de todos os elementos para manter a paleta clara */
+header,
+.header,
+.main-nav {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #1A3038 !important;
+}
+
+header a,
+.header a,
+.main-nav a,
+header button,
+.header button {
+  color: #1A3038 !important;
+}
+
+/* Seções e áreas de navegação */
+section,
+main,
+.products,
+.catalog-editorial,
+.subcategory-selection-section {
+  background: #FBF8F1 !important;
+  background-color: #FBF8F1 !important;
+  color: #1A3038 !important;
+}
+
+/* Cards de produtos e subcategorias */
+.product-card {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #1A3038 !important;
+  border-color: rgba(23, 127, 140, 0.15) !important;
+}
+
+.product-card .product-name {
+  color: #1A3038 !important;
+}
+
+.product-card .product-desc {
+  color: #55666b !important;
+}
+
+.product-card .product-price {
+  color: #177F8C !important;
+}
+
+/* Subcategorias */
+.subcategory-card {
+  background: #fffdf8 !important;
+  background-color: #fffdf8 !important;
+  color: #1A3038 !important;
+  border-color: rgba(23, 127, 140, 0.18) !important;
+}
+
+.subcategory-card:hover:not(.active) {
+  background: #fffdf8 !important;
+  background-color: #fffdf8 !important;
+  color: #1A3038 !important;
+  border-color: var(--primary-color) !important;
+}
+
+.subcategory-card.active {
+  background: var(--primary-strong) !important;
+  background-color: var(--primary-strong) !important;
+  color: #ffffff !important;
+  border-color: var(--primary-strong) !important;
+}
+
+.subcategory-card.active .subcategory-card-title {
+  color: #ffffff !important;
+}
+
+/* Modais e Checkout/Carrinho */
+.modal,
+.modal-content,
+.cart-sidebar,
+.checkout-modal,
+.dialog,
+dialog {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #1A3038 !important;
+}
+
+/* Inputs, Selects, Textareas e Formulários */
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+select,
+textarea,
+.form-control,
+.coupon-input,
+.search-input {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #1A3038 !important;
+  border: 1px solid #CBE6E4 !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #177F8C !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+/* Overlays (Fundo escuro semitransparente dos modais/carrinho) */
+.cart-overlay,
+.modal-overlay,
+.overlay {
+  background: rgba(26, 48, 56, 0.6) !important;
+  background-color: rgba(26, 48, 56, 0.6) !important;
+}
+
+/* Rodapé */
+footer,
+.footer {
+  background: #1A3038 !important;
+  background-color: #1A3038 !important;
+  color: #F4FAF9 !important;
+}
+
+footer a,
+.footer a {
+  color: #ffffff !important;
+}
+
+/* Imagens */
+img,
+.product-img,
+.logo-img {
+  filter: none !important;
+  opacity: 1 !important;
+}

@@ -1032,7 +1032,7 @@ const initApp = () => {
         categoria: "bolos",
         subcategoria: "bolos-tradicionais",
         precoBase: 99.00,
-        imagem: "./assets/doces-classicos/pacoca.webp",
+        imagem: "./assets/bolos-tradicionais/pacoca.webp",
         descricao: "Massa branca macia com um surpreendente brigadeiro artesanal de paçoca.",
         requerPersonalizacao: true,
         tipoPersonalizacao: "tamanho-bolo",

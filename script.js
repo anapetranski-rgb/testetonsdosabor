@@ -70,7 +70,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "doces-classicos",
         preco: 1.49,
-        imagem: "./assets/doces-classicos/beijinho.webp",
+        imagem: "./assets/doces-classicos/doce-classico-beijinho.webp",
         descricao: "Delicioso doce tradicional de coco ralado e leite condensado.",
         requerPersonalizacao: false
         },
@@ -80,7 +80,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "doces-classicos",
         preco: 1.49,
-        imagem: "./assets/doces-classicos/branco.webp",
+        imagem: "./assets/doces-classicos/doce-classico-brigadeiro-branco.webp",
         descricao: "Brigadeiro branco cremoso tradicional. Produto artesanal com aprox. 20g.",
         requerPersonalizacao: false
         },
@@ -90,7 +90,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "doces-classicos",
         preco: 1.49,
-        imagem: "./assets/doces-classicos/pacoca.webp",
+        imagem: "./assets/doces-classicos/doce-classico-pacoca.webp",
         descricao: "Sabor marcante de paçoca em formato de brigadeiro de festa.",
         requerPersonalizacao: false
         },
@@ -100,7 +100,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "doces-classicos",
         preco: 1.49,
-        imagem: "./assets/doces-classicos/preto.webp",
+        imagem: "./assets/doces-classicos/doce-classico-brigadeiro-preto.webp",
         descricao: "O clássico e amado brigadeiro ao leite. Produto artesanal com aprox. 20g.",
         requerPersonalizacao: false
         },
@@ -110,7 +110,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "doces-classicos",
         preco: 1.49,
-        imagem: "./assets/doces-classicos/cajuzinho.webp",
+        imagem: "./assets/doces-classicos/doce-classico-cajuzinho.webp",
         descricao: "Doce tradicional de amendoim com aquele toque clássico.",
         requerPersonalizacao: false
         },
@@ -120,7 +120,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "doces-classicos",
         preco: 1.49,
-        imagem: "./assets/doces-classicos/moranguinho.webp",
+        imagem: "./assets/doces-classicos/doce-classico-moranguinho.webp",
         descricao: "O clássico bicho de pé, brigadeiro saborizado de morango.",
         requerPersonalizacao: false
         },
@@ -130,7 +130,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "doces-classicos",
         preco: 1.90,
-        imagem: "./assets/doces-classicos/palha-italiana.webp",
+        imagem: "./assets/doces-classicos/doce-classico-palha-italiana.webp",
         descricao: "Tradicional pedaço de palha italiana feito com brigadeiro cremoso e biscoito.",
         requerPersonalizacao: false
         },
@@ -140,7 +140,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "brigadeiros-especiais",
         preco: 2.10,
-        imagem: "./assets/brigad-especiais/brigad-brulle.webp",
+        imagem: "./assets/brigad-especiais/brigad-especial-brulle.webp",
         descricao: "Brigadeiro de baunilha com crosta de açúcar maçaricado.",
         requerPersonalizacao: false
         },
@@ -150,7 +150,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "brigadeiros-especiais",
         preco: 2.10,
-        imagem: "./assets/brigad-especiais/brigad-churros.webp",
+        imagem: "./assets/brigad-especiais/brigad-especial-churros.webp",
         descricao: "Brigadeiro artesanal de canela finalizado com doce de leite.",
         requerPersonalizacao: false
         },
@@ -160,7 +160,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "brigadeiros-especiais",
         preco: 2.10,
-        imagem: "./assets/brigad-especiais/dois-amores.webp",
+        imagem: "./assets/brigad-especiais/brigad-especial-dois-amores.webp",
         descricao: "A união perfeita do brigadeiro preto e branco em um único docinho.",
         requerPersonalizacao: false
         },
@@ -170,7 +170,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "brigadeiros-especiais",
         preco: 2.10,
-        imagem: "./assets/brigad-especiais/flor-morango.webp",
+        imagem: "./assets/brigad-especiais/brigad-especial-flor-morango.webp",
         descricao: "Brigadeiro de morango (Nesquik) moldado em formato de florzinha.",
         requerPersonalizacao: false
         },
@@ -180,7 +180,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "brigadeiros-especiais",
         preco: 2.10,
-        imagem: "./assets/brigad-especiais/ninho-nutella.webp",
+        imagem: "./assets/brigad-especiais/brigad-especial-ninho-nutella.webp",
         descricao: "Brigadeiro de leite Ninho original recheado com Nutella pura.",
         requerPersonalizacao: false
         },
@@ -190,7 +190,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "brigadeiros-especiais",
         preco: 2.10,
-        imagem: "./assets/brigad-especiais/uva-verde.webp",
+        imagem: "./assets/brigad-especiais/brigad-especial-uva-verde.webp",
         descricao: "Uva verde fresca envolvida por brigadeiro branco.",
         requerPersonalizacao: false
         },
@@ -210,7 +210,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "copinhos",
         preco: 4.90,
-        imagem: "./assets/copinhos/avela-crocante.webp",
+        imagem: "./assets/copinhos/copinho-avela-crocante.webp",
         descricao: "Copinho de chocolate nobre com recheio cremoso de avelã com toque crocante.",
         requerPersonalizacao: false
         },
@@ -230,7 +230,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "copinhos",
         preco: 2.90,
-        imagem: "./assets/copinhos/beijinho.webp",
+        imagem: "./assets/copinhos/copinho-beijinho.webp",
         descricao: "Copinho de chocolate nobre recheado com delicioso creme artesanal de coco.",
         requerPersonalizacao: false
         },
@@ -240,7 +240,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "copinhos",
         preco: 2.90,
-        imagem: "./assets/doces-classicos/preto.webp",
+        imagem: "./assets/copinhos/copinho-brigadeiro.webp",
         descricao: "Copinho de chocolate nobre recheado com o nosso clássico brigadeiro cremoso.",
         requerPersonalizacao: false
         },
@@ -250,7 +250,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "copinhos",
         preco: 2.90,
-        imagem: "./assets/copinhos/nozes.webp",
+        imagem: "./assets/copinhos/copinho-nozes.webp",
         descricao: "Copinho de chocolate nobre com doce de leite cozido e pedacinhos de nozes.",
         requerPersonalizacao: false
         },
@@ -260,7 +260,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "copinhos",
         preco: 2.90,
-        imagem: "./assets/copinhos/limao.webp",
+        imagem: "./assets/copinhos/copinho-limao.webp",
         descricao: "Copinho de chocolate nobre com mousse leve e refrescante de limão.",
         requerPersonalizacao: false
         },
@@ -270,7 +270,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "copinhos",
         preco: 2.90,
-        imagem: "./assets/copinhos/maracuja.webp",
+        imagem: "./assets/copinhos/copinho-maracuja.webp",
         descricao: "Copinho de chocolate nobre com mousse aerada de maracujá.",
         requerPersonalizacao: false
         },
@@ -280,7 +280,7 @@ const initApp = () => {
         categoria: "doces-classicos-especiais",
         subcategoria: "copinhos",
         preco: 2.90,
-        imagem: "./assets/copinhos/olho-de-sogra.webp",
+        imagem: "./assets/copinhos/copinho-olho-de-sogra.webp",
         descricao: "Copinho de chocolate nobre recheado com beijinho de coco com toque de ameixa.",
         requerPersonalizacao: false
         },
@@ -835,7 +835,7 @@ const initApp = () => {
         categoria: "doces-finos-artisticos",
         subcategoria: "brigadeiros-finos",
         preco: 2.50,
-        imagem: "./assets/brigad-finos/brigad-caramelo-salg.webp",
+        imagem: "./assets/brigad-finos/brigad-fino-caramelo-salg.webp",
         descricao: "Brigadeiro cremoso de caramelo salgado com split de caramelo.",
         requerPersonalizacao: false
         },
@@ -855,7 +855,7 @@ const initApp = () => {
         categoria: "doces-finos-artisticos",
         subcategoria: "brigadeiros-finos",
         preco: 4.30,
-        imagem: "./assets/brigad-finos/brigad-pistache.webp",
+        imagem: "./assets/brigad-finos/brigad-fino-pistache.webp",
         descricao: "Brigadeiro fino feito com pasta pura de pistache selecionado.",
         requerPersonalizacao: false
         },
@@ -954,7 +954,7 @@ const initApp = () => {
         categoria: "bolos",
         subcategoria: "bolos-tradicionais",
         precoBase: 99.00,
-        imagem: "./assets/bolos-tradicionais/dois-amores.webp",
+        imagem: "./assets/bolos-tradicionais/bolo-trad-dois-amores.webp",
         descricao: "Duas camadas de recheio: brigadeiro preto casado com brigadeiro branco cremoso.",
         requerPersonalizacao: true,
         tipoPersonalizacao: "tamanho-bolo",
@@ -993,7 +993,7 @@ const initApp = () => {
         categoria: "bolos",
         subcategoria: "bolos-tradicionais",
         precoBase: 99.00,
-        imagem: "./assets/bolos-tradicionais/ninho.webp",
+        imagem: "./assets/bolos-tradicionais/bolo-trad-ninho.webp",
         descricao: "Massa de chocolate combinada com um autêntico brigadeiro de leite em pó.",
         requerPersonalizacao: true,
         tipoPersonalizacao: "tamanho-bolo",
@@ -1071,7 +1071,7 @@ const initApp = () => {
         categoria: "bolos",
         subcategoria: "bolos-tradicionais",
         precoBase: 99.00,
-        imagem: "./assets/bolos-tradicionais/prestigio.webp",
+        imagem: "./assets/bolos-tradicionais/bolo-trad-prestigio.webp",
         descricao: "Massa de chocolate marcante com recheio cremoso de coco flocado.",
         requerPersonalizacao: true,
         tipoPersonalizacao: "tamanho-bolo",
@@ -1110,7 +1110,7 @@ const initApp = () => {
         categoria: "bolos",
         subcategoria: "bolos-tradicionais",
         precoBase: 99.00,
-        imagem: "./assets/bolos-tradicionais/quatro-leites.webp",
+        imagem: "./assets/bolos-tradicionais/bolo-trad-quatro-leites.webp",
         descricao: "Massa branca delicada com recheio premium de brigadeiro de quatro leites.",
         requerPersonalizacao: true,
         tipoPersonalizacao: "tamanho-bolo",

@@ -135,14 +135,16 @@ def main():
 
     # 2. Mapeamento de novas fotos
     new_photos_map = {}
-    new_photos_by_stem = {}
+    new_photos_by_path = {}
     
     if source_dir:
         for p in Path(source_dir).rglob('*'):
             if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS:
+                folder_name = p.parent.name.lower()
+                rel_key = (folder_name, p.name.lower())
+                new_photos_by_path[rel_key] = p
                 new_photos_map[p.name.lower()] = p
-                new_photos_by_stem[p.stem.lower()] = p
-        print(f"[MAPEAMENTO] Total de novas imagens encontradas: {len(new_photos_map)}")
+        print(f"[MAPEAMENTO] Total de novas imagens encontradas: {len(new_photos_by_path)}")
 
     # 3. Varredura do projeto para substituição
     print("\n[BUSCA] Procurando arquivos correspondentes dentro do projeto...")
@@ -161,21 +163,22 @@ def main():
                 project_images.append(file_path)
 
     # Executar substituições se houver pasta de novas fotos
-    if source_dir and new_photos_map:
+    if source_dir and new_photos_by_path:
         for target_img in project_images:
             name_lower = target_img.name.lower()
-            stem_lower = target_img.stem.lower()
+            parent_lower = target_img.parent.name.lower()
+            rel_key = (parent_lower, name_lower)
 
             matched_source = None
-            if name_lower in new_photos_map:
+            if rel_key in new_photos_by_path:
+                matched_source = new_photos_by_path[rel_key]
+            elif name_lower in new_photos_map:
                 matched_source = new_photos_map[name_lower]
-            elif stem_lower in new_photos_by_stem:
-                matched_source = new_photos_by_stem[stem_lower]
 
             if matched_source:
                 try:
                     shutil.copy2(matched_source, target_img)
-                    print(f"  [SUBSTITUIDO] {target_img.relative_to(project_dir)} <-- {matched_source.name}")
+                    print(f"  [SUBSTITUIDO] {target_img.relative_to(project_dir)} <-- {matched_source.parent.name}/{matched_source.name}")
                     replaced_count += 1
                 except Exception as e:
                     print(f"  [ERRO] Falha ao substituir {target_img.name}: {e}")
